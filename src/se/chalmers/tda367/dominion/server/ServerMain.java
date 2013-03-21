@@ -4,9 +4,9 @@
 package se.chalmers.tda367.dominion.server;
 
 /**
- * @author Anton Myrholm
+ * The main class for the server
  * 
- *
+ * @author Grupp 28
  */
 public class ServerMain {
 
