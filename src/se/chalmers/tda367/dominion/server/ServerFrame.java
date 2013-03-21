@@ -2,6 +2,7 @@ package se.chalmers.tda367.dominion.server;
 
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.ScrollPane;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 
@@ -23,6 +24,7 @@ public class ServerFrame extends JFrame {
 	 * Serves as the main source of output for the server.
 	 */
 	private JTextArea consoleOut;
+	private ScrollPane consolePane;
 
 	/**
 	 * Serves as the main input source for the server.
@@ -51,17 +53,22 @@ public class ServerFrame extends JFrame {
 		this.setLayout(new BorderLayout());
 		this.setBackground(Color.BLACK);
 
+		
+		
 		consoleOut = new JTextArea();
 		consoleOut.setEditable(false);
 		consoleOut.setForeground(Color.WHITE);
 		consoleOut.setBackground(Color.BLACK);
+		consolePane = new ScrollPane();
 
 
 		consoleIn = new JTextField();
 		consoleIn.setForeground(Color.WHITE);
 		consoleIn.setBackground(Color.BLACK);
+		consoleIn.setCaretColor(Color.GREEN);
 
-		this.add(consoleOut, BorderLayout.CENTER);
+		consolePane.add(consoleOut);
+		this.add(consolePane, BorderLayout.CENTER);
 		this.add(consoleIn, BorderLayout.PAGE_END);
 
 		this.validate();
@@ -74,7 +81,7 @@ public class ServerFrame extends JFrame {
 	 * @param text
 	 */
 	public void print(String text){
-		consoleOut.append("<" + getTime() + "> " + text);
+		consoleOut.append("<" + getTime() + "> " + text + "\n");
 	}
 	
 	/**

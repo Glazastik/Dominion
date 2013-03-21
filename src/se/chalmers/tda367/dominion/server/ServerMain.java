@@ -19,7 +19,8 @@ public class ServerMain {
 	public static void main(String[] args) {
 		window = new ServerFrame();
 
-		window.print("Server initiated...");
+		window.print("Frame initiated...");
+		
 	}
 
 }
