@@ -15,6 +15,7 @@ import javax.swing.JTextField;
 public class ServerFrame extends JFrame implements ActionListener {
 
 	// Frame-related variables
+	private static ServerFrame serverFrame;
 	private static final long serialVersionUID = -6536441362330626938L;
 	private static final String FRAMETITLE = "Dominion Server 0.1";
 	private static final int FRAMEHEIGHT = 400;
@@ -37,7 +38,7 @@ public class ServerFrame extends JFrame implements ActionListener {
 	/**
 	 * Constructor for the server frame. Initiates the components.
 	 */
-	public ServerFrame() {
+	private ServerFrame() {
 		super(FRAMETITLE);
 		this.setSize(FRAMEWIDTH, FRAMEHEIGHT);
 		controller = new ServerController();
@@ -47,6 +48,15 @@ public class ServerFrame extends JFrame implements ActionListener {
 
 		initComponents();
 	}
+	
+	public static synchronized ServerFrame getInstance(){
+		if(serverFrame == null){
+			serverFrame = new ServerFrame();
+		} 
+		
+		return serverFrame;
+	}
+	
 
 	/**
 	 * Initiates the required components for the JFrame.
@@ -81,6 +91,7 @@ public class ServerFrame extends JFrame implements ActionListener {
 	 * Appends the server frame with the text.
 	 * 
 	 * @param text
+	 *            the text to be printed in the console
 	 */
 	public void print(String text) {
 		consoleOut.append("<" + getTime() + "> " + text + "\n");
@@ -100,7 +111,7 @@ public class ServerFrame extends JFrame implements ActionListener {
 	 * Whenever the user presses enter.
 	 * 
 	 * @param e
-	 *            The action event
+	 *            the action event
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {

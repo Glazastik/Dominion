@@ -17,7 +17,7 @@ public class ServerMain {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		window = new ServerFrame();
+		window = ServerFrame.getInstance();
 		window.print("Frame initiated");
 
 	}
