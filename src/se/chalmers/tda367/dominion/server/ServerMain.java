@@ -11,16 +11,15 @@ package se.chalmers.tda367.dominion.server;
 public class ServerMain {
 
 	private static ServerFrame window;
-	
+
 	/**
 	 * 
 	 * @param args
 	 */
 	public static void main(String[] args) {
 		window = new ServerFrame();
+		window.print("Frame initiated");
 
-		window.print("Frame initiated...");
-		
 	}
 
 }
