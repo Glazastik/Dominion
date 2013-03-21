@@ -10,13 +10,16 @@ package se.chalmers.tda367.dominion.server;
  */
 public class ServerMain {
 
+	private static ServerFrame window;
+	
 	/**
 	 * 
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
+		window = new ServerFrame();
 
+		window.print("Server initiated...");
 	}
 
 }
