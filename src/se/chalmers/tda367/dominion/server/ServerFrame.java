@@ -15,7 +15,7 @@ import javax.swing.JTextField;
 public class ServerFrame extends JFrame implements ActionListener {
 
 	// Frame-related variables
-	private static ServerFrame serverFrame;
+	private static ServerFrame instance;
 	private static final long serialVersionUID = -6536441362330626938L;
 	private static final String FRAMETITLE = "Dominion Server 0.1";
 	private static final int FRAMEHEIGHT = 400;
@@ -23,7 +23,6 @@ public class ServerFrame extends JFrame implements ActionListener {
 	private ServerController controller;
 
 	// List of components:
-
 	/**
 	 * Serves as the main source of output for the server.
 	 */
@@ -48,18 +47,23 @@ public class ServerFrame extends JFrame implements ActionListener {
 
 		initComponents();
 	}
-	
-	public static synchronized ServerFrame getInstance(){
-		if(serverFrame == null){
-			serverFrame = new ServerFrame();
-		} 
-		
-		return serverFrame;
-	}
-	
 
 	/**
-	 * Initiates the required components for the JFrame.
+	 * Makes sure there is only one instance of the JFrame.
+	 * @return the one instance
+	 */
+	public static synchronized ServerFrame getInstance() {
+		if (instance == null) {
+			instance = new ServerFrame();
+		}
+
+		return instance;
+	}
+
+	/**
+	 * Initiates the required components for the JFrame and sets the default
+	 * operable values.
+	 * 
 	 */
 	private void initComponents() {
 		// The layout
@@ -98,7 +102,9 @@ public class ServerFrame extends JFrame implements ActionListener {
 	}
 
 	/**
-	 * Method for getting the current time in a relevant format
+	 * Method for getting the current time.
+	 * 
+	 * @return string with the text a HH:mm:ss format.
 	 */
 	private String getTime() {
 		Calendar cal = Calendar.getInstance();
