@@ -5,5 +5,10 @@ package se.chalmers.tda367.dominion.server;
  * @author Grupp 28
  */
 public class Room {
-
+	
+	private GameModel game;
+	
+	public Room() {
+		
+	}
 }
