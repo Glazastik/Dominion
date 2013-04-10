@@ -9,7 +9,7 @@ import com.sun.tools.javac.util.List;
  */
 
 public class Pile {
-	public final List<Card> cards;
+	private final List<Card> cards;
 	
 	public Pile(List<Card> cards){
 		this.cards = cards;
