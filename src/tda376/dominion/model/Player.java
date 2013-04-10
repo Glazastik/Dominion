@@ -16,6 +16,4 @@ public class Player {
 		this.discard = discard;
 	}
 	
-	
-	
 }
