@@ -1,5 +1,6 @@
 package tda376.dominion.model;
 
+import java.util.Collections;
 import java.util.LinkedList;
 
 import java.util.List;
@@ -11,7 +12,7 @@ import java.util.List;
  */
 
 public class Pile {
-	private final List<Card> cards;
+	private final LinkedList<Card> cards;
 	
 	/**
 	 * Creates an empty pile for holding cards
@@ -25,9 +26,8 @@ public class Pile {
 	 * 
 	 * @param cards the cards that will populate the pile
 	 */
-	public Pile(List<Card> cards){
+	public Pile(LinkedList<Card> cards){
 		this.cards = cards;
-		
 	}
 	
 	/**
@@ -36,7 +36,7 @@ public class Pile {
 	 * @param c the card that will be added to the top of the pile
 	 */
 	public void add(Card c){
-		
+		cards.addFirst(c);
 	}
 	
 	/**
@@ -45,14 +45,14 @@ public class Pile {
 	 * @return the top card of the pile
 	 */
 	public Card pop(){
-		return null;
+		return cards.pop();
 	}
 	
 	/**
 	 * Shuffles the pile, making the order of the cards random
 	 */
 	public void shuffle(){
-		
+		Collections.shuffle(cards);
 	}
 	
 	/**
