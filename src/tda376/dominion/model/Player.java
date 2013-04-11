@@ -45,14 +45,19 @@ public class Player {
 	 * <p>Shuffles in the discard pile if the deck is empty</p>
 	 */
 	public void draw(int number) {
-		
+		for(int i = 0; i < number; i++) {
+			draw();
+		}
 	}
 	
 	/**
 	 * Discards every card in the players hand
 	 */
 	public void discardHand() {
-		
+		int m = hand.getSize();
+		for(int i = 0; i < m; i++ ) {
+			discard.add(hand.pop());
+		}
 	}
 	
 	/**
@@ -76,7 +81,7 @@ public class Player {
 	 * @param card
 	 */
 	public void gain(Card card) {
-		
+		discard.add(card);
 	}
 	
 	/**
@@ -84,7 +89,7 @@ public class Player {
 	 * @param card
 	 */
 	public void addToHand(Card card) {
-		
+		hand.add(card);
 	}
 	
 	/**
