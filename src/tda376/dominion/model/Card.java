@@ -9,16 +9,16 @@ import java.awt.Image;
  *
  */
 public abstract class Card implements ICard {
-	//private final Image image;
+	private final Image image;
 	private final String name;
 	private final String cardType;
 	private final int cardValue;
 	//TODO: Should be created with an image and have a getImage method
-	public Card(String name, String CardType) {
+	public Card(String name, String CardType, int CardValue, Image cardImage) {
 		this.name = name;
 		this.cardType = CardType;
-		//TODO: this.cardValue = 
-		//this.image = image
+		this.cardValue = CardValue;
+		this.image = cardImage;
 	}
 	@Override
 	public String getName() {
@@ -30,5 +30,8 @@ public abstract class Card implements ICard {
 	}
 	public int getCardValue(){
 		return cardValue;
+	}
+	public Image getImage(){
+		return this.image;
 	}
 }
