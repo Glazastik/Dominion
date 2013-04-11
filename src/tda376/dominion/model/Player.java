@@ -34,4 +34,40 @@ public class Player {
 		
 	}
 	
+	public void draw(int number) {
+		
+	}
+	
+	public void discardHand() {
+		
+	}
+	
+	public void discardCard(Card card) {
+		
+	}
+	
+	public void gain() {
+		
+	}
+	
+	public void addToHand(Card card) {
+		
+	}
+	
+	public void revealHand() {
+		
+	}
+	
+	public void revealTopOfHand() {
+		
+	}
+	
+	public void discardFromDeck() {
+		
+	}
+	
+	public void putOnTopOfDeck() {
+		
+	}
+	
 }
