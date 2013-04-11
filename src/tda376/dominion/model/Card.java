@@ -1,5 +1,7 @@
 package tda376.dominion.model;
 
+import java.awt.Image;
+
 /**
  * 
  * The class that represents the cards.
