@@ -23,7 +23,7 @@ public class Pile {
 	/**
 	 * Creates a pile containing the cards in the list provided
 	 * 
-	 * @param cards the cards taht will populate the pile
+	 * @param cards the cards that will populate the pile
 	 */
 	public Pile(List<Card> cards){
 		this.cards = cards;
@@ -31,9 +31,9 @@ public class Pile {
 	}
 	
 	/**
-	 * Adds a card to the start of the list
+	 * Adds a card on the top of the pile
 	 * 
-	 * @param c the card that will be added to the start of the list
+	 * @param c the card that will be added to the top of the pile
 	 */
 	public void add(Card c){
 		
@@ -61,7 +61,7 @@ public class Pile {
 	 * @return the size of the pile
 	 */
 	public int getSize(){
-		return 0;
+		return cards.size();
 	}
 	
 	/**
