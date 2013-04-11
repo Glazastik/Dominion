@@ -22,21 +22,19 @@ public class CardInfoHandler {
 	private static final HashMap<String,Integer> cardValues = new HashMap<String,Integer>();
 	//TODO: Imageset private static final HashMap<String,Image> cardImage = new HashMap<String,Image>();
 	private CardInfoHandler(){
-		//TODO: Filereading
 		try {
 			FileInputStream fstream = new FileInputStream("res/CardInfo.txt");
 			DataInputStream in = new DataInputStream(fstream);
 			  BufferedReader br = new BufferedReader(new InputStreamReader(in));
 			  String strLine;
-			  //Read File Line By Line
 			  while ((strLine = br.readLine()) != null)   {
-				  System.out.println (strLine);
+				  String[] temp = strLine.split(" ");
+				  cardTypes.put(temp[0], temp[1]);
+				  cardValues.put(temp[0], Integer.parseInt(temp[2]));
 			  }
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-		
 	}
 	public static synchronized CardInfoHandler getInstance(){
 		if(!instanceCreated){
@@ -46,6 +44,9 @@ public class CardInfoHandler {
 		return instance;
 	}
 	public String getCardType(String cardName){
-		return null;
+		return cardTypes.get(cardName);
+	}
+	public int getCardValue(String cardName){
+		return cardValues.get(cardName);
 	}
 }
