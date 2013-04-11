@@ -6,14 +6,32 @@ package tda376.dominion.model;
  *
  */
 public class Player {
+	private final String name;
+	
 	private final Pile hand;
 	private final Pile deck;
 	private final Pile discard;
+	private final Pile playingArea;
 	
-	public Player(Pile hand, Pile deck, Pile discard){
-		this.hand = hand;
-		this.deck = deck;
-		this.discard = discard;
+	private int actions;
+	private int buys;
+	private int money;
+	
+	public Player(String name) {
+		this.name = name;
+		
+		hand = new Pile();
+		deck = new Pile();
+		discard = new Pile();
+		playingArea = new Pile();
+		
+		this.actions = 0;
+		this.buys = 0;
+		this.money = 0;
+	}
+	
+	public void draw() {
+		
 	}
 	
 }
