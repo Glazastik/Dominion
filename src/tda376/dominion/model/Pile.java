@@ -1,5 +1,7 @@
 package tda376.dominion.model;
 
+import java.util.ArrayList;
+
 import com.sun.tools.javac.util.List;
 
 /**
@@ -10,6 +12,10 @@ import com.sun.tools.javac.util.List;
 
 public class Pile {
 	private final List<Card> cards;
+	
+	public Pile() {
+		cards = new ArrayList<Card>();
+	}
 	
 	public Pile(List<Card> cards){
 		this.cards = cards;
