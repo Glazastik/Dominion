@@ -1,6 +1,6 @@
 package tda376.dominion.model;
 
-import com.sun.tools.javac.util.List;
+import java.util.List;
 
 /**
  * Supply contains many piles that players can buy cards from

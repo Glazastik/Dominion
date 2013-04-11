@@ -1,6 +1,6 @@
 package tda376.dominion.model;
 
-import com.sun.tools.javac.util.List;
+import java.util.List;
 
 /**
  * @author Group 28
