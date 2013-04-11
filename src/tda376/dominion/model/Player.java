@@ -1,5 +1,7 @@
 package tda376.dominion.model;
 
+import java.util.List;
+
 /**
  * The class that represents the player, holding the personal cards and the values.
  * @author Group 28
@@ -30,43 +32,98 @@ public class Player {
 		this.money = 0;
 	}
 	
+	/**
+	 * Draw card from deck to hand
+	 * <p>Shuffles in the discard pile if the deck is empty</p>
+	 */
 	public void draw() {
 		
 	}
 	
+	/**
+	 * Draw multiple cards from deck to hand
+	 * <p>Shuffles in the discard pile if the deck is empty</p>
+	 */
 	public void draw(int number) {
 		
 	}
 	
+	/**
+	 * Discards every card in the players hand
+	 */
 	public void discardHand() {
 		
 	}
 	
+	/**
+	 * Discard specific card in the players hand
+	 * @param card
+	 */
 	public void discardCard(Card card) {
 		
 	}
 	
-	public void gain() {
+	/**
+	 * Buy a card
+	 * @param card
+	 */
+	public void buy(Card card) {
 		
 	}
 	
+	/**
+	 * Add a card from supplies to the discard pile
+	 * @param card
+	 */
+	public void gain(Card card) {
+		
+	}
+	
+	/**
+	 * Add a card from supplies to the hand
+	 * @param card
+	 */
 	public void addToHand(Card card) {
 		
 	}
 	
-	public void revealHand() {
+	/**
+	 * Reveal the hand
+	 * @return the hand as a list
+	 */
+	public List<Card> revealHand() {
+		return null;
+	}
+	
+	/**
+	 * Reveal the top card of the deck
+	 * @return the top card
+	 */
+	public Card revealTopOfDeck() {
+		return null;
+	}
+	
+	/**
+	 * Reveal the top card of the deck
+	 * @return a list of the top cards
+	 */
+	public List<Card> revealTopOfDeck(int number) {
+		return null;
+	}
+	
+	/**
+	 * Discard a card from the deck
+	 * @param card in the deck to discard
+	 */
+	public void discardFromDeck(Card card) {
 		
 	}
 	
-	public void revealTopOfHand() {
-		
-	}
-	
-	public void discardFromDeck() {
-		
-	}
-	
-	public void putOnTopOfDeck() {
+	/**
+	 * Put a card on the top of the deck
+	 * @param card to be put on the deck
+	 */
+	public void putOnTopOfDeck(Card card) {
 		
 	}
 	
