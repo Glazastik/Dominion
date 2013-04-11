@@ -6,13 +6,27 @@ package tda376.dominion.model;
  * @author Group 28
  *
  */
-public class Card {
+public abstract class Card implements ICard {
 	//private final Image image;
 	private final String name;
-	
-	public Card(String name) {
+	private final String cardType;
+	private final int cardValue;
+	//TODO: Should be created with an image and have a getImage method
+	public Card(String name, String CardType) {
 		this.name = name;
+		this.cardType = CardType;
+		//TODO: this.cardValue = 
 		//this.image = image
 	}
-	//public Card get() {}
+	@Override
+	public String getName() {
+		return name;
+	}
+	@Override
+	public String getCardType() {
+		return cardType;
+	}
+	public int getCardValue(){
+		return cardValue;
+	}
 }
