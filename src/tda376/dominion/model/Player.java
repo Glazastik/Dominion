@@ -45,7 +45,9 @@ public class Player {
 	 * <p>Shuffles in the discard pile if the deck is empty</p>
 	 */
 	public void draw(int number) {
-		
+		for(int i = 0; i < number; i++) {
+			draw();
+		}
 	}
 	
 	/**
