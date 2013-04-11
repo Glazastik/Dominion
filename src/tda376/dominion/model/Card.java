@@ -1,5 +1,7 @@
 package tda376.dominion.model;
 
+import java.awt.Image;
+
 /**
  * 
  * The class that represents the cards.
@@ -7,12 +9,20 @@ package tda376.dominion.model;
  *
  */
 public class Card {
-	//private final Image image;
+	//image type may change later 
+	private final Image image;
 	private final String name;
 	
-	public Card(String name) {
+	public Card(String name, Image image) {
 		this.name = name;
-		//this.image = image
+		this.image = image;
 	}
-	//public Card get() {}
+	
+	public String getName() {
+		return this.name;
+	}
+	
+	public Image getImage() {
+		return this.image;
+	}
 }
