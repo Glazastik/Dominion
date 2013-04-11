@@ -8,29 +8,27 @@ import java.awt.Image;
  * @author Group 28
  *
  */
-public class Card {
-	//image type may change later 
-	private final Image image;
+public abstract class Card implements ICard {
+	//private final Image image;
 	private final String name;
-	
-	public Card(String name, Image image) {
+	private final String cardType;
+	private final int cardValue;
+	//TODO: Should be created with an image and have a getImage method
+	public Card(String name, String CardType) {
 		this.name = name;
-		this.image = image;
+		this.cardType = CardType;
+		//TODO: this.cardValue = 
+		//this.image = image
 	}
-	
-	/**
-	 * Getter for the name of the card
-	 * @return The name of the card
-	 */
+	@Override
 	public String getName() {
-		return this.name;
+		return name;
 	}
-	
-	/**
-	 * Getter for the image of the card
-	 * @return The image of the card
-	 */
-	public Image getImage() {
-		return this.image;
+	@Override
+	public String getCardType() {
+		return cardType;
+	}
+	public int getCardValue(){
+		return cardValue;
 	}
 }
