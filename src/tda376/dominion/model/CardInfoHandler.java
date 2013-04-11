@@ -33,8 +33,10 @@ public class CardInfoHandler {
 				  String[] split = strLine.split(" ");
 				  cardTypes.put(split[0], split[1]);
 				  cardValues.put(split[0], Integer.parseInt(split[2]));
-				  String temp = ("res/img/" +split[0]+".jpg");
-				  cardImages.put(split[0], new Image(temp));
+				  String temp = ("res/img/card/" +split[0]+".jpg");
+				  System.out.println(temp);
+				  Image tempImage = new Image(temp);
+				  cardImages.put(split[0], tempImage);
 			  }
 		} catch (Exception e) {
 			e.printStackTrace();
