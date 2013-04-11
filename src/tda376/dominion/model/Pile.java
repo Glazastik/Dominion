@@ -1,8 +1,8 @@
 package tda376.dominion.model;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 
-import com.sun.tools.javac.util.List;
+import java.util.List;
 
 /**
  * Class for the piles which contain the cards.
@@ -14,7 +14,7 @@ public class Pile {
 	private final List<Card> cards;
 	
 	public Pile() {
-		cards = new ArrayList<Card>();
+		cards = new LinkedList<Card>();
 	}
 	
 	public Pile(List<Card> cards){
