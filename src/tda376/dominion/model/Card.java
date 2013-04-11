@@ -18,10 +18,18 @@ public class Card {
 		this.image = image;
 	}
 	
+	/**
+	 * Getter for the name of the card
+	 * @return The name of the card
+	 */
 	public String getName() {
 		return this.name;
 	}
 	
+	/**
+	 * Getter for the image of the card
+	 * @return The image of the card
+	 */
 	public Image getImage() {
 		return this.image;
 	}
