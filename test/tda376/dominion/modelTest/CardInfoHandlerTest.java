@@ -54,5 +54,10 @@ public class CardInfoHandlerTest {
 		}
 		assertTrue(bool);
 	}
+	@Test
+	public void testGetCardImage() {
+		CardInfoHandler cardInfoHandler = CardInfoHandler.getInstance();
+		assertTrue(cardInfoHandler.getImage("Witch") != null);
+	}
 
 }

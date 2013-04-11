@@ -8,6 +8,8 @@ import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Set;
 
+import org.newdawn.slick.Image;
+
 /**
  * A class used to get the info from the cards
  * should read a file to get the necesary info.
@@ -20,7 +22,7 @@ public class CardInfoHandler {
 	private static boolean instanceCreated = false;
 	private static final HashMap<String,String> cardTypes = new HashMap<String,String>();
 	private static final HashMap<String,Integer> cardValues = new HashMap<String,Integer>();
-	//TODO: Imageset private static final HashMap<String,Image> cardImage = new HashMap<String,Image>();
+	private static final HashMap<String,Image> cardImages = new HashMap<String,Image>();
 	private CardInfoHandler(){
 		try {
 			FileInputStream fstream = new FileInputStream("res/CardInfo.txt");
@@ -28,9 +30,11 @@ public class CardInfoHandler {
 			  BufferedReader br = new BufferedReader(new InputStreamReader(in));
 			  String strLine;
 			  while ((strLine = br.readLine()) != null)   {
-				  String[] temp = strLine.split(" ");
-				  cardTypes.put(temp[0], temp[1]);
-				  cardValues.put(temp[0], Integer.parseInt(temp[2]));
+				  String[] split = strLine.split(" ");
+				  cardTypes.put(split[0], split[1]);
+				  cardValues.put(split[0], Integer.parseInt(split[2]));
+				  String temp = ("res/img/" +split[0]+".jpg");
+				  cardImages.put(split[0], new Image(temp));
 			  }
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -48,5 +52,8 @@ public class CardInfoHandler {
 	}
 	public int getCardValue(String cardName){
 		return cardValues.get(cardName);
+	}
+	public Image getImage(String cardName){
+		return cardImages.get(cardName);
 	}
 }
