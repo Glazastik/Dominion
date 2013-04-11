@@ -5,15 +5,11 @@ package tda376.dominion.model;
  * @author christoffer
  *
  */
-public class CardFactory {
+public interface CardFactory {
 	/**
 	 * A method for creating cards
 	 * @param cardName the name of the card to be created
 	 * @return the created card
 	 */
-	public ICard createCard(String cardName){
-		return null;
-		//TODO: return new Card(cardName);
-		
-	}
+	public ICard createCard(String cardName);
 }
