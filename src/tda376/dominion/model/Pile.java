@@ -84,7 +84,6 @@ public class Pile {
 	 * @return a list containing every card in the pile
 	 */
 	public List<String> getCards(){
-		//TODO Copy first?
 		return cards;
 	}
 	
