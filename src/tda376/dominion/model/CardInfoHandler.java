@@ -6,23 +6,26 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.Set;
 
+import org.lwjgl.LWJGLException;
+import org.lwjgl.test.applet.OpenGL;
 import org.newdawn.slick.Image;
 
 /**
- * A class used to get the info from the cards
- * should read a file to get the necesary info.
+ * A class used to store all the info concerning cards.
+ * All info is gotten by calling the method with the cards name.
  * @author christoffer
  *
  */
 public class CardInfoHandler {
-	//TODO: get stuff
 	private static CardInfoHandler instance;
 	private static boolean instanceCreated = false;
+	private static final LinkedList<String> cards = new LinkedList<String>();
 	private static final HashMap<String,String> cardTypes = new HashMap<String,String>();
 	private static final HashMap<String,Integer> cardValues = new HashMap<String,Integer>();
-	private static final HashMap<String,Image> cardImages = new HashMap<String,Image>();
+	private static final HashMap<String,String> cardImages = new HashMap<String,String>();
 	private CardInfoHandler(){
 		try {
 			FileInputStream fstream = new FileInputStream("res/CardInfo.txt");
@@ -31,12 +34,11 @@ public class CardInfoHandler {
 			  String strLine;
 			  while ((strLine = br.readLine()) != null)   {
 				  String[] split = strLine.split(" ");
+				  cards.add(split[0]);
 				  cardTypes.put(split[0], split[1]);
 				  cardValues.put(split[0], Integer.parseInt(split[2]));
 				  String temp = ("res/img/card/" +split[0]+".jpg");
-				  System.out.println(temp);
-				  Image tempImage = new Image(temp);
-				  cardImages.put(split[0], tempImage);
+				  cardImages.put(split[0], temp);
 			  }
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -49,13 +51,16 @@ public class CardInfoHandler {
 		}
 		return instance;
 	}
+	public LinkedList<String> getCardList(){
+		return cards;
+	}
 	public String getCardType(String cardName){
 		return cardTypes.get(cardName);
 	}
 	public int getCardValue(String cardName){
 		return cardValues.get(cardName);
 	}
-	public Image getImage(String cardName){
+	public String getImageLink(String cardName){
 		return cardImages.get(cardName);
 	}
 }

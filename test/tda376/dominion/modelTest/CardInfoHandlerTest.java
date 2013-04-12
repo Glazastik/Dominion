@@ -2,6 +2,12 @@ package tda376.dominion.modelTest;
 
 import static org.junit.Assert.*;
 
+import java.awt.Image;
+import java.util.Iterator;
+import java.util.LinkedList;
+
+import javax.swing.ImageIcon;
+
 import org.junit.Test;
 
 import tda376.dominion.model.CardInfoHandler;
@@ -55,9 +61,20 @@ public class CardInfoHandlerTest {
 		assertTrue(bool);
 	}
 	@Test
-	public void testGetCardImage() {
+	public void testGetCardImageLink() {
+		boolean bool = true;
 		CardInfoHandler cardInfoHandler = CardInfoHandler.getInstance();
-		assertTrue(cardInfoHandler.getImage("Witch") != null);
+		LinkedList<String> temp = cardInfoHandler.getCardList();
+		Iterator i = temp.iterator();
+		while (i.hasNext()){
+			try {
+				ImageIcon img = new ImageIcon(cardInfoHandler.getImageLink((String) i.next()));
+			} catch (Exception e){
+				bool = false;
+			}
+		}
+		assertTrue(bool);
 	}
+
 
 }
