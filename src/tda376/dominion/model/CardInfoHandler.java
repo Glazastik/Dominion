@@ -51,15 +51,34 @@ public class CardInfoHandler {
 		}
 		return instance;
 	}
+	/**
+	 * Gives all the cards in the system
+	 * @return the cards
+	 */
 	public LinkedList<String> getCardList(){
 		return cards;
 	}
+	/**
+	 * Gives the type of any given card
+	 * @param cardName the card
+	 * @return the card type
+	 */
 	public String getCardType(String cardName){
-		return cardTypes.get(cardName);
+			return cardTypes.get(cardName);
 	}
+	/**
+	 * Gives the cost/value of any given card
+	 * @param cardName the card
+	 * @return the cards value
+	 */
 	public int getCardValue(String cardName){
 		return cardValues.get(cardName);
 	}
+	/**
+	 * Gives the image link of any given card
+	 * @param cardName the card
+	 * @return the cards image link
+	 */
 	public String getImageLink(String cardName){
 		return cardImages.get(cardName);
 	}
