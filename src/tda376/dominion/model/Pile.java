@@ -49,6 +49,20 @@ public class Pile {
 	}
 	
 	/**
+	 * Removes the first instance of the specific card
+	 * 
+	 * @param card
+	 */
+	public String pop(String card) {
+		for(int i = 0; i < cards.size(); i++) {
+			if(cards.get(i).equals(card)) {
+				return cards.pop();
+			}
+		}
+		return null;
+	}
+	
+	/**
 	 * Shuffles the pile, making the order of the cards random
 	 */
 	public void shuffle(){
