@@ -6,6 +6,7 @@ import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Set;
 
@@ -57,6 +58,42 @@ public class CardInfoHandler {
 	 */
 	public LinkedList<String> getCardList(){
 		return cards;
+	}
+	public LinkedList<String> getActionCards(){
+		LinkedList<String> temp = this.getCardList();
+		LinkedList<String> temp2 = new LinkedList<String>();
+		Iterator i = temp.iterator();
+		while(i.hasNext()){
+			String tempString = (String) i.next();
+			if(this.getCardType(tempString).equals("Action")){
+				temp2.add(tempString);
+			}
+		}
+		return temp2;
+	}
+	public LinkedList<String> getTreasureCards(){
+		LinkedList<String> temp = this.getCardList();
+		LinkedList<String> temp2 = new LinkedList<String>();
+		Iterator i = temp.iterator();
+		while(i.hasNext()){
+			String tempString = (String) i.next();
+			if(this.getCardType(tempString).equals("Treasure")){
+				temp2.add(tempString);
+			}
+		}
+		return temp2;
+	}
+	public LinkedList<String> getVictoryCards(){
+		LinkedList<String> temp = this.getCardList();
+		LinkedList<String> temp2 = new LinkedList<String>();
+		Iterator i = temp.iterator();
+		while(i.hasNext()){
+			String tempString = (String) i.next();
+			if(this.getCardType(tempString).equals("Victory")){
+				temp2.add(tempString);
+			}
+		}
+		return temp2;
 	}
 	/**
 	 * Gives the type of any given card

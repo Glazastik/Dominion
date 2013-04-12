@@ -37,6 +37,13 @@ public class CardInfoHandlerTest {
 		if(cardInfoHandler.getCardType("Copper").equals("Action") || cardInfoHandler.getCardType("Copper").equals(" Treasure")){
 			bool = false;
 		}
+		LinkedList<String> temp = cardInfoHandler.getCardList();
+		Iterator i = temp.iterator();
+		while (i.hasNext()){
+			if(i.next()==null){
+				bool = false;
+			}
+		}
 		assertTrue(bool);
 	}
 	@Test
@@ -75,6 +82,55 @@ public class CardInfoHandlerTest {
 		}
 		assertTrue(bool);
 	}
-
-
+	@Test
+	public void testGetActionCards(){
+		boolean bool = true;
+		CardInfoHandler cardInfoHandler = CardInfoHandler.getInstance();
+		LinkedList<String> temp = cardInfoHandler.getActionCards();
+		Iterator i = temp.iterator();
+		while(i.hasNext()){
+			String tempString = (String) i.next();
+			if(!cardInfoHandler.getCardType(tempString).equals("Action")){
+				bool = false;
+			}
+		}
+		if(temp.size()==0){	
+			bool = false;
+		}
+		assertTrue(bool);
+	}
+	@Test
+	public void testGetTreasureCards(){
+		boolean bool = true;
+		CardInfoHandler cardInfoHandler = CardInfoHandler.getInstance();
+		LinkedList<String> temp = cardInfoHandler.getTreasureCards();
+		Iterator i = temp.iterator();
+		while(i.hasNext()){
+			String tempString = (String) i.next();
+			if(!cardInfoHandler.getCardType(tempString).equals("Treasure")){
+				bool = false;
+			}
+		}
+		if(temp.size()==0){	
+			bool = false;
+		}
+		assertTrue(bool);
+	}
+	@Test
+	public void testGetVictoryCards(){
+		boolean bool = true;
+		CardInfoHandler cardInfoHandler = CardInfoHandler.getInstance();
+		LinkedList<String> temp = cardInfoHandler.getVictoryCards();
+		Iterator i = temp.iterator();
+		while(i.hasNext()){
+			String tempString = (String) i.next();
+			if(!cardInfoHandler.getCardType(tempString).equals("Victory")){
+				bool = false;
+			}
+		}
+		if(temp.size()==0){	
+			bool = false;
+		}
+		assertTrue(bool);
+	}
 }
