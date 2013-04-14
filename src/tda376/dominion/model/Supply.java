@@ -11,6 +11,7 @@ import java.util.List;
  */
 
 public class Supply {
+	//TODO: Methods 
 	private CardInfoHandler cardInfoHandler;
 	HashMap<String,Integer> cards;
 	public Supply(int amountOfPlayers){
@@ -45,6 +46,16 @@ public class Supply {
 		}
 		cards.put("Curse",((amountOfPlayers-1)*10));
 		LinkedList<String> temp = cardInfoHandler.getActionCards();
-		//TODO: Selecting random cards and adding them to a cards
+		//TODO: Selecting random cards and adding them to cards
 	}
+	/**
+	 * Returns the cards which are active this game.
+	 * These are not the cards that are available for purchase but the ones that are active
+	 * @return The active cards of the round
+	 */
+	public HashMap<String,Integer> getActiveCards(){
+		return cards;
+		
+	}
+	
 }
