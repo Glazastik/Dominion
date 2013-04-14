@@ -1,8 +1,10 @@
 package tda376.dominion.model;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
+import java.util.Random;
 
 /**
  * Supply contains many piles that players can buy cards from
@@ -13,7 +15,7 @@ import java.util.List;
 public class Supply {
 	//TODO: Methods 
 	private CardInfoHandler cardInfoHandler;
-	HashMap<String,Integer> cards;
+	private final HashMap<String,Integer> cards;
 	public Supply(int amountOfPlayers){
 		cardInfoHandler = CardInfoHandler.getInstance();
 		cards = new HashMap<String,Integer>();
@@ -24,8 +26,7 @@ public class Supply {
 	 * @param amountOfPlayers amount of players in the game
 	 */
 	private void initializeSupply(int amountOfPlayers){
-		//TODO: Correct amount of victory cards depending on the amount of players
-		//TODO: Randomizing and selecting action cards
+		//TODO: Testing
 		cards.put("Copper", 60);
 		cards.put("Silver", 40);
 		cards.put("Silver", 30);
@@ -45,8 +46,35 @@ public class Supply {
 			cards.put("Province", 12);
 		}
 		cards.put("Curse",((amountOfPlayers-1)*10));
-		LinkedList<String> temp = cardInfoHandler.getActionCards();
-		//TODO: Selecting random cards and adding them to cards
+		
+		//Get the action cards and the gardens card
+		LinkedList<String> actionCards = cardInfoHandler.getActionCards();
+		actionCards.add("Gardens");
+		
+		//Generate 10 random numbers 
+		int numbersGenerated = 0;
+		int tempInt;
+		LinkedList<Integer> numbers = new LinkedList<Integer>(); 
+		Random generator = new Random();
+		while(numbersGenerated<11){
+			tempInt = generator.nextInt();
+			if(!numbers.contains(tempInt) && tempInt <  actionCards.size()){
+				numbers.add(tempInt);
+				numbersGenerated++;
+			}
+		}
+		
+		//Add the cards
+		Iterator i = numbers.iterator();
+		String tempCard;
+		while(i.hasNext()){
+			tempCard = actionCards.get((int) i.next());
+			if(tempCard.equals("Gardens")){
+				cards.put(tempCard, 8);
+			} else {
+				cards.put(tempCard, 12);
+			}
+		}
 	}
 	/**
 	 * Returns the cards which are active this game.
