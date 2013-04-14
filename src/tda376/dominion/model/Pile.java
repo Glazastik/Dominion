@@ -12,13 +12,13 @@ import java.util.List;
  */
 
 public class Pile {
-	private final LinkedList<Card> cards;
+	private final LinkedList<String> cards;
 	
 	/**
 	 * Creates an empty pile for holding cards
 	 */
 	public Pile() {
-		cards = new LinkedList<Card>();
+		cards = new LinkedList<String>();
 	}
 	
 	/**
@@ -26,7 +26,7 @@ public class Pile {
 	 * 
 	 * @param cards the cards that will populate the pile
 	 */
-	public Pile(LinkedList<Card> cards){
+	public Pile(LinkedList<String> cards){
 		this.cards = cards;
 	}
 	
@@ -35,7 +35,7 @@ public class Pile {
 	 * 
 	 * @param c the card that will be added to the top of the pile
 	 */
-	public void add(Card c){
+	public void add(String c){
 		cards.addFirst(c);
 	}
 	
@@ -44,8 +44,22 @@ public class Pile {
 	 * 
 	 * @return the top card of the pile
 	 */
-	public Card pop(){
+	public String pop(){
 		return cards.pop();
+	}
+	
+	/**
+	 * Removes the first instance of the specific card
+	 * 
+	 * @param card
+	 */
+	public String pop(String card) {
+		for(int i = 0; i < cards.size(); i++) {
+			if(cards.get(i).equals(card)) {
+				return cards.pop();
+			}
+		}
+		return null;
 	}
 	
 	/**
@@ -69,8 +83,7 @@ public class Pile {
 	 * 
 	 * @return a list containing every card in the pile
 	 */
-	public List<Card> getCards(){
-		//TODO Copy first?
+	public List<String> getCards(){
 		return cards;
 	}
 	

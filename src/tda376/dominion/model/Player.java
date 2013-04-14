@@ -37,7 +37,7 @@ public class Player {
 	 * <p>Shuffles in the discard pile if the deck is empty</p>
 	 */
 	public void draw() {
-		
+		hand.add(deck.pop());
 	}
 	
 	/**
@@ -64,7 +64,7 @@ public class Player {
 	 * Discard specific card in the players hand
 	 * @param card
 	 */
-	public void discardCard(Card card) {
+	public void discardCard(String card) {
 		
 	}
 	
@@ -72,7 +72,7 @@ public class Player {
 	 * Buy a card
 	 * @param card
 	 */
-	public void buy(Card card) {
+	public void buy(String card) {
 		
 	}
 	
@@ -80,7 +80,7 @@ public class Player {
 	 * Add a card from supplies to the discard pile
 	 * @param card
 	 */
-	public void gain(Card card) {
+	public void gain(String card) {
 		discard.add(card);
 	}
 	
@@ -88,7 +88,7 @@ public class Player {
 	 * Add a card from supplies to the hand
 	 * @param card
 	 */
-	public void addToHand(Card card) {
+	public void addToHand(String card) {
 		hand.add(card);
 	}
 	
@@ -96,7 +96,7 @@ public class Player {
 	 * Reveal the hand
 	 * @return the hand as a list
 	 */
-	public List<Card> revealHand() {
+	public List<String> revealHand() {
 		return null;
 	}
 	
@@ -104,7 +104,7 @@ public class Player {
 	 * Reveal the top card of the deck
 	 * @return the top card
 	 */
-	public Card revealTopOfDeck() {
+	public String revealTopOfDeck() {
 		return null;
 	}
 	
@@ -112,7 +112,7 @@ public class Player {
 	 * Reveal the top card of the deck
 	 * @return a list of the top cards
 	 */
-	public List<Card> revealTopOfDeck(int number) {
+	public List<String> revealTopOfDeck(int number) {
 		return null;
 	}
 	
@@ -120,7 +120,7 @@ public class Player {
 	 * Discard a card from the deck
 	 * @param card in the deck to discard
 	 */
-	public void discardFromDeck(Card card) {
+	public void discardFromDeck(String card) {
 		
 	}
 	
@@ -128,7 +128,7 @@ public class Player {
 	 * Put a card on the top of the deck
 	 * @param card to be put on the deck
 	 */
-	public void putOnTopOfDeck(Card card) {
+	public void putOnTopOfDeck(String card) {
 		
 	}
 	
