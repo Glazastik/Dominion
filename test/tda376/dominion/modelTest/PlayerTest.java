@@ -47,12 +47,17 @@ public class PlayerTest {
 
 	@Test
 	public void testGain() {
-		fail("Not yet implemented");
+		Player p = new Player("Test");
+		p.gain("Curse");
+		p.draw(6);
+		assertTrue(p.revealHand().size() == 11);
 	}
 
 	@Test
 	public void testAddToHand() {
-		fail("Not yet implemented");
+		Player p = new Player("Test");
+		p.addToHand("Curse");
+		assertTrue(p.revealHand().size() == 6);
 	}
 
 	@Test

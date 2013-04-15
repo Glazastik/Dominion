@@ -97,6 +97,10 @@ public class Player {
 		return this.money;
 	}
 	
+	public int getDeckSize() {
+		return this.deck.getSize();
+	}
+	
 	/**
 	 * Discards every card in the players hand
 	 */
