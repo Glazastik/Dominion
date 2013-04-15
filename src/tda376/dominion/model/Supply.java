@@ -14,7 +14,7 @@ import java.util.Set;
  */
 
 public class Supply {
-	//TODO: Methods 
+	//TODO: Further functionality might be added
 	private CardInfoHandler cardInfoHandler;
 	private final HashMap<String,Integer> cards;
 	public Supply(int amountOfPlayers){
@@ -27,7 +27,6 @@ public class Supply {
 	 * @param amountOfPlayers amount of players in the game
 	 */
 	private void initializeSupply(int amountOfPlayers){
-		//TODO: Testing
 		cards.put("Copper", 60 - (amountOfPlayers*7));
 		cards.put("Silver", 40);
 		cards.put("Gold", 30);
