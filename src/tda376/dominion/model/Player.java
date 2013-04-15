@@ -59,7 +59,10 @@ public class Player {
 	}
 	
 	private void discardPileToDeck() {
-		
+		for (int i = 0; i<discard.getSize(); i++) {
+			deck.add(discard.pop());
+		}
+		deck.shuffle();
 	}
 	
 	/**
@@ -192,6 +195,14 @@ public class Player {
 		this.actions = 1;
 		this.money = 0;
 		this.buys = 1;
+	}
+	public boolean Equals(Player p) {
+		if(p.name == this.name) {
+			return true;
+		}
+		else {
+			return false;
+		}
 	}
 	
 }

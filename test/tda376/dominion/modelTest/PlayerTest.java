@@ -111,5 +111,10 @@ public class PlayerTest {
 		p.gainBuy(666);
 		assertTrue(p.getBuys() == 667);
 	}
+	
+	@Test
+	public void testDiscardPileToDeck() {
+		fail("Not yet implemented");
+	}
 
 }
