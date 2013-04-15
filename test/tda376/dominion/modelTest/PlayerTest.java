@@ -128,5 +128,10 @@ public class PlayerTest {
 		assertTrue(p.getBuys() == 0);
 	}
 	
-
+	@Test
+	public void testDecreaseAction() {
+		Player p = new Player("Test");
+		p.decreaseActions(1);
+		assertTrue(p.getActions() == 0);
+	}
 }

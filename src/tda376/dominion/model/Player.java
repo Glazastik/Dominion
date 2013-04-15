@@ -104,6 +104,11 @@ public class Player {
 		return this.money;
 	}
 	
+	/**
+	 * Returns the number of cards currently in the deck
+	 * 
+	 * @return number of cards
+	 */
 	public int getDeckSize() {
 		return this.deck.getSize();
 	}
@@ -181,29 +186,64 @@ public class Player {
 	public void putOnTopOfDeck(String card) {
 		
 	}
-	public void increaseActions(int amount){
+	
+	/**
+	 * Increases the number of actions by amount
+	 * @param the number of actions added 
+	 */
+	public void increaseActions(int amount) {
 		this.actions += amount;
 	}
-	public void decreaseActions(int amount){
+	
+	/**
+	 * Decreases the number of actions by amount 
+	 * @param the number of actions removed
+	 */
+	public void decreaseActions(int amount) {
 		this.actions -= amount;
 	}
+	
+	/**
+	 * Increases the amount of riksdaler available to the player by amount
+	 * @param the number of riksdaler added
+	 */
 	public void increaseMoney(int amount){
 		this.money+=amount;
 	}
+	
+	/**
+	 * Decreases the amount of riksdaler available to the player by amount
+	 * @param the number of riksdaler removed
+	 */
 	public void decreaseMoney(int amount){
 		this.money-=amount;
 	}
+	
+	/**
+	 * Increases the number of buys by amount
+	 * @param the number of buys added
+	 */
 	public void increaseBuy(int amount){
 		this.buys+=amount;
 	}
+	
+	/**
+	 * Decreases the number of buys by amount
+	 * @param the number of buys removed
+	 */
 	public void decreaseBuy(int amount){
 		this.buys -= amount;
 	}
+	
+	/**
+	 * Resets the number of actions, buys and money available, after each turn.
+	 */
 	public void resetForNewTurn(){
 		this.actions = 1;
 		this.money = 0;
 		this.buys = 1;
 	}
+	
 	public boolean Equals(Player p) {
 		if(p.name == this.name) {
 			return true;
