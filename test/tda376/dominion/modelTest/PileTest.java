@@ -55,7 +55,18 @@ public class PileTest {
 
 	@Test
 	public void testGetCards() {
-		fail("Not yet implemented");
+		LinkedList<String> l = new LinkedList<String>();
+		l.add("TEST_1");
+		l.add("TEST_2");
+		l.add("TEST_3");
+		Pile p1 = new Pile(l);
+		
+		//Since add behaves as addFirst, the order must be reversed
+		Pile p2 = new Pile();
+		p2.add("TEST_3");
+		p2.add("TEST_2");
+		p2.add("TEST_1");
+		assertTrue(l.equals(p1.getCards()) && l.equals(p2.getCards()));
 	}
 
 }
