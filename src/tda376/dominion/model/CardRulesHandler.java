@@ -15,13 +15,32 @@ public class CardRulesHandler {
 			player.draw(3);
 		} else if (cardName.equals("Village")){
 			player.draw();
-			//TODO: player.addActions(2);
+			player.gainActions(2);
 		} else if (cardName.equals("Councilroom")){
 			player.draw(4);
-			//TODO: player.addBuy
+			player.gainBuy(1);
 			for(Player p :players){
 				if(!p.equals(player)){
 					p.draw();
+				}
+			}
+		} else if (cardName.equals("Laboratory")){
+			player.draw(2);
+			player.gainActions(1);
+		} else if (cardName.equals("Market")){
+			player.increaseMoney(1);
+			player.draw();
+			player.gainActions(1);
+			player.gainBuy(1);
+		} else if (cardName.equals("Festival")){
+			player.gainBuy(1);
+			player.increaseMoney(2);
+			player.gainActions(2);
+		} else if (cardName.equals("Witch")){
+			player.draw(2);
+			for(Player p :players){
+				if(!p.equals(player)){
+					
 				}
 			}
 		}

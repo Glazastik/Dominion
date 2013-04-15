@@ -48,25 +48,22 @@ public class Supply {
 		actionCards.add("Gardens");
 		
 		//Generate 10 random numbers 
-		int numbersGenerated = 0;
 		int tempInt;
 		LinkedList<Integer> numbers = new LinkedList<Integer>(); 
 		Random generator = new Random();
-		while(numbersGenerated<10){
+		while(numbers.size()<10){
 			tempInt = generator.nextInt(actionCards.size());
 			if(!numbers.contains(tempInt)){
 				numbers.add(tempInt);
-				numbersGenerated++;
 			}
 		}
 		
 		//Add the cards
-		Iterator i = numbers.iterator();
 		String tempCard;
-		while(i.hasNext()){
-			tempCard = actionCards.get((int) i.next());
+		for(Integer i : numbers){
+			tempCard = actionCards.get(i);
 			if(tempCard.equals("Gardens")){
-				cards.put(tempCard, 8);
+				cards.put(tempCard, 12);
 			} else {
 				cards.put(tempCard, 12);
 			}
