@@ -29,7 +29,7 @@ public class Supply {
 		//TODO: Testing
 		cards.put("Copper", 60);
 		cards.put("Silver", 40);
-		cards.put("Silver", 30);
+		cards.put("Gold", 30);
 		//Set the amount of victorycards available depending on the amount of players.
 		//Further options are required to support 5 or 6 player games.
 		if(amountOfPlayers==2){
@@ -56,9 +56,9 @@ public class Supply {
 		int tempInt;
 		LinkedList<Integer> numbers = new LinkedList<Integer>(); 
 		Random generator = new Random();
-		while(numbersGenerated<11){
-			tempInt = generator.nextInt();
-			if(!numbers.contains(tempInt) && tempInt <  actionCards.size()){
+		while(numbersGenerated<10){
+			tempInt = generator.nextInt(actionCards.size());
+			if(!numbers.contains(tempInt)){
 				numbers.add(tempInt);
 				numbersGenerated++;
 			}
@@ -84,6 +84,24 @@ public class Supply {
 	public HashMap<String,Integer> getActiveCards(){
 		return cards;
 		
+	}
+	/**
+	 * 
+	 * @param cardName the card to take from supply
+	 * @return the card, null if there were no cards left of the chosen type
+	 */
+	public String take(String cardName){
+		int temp = cards.get(cardName);
+		if(temp>0){
+			temp--;
+			cards.put(cardName, temp);
+			return cardName;
+		} else {
+			return null;
+		}
+	}
+	public boolean gameIsOver(){
+		return false;
 	}
 	
 }

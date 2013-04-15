@@ -3,6 +3,8 @@ package tda376.dominion.modelTest;
 import static org.junit.Assert.*;
 
 import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Set;
 
 import org.junit.Test;
 
@@ -12,10 +14,13 @@ public class SupplyTest {
 
 	@Test
 	public void getActiveCardsTest() {
-		Supply supply = new Supply(2);
+		int players = 2;
+		Supply supply = new Supply(players);
 		HashMap<String,Integer> activeCards = supply.getActiveCards();
 		assertTrue(activeCards.size() == 17);
-		
+		Set<String> iteratorSet = activeCards.keySet();
+		Iterator i = iteratorSet.iterator();
+		assertTrue(activeCards.get("Curse") == (players-1)*10);
 	}
 
 }
