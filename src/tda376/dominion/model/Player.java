@@ -30,6 +30,13 @@ public class Player {
 		this.actions = 0;
 		this.buys = 0;
 		this.money = 0;
+		
+		init();
+	}
+	
+	private void init() {
+		// TODO give player 7 copper and 3 estates
+		draw(5);
 	}
 	
 	/**
@@ -37,7 +44,14 @@ public class Player {
 	 * <p>Shuffles in the discard pile if the deck is empty</p>
 	 */
 	public void draw() {
+		if(deck.getSize() == 0) {
+			discardPileToDeck();
+		}
 		hand.add(deck.pop());
+	}
+	
+	private void discardPileToDeck() {
+		
 	}
 	
 	/**
