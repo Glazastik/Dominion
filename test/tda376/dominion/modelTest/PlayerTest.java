@@ -82,5 +82,15 @@ public class PlayerTest {
 		p.putOnTopOfDeck("Curse");
 		assertTrue(p.getDeckSize() == 6);
 	}
+	
+	@Test
+	public void testIncreaseMoney() {
+		fail("Not yet implemented");
+	}
+	
+	@Test
+	public void testDecreaseMoney() {
+		fail("Not yet implemented");
+	}
 
 }
