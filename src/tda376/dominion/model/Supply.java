@@ -5,6 +5,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Random;
+import java.util.Set;
 
 /**
  * Supply contains many piles that players can buy cards from
@@ -27,21 +28,17 @@ public class Supply {
 	 */
 	private void initializeSupply(int amountOfPlayers){
 		//TODO: Testing
-		cards.put("Copper", 60);
+		cards.put("Copper", 60 - (amountOfPlayers*7));
 		cards.put("Silver", 40);
 		cards.put("Gold", 30);
 		//Set the amount of victorycards available depending on the amount of players.
 		//Further options are required to support 5 or 6 player games.
 		if(amountOfPlayers==2){
-			cards.put("Estate", 14);
+			cards.put("Estate", 8);
 			cards.put("Duchy", 8);
 			cards.put("Province", 8);
 		} else {
-			if(amountOfPlayers==3){
-				cards.put("Estate", 21);
-			} else {
-				cards.put("Estate", 24);
-			}
+			cards.put("Estate", 12);
 			cards.put("Duchy", 12);
 			cards.put("Province", 12);
 		}
@@ -82,7 +79,7 @@ public class Supply {
 	 * @return The active cards of the round
 	 */
 	public HashMap<String,Integer> getActiveCards(){
-		return cards;
+		return (HashMap<String, Integer>) cards.clone();
 		
 	}
 	/**
@@ -100,8 +97,23 @@ public class Supply {
 			return null;
 		}
 	}
+	/**
+	 * A method to determine if the game is over
+	 * @return true if the game is over
+	 */
 	public boolean gameIsOver(){
-		return false;
+		Set<String> cardKeys = cards.keySet();
+		Iterator i = cardKeys.iterator();
+		int pilesEmpty = 0;
+		while(i.hasNext()){
+			if(cards.get(i.next()) == 0){
+				pilesEmpty++;
+			}
+		}
+		return (pilesEmpty>= 3 || cards.get("Province") == 0);
 	}
-	
+	//TODO: Possible method to add.
+//	public HashMap<String,Integer> getGainableCards(int maxValue){
+//		
+//	}
 }
