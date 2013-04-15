@@ -35,7 +35,13 @@ public class Player {
 	}
 	
 	private void init() {
-		// TODO give player 7 copper and 3 estates
+		for(int i = 0; i < 7; i++) {
+			deck.add("Copper");
+		}
+		for(int i = 0; i < 3; i++) {
+			deck.add("Estate");
+		}
+		deck.shuffle();
 		draw(5);
 	}
 	
