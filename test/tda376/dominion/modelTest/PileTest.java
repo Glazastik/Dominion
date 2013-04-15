@@ -23,7 +23,16 @@ public class PileTest {
 
 	@Test
 	public void testAdd() {
-		fail("Not yet implemented");
+		int addedCards = 3;
+		Pile p = new Pile();
+		p.add("TEST_1");
+		p.add("TEST_2");
+		p.add("TO_POP");
+		
+		//Checks that the right amount has been added and
+		//that it has been added in the correct order
+		assertTrue(p.getSize() == addedCards
+				&& p.pop().equals("TO_POP"));
 	}
 
 	@Test
