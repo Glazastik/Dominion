@@ -3,7 +3,7 @@ package tda376.dominion.controller;
 import tda376.dominion.model.Dominion;
 
 public class Main {
-	private final Dominion dominion;
+	private static Dominion dominion;
 	
 	/**
 	 * Main executable class for the Dominion game
@@ -11,7 +11,7 @@ public class Main {
 	 */
 	public static void main(String[] args) {
 		
-		dominion = new Dominion();
+		//dominion = new Dominion(, );
 		
 		
 	}

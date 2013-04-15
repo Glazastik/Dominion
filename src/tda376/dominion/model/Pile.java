@@ -27,7 +27,7 @@ public class Pile {
 	 * @param cards the cards that will populate the pile
 	 */
 	public Pile(LinkedList<String> cards){
-		this.cards = cards;
+		this.cards = (LinkedList<String>) cards.clone();
 	}
 	
 	/**
@@ -56,7 +56,9 @@ public class Pile {
 	public String pop(String card) {
 		for(int i = 0; i < cards.size(); i++) {
 			if(cards.get(i).equals(card)) {
-				return cards.pop();
+				String temp = cards.get(i);
+				cards.remove(i);
+				return temp;
 			}
 		}
 		return null;
@@ -84,7 +86,7 @@ public class Pile {
 	 * @return a list containing every card in the pile
 	 */
 	public List<String> getCards(){
-		return cards;
+		return (List<String>) cards.clone();
 	}
 	
 }

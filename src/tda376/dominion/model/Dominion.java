@@ -9,6 +9,7 @@ import java.util.List;
  */
 public class Dominion {
 	private final List<Player> players;
+	//TODO: hashmap that pairs a player to a controller/ networklistener : private final HashMap<,Player>
 	private final Supply supply;
 	
 	/**
