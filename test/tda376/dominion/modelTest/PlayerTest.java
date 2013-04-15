@@ -62,7 +62,9 @@ public class PlayerTest {
 
 	@Test
 	public void testRevealHand() {
-		fail("Not yet implemented");
+		Player p = new Player("Test");
+		p.draw(3);
+		assertTrue(p.revealHand().size() == 8);
 	}
 
 	@Test
