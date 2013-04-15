@@ -174,5 +174,22 @@ public class Player {
 	public void putOnTopOfDeck(String card) {
 		
 	}
+	public void gainActions(int amount){
+		this.actions += amount;
+	}
+	public void increaseMoney(int amount){
+		this.money+=amount;
+	}
+	public void decreaseMoney(int amount){
+		this.money-=amount;
+	}
+	public void gainBuy(int amount){
+		this.buys+=amount;
+	}
+	public void resetForNewTurn(){
+		this.actions = 1;
+		this.money = 0;
+		this.buys = 1;
+	}
 	
 }
