@@ -3,6 +3,7 @@ package tda376.dominion.modelTest;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
+import tda376.dominion.model.Player;
 
 public class PlayerTest {
 
@@ -13,12 +14,20 @@ public class PlayerTest {
 
 	@Test
 	public void testDraw() {
-		fail("Not yet implemented");
+		Player p = new Player("Test");
+		int x = p.revealHand().size();
+		p.draw();
+		int y = p.revealHand().size();
+		assertTrue(y == x + 1);
 	}
 
 	@Test
 	public void testDrawInt() {
-		fail("Not yet implemented");
+		Player p = new Player("Test");
+		int x = p.revealHand().size();
+		p.draw(3);
+		int y = p.revealHand().size();
+		assertTrue(y == x + 3);
 	}
 
 	@Test
