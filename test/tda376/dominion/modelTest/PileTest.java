@@ -15,6 +15,11 @@ public class PileTest {
 	public void testPile() {
 		fail("Not yet implemented");
 	}
+	
+	@Test
+	public void testPileListConstruct() {
+		fail("Not yet implemented");
+	}
 
 	@Test
 	public void testPileListOfCard() {
