@@ -40,7 +40,9 @@ public class PlayerTest {
 
 	@Test
 	public void testDiscardCard() {
-		fail("Not yet implemented");
+		Player p = new Player("Test");
+		p.discardCard("Copper");
+		assertTrue(p.revealHand().size() == 4);
 	}
 
 	@Test

@@ -144,7 +144,7 @@ public class Player {
 	 * @return the hand as a list
 	 */
 	public List<String> revealHand() {
-		return null;
+		return hand.getCards();
 	}
 	
 	/**
