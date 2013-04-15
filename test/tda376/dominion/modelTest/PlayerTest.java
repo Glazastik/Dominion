@@ -82,5 +82,34 @@ public class PlayerTest {
 		p.putOnTopOfDeck("Curse");
 		assertTrue(p.getDeckSize() == 6);
 	}
+	
+	@Test
+	public void testIncreaseMoney() {
+		Player p = new Player("Test");
+		p.increaseMoney(5);
+		assertTrue(p.getMoney() == 5);
+	}
+	
+	@Test
+	public void testDecreaseMoney() {
+		Player p = new Player("Test");
+		p.increaseMoney(6);
+		p.decreaseMoney(3);
+		assertTrue(p.getMoney() == 3);
+	}
+	
+	@Test
+	public void testGainActions() {
+		Player p = new Player("Test");
+		p.gainActions(2);
+		assertTrue(p.getActions() == 3);
+	}
+	
+	@Test
+	public void testGainBuy() {
+		Player p = new Player("Test");
+		p.gainBuy(666);
+		assertTrue(p.getBuys() == 667);
+	}
 
 }
