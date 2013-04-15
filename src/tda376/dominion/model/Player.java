@@ -179,8 +179,11 @@ public class Player {
 	public void putOnTopOfDeck(String card) {
 		
 	}
-	public void gainActions(int amount){
+	public void increaseActions(int amount){
 		this.actions += amount;
+	}
+	public void decreaseActions(int amount){
+		this.actions -= amount;
 	}
 	public void increaseMoney(int amount){
 		this.money+=amount;
@@ -188,8 +191,11 @@ public class Player {
 	public void decreaseMoney(int amount){
 		this.money-=amount;
 	}
-	public void gainBuy(int amount){
+	public void increaseBuy(int amount){
 		this.buys+=amount;
+	}
+	public void decreaseBuy(int amount){
+		this.buys -= amount;
 	}
 	public void resetForNewTurn(){
 		this.actions = 1;

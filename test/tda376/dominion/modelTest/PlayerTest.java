@@ -101,14 +101,14 @@ public class PlayerTest {
 	@Test
 	public void testGainActions() {
 		Player p = new Player("Test");
-		p.gainActions(2);
+		p.increaseActions(2);
 		assertTrue(p.getActions() == 3);
 	}
 	
 	@Test
 	public void testGainBuy() {
 		Player p = new Player("Test");
-		p.gainBuy(666);
+		p.increaseBuy(666);
 		assertTrue(p.getBuys() == 667);
 	}
 	
