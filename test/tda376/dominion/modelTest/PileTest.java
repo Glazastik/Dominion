@@ -15,11 +15,6 @@ public class PileTest {
 	public void testPile() {
 		fail("Not yet implemented");
 	}
-	
-	@Test
-	public void testPileListConstruct() {
-		fail("Not yet implemented");
-	}
 
 	@Test
 	public void testPileListOfCard() {
@@ -33,7 +28,17 @@ public class PileTest {
 
 	@Test
 	public void testPop() {
-		fail("Not yet implemented");
+		LinkedList<String> l = new LinkedList<String>();
+		l.add("TEST_1");
+		l.add("TEST_2");
+		l.add("TEST_3");
+		Pile p1 = new Pile(l);
+		
+		String testString = "TEST_POP";
+		Pile p2 = new Pile();
+		p2.add(testString);
+		
+		assertTrue(l.getFirst().equals(p1.pop()) && testString.equals(p2.pop()));
 	}
 	
 	@Test
