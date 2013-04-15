@@ -35,7 +35,13 @@ public class Player {
 	}
 	
 	private void init() {
-		// TODO give player 7 copper and 3 estates
+		for(int i = 0; i < 7; i++) {
+			deck.add("Copper");
+		}
+		for(int i = 0; i < 3; i++) {
+			deck.add("Estate");
+		}
+		deck.shuffle();
 		draw(5);
 	}
 	
@@ -91,6 +97,10 @@ public class Player {
 		return this.money;
 	}
 	
+	public int getDeckSize() {
+		return this.deck.getSize();
+	}
+	
 	/**
 	 * Discards every card in the players hand
 	 */
@@ -138,7 +148,7 @@ public class Player {
 	 * @return the hand as a list
 	 */
 	public List<String> revealHand() {
-		return null;
+		return hand.getCards();
 	}
 	
 	/**
