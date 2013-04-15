@@ -27,7 +27,7 @@ public class Pile {
 	 * @param cards the cards that will populate the pile
 	 */
 	public Pile(LinkedList<String> cards){
-		this.cards = cards;
+		this.cards = (LinkedList<String>) cards.clone();
 	}
 	
 	/**
@@ -84,7 +84,7 @@ public class Pile {
 	 * @return a list containing every card in the pile
 	 */
 	public List<String> getCards(){
-		return cards;
+		return (List<String>) cards.clone();
 	}
 	
 }
