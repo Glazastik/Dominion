@@ -26,7 +26,7 @@ public class Pile {
 	 * 
 	 * @param cards the cards that will populate the pile
 	 */
-	public Pile(LinkedList<String> cards){
+	public Pile(LinkedList<String> cards) {
 		this.cards = (LinkedList<String>) cards.clone();
 	}
 	
@@ -35,7 +35,7 @@ public class Pile {
 	 * 
 	 * @param c the card that will be added to the top of the pile
 	 */
-	public void add(String c){
+	public void add(String c) {
 		cards.addFirst(c);
 	}
 	
@@ -44,7 +44,7 @@ public class Pile {
 	 * 
 	 * @return the top card of the pile
 	 */
-	public String pop(){
+	public String pop() {
 		return cards.pop();
 	}
 	
@@ -67,7 +67,7 @@ public class Pile {
 	/**
 	 * Shuffles the pile, making the order of the cards random
 	 */
-	public void shuffle(){
+	public void shuffle() {
 		Collections.shuffle(cards);
 	}
 	
@@ -76,7 +76,7 @@ public class Pile {
 	 * 
 	 * @return the size of the pile
 	 */
-	public int getSize(){
+	public int getSize() {
 		return cards.size();
 	}
 	
@@ -85,8 +85,35 @@ public class Pile {
 	 * 
 	 * @return a list containing every card in the pile
 	 */
-	public List<String> getCards(){
-		return (List<String>) cards.clone();
+	public LinkedList<String> getCards() {
+		return (LinkedList<String>) cards.clone();
+	}
+	
+	/**
+	 * Reveal the top card in the Pile
+	 * 
+	 * @return card
+	 */
+	public String getTop() {
+		return cards.getFirst();
+	}
+	
+	/**
+	 * Reveal a list of the top cards
+	 * 
+	 * @param number
+	 * @return list with the n top cards
+	 */
+	public LinkedList<String> getTop(int number) {
+		LinkedList l = new LinkedList<String>();
+		int n = cards.size();
+		if(n < number) {
+			number = n;
+		}
+		for(int i = 0; i < n; i++) {
+			l.add(cards.get(i));
+		}
+		return l;
 	}
 	
 }

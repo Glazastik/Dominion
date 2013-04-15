@@ -120,14 +120,6 @@ public class Player {
 	}
 	
 	/**
-	 * Buy a card
-	 * @param card
-	 */
-	public void buy(String card) {
-		
-	}
-	
-	/**
 	 * Add a card from supplies to the discard pile
 	 * @param card
 	 */
@@ -156,7 +148,7 @@ public class Player {
 	 * @return the top card
 	 */
 	public String revealTopOfDeck() {
-		return null;
+		return deck.getTop();
 	}
 	
 	/**
@@ -164,7 +156,7 @@ public class Player {
 	 * @return a list of the top cards
 	 */
 	public List<String> revealTopOfDeck(int number) {
-		return null;
+		return deck.getTop(number);
 	}
 	
 	/**

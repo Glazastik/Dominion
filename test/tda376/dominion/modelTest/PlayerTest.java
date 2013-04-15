@@ -62,7 +62,9 @@ public class PlayerTest {
 
 	@Test
 	public void testRevealHand() {
-		fail("Not yet implemented");
+		Player p = new Player("Test");
+		p.draw(3);
+		assertTrue(p.revealHand().size() == 8);
 	}
 
 	@Test
@@ -72,12 +74,18 @@ public class PlayerTest {
 
 	@Test
 	public void testDiscardFromDeck() {
-		fail("Not yet implemented");
+		Player p = new Player("Test");
+		//Not sure if this is how discardFromDeck should work
+		//p.discardFromDeck(1);
+		p.discardFromDeck("Copper");
+		assertTrue(p.getDeckSize() == 4);
 	}
 
 	@Test
 	public void testPutOnTopOfDeck() {
-		fail("Not yet implemented");
+		Player p = new Player("Test");
+		p.putOnTopOfDeck("Curse");
+		assertTrue(p.getDeckSize() == 6);
 	}
 
 }
