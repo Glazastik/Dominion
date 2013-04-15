@@ -51,6 +51,33 @@ public class Player {
 	}
 	
 	/**
+	 * Returns the amount of actions
+	 * 
+	 * @return actions
+	 */
+	public int getActions() {
+		return this.actions;
+	}
+	
+	/**
+	 * Returns the amount of buys
+	 * 
+	 * @return buys
+	 */
+	public int getBuys() {
+		return this.buys;
+	}
+	
+	/**
+	 * Returns the amount of money
+	 * 
+	 * @return money
+	 */
+	public int getMoney() {
+		return this.money;
+	}
+	
+	/**
 	 * Discards every card in the players hand
 	 */
 	public void discardHand() {
