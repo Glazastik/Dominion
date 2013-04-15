@@ -56,7 +56,9 @@ public class Pile {
 	public String pop(String card) {
 		for(int i = 0; i < cards.size(); i++) {
 			if(cards.get(i).equals(card)) {
-				return cards.pop();
+				String temp = cards.get(i);
+				cards.remove(i);
+				return temp;
 			}
 		}
 		return null;
