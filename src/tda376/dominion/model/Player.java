@@ -116,14 +116,6 @@ public class Player {
 	}
 	
 	/**
-	 * Buy a card
-	 * @param card
-	 */
-	public void buy(String card) {
-		
-	}
-	
-	/**
 	 * Add a card from supplies to the discard pile
 	 * @param card
 	 */
