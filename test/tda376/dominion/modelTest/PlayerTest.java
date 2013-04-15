@@ -99,14 +99,14 @@ public class PlayerTest {
 	}
 	
 	@Test
-	public void testGainActions() {
+	public void testIncreaseActions() {
 		Player p = new Player("Test");
 		p.increaseActions(2);
 		assertTrue(p.getActions() == 3);
 	}
 	
 	@Test
-	public void testGainBuy() {
+	public void testIncreaseBuy() {
 		Player p = new Player("Test");
 		p.increaseBuy(666);
 		assertTrue(p.getBuys() == 667);
@@ -114,7 +114,19 @@ public class PlayerTest {
 	
 	@Test
 	public void testDiscardPileToDeck() {
-		fail("Not yet implemented");
+		Player p = new Player("Test");
+		p.draw(5);
+		p.discardHand();
+		p.draw(3);
+		assertTrue(p.getDeckSize() == 7 && p.revealHand().size() == 3);
 	}
+	
+	@Test
+	public void testDecreaseBuy() {
+		Player p = new Player("Test");
+		p.decreaseBuy(1);
+		assertTrue(p.getBuys() == 0);
+	}
+	
 
 }

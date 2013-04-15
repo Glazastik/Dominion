@@ -52,14 +52,16 @@ public class Player {
 	 * <p>Shuffles in the discard pile if the deck is empty</p>
 	 */
 	public void draw() {
-		if(deck.getSize() == 0) {
+		if(deck.getSize() == 0 && discard.getSize() > 0) {
 			discardPileToDeck();
+			hand.add(deck.pop());
+		} else if(deck.getSize() > 0) {
+			hand.add(deck.pop());
 		}
-		hand.add(deck.pop());
 	}
 	
 	private void discardPileToDeck() {
-		for (int i = 0; i<discard.getSize(); i++) {
+		for (int i = discard.getSize(); i > 0; i--) {
 			deck.add(discard.pop());
 		}
 		deck.shuffle();
