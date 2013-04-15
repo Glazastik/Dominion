@@ -128,7 +128,9 @@ public class Player {
 	 * @param card
 	 */
 	public void discardCard(String card) {
-		
+		if(hand.contains(card)){
+			discard.add(hand.pop(card));
+		}
 	}
 	
 	/**
@@ -243,13 +245,33 @@ public class Player {
 		this.money = 0;
 		this.buys = 1;
 	}
-	
+	/**
+	 * An equals method
+	 * @param p
+	 * @return
+	 */
 	public boolean Equals(Player p) {
 		if(p.name == this.name) {
 			return true;
-		}
-		else {
+		} else {
 			return false;
+		}
+	}
+	/**
+	 * Takes a specified card from hand and puts it in the playing area
+	 * @param card the card
+	 */
+	public void play(String card){
+		if(hand.contains(card)){
+			playingArea.add(hand.pop(card));
+		}
+	}
+	/**
+	 * Empties the playing area into the discard pile
+	 */
+	public void cleanUp(){
+		while(playingArea.getSize()>0){
+			discard.add(playingArea.pop());
 		}
 	}
 	

@@ -115,5 +115,7 @@ public class Pile {
 		}
 		return l;
 	}
-	
+	public boolean contains(String card){
+		return cards.contains(card);
+	}
 }

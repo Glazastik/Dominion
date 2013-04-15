@@ -18,9 +18,8 @@ public class GainingHandler {
 		HashMap<String,Integer> cards = supply.getActiveCards();
 		if(cards.containsKey(cardName)){
 			if(cardInfoHandler.getCardValue(cardName)<=player.getMoney() && player.getBuys()>0){
-				//TODO: setBuys
 				player.decreaseMoney(cardInfoHandler.getCardValue(cardName));
-				//player.
+				player.decreaseBuy(1);
 				player.gain(supply.take(cardName));
 			}
 		}

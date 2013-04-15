@@ -11,7 +11,7 @@ public class CardRulesHandler {
 		this.players = players;
 	}
 	public void playCard(Player player, String cardName){
-		//TODO: player.play(cardName);
+		player.play(cardName);
 		if(cardName.equals("Smithy")){
 			player.draw(3);
 		} else if (cardName.equals("Village")){
@@ -21,7 +21,7 @@ public class CardRulesHandler {
 			player.draw(4);
 			player.increaseBuy(1);
 			for(Player p :players){
-				if(!p.equals(player)){
+				if(p!=player){
 					p.draw();
 				}
 			}
@@ -40,7 +40,7 @@ public class CardRulesHandler {
 		} else if (cardName.equals("Witch")){
 			player.draw(2);
 			for(Player p :players){
-				if(!p.equals(player)){
+				if(p!=player){
 					gainingHandler.playerGainCard(p, "Curse");
 				}
 			}
