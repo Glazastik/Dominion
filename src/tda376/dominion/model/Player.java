@@ -43,6 +43,8 @@ public class Player {
 		}
 		deck.shuffle();
 		draw(5);
+		this.actions = 1;
+		this.buys = 1;
 	}
 	
 	/**
