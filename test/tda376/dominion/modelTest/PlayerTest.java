@@ -68,11 +68,6 @@ public class PlayerTest {
 	}
 
 	@Test
-	public void testRevealTopOfHand() {
-		fail("Not yet implemented");
-	}
-
-	@Test
 	public void testDiscardFromDeck() {
 		Player p = new Player("Test");
 		//Not sure if this is how discardFromDeck should work
