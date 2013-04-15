@@ -30,6 +30,11 @@ public class PileTest {
 	public void testPop() {
 		fail("Not yet implemented");
 	}
+	
+	@Test
+	public void testStringPop() {
+		fail("Not yet implemented");
+	}
 
 	@Test
 	public void testShuffle() {
