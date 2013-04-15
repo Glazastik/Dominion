@@ -1,5 +1,7 @@
 package tda376.dominion.model;
 
+import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -8,20 +10,22 @@ import java.util.List;
  * 
  */
 public class Dominion {
-	private final List<Player> players;
+	private final LinkedList<Player> players;
 	//TODO: hashmap that pairs a player to a controller/ networklistener : private final HashMap<,Player>
 	private final Supply supply;
-	
+	private final GainingHandler gainingHandler;
+	private final CardRulesHandler cardRulesHandler;
 	/**
 	 * Constructs a fine game of Dominion!
 	 * @param players list of players playing the game
 	 * @param supply the supply depot for the piles
 	 */
-	public Dominion(List<Player> players, Supply supply){
+	public Dominion(LinkedList<Player> players){
 		this.players = players;
-		this.supply = supply;
+		this.supply = new Supply(players.size());
+		gainingHandler = new GainingHandler(supply);
+		cardRulesHandler = new CardRulesHandler(players, gainingHandler);
+		
+		
 	}
-	
-	
-	
 }
