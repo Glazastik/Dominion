@@ -28,22 +28,44 @@ public class PileTest {
 
 	@Test
 	public void testPop() {
+		int addedCards1 = 3;
 		LinkedList<String> l = new LinkedList<String>();
 		l.add("TEST_1");
 		l.add("TEST_2");
 		l.add("TEST_3");
 		Pile p1 = new Pile(l);
 		
+		int addedCards2 = 1;
 		String testString = "TEST_POP";
 		Pile p2 = new Pile();
 		p2.add(testString);
 		
-		assertTrue(l.getFirst().equals(p1.pop()) && testString.equals(p2.pop()));
+		assertTrue(l.getFirst().equals(p1.pop())
+				&& p1.getSize() == (addedCards1 - 1)
+				&& testString.equals(p2.pop())
+				&& p2.getSize() == (addedCards2 - 1));
 	}
 	
 	@Test
 	public void testStringPop() {
-		fail("Not yet implemented");
+		int addedCards1 = 3;
+		LinkedList<String> l = new LinkedList<String>();
+		l.add("TEST_1");
+		l.add("TEST_2");
+		l.add("TEST_3");
+		Pile p1 = new Pile(l);
+		
+		int addedCards2 = 4;
+		Pile p2 = new Pile();
+		p2.add("NOT_TO_POP");
+		p2.add("NOT_TO_POP");
+		p2.add("TO_POP");
+		p2.add("NOT_TO_POP");
+		
+		assertTrue(p1.pop("TEST_2").equals("TEST_2")
+				&& p1.getSize() == (addedCards1 - 1)
+				&& p2.pop("TO_POP").equals("TO_POP")
+				&& p2.getSize() == (addedCards2 - 1));
 	}
 
 	@Test
@@ -79,7 +101,8 @@ public class PileTest {
 		p2.add("TEST_2");
 		p2.add("TEST_3");
 		p2.add("TEST_4");
-		assertTrue(p1.getSize() == l.size() && nbrOfAddedCards == p2.getSize());
+		assertTrue(p1.getSize() == l.size() 
+				&& nbrOfAddedCards == p2.getSize());
 	}
 
 	@Test
@@ -95,7 +118,8 @@ public class PileTest {
 		p2.add("TEST_3");
 		p2.add("TEST_2");
 		p2.add("TEST_1");
-		assertTrue(l.equals(p1.getCards()) && l.equals(p2.getCards()));
+		assertTrue(l.equals(p1.getCards()) 
+				&& l.equals(p2.getCards()));
 	}
 
 }
