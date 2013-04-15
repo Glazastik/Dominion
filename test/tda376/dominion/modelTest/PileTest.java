@@ -33,7 +33,21 @@ public class PileTest {
 
 	@Test
 	public void testShuffle() {
-		fail("Not yet implemented");
+		LinkedList<String> l = new LinkedList<String>();
+		l.add("TEST_1");
+		l.add("TEST_2");
+		l.add("TEST_3");
+		l.add("TEST_4");
+		l.add("TEST_5");
+		l.add("TEST_6");
+		l.add("TEST_7");
+		l.add("TEST_8");
+		l.add("TEST_9");
+		l.add("TEST_10");
+		Pile p = new Pile(l);
+		p.shuffle();
+		
+		assertFalse(l.equals(p.getCards()));
 	}
 
 	@Test
