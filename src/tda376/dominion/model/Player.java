@@ -52,14 +52,16 @@ public class Player {
 	 * <p>Shuffles in the discard pile if the deck is empty</p>
 	 */
 	public void draw() {
-		if(deck.getSize() == 0) {
+		if(deck.getSize() == 0 && discard.getSize() > 0) {
 			discardPileToDeck();
+			hand.add(deck.pop());
+		} else if(deck.getSize() > 0) {
+			hand.add(deck.pop());
 		}
-		hand.add(deck.pop());
 	}
 	
 	private void discardPileToDeck() {
-		for (int i = 0; i<discard.getSize(); i++) {
+		for (int i = discard.getSize(); i > 0; i--) {
 			deck.add(discard.pop());
 		}
 		deck.shuffle();
@@ -102,6 +104,11 @@ public class Player {
 		return this.money;
 	}
 	
+	/**
+	 * Returns the number of cards currently in the deck
+	 * 
+	 * @return number of cards
+	 */
 	public int getDeckSize() {
 		return this.deck.getSize();
 	}
@@ -179,29 +186,64 @@ public class Player {
 	public void putOnTopOfDeck(String card) {
 		
 	}
-	public void increaseActions(int amount){
+	
+	/**
+	 * Increases the number of actions by amount
+	 * @param the number of actions added 
+	 */
+	public void increaseActions(int amount) {
 		this.actions += amount;
 	}
-	public void decreaseActions(int amount){
+	
+	/**
+	 * Decreases the number of actions by amount 
+	 * @param the number of actions removed
+	 */
+	public void decreaseActions(int amount) {
 		this.actions -= amount;
 	}
+	
+	/**
+	 * Increases the amount of riksdaler available to the player by amount
+	 * @param the number of riksdaler added
+	 */
 	public void increaseMoney(int amount){
 		this.money+=amount;
 	}
+	
+	/**
+	 * Decreases the amount of riksdaler available to the player by amount
+	 * @param the number of riksdaler removed
+	 */
 	public void decreaseMoney(int amount){
 		this.money-=amount;
 	}
+	
+	/**
+	 * Increases the number of buys by amount
+	 * @param the number of buys added
+	 */
 	public void increaseBuy(int amount){
 		this.buys+=amount;
 	}
+	
+	/**
+	 * Decreases the number of buys by amount
+	 * @param the number of buys removed
+	 */
 	public void decreaseBuy(int amount){
 		this.buys -= amount;
 	}
+	
+	/**
+	 * Resets the number of actions, buys and money available, after each turn.
+	 */
 	public void resetForNewTurn(){
 		this.actions = 1;
 		this.money = 0;
 		this.buys = 1;
 	}
+	
 	public boolean Equals(Player p) {
 		if(p.name == this.name) {
 			return true;
