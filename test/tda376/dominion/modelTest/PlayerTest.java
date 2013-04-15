@@ -32,7 +32,10 @@ public class PlayerTest {
 
 	@Test
 	public void testDiscardHand() {
-		fail("Not yet implemented");
+		Player p = new Player("Test");
+		p.draw(2);
+		p.discardHand();
+		assertTrue(p.revealHand().size() == 0);
 	}
 
 	@Test
