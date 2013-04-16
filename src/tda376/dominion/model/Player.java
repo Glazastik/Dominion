@@ -18,6 +18,7 @@ public class Player {
 	private int actions;
 	private int buys;
 	private int money;
+	private CardInfoHandler cardInfoHandler;
 	
 	public Player(String name) {
 		this.name = name;
@@ -27,6 +28,7 @@ public class Player {
 		discard = new Pile();
 		playingArea = new Pile();
 		revealedCards = new Pile();
+		cardInfoHandler = CardInfoHandler.getInstance();
 		
 		this.actions = 0;
 		this.buys = 0;
@@ -262,7 +264,9 @@ public class Player {
 	 */
 	public void play(String card){
 		if(hand.contains(card)){
-			actions--;
+			if(cardInfoHandler.getCardType(card)== "Action"){
+				actions--;
+			}
 			playingArea.add(hand.pop(card));
 		}
 	}

@@ -37,5 +37,18 @@ public class GainingHandler {
 			}
 		}
 	}
+	/**
+	 * A method used to give a player any active card to hand
+	 * @param player the player 
+	 * @param cardName the card
+	 */
+	public void playerGainCardToHand(Player player, String cardName){
+		HashMap<String,Integer> cards = supply.getActiveCards();
+		if(cards.containsKey(cardName)){
+			if(cards.get(cardName)>0){
+				player.addToHand((supply.take(cardName)));
+			}
+		}
+	}
 
 }
