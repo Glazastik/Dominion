@@ -160,9 +160,12 @@ public class Player {
 	
 	/**
 	 * Reveal the top card of the deck
-	 * @return the top card
+	 * @return the top card. NULL if there is no top card.
 	 */
 	public String revealTopOfDeck() {
+		if(deck.getTop() == null){
+			discardPileToDeck();
+		}
 		return deck.getTop();
 	}
 	

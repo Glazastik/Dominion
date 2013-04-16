@@ -100,7 +100,12 @@ public class Pile {
 	 * @return card
 	 */
 	public String getTop() {
-		return cards.getFirst();
+		try{
+			return cards.getFirst();
+		} catch (NoSuchElementException e){
+			return null;
+		}
+		
 	}
 	
 	/**
