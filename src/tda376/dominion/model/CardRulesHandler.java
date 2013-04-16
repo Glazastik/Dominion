@@ -37,7 +37,8 @@ public class CardRulesHandler {
 			Witch.play(player, players, gainingHandler);
 		} else if(cardName.equals("Woodcutter")){
 			Woodcutter.play(player);
+		} else if(cardName.equals("Moat")){
+			//TODO:
 		}
 	}
-
 }

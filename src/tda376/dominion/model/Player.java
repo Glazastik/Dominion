@@ -187,7 +187,7 @@ public class Player {
 	 * @param card to be put on the deck
 	 */
 	public void putOnTopOfDeck(String card) {
-		
+		deck.add(card);
 	}
 	
 	/**
