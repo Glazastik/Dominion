@@ -34,6 +34,16 @@ public class PileTest {
 		assertTrue(p.getSize() == addedCards
 				&& p.pop().equals("TO_POP"));
 	}
+	
+	@Test 
+	public void testAddPile() {
+		Pile p = new Pile();
+		p.add("Darth Yoda");
+		p.add("Nuck Chorris");
+		Pile l = new Pile();
+		l.add(p);
+		assertTrue(l.contains("Darth Yoda") && l.contains("Nuck Chorris") && l.getSize() == 2);
+	}
 
 	@Test
 	public void testPop() {
