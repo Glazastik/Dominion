@@ -164,10 +164,19 @@ public class PlayerTest {
 	}
 	
 	@Test
-	public void testSetAsideTopOfDeck(){
+	public void testSetAsideTopOfDeck() {
 		Player p = new Player("Test");
 		p.putOnTopOfDeck("Chuck Norris");
 		p.setAsideTopOfDeck();
 		assertTrue(p.getRevealedCards().contains("Chuck Norris"));
+	}
+	
+	@Test
+	public void testEquals() {
+		Player p1 = new Player("Chuck Testa");
+		Player p2 = new Player("Chuck Norris");
+		Player p3 = new Player("Chuck Norris");
+		assertTrue(p2.equals(p3));
+		assertFalse(p2.equals(p1));
 	}
 }

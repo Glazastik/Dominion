@@ -249,7 +249,7 @@ public class Player {
 	 * @param p
 	 * @return
 	 */
-	public boolean Equals(Player p) {
+	public boolean equals(Player p) {
 		if(p.name == this.name) {
 			return true;
 		} else {
