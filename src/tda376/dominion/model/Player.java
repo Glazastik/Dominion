@@ -14,7 +14,7 @@ public class Player {
 	private final Pile deck;
 	private final Pile discard;
 	private final Pile playingArea;
-	
+	private final Pile revealedCards;
 	private int actions;
 	private int buys;
 	private int money;
@@ -26,6 +26,7 @@ public class Player {
 		deck = new Pile();
 		discard = new Pile();
 		playingArea = new Pile();
+		revealedCards = new Pile();
 		
 		this.actions = 0;
 		this.buys = 0;
@@ -284,6 +285,14 @@ public class Player {
 	 */
 	public Pile getDiscardPile(){
 		return this.discard;
+	}
+	public void setAsideTopOfDeck(){
+		revealedCards.add(deck.pop());
+	}
+	public void putRevealedCardsInDiscard(){
+		while(revealedCards.getSize()>0){
+			discard.add(revealedCards.pop());
+		}
 	}
 	
 }

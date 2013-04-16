@@ -2,6 +2,7 @@ package tda376.dominion.model;
 
 import java.util.Collections;
 import java.util.LinkedList;
+import java.util.NoSuchElementException;
 
 import java.util.List;
 
@@ -42,10 +43,14 @@ public class Pile {
 	/**
 	 * Removes the top card from the pile and returns it
 	 * 
-	 * @return the top card of the pile
+	 * @return the top card of the pile. Null if the pile is empty.
 	 */
 	public String pop() {
-		return cards.pop();
+		try {
+			return cards.pop();
+		} catch (NoSuchElementException e){
+			return null;
+		}
 	}
 	
 	/**

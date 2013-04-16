@@ -32,8 +32,10 @@ public class CardRulesHandlerTest {
 		rulesHandler.playCard(player1, "Witch");
 		assertTrue(player1.getActions() == 1);
 		assertTrue(player1.getHandSize() == 8);
-		Pile discard = player2.getDiscardPile();
-		assertTrue(discard.contains("Curse"));
+		Pile discard2 = player2.getDiscardPile();
+		assertTrue(discard2.contains("Curse"));
+		Pile discard1 = player1.getDiscardPile();
+		assertFalse(discard1.contains("Curse"));
 	}
 
 }

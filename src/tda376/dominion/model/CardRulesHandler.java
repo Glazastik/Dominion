@@ -3,6 +3,15 @@ package tda376.dominion.model;
 import java.util.Iterator;
 import java.util.LinkedList;
 
+import tda376.dominion.cards.Councilroom;
+import tda376.dominion.cards.Festival;
+import tda376.dominion.cards.Laboratory;
+import tda376.dominion.cards.Market;
+import tda376.dominion.cards.Smithy;
+import tda376.dominion.cards.Village;
+import tda376.dominion.cards.Witch;
+import tda376.dominion.cards.Woodcutter;
+
 public class CardRulesHandler {
 	private LinkedList<Player> players;
 	private GainingHandler gainingHandler;
@@ -13,40 +22,21 @@ public class CardRulesHandler {
 	public void playCard(Player player, String cardName){
 		player.play(cardName);
 		if(cardName.equals("Smithy")){
-			player.draw(3);
+			Smithy.play(player);
 		} else if (cardName.equals("Village")){
-			player.draw();
-			player.increaseActions(2);
+			Village.play(player);
 		} else if (cardName.equals("Councilroom")){
-			player.draw(4);
-			player.increaseBuy(1);
-			for(Player p :players){
-				if(p!=player){
-					p.draw();
-				}
-			}
+			Councilroom.play(player, players);
 		} else if (cardName.equals("Laboratory")){
-			player.draw(2);
-			player.increaseActions(1);
+			Laboratory.play(player);
 		} else if (cardName.equals("Market")){
-			player.increaseMoney(1);
-			player.draw();
-			player.increaseActions(1);
-			player.increaseBuy(1);
+			Market.play(player);
 		} else if (cardName.equals("Festival")){
-			player.increaseBuy(1);
-			player.increaseMoney(2);
-			player.increaseActions(2);
+			Festival.play(player);
 		} else if (cardName.equals("Witch")){
-			player.draw(2);
-			for(Player p :players){
-				if(p!=player){
-					gainingHandler.playerGainCard(p, "Curse");
-				}
-			}
+			Witch.play(player, players, gainingHandler);
 		} else if(cardName.equals("Woodcutter")){
-			player.increaseBuy(1);
-			player.increaseMoney(2);
+			Woodcutter.play(player);
 		}
 	}
 
