@@ -126,7 +126,7 @@ public class Player {
 	 * @param card
 	 */
 	public void discardCard(String card) {
-		if(hand.contains(card)){
+		if(hand.contains(card)) {
 			discard.add(hand.pop(card));
 		}
 	}
@@ -160,7 +160,7 @@ public class Player {
 	 * @return the top card. NULL if there is no top card.
 	 */
 	public String revealTopOfDeck() {
-		if(deck.getTop() == null){
+		if(deck.getTop() == null) {
 			discardPileToDeck();
 		}
 		return deck.getTop();
@@ -210,7 +210,7 @@ public class Player {
 	 * Increases the amount of riksdaler available to the player by amount
 	 * @param the number of riksdaler added
 	 */
-	public void increaseMoney(int amount){
+	public void increaseMoney(int amount) {
 		this.money+=amount;
 	}
 	
@@ -218,7 +218,7 @@ public class Player {
 	 * Decreases the amount of riksdaler available to the player by amount
 	 * @param the number of riksdaler removed
 	 */
-	public void decreaseMoney(int amount){
+	public void decreaseMoney(int amount) {
 		this.money-=amount;
 	}
 	
@@ -226,7 +226,7 @@ public class Player {
 	 * Increases the number of buys by amount
 	 * @param the number of buys added
 	 */
-	public void increaseBuy(int amount){
+	public void increaseBuy(int amount) {
 		this.buys+=amount;
 	}
 	
@@ -234,14 +234,14 @@ public class Player {
 	 * Decreases the number of buys by amount
 	 * @param the number of buys removed
 	 */
-	public void decreaseBuy(int amount){
+	public void decreaseBuy(int amount) {
 		this.buys -= amount;
 	}
 	
 	/**
 	 * Resets the number of actions, buys and money available, after each turn.
 	 */
-	public void resetForNewTurn(){
+	public void resetForNewTurn() {
 		this.actions = 1;
 		this.money = 0;
 		this.buys = 1;
@@ -273,30 +273,30 @@ public class Player {
 	/**
 	 * Empties the playing area into the discard pile
 	 */
-	public void cleanUp(){
+	public void cleanUp() {
 		discard.add(playingArea);
 	}
 	/**
 	 * Returns the number of cards in the players hand
 	 * @return number of cards in player hand
 	 */
-	public int getHandSize(){
+	public int getHandSize() {
 		return this.hand.getSize();
 	}
 	/**
 	 * A method used for testing
 	 * @return
 	 */
-	public Pile getDiscardPile(){
+	public Pile getDiscardPile() {
 		return this.discard;
 	}
 	/**
 	 * Places the top card of the deck in the "revealed pile"
 	 */
-	public void setAsideTopOfDeck(){
-		if(deck.getSize()>0){
+	public void setAsideTopOfDeck() {
+		if(deck.getSize()>0) {
 			revealedCards.add(deck.pop());
-		} else if(deck.getSize()==0 && discard.getSize() > 0){
+		} else if(deck.getSize()==0 && discard.getSize() > 0) {
 			discardPileToDeck();
 			revealedCards.add(deck.pop());
 		}
@@ -304,14 +304,22 @@ public class Player {
 	/**
 	 * Takes the revealed pile and adds it to discard.
 	 */
-	public void putRevealedCardsInDiscard(){
+	public void putRevealedCardsInDiscard() {
 		discard.add(revealedCards);
 	}
 	/**
 	 * Returns the revealed cards
 	 * @return the revealed cards
 	 */
-	public Pile getRevealedCards(){
+	public Pile getRevealedCards() {
 		return this.revealedCards;
+	}
+	/**
+	 * Trashes selected card from the hand
+	 * @param the card to be trashed
+	 * @return the trashed card
+	 */
+	public String trashCard(String card) {
+		return hand.pop(card);
 	}
 }
