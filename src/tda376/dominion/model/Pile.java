@@ -106,7 +106,7 @@ public class Pile {
 	/**
 	 * Reveal the top card in the Pile
 	 * 
-	 * @return card
+	 * @return card. Null if there is no card
 	 */
 	public String getTop() {
 		try{

@@ -282,11 +282,22 @@ public class Player {
 	public Pile getDiscardPile(){
 		return this.discard;
 	}
+	/**
+	 * Places the top card of the deck in the "revealed pile"
+	 */
 	public void setAsideTopOfDeck(){
-		revealedCards.add(deck.pop());
+		if(deck.getSize()>0){
+			revealedCards.add(deck.pop());
+		} else if(deck.getSize()==0 && discard.getSize() > 0){
+			deck.add(discard);
+			deck.shuffle();
+			revealedCards.add(deck.pop());
+		}
 	}
+	/**
+	 * Takes the revealed pile and adds it to discard.
+	 */
 	public void putRevealedCardsInDiscard(){
 		discard.add(revealedCards);
 	}
-	
 }
