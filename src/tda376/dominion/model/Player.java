@@ -272,6 +272,10 @@ public class Player {
 	public void cleanUp(){
 		discard.add(playingArea);
 	}
+	/**
+	 * Returns the number of cards in the players hand
+	 * @return number of cards in player hand
+	 */
 	public int getHandSize(){
 		return this.hand.getSize();
 	}
@@ -289,8 +293,7 @@ public class Player {
 		if(deck.getSize()>0){
 			revealedCards.add(deck.pop());
 		} else if(deck.getSize()==0 && discard.getSize() > 0){
-			deck.add(discard);
-			deck.shuffle();
+			discardPileToDeck();
 			revealedCards.add(deck.pop());
 		}
 	}

@@ -15,18 +15,18 @@ public class PlayerTest {
 	@Test
 	public void testDraw() {
 		Player p = new Player("Test");
-		int x = p.revealHand().size();
+		int x = p.getHandSize();
 		p.draw();
-		int y = p.revealHand().size();
+		int y = p.getHandSize();
 		assertTrue(y == x + 1);
 	}
 
 	@Test
 	public void testDrawInt() {
 		Player p = new Player("Test");
-		int x = p.revealHand().size();
+		int x = p.getHandSize();
 		p.draw(3);
-		int y = p.revealHand().size();
+		int y = p.getHandSize();
 		assertTrue(y == x + 3);
 	}
 
@@ -35,14 +35,14 @@ public class PlayerTest {
 		Player p = new Player("Test");
 		p.draw(2);
 		p.discardHand();
-		assertTrue(p.revealHand().size() == 0);
+		assertTrue(p.getHandSize() == 0);
 	}
 
 	@Test
 	public void testDiscardCard() {
 		Player p = new Player("Test");
 		p.discardCard("Copper");
-		assertTrue(p.revealHand().size() == 4);
+		assertTrue(p.getHandSize() == 4);
 	}
 
 	@Test
@@ -50,21 +50,21 @@ public class PlayerTest {
 		Player p = new Player("Test");
 		p.gain("Curse");
 		p.draw(6);
-		assertTrue(p.revealHand().size() == 11);
+		assertTrue(p.getHandSize() == 11);
 	}
 
 	@Test
 	public void testAddToHand() {
 		Player p = new Player("Test");
 		p.addToHand("Curse");
-		assertTrue(p.revealHand().size() == 6);
+		assertTrue(p.getHandSize() == 6);
 	}
 
 	@Test
 	public void testRevealHand() {
 		Player p = new Player("Test");
 		p.draw(3);
-		assertTrue(p.revealHand().size() == 8);
+		assertTrue(p.getHandSize() == 8);
 	}
 
 	@Test
@@ -118,7 +118,7 @@ public class PlayerTest {
 		p.draw(5);
 		p.discardHand();
 		p.draw(3);
-		assertTrue(p.getDeckSize() == 7 && p.revealHand().size() == 3);
+		assertTrue(p.getDeckSize() == 7 && p.getHandSize() == 3);
 	}
 	
 	@Test
@@ -133,5 +133,33 @@ public class PlayerTest {
 		Player p = new Player("Test");
 		p.decreaseActions(1);
 		assertTrue(p.getActions() == 0);
+	}
+	
+	@Test
+	public void testPlay() {
+		Player p = new Player("Test");
+		p.addToHand("Moat");
+		p.play("Moat");
+		assertTrue(p.getHandSize() == 5 && p.getActions() == 0);
+	}
+	
+	@Test
+	public void testCleanUp() {
+		Player p = new Player("Test");
+		p.addToHand("Moat");
+		p.play("Moat");
+		p.cleanUp();
+		assertTrue(p.getDiscardPile().contains("Moat"));
+	}
+	
+	@Test
+	public void testSetAsideTopOfDeck() {
+		Player p = new Player("Test");
+		p.putOnTopOfDeck("Platinum");
+		p.putOnTopOfDeck("Curse");
+		p.setAsideTopOfDeck();
+		p.setAsideTopOfDeck();
+		p.putRevealedCardsInDiscard();
+		assertTrue(p.getDiscardPile().contains("Platinum") && p.getDiscardPile().contains("Curse") && p.getDiscardPile().getSize() == 2);
 	}
 }
