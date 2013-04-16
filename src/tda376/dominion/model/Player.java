@@ -263,6 +263,7 @@ public class Player {
 	 */
 	public void play(String card){
 		if(hand.contains(card)){
+			actions--;
 			playingArea.add(hand.pop(card));
 		}
 	}
@@ -273,6 +274,16 @@ public class Player {
 		while(playingArea.getSize()>0){
 			discard.add(playingArea.pop());
 		}
+	}
+	public int getHandSize(){
+		return this.hand.getSize();
+	}
+	/**
+	 * A method used for testing
+	 * @return
+	 */
+	public Pile getDiscardPile(){
+		return this.discard;
 	}
 	
 }
