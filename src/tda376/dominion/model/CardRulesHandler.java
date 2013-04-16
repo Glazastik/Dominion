@@ -47,7 +47,8 @@ public class CardRulesHandler {
 		} else if(cardName.equals("Woodcutter")){
 			player.increaseBuy(1);
 			player.increaseMoney(2);
+		} else if(cardName.equals("Moat")){
+			player.draw(2);
 		}
 	}
-
 }
