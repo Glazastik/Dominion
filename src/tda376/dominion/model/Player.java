@@ -264,7 +264,7 @@ public class Player {
 	 */
 	public void play(String card){
 		if(hand.contains(card)){
-			if(cardInfoHandler.getCardType(card)== "Action"){
+			if(cardInfoHandler.getCardType(card).equals("Action")){
 				actions--;
 			}
 			playingArea.add(hand.pop(card));
@@ -282,7 +282,7 @@ public class Player {
 	 */
 	public int getHandSize() {
 		return this.hand.getSize();
-	}
+	} 
 	/**
 	 * A method used for testing
 	 * @return
