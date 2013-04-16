@@ -39,6 +39,15 @@ public class Pile {
 	public void add(String c) {
 		cards.addFirst(c);
 	}
+	/**
+	 * Adds an entire pile of cards to this pile
+	 * @param pile that pile.
+	 */
+	public void add(Pile pile) {
+		while(pile.getSize()>0){
+			this.add(pile.pop());
+		}
+	}
 	
 	/**
 	 * Removes the top card from the pile and returns it

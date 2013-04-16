@@ -62,9 +62,7 @@ public class Player {
 	}
 	
 	private void discardPileToDeck() {
-		for (int i = discard.getSize(); i > 0; i--) {
-			deck.add(discard.pop());
-		}
+		deck.add(discard);
 		deck.shuffle();
 	}
 	
@@ -118,10 +116,7 @@ public class Player {
 	 * Discards every card in the players hand
 	 */
 	public void discardHand() {
-		int m = hand.getSize();
-		for(int i = 0; i < m; i++ ) {
-			discard.add(hand.pop());
-		}
+		discard.add(hand);
 	}
 	
 	/**
@@ -182,7 +177,7 @@ public class Player {
 	 * @param card in the deck to discard
 	 */
 	public void discardFromDeck(String card) {
-		
+		discard.add(deck.pop());
 	}
 	
 	/**
@@ -275,9 +270,7 @@ public class Player {
 	 * Empties the playing area into the discard pile
 	 */
 	public void cleanUp(){
-		while(playingArea.getSize()>0){
-			discard.add(playingArea.pop());
-		}
+		discard.add(playingArea);
 	}
 	public int getHandSize(){
 		return this.hand.getSize();
@@ -293,9 +286,7 @@ public class Player {
 		revealedCards.add(deck.pop());
 	}
 	public void putRevealedCardsInDiscard(){
-		while(revealedCards.getSize()>0){
-			discard.add(revealedCards.pop());
-		}
+		discard.add(revealedCards);
 	}
 	
 }
