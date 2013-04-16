@@ -179,4 +179,11 @@ public class PlayerTest {
 		assertTrue(p2.equals(p3));
 		assertFalse(p2.equals(p1));
 	}
+	
+	@Test
+	public void testTrashCard() {
+		Player p = new Player("Trash Meister");
+		String trash = p.trashCard("Estate");
+		assertTrue(trash == "Estate");
+	}
 }
