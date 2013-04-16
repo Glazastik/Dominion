@@ -153,7 +153,7 @@ public class PlayerTest {
 	}
 	
 	@Test
-	public void testSetAsideTopOfDeck() {
+	public void testPutRevealedCardsInDiscard() {
 		Player p = new Player("Test");
 		p.putOnTopOfDeck("Platinum");
 		p.putOnTopOfDeck("Curse");
@@ -161,5 +161,13 @@ public class PlayerTest {
 		p.setAsideTopOfDeck();
 		p.putRevealedCardsInDiscard();
 		assertTrue(p.getDiscardPile().contains("Platinum") && p.getDiscardPile().contains("Curse") && p.getDiscardPile().getSize() == 2);
+	}
+	
+	@Test
+	public void testSetAsideTopOfDeck(){
+		Player p = new Player("Test");
+		p.putOnTopOfDeck("Chuck Norris");
+		p.setAsideTopOfDeck();
+		assertTrue(p.getRevealedCards().contains("Chuck Norris"));
 	}
 }

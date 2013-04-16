@@ -303,4 +303,11 @@ public class Player {
 	public void putRevealedCardsInDiscard(){
 		discard.add(revealedCards);
 	}
+	/**
+	 * Returns the revealed cards
+	 * @return the revealed cards
+	 */
+	public Pile getRevealedCards(){
+		return this.revealedCards;
+	}
 }
