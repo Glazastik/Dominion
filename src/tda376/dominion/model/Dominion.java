@@ -25,7 +25,17 @@ public class Dominion {
 		this.supply = new Supply(players.size());
 		gainingHandler = new GainingHandler(supply);
 		cardRulesHandler = new CardRulesHandler(players, gainingHandler);
-		
-		
+	}
+	public LinkedList<Player> getPlayers(){
+		return this.players;
+	}
+	public Supply getSupply(){
+		return this.supply;
+	}
+	public GainingHandler getGainingHandler(){
+		return this.gainingHandler;
+	}
+	public CardRulesHandler getCardRulesHandler(){
+		return this.cardRulesHandler;
 	}
 }

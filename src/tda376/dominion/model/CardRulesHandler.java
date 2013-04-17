@@ -40,7 +40,7 @@ public class CardRulesHandler {
 		} else if (cardName.equals("Woodcutter")) {
 			Woodcutter.play(player);
 		} else if (cardName.equals("Moat")) {
-			// TODO:
+			Moat.play(player);
 		}
 	}
 }
