@@ -20,7 +20,6 @@ public class ServerFrame extends JFrame implements ActionListener {
 	private static final String FRAMETITLE = "Dominion Server 0.1";
 	private static final int FRAMEHEIGHT = 400;
 	private static final int FRAMEWIDTH = 600;
-	private ServerController controller;
 
 	// List of components:
 	/**
@@ -40,7 +39,6 @@ public class ServerFrame extends JFrame implements ActionListener {
 	private ServerFrame() {
 		super(FRAMETITLE);
 		this.setSize(FRAMEWIDTH, FRAMEHEIGHT);
-		controller = new ServerController();
 
 		this.setVisible(true);
 		this.setDefaultCloseOperation(EXIT_ON_CLOSE);
@@ -122,7 +120,6 @@ public class ServerFrame extends JFrame implements ActionListener {
 	@Override
 	public void actionPerformed(ActionEvent e) {
 		this.print("\"" + consoleIn.getText().trim() + "\"");
-		controller.execute(consoleIn.getText().trim());
 		consoleIn.setText("");
 
 	}
