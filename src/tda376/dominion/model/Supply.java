@@ -108,6 +108,13 @@ public class Supply {
 		}
 		return (pilesEmpty>= 3 || cards.get("Province") == 0);
 	}
+	public boolean isAvailable(String card){
+		if(cards.containsKey(card)){
+			return (cards.get(card)>0);
+		} else {
+			return false;
+		}
+	}
 	//TODO: Possible method to add.
 //	public HashMap<String,Integer> getGainableCards(int maxValue){
 //		
