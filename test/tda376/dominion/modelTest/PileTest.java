@@ -152,5 +152,24 @@ public class PileTest {
 		assertTrue(l.equals(p1.getCards())); 
 		assertTrue(l.equals(p2.getCards()));
 	}
+	
+	@Test
+	public void testGetTop() {
+		
+	}
+	
+	@Test
+	public void testGetTopNull() {
+		
+	}
+	
+	@Test
+	public void testGetTopSeveral() {
+		
+	}
 
+	@Test
+	public void testContains() {
+		
+	}
 }
