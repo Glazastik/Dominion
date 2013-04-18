@@ -35,6 +35,8 @@ public class CardInfoHandler {
 				  String temp = ("res/img/card/" +split[0]+".jpg");
 				  cardImages.put(split[0], temp);
 			  }
+			  //TODO Experimental, does it work?
+			  br.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -56,7 +58,7 @@ public class CardInfoHandler {
 	public LinkedList<String> getActionCards(){
 		LinkedList<String> temp = this.getCardList();
 		LinkedList<String> temp2 = new LinkedList<String>();
-		Iterator i = temp.iterator();
+		Iterator<String> i = temp.iterator();
 		while(i.hasNext()){
 			String tempString = (String) i.next();
 			if(this.getCardType(tempString).equals("Action")){
@@ -68,7 +70,7 @@ public class CardInfoHandler {
 	public LinkedList<String> getTreasureCards(){
 		LinkedList<String> temp = this.getCardList();
 		LinkedList<String> temp2 = new LinkedList<String>();
-		Iterator i = temp.iterator();
+		Iterator<String> i = temp.iterator();
 		while(i.hasNext()){
 			String tempString = (String) i.next();
 			if(this.getCardType(tempString).equals("Treasure")){
@@ -80,7 +82,7 @@ public class CardInfoHandler {
 	public LinkedList<String> getVictoryCards(){
 		LinkedList<String> temp = this.getCardList();
 		LinkedList<String> temp2 = new LinkedList<String>();
-		Iterator i = temp.iterator();
+		Iterator<String> i = temp.iterator();
 		while(i.hasNext()){
 			String tempString = (String) i.next();
 			if(this.getCardType(tempString).equals("Victory")){
