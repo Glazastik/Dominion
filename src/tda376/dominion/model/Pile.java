@@ -134,6 +134,13 @@ public class Pile {
 		}
 		return l;
 	}
+	
+	/**
+	 * Checks whether the pile contains a given card or not.
+	 * 
+	 * @param card the card to look for
+	 * @return true if and only if the pile contains the chosen card
+	 */
 	public boolean contains(String card){
 		return cards.contains(card);
 	}
