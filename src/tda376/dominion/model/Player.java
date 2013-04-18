@@ -20,6 +20,17 @@ public class Player {
 	private int money;
 	private CardInfoHandler cardInfoHandler;
 	
+	/**
+	 * Creates a new instance of Player with all the necessary 
+	 * piles (see {@link Pile}) and a name for easy identification.
+	 * 
+	 * <p> After giving all the necessary piles and an instance 
+	 * of the {@link CardInfoHandler} calls the init methods which 
+	 * gives the player the basic deck, shuffles it, draws five cards
+	 * and sets actions and buys to an appropriate amount.
+	 * 
+	 * @param name the name with which to identify the player
+	 */
 	public Player(String name) {
 		this.name = name;
 		
