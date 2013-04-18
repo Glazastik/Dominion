@@ -193,4 +193,16 @@ public class PlayerTest {
 		String trash = p.trashCard("Estate");
 		assertTrue(trash == "Estate");
 	}
+	
+	@Test
+	public void testDrawWhenAllEmpty() {
+		Player p = new Player("Player");
+		p.draw(5);
+		p.discardHand();
+		for(int i = 0; i < 10; i++){
+			p.getDiscardPile().pop();
+		}
+		p.draw(5);
+		assertTrue(p.getHandSize() == 0);
+	}
 }
