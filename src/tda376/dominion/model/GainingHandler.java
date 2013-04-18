@@ -3,10 +3,24 @@ package tda376.dominion.model;
 import java.util.HashMap;
 import java.util.LinkedList;
 
+/**
+ * A class designed to help players gain card, which means
+ * adding it to their discard pile.
+ * 
+ * @author Grupp 28
+ *
+ */
 public class GainingHandler {
 
 	private final Supply supply;
 	private final CardInfoHandler cardInfoHandler;
+	
+	/**
+	 * Creates a new GainingHandler with a supply to gain cards 
+	 * from and a {@link CardInfoHandler}.
+	 * 
+	 * @param supply the {@link Supply} to be gained from
+	 */
 	public GainingHandler(Supply supply) {
 		// TODO Should probably be renamed
 		this.supply = supply;
