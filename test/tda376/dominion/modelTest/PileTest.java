@@ -211,4 +211,19 @@ public class PileTest {
 		
 		assertTrue(p.contains(toCheck));
 	}
+	
+	@Test
+	public void testNotContains() {
+		String NotToCheck = "NOT_TO_CHECK";
+		LinkedList<String> l = new LinkedList<String>();
+		l.add("TEST_1");
+		l.add("TEST_2");
+		l.add("TEST_3");
+		l.add("TEST_4");
+		l.add("TEST_5");
+		l.add("TEST_6");
+		Pile p = new Pile(l);
+		
+		assertFalse(p.contains(NotToCheck));
+	}
 }
