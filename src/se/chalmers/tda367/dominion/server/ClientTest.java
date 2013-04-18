@@ -3,9 +3,6 @@ package se.chalmers.tda367.dominion.server;
 import java.io.IOException;
 
 import javax.swing.JOptionPane;
-
-import net.java.games.input.EventQueue;
-
 import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
@@ -29,11 +26,13 @@ public class ClientTest {
 			public void connected(Connection connection) {
 				while (true) {
 					client.sendTCP(JOptionPane.showInputDialog("HNNNNNG:"));
+					
 				}
 			}
 
 			public void disconnected(Connection connection) {
 				System.out.println("Fuuu");
+				client.stop();
 			}
 		});
 
@@ -51,15 +50,6 @@ public class ClientTest {
 				}
 			}
 		}.start();
-
-		// try {
-		// Log.set(Log.LEVEL_DEBUG);
-		// client.connect(5000, "localhost", 54555, 54777);
-		// System.out.println(client.isConnected());
-		// } catch (IOException e) {
-		// e.printStackTrace();
-		// }
-
 	}
 
 }
