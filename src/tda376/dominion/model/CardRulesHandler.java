@@ -4,16 +4,35 @@ import java.util.LinkedList;
 
 import tda376.dominion.cards.*;
 
+/**
+ * A class that handles how the cards that are played affect the game and players.
+ * 
+ * @author Grupp 28
+ *
+ */
 public class CardRulesHandler {
 	private LinkedList<Player> players;
 	private GainingHandler gainingHandler;
-
+	
+	/**
+	 * Creates a new CardRulesHandler with a list of players 
+	 * (see {@link Player}) and a {@link GainingHandler}.
+	 * 
+	 * @param players the list of active players in the game
+	 * @param gainingHandler the GainingHandler that will be used
+	 */
 	public CardRulesHandler(LinkedList<Player> players,
 			GainingHandler gainingHandler) {
 		this.gainingHandler = gainingHandler;
 		this.players = players;
 	}
 
+	/**
+	 * Allows the player to play the selected card and be affected by it.
+	 * 
+	 * @param player the {@link Player} that is playing
+	 * @param cardName the card to be played (see {@link tda376.dominion.cards})
+	 */
 	public void playCard(Player player, String cardName) {
 		player.play(cardName);
 		if (cardName.equals("Smithy")) {
