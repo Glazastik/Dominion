@@ -173,7 +173,9 @@ public class PileTest {
 	
 	@Test
 	public void testGetTopNull() {
+		Pile p = new Pile();
 		
+		assertNull(p.getTop());
 	}
 	
 	@Test
