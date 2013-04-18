@@ -24,11 +24,12 @@ public class ClientTest {
 	 */
 	public static void main(String[] args) {
 		client = new Client();
-		
 
 		client.addListener(new Listener() {
 			public void connected(Connection connection) {
-				client.sendTCP("Hej");
+				while (true) {
+					client.sendTCP(JOptionPane.showInputDialog("HNNNNNG:"));
+				}
 			}
 
 			public void disconnected(Connection connection) {
