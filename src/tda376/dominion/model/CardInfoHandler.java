@@ -3,16 +3,10 @@ package tda376.dominion.model;
 import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.Set;
-
-import org.lwjgl.LWJGLException;
-import org.lwjgl.test.applet.OpenGL;
-import org.newdawn.slick.Image;
 
 /**
  * A class used to store all the info concerning cards.
@@ -41,6 +35,8 @@ public class CardInfoHandler {
 				  String temp = ("res/img/card/" +split[0]+".jpg");
 				  cardImages.put(split[0], temp);
 			  }
+			  //TODO Experimental, does it work?
+			  br.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
@@ -62,7 +58,7 @@ public class CardInfoHandler {
 	public LinkedList<String> getActionCards(){
 		LinkedList<String> temp = this.getCardList();
 		LinkedList<String> temp2 = new LinkedList<String>();
-		Iterator i = temp.iterator();
+		Iterator<String> i = temp.iterator();
 		while(i.hasNext()){
 			String tempString = (String) i.next();
 			if(this.getCardType(tempString).equals("Action")){
@@ -74,7 +70,7 @@ public class CardInfoHandler {
 	public LinkedList<String> getTreasureCards(){
 		LinkedList<String> temp = this.getCardList();
 		LinkedList<String> temp2 = new LinkedList<String>();
-		Iterator i = temp.iterator();
+		Iterator<String> i = temp.iterator();
 		while(i.hasNext()){
 			String tempString = (String) i.next();
 			if(this.getCardType(tempString).equals("Treasure")){
@@ -86,7 +82,7 @@ public class CardInfoHandler {
 	public LinkedList<String> getVictoryCards(){
 		LinkedList<String> temp = this.getCardList();
 		LinkedList<String> temp2 = new LinkedList<String>();
-		Iterator i = temp.iterator();
+		Iterator<String> i = temp.iterator();
 		while(i.hasNext()){
 			String tempString = (String) i.next();
 			if(this.getCardType(tempString).equals("Victory")){

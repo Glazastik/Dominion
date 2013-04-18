@@ -1,8 +1,6 @@
 package tda376.dominion.model;
 
-import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.List;
 
 /**
  * @author Group 28

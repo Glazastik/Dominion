@@ -9,7 +9,14 @@ public class PlayerTest {
 
 	@Test
 	public void testPlayer() {
-		fail("Not yet implemented");
+		Player p = new Player("Player");
+
+		assertTrue(p.getActions() == 1);
+		assertTrue(p.getBuys() == 1);
+		assertTrue(p.getMoney() == 0);
+		assertTrue(p.getHandSize() == 5);
+		assertTrue(p.getDiscardPile().getSize() == 0);
+		assertTrue(p.getDeckSize() == 5);
 	}
 
 	@Test

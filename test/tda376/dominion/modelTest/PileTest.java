@@ -13,12 +13,22 @@ public class PileTest {
 
 	@Test
 	public void testPile() {
-		fail("Not yet implemented");
+		Pile p = new Pile();
+		
+		assertTrue(p.getSize() == 0);
 	}
 
 	@Test
 	public void testPileListOfCard() {
-		fail("Not yet implemented");
+		LinkedList<String> l = new LinkedList<String>();
+		l.add("TEST_1");
+		l.add("TEST_2");
+		l.add("TEST_3");
+		l.add("TEST_4");
+		l.add("TEST_5");
+		Pile p = new Pile(l);
+		
+		assertTrue(l.size() == p.getSize());
 	}
 
 	@Test
@@ -31,8 +41,8 @@ public class PileTest {
 		
 		//Checks that the right amount has been added and
 		//that it has been added in the correct order
-		assertTrue(p.getSize() == addedCards
-				&& p.pop().equals("TO_POP"));
+		assertTrue(p.getSize() == addedCards);
+		assertTrue(p.pop().equals("TO_POP"));
 	}
 	
 	@Test 
@@ -42,7 +52,9 @@ public class PileTest {
 		p.add("Nuck Chorris");
 		Pile l = new Pile();
 		l.add(p);
-		assertTrue(l.contains("Darth Yoda") && l.contains("Nuck Chorris") && l.getSize() == 2);
+		assertTrue(l.contains("Darth Yoda")); 
+		assertTrue(l.contains("Nuck Chorris"));
+		assertTrue(l.getSize() == 2);
 	}
 
 	@Test
@@ -59,10 +71,10 @@ public class PileTest {
 		Pile p2 = new Pile();
 		p2.add(testString);
 		
-		assertTrue(l.getFirst().equals(p1.pop())
-				&& p1.getSize() == (addedCards1 - 1)
-				&& testString.equals(p2.pop())
-				&& p2.getSize() == (addedCards2 - 1));
+		assertTrue(l.getFirst().equals(p1.pop()));
+		assertTrue(p1.getSize() == (addedCards1 - 1));
+		assertTrue(testString.equals(p2.pop()));
+		assertTrue(p2.getSize() == (addedCards2 - 1));
 	}
 	
 	@Test
@@ -81,10 +93,10 @@ public class PileTest {
 		p2.add("TO_POP");
 		p2.add("NOT_TO_POP");
 		
-		assertTrue(p1.pop("TEST_2").equals("TEST_2")
-				&& p1.getSize() == (addedCards1 - 1)
-				&& p2.pop("TO_POP").equals("TO_POP")
-				&& p2.getSize() == (addedCards2 - 1));
+		assertTrue(p1.pop("TEST_2").equals("TEST_2"));
+		assertTrue(p1.getSize() == (addedCards1 - 1));
+		assertTrue(p2.pop("TO_POP").equals("TO_POP"));
+		assertTrue(p2.getSize() == (addedCards2 - 1));
 	}
 
 	@Test
@@ -120,8 +132,8 @@ public class PileTest {
 		p2.add("TEST_2");
 		p2.add("TEST_3");
 		p2.add("TEST_4");
-		assertTrue(p1.getSize() == l.size() 
-				&& nbrOfAddedCards == p2.getSize());
+		assertTrue(p1.getSize() == l.size());
+		assertTrue(nbrOfAddedCards == p2.getSize());
 	}
 
 	@Test
@@ -137,8 +149,8 @@ public class PileTest {
 		p2.add("TEST_3");
 		p2.add("TEST_2");
 		p2.add("TEST_1");
-		assertTrue(l.equals(p1.getCards()) 
-				&& l.equals(p2.getCards()));
+		assertTrue(l.equals(p1.getCards())); 
+		assertTrue(l.equals(p2.getCards()));
 	}
 
 }

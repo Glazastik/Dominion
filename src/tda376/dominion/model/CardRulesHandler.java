@@ -2,15 +2,7 @@ package tda376.dominion.model;
 
 import java.util.LinkedList;
 
-import tda376.dominion.cards.Councilroom;
-import tda376.dominion.cards.Festival;
-import tda376.dominion.cards.Laboratory;
-import tda376.dominion.cards.Market;
-import tda376.dominion.cards.Moat;
-import tda376.dominion.cards.Smithy;
-import tda376.dominion.cards.Village;
-import tda376.dominion.cards.Witch;
-import tda376.dominion.cards.Woodcutter;
+import tda376.dominion.cards.*;
 
 public class CardRulesHandler {
 	private LinkedList<Player> players;
