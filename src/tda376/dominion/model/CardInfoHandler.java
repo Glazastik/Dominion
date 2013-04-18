@@ -3,16 +3,10 @@ package tda376.dominion.model;
 import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.Set;
-
-import org.lwjgl.LWJGLException;
-import org.lwjgl.test.applet.OpenGL;
-import org.newdawn.slick.Image;
 
 /**
  * A class used to store all the info concerning cards.
