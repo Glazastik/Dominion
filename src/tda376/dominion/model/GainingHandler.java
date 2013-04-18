@@ -15,8 +15,7 @@ public class GainingHandler {
 	public void playerBuyCard(Player player, String cardName){
 		//TODO: Player player is to be removed when networking is properly set up.
 		//The model should handle that on it's own
-		HashMap<String,Integer> cards = supply.getActiveCards();
-		if(cards.containsKey(cardName)){
+		if(supply.isAvailable(cardName)){
 			if(cardInfoHandler.getCardValue(cardName)<=player.getMoney() && player.getBuys()>0){
 				player.decreaseMoney(cardInfoHandler.getCardValue(cardName));
 				player.decreaseBuy(1);
@@ -30,11 +29,8 @@ public class GainingHandler {
 	 * @param cardName the card
 	 */
 	public void playerGainCard(Player player, String cardName){
-		HashMap<String,Integer> cards = supply.getActiveCards();
-		if(cards.containsKey(cardName)){
-			if(cards.get(cardName)>0){
-				player.gain(supply.take(cardName));
-			}
+		if(supply.isAvailable(cardName)){
+			player.gain(supply.take(cardName));
 		}
 	}
 	/**
