@@ -13,7 +13,8 @@ public class PileTest {
 
 	@Test
 	public void testPile() {
-		fail("Not yet implemented");
+		Pile p = new Pile();
+		assertTrue(p.getSize() == 0);
 	}
 
 	@Test
