@@ -180,7 +180,21 @@ public class PileTest {
 	
 	@Test
 	public void testGetTopSeveral() {
+		int NUMBER_TO_GET = 3;
+		LinkedList<String> l = new LinkedList<String>();
+		l.add("TEST_1");
+		l.add("TEST_2");
+		l.add("TEST_3");
+		l.add("TEST_4");
+		l.add("TEST_5");
+		l.add("TEST_6");
+		LinkedList<String> lStart = new LinkedList<String>();
+		lStart.add("TEST_1");
+		lStart.add("TEST_2");
+		lStart.add("TEST_3");
+		Pile p = new Pile(l);
 		
+		assertTrue(p.getTop(NUMBER_TO_GET).equals(lStart));
 	}
 
 	@Test
