@@ -14,12 +14,21 @@ public class PileTest {
 	@Test
 	public void testPile() {
 		Pile p = new Pile();
+		
 		assertTrue(p.getSize() == 0);
 	}
 
 	@Test
 	public void testPileListOfCard() {
-		fail("Not yet implemented");
+		LinkedList<String> l = new LinkedList<String>();
+		l.add("TEST_1");
+		l.add("TEST_2");
+		l.add("TEST_3");
+		l.add("TEST_4");
+		l.add("TEST_5");
+		Pile p = new Pile(l);
+		
+		assertTrue(l.size() == p.getSize());
 	}
 
 	@Test
