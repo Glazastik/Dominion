@@ -199,6 +199,16 @@ public class PileTest {
 
 	@Test
 	public void testContains() {
+		String toCheck = "TO_CHECK";
+		LinkedList<String> l = new LinkedList<String>();
+		l.add("TEST_1");
+		l.add("TEST_2");
+		l.add(toCheck);
+		l.add("TEST_4");
+		l.add("TEST_5");
+		l.add("TEST_6");
+		Pile p = new Pile(l);
 		
+		assertTrue(p.contains(toCheck));
 	}
 }
