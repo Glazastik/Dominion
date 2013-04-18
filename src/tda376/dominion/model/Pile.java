@@ -129,7 +129,7 @@ public class Pile {
 		if(n < number) {
 			number = n;
 		}
-		for(int i = 0; i < n; i++) {
+		for(int i = 0; i < number; i++) {
 			l.add(cards.get(i));
 		}
 		return l;
