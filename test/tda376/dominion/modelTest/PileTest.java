@@ -226,4 +226,12 @@ public class PileTest {
 		
 		assertFalse(p.contains(NotToCheck));
 	}
+	
+	@Test
+	public void testEmptyContains() {
+		String toCheck = "TO_CHECK";
+		Pile p = new Pile();
+		
+		assertFalse(p.contains(toCheck));
+	}
 }
