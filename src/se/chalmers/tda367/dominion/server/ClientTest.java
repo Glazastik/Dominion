@@ -2,6 +2,8 @@ package se.chalmers.tda367.dominion.server;
 
 import java.io.IOException;
 
+import javax.swing.JOptionPane;
+
 import net.java.games.input.EventQueue;
 
 import com.esotericsoftware.kryonet.Client;
@@ -38,7 +40,8 @@ public class ClientTest {
 		new Thread("Connect") {
 			public void run() {
 				try {
-					client.connect(5000, "localhost", 54555, 54777);
+					String host = JOptionPane.showInputDialog("Host:");
+					client.connect(5000, host, 54555, 54777);
 					// Server communication after connection can go here, or in
 					// Listener#connected().
 				} catch (IOException ex) {
