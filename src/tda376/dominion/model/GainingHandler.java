@@ -30,7 +30,7 @@ public class GainingHandler {
 		//TODO: Player player is to be removed when networking is properly set up.
 		//The model should handle that on it's own
 		if(supply.isAvailable(cardName)){
-			if(cardInfoHandler.getCardValue(cardName)<=player.getMoney() && player.getBuys()>0){
+				if(cardInfoHandler.getCardValue(cardName)<=player.getMoney() && player.getBuys()>0){
 				player.decreaseMoney(cardInfoHandler.getCardValue(cardName));
 				player.decreaseBuy(1);
 				player.gain(supply.take(cardName));
