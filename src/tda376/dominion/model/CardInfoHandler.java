@@ -55,6 +55,10 @@ public class CardInfoHandler {
 	public LinkedList<String> getCardList(){
 		return cards;
 	}
+	/**
+	 * A method used to get all the action cards in the game
+	 * @return all the action cards, even the inactive ones.
+	 */
 	public LinkedList<String> getActionCards(){
 		LinkedList<String> temp = this.getCardList();
 		LinkedList<String> temp2 = new LinkedList<String>();
@@ -67,6 +71,10 @@ public class CardInfoHandler {
 		}
 		return temp2;
 	}
+	/**
+	 * A method used to get all the treasure cards in the game
+	 * @return all the treasure cards, even the inactive ones.
+	 */
 	public LinkedList<String> getTreasureCards(){
 		LinkedList<String> temp = this.getCardList();
 		LinkedList<String> temp2 = new LinkedList<String>();
@@ -79,6 +87,10 @@ public class CardInfoHandler {
 		}
 		return temp2;
 	}
+	/**
+	 * A method used to get all the victory cards in the game
+	 * @return all the victory cards, even the inactive ones.
+	 */
 	public LinkedList<String> getVictoryCards(){
 		LinkedList<String> temp = this.getCardList();
 		LinkedList<String> temp2 = new LinkedList<String>();
