@@ -23,6 +23,7 @@ public class CardInfoHandler {
 	private static final HashMap<String,String> cardImages = new HashMap<String,String>();
 	private CardInfoHandler(){
 		try {
+			//Reads the file containing all the info about the cards 
 			FileInputStream fstream = new FileInputStream("res/CardInfo.txt");
 			DataInputStream in = new DataInputStream(fstream);
 			  BufferedReader br = new BufferedReader(new InputStreamReader(in));
@@ -35,7 +36,6 @@ public class CardInfoHandler {
 				  String temp = ("res/img/card/" +split[0]+".jpg");
 				  cardImages.put(split[0], temp);
 			  }
-			  //TODO Experimental, does it work?
 			  br.close();
 		} catch (Exception e) {
 			e.printStackTrace();

@@ -84,11 +84,15 @@ public class Supply {
 	 * @return the card, null if there were no cards left of the chosen type
 	 */
 	public String take(String cardName){
-		int temp = cards.get(cardName);
-		if(temp>0){
-			temp--;
-			cards.put(cardName, temp);
-			return cardName;
+		if(cards.containsKey(cardName)){
+			int temp = cards.get(cardName);
+			if(temp>0){
+				temp--;
+				cards.put(cardName, temp);
+				return cardName;
+			} else {
+				return null;
+			}
 		} else {
 			return null;
 		}
