@@ -29,7 +29,7 @@ public class ServerFactory {
 								+ (String) obj);
 			}
 		});
-
+		
 		try {
 			server.bind(54555, 54777);
 		} catch (IOException e) {
@@ -37,7 +37,6 @@ public class ServerFactory {
 		}
 		server.start();
 		return server;
-		
 
 	}
 

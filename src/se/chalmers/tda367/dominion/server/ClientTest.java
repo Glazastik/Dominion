@@ -25,13 +25,13 @@ public class ClientTest {
 		client.addListener(new Listener() {
 			public void connected(Connection connection) {
 				while (true) {
-					client.sendTCP(JOptionPane.showInputDialog("HNNNNNG:"));
+					client.sendTCP(JOptionPane.showInputDialog("Message test:"));
 					
 				}
 			}
 
 			public void disconnected(Connection connection) {
-				System.out.println("Fuuu");
+				System.out.println("Connection with server has been disconnected.");
 				client.stop();
 			}
 		});
@@ -42,8 +42,12 @@ public class ClientTest {
 				try {
 					String host = JOptionPane.showInputDialog("Host:");
 					client.connect(5000, host, 54555, 54777);
+					client.setTimeout(900000);
+					client.setKeepAliveTCP(900000);
+					
 					// Server communication after connection can go here, or in
 					// Listener#connected().
+					
 				} catch (IOException ex) {
 					ex.printStackTrace();
 					System.exit(1);

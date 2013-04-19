@@ -20,9 +20,10 @@ public class ServerMain {
 	 */
 	public static void main(String[] args) {
 		window = ServerFrame.getInstance();
-		window.print("Frame initiated");
+		window.print("Frame initiated.");
 		
 		Server server = ServerFactory.getInstance();
+		window.print("Server service started.");
 		System.out.println(server.getConnections().length);
 	}
 
