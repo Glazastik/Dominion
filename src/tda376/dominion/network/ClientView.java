@@ -9,6 +9,12 @@ public class ClientView {
 		
 	}
 	
+	/************************************************
+	 * 
+	 * Methods used for telling the client what to do
+	 * 
+	 ************************************************/
+	
 	/**
 	 * Let the player play a card
 	 */
@@ -20,6 +26,24 @@ public class ClientView {
 	 * Tells the client to discard a card
 	 */
 	public void discardCard(String card) {
+		
+	}
+	
+	public void gainCard() {
+		
+	}
+	
+	/************************************************
+	 * 
+	 * Methods used for telling the client
+	 * what's going on
+	 * 
+	 ************************************************/
+	
+	/**
+	 * Tells the client who's turn it is
+	 */
+	public void turn() {
 		
 	}
 }
