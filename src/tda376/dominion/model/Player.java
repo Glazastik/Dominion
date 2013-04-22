@@ -301,6 +301,15 @@ public class Player {
 	public Pile getDiscardPile() {
 		return this.discard;
 	}
+	
+	/**
+	 * Returns all the cards in the players hand, Another method used for testing
+	 * @return The cards in the players hand
+	 */
+	public Pile getHand() {
+		return this.hand;
+	}
+	
 	/**
 	 * Places the top card of the deck in the "revealed pile"
 	 */
