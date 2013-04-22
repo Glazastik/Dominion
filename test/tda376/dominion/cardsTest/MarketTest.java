@@ -1,14 +1,26 @@
 package tda376.dominion.cardsTest;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
+
+import tda376.dominion.cards.Market;
+import tda376.dominion.model.Player;
 
 public class MarketTest {
 
 	@Test
 	public void testPlay() {
-		fail("Not yet implemented");
+		Player p = new Player("Goko");
+		int buys = p.getBuys();
+		int actions = p.getActions();
+		int money = p.getMoney();
+		int cards = p.getHandSize();
+		Market.play(p);
+		assertTrue(p.getBuys() - buys == 1);
+		assertTrue(p.getActions() - actions == 1);
+		assertTrue(p.getMoney() - money == 1);
+		assertTrue(p.getHandSize() - cards == 1);
 	}
 
 }
