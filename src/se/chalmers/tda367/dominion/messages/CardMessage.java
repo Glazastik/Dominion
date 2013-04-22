@@ -23,8 +23,20 @@ public class CardMessage implements Message {
 	public String getLocation() {
 		return this.location;
 	}
-	
-	public String toString(){
+
+	public String toString() {
 		return cardName + " " + location;
+	}
+
+	@Override
+	public boolean equals(Object o) {
+		if (o instanceof CardMessage) {
+			CardMessage om = (CardMessage) o;
+			if (om.getCard() == this.getCard()
+					&& om.getLocation() == this.getLocation()) {
+				return true;
+			}
+		}
+		return false;
 	}
 }
