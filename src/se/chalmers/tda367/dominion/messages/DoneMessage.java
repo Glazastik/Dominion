@@ -6,12 +6,10 @@ public class DoneMessage implements Message {
 		message = "Done";
 	}
 
-	@Override
 	public String getMessage() {
 		return message;
 	}
 
-	@Override
 	public void setMessage(String message) {
 		this.message = message;
 		
