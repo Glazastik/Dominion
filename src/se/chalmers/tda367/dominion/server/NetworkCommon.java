@@ -1,6 +1,8 @@
 package se.chalmers.tda367.dominion.server;
 
 import se.chalmers.tda367.dominion.messages.CardMessage;
+import se.chalmers.tda367.dominion.messages.DoneMessage;
+import se.chalmers.tda367.dominion.messages.YesNoMessage;
 
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryonet.EndPoint;
@@ -14,6 +16,8 @@ public class NetworkCommon {
 		//TODO Viktigt att registrera alla klasser här.
 		kryo.register(BasicMessage.class);
 		kryo.register(CardMessage.class);
+		kryo.register(YesNoMessage.class);
+		kryo.register(DoneMessage.class);
 	}
 	
 	public static class BasicMessage{
