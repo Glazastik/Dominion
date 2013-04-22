@@ -32,5 +32,4 @@ public class CardMessage implements Message {
 	public String getLocation(){
 		return this.location;
 	}
-
 }
