@@ -4,7 +4,7 @@ import java.util.LinkedList;
 
 /**
  * @author Group 28
- * Master class for the game.
+ * Master class for one instance of a game.
  * 
  */
 public class Dominion {
