@@ -3,6 +3,7 @@ package tda376.dominion.modelTest;
 import static org.junit.Assert.*;
 
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Iterator;
 import java.util.Set;
 
@@ -65,6 +66,41 @@ public class SupplyTest {
 			loopTalet++;
 		}
 		assertTrue(supply2.gameIsOver());
+	}
+	
+	@Test
+	public void testGetGainableCards() {
+		int AMOUNT_OF_PLAYERS = 4;
+		int CARD_COST = 2;
+		
+		String ESTATE = "Estate";
+		String CELLAR = "Cellar";
+		String CHAPEL = "Chapel";
+		String MOAT = "Moat";
+		
+		Supply s = new Supply(AMOUNT_OF_PLAYERS);
+		
+		Set<String> testSet = new HashSet<String>();
+		testSet.add("Curse");
+		testSet.add("Copper");
+		
+		if(s.isAvailable(ESTATE)){
+			testSet.add(ESTATE);
+		}
+		
+		if(s.isAvailable(CELLAR)){
+			testSet.add(CELLAR);
+		}
+		
+		if(s.isAvailable(CHAPEL)){
+			testSet.add(CHAPEL);
+		}
+		
+		if(s.isAvailable(MOAT)){
+			testSet.add(MOAT);
+		}
+		
+		assertTrue(testSet.equals(s.getGainableCards(CARD_COST).keySet()));
 	}
 
 }
