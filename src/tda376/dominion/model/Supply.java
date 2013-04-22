@@ -115,8 +115,26 @@ public class Supply {
 			return false;
 		}
 	}
-	//TODO: Possible method to add.
-//	public HashMap<String,Integer> getGainableCards(int maxValue){
-//		
-//	}
+
+	/**
+	 * Returns the cards that can be gained within the provided
+	 * maximum value.
+	 * 
+	 * @param maxValue
+	 * @return a HashMap with the cards and the amount of them in the supply
+	 */
+	public HashMap<String,Integer> getGainableCards(int maxValue){
+		HashMap<String, Integer> toSender = new HashMap<String, Integer>();
+		CardInfoHandler cih = CardInfoHandler.getInstance();
+		
+		Set<String> cardKeys = cards.keySet();
+		
+		for(String card : cardKeys){
+			if(cih.getCardValue(card) <= maxValue){
+				toSender.put(card, cards.get(card));
+			}
+		}
+		
+		return toSender;
+	}
 }
