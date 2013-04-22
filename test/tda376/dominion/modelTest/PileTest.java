@@ -7,7 +7,7 @@ import java.util.List;
 
 import org.junit.Test;
 
-import tda376.dominion.model.Pile;
+import tda367.dominion.model.Pile;
 
 public class PileTest {
 

@@ -4,8 +4,8 @@ import static org.junit.Assert.*;
 
 import org.junit.Test;
 
-import tda376.dominion.cards.Laboratory;
-import tda376.dominion.model.Player;
+import tda367.dominion.cards.Laboratory;
+import tda367.dominion.model.Player;
 
 public class LaboratoryTest {
 

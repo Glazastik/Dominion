@@ -6,10 +6,10 @@ import java.util.LinkedList;
 
 import org.junit.Test;
 
-import tda376.dominion.cards.Witch;
-import tda376.dominion.model.GainingHandler;
-import tda376.dominion.model.Player;
-import tda376.dominion.model.Supply;
+import tda367.dominion.cards.Witch;
+import tda367.dominion.model.GainingHandler;
+import tda367.dominion.model.Player;
+import tda367.dominion.model.Supply;
 
 public class WitchTest {
 

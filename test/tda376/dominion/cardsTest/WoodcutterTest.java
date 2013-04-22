@@ -1,8 +1,9 @@
 package tda376.dominion.cardsTest;
 
 import static org.junit.Assert.*;
-import tda376.dominion.cards.Woodcutter;
-import tda376.dominion.model.*;
+import tda367.dominion.cards.Woodcutter;
+import tda367.dominion.model.*;
+
 import org.junit.Test;
 
 public class WoodcutterTest {

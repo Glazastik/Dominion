@@ -9,7 +9,7 @@ import java.util.Set;
 
 import org.junit.Test;
 
-import tda376.dominion.model.Supply;
+import tda367.dominion.model.Supply;
 
 public class SupplyTest {
 

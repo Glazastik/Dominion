@@ -4,9 +4,9 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import tda376.dominion.cards.Adventurer;
-import tda376.dominion.model.Pile;
-import tda376.dominion.model.Player;
+import tda367.dominion.cards.Adventurer;
+import tda367.dominion.model.Pile;
+import tda367.dominion.model.Player;
 
 public class AdventurerTest {
 

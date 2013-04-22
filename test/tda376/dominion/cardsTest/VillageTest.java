@@ -3,8 +3,9 @@ package tda376.dominion.cardsTest;
 import static org.junit.Assert.*;
 
 import org.junit.Test;
-import tda376.dominion.model.*;
-import tda376.dominion.cards.Village;
+
+import tda367.dominion.cards.Village;
+import tda367.dominion.model.*;
 
 public class VillageTest {
 

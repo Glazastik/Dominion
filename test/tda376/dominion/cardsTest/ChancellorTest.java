@@ -4,8 +4,8 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import tda376.dominion.cards.Chancellor;
-import tda376.dominion.model.Player;
+import tda367.dominion.cards.Chancellor;
+import tda367.dominion.model.Player;
 
 public class ChancellorTest {
 

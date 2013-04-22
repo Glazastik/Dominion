@@ -10,7 +10,7 @@ import javax.swing.ImageIcon;
 
 import org.junit.Test;
 
-import tda376.dominion.model.CardInfoHandler;
+import tda367.dominion.model.CardInfoHandler;
 
 public class CardInfoHandlerTest {
 

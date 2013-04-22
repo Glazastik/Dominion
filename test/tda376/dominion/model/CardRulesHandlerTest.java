@@ -6,6 +6,11 @@ import java.util.LinkedList;
 
 import org.junit.Test;
 
+import tda367.dominion.model.CardRulesHandler;
+import tda367.dominion.model.GainingHandler;
+import tda367.dominion.model.Player;
+import tda367.dominion.model.Supply;
+
 public class CardRulesHandlerTest {
 
 	@Test
