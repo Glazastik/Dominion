@@ -77,10 +77,8 @@ public class PlayerTest {
 	@Test
 	public void testDiscardFromDeck() {
 		Player p = new Player("Test");
-		//Not sure if this is how discardFromDeck should work
-		//p.discardFromDeck(1);
-		p.discardFromDeck("Copper");
-		assertTrue(p.getDeckSize() == 4);
+		p.discardDeck();
+		assertTrue(p.getDeckSize() == 0);
 	}
 
 	@Test

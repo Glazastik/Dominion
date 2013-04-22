@@ -189,8 +189,8 @@ public class Player {
 	 * Discard a card from the deck
 	 * @param card in the deck to discard
 	 */
-	public void discardFromDeck(String card) {
-		discard.add(deck.pop());
+	public void discardDeck() {
+		discard.add(deck);
 	}
 	
 	/**
