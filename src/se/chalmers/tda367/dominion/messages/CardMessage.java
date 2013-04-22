@@ -30,6 +30,8 @@ public class CardMessage implements Message {
 
 	@Override
 	public boolean equals(Object o) {
+		//TODO decide if needed.
+		
 		if (o instanceof CardMessage) {
 			CardMessage om = (CardMessage) o;
 			if (om.getCard() == this.getCard()
