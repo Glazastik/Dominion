@@ -1,4 +1,4 @@
-package tda376.dominion.cardsTest;
+package tda367.dominion.cardsTest;
 
 import static org.junit.Assert.*;
 import tda367.dominion.cards.Woodcutter;

@@ -11,7 +11,7 @@ import tda367.dominion.cards.Smithy;
 import tda367.dominion.cards.Village;
 import tda367.dominion.cards.Witch;
 import tda367.dominion.cards.Woodcutter;
-import tda376.dominion.cardsTest.*;
+import tda367.dominion.cardsTest.*;
 
 /**
  * A class that handles how the cards that are played affect the game and players.
@@ -40,7 +40,7 @@ public class CardRulesHandler {
 	 * Allows the player to play the selected card and be affected by it.
 	 * 
 	 * @param player the {@link Player} that is playing
-	 * @param cardName the card to be played (see {@link tda376.dominion.cardsTest})
+	 * @param cardName the card to be played (see {@link tda367.dominion.cardsTest})
 	 */
 	public void playCard(Player player, String cardName) {
 		player.play(cardName);

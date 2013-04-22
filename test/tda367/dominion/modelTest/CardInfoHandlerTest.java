@@ -1,4 +1,4 @@
-package tda376.dominion.modelTest;
+package tda367.dominion.modelTest;
 
 import static org.junit.Assert.*;
 
