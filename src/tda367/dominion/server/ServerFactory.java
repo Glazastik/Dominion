@@ -25,12 +25,24 @@ public class ServerFactory {
 		server.start();
 
 		server.addListener(new Listener() {
-			public void received(Connection c, Object obj) {
-				if(obj instanceof ConnectionMessage){
+			public void connected(Connection c){
+				print("Received connection from " + c.getRemoteAddressTCP());
+				c.sendTCP("Hello");
+			}
+			
+			public void received (Connection c, Object object) {
+				
+				print("Received stuff");
+				if(object instanceof ConnectionMessage){
 					print("Message!");
 				} else {
-					print("Classname: " + obj.getClass());
+					print("Classname: " + object.getClass());
+					print(object.toString());
 				}
+			}
+			
+			public void disconnected(Connection c){
+				print(c.getID() + " disconnected");
 			}
 		});
 		

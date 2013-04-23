@@ -25,17 +25,20 @@ public class ClientTest {
 	public static void main(String[] args) {
 		client = new Client();
 		client.start();
-		
+
 		NetworkCommon.register(client);
 
 		client.addListener(new Listener() {
-			public void connected(Connection connection) {
-				//
-				for (int i = 0; i < 30; i++) {
-					client.sendTCP(new YesNoMessage(true));
-					client.sendTCP("Testar");
-					System.out.println("Messages sent");
-				}
+			public void connected(Connection c) {
+				System.out.println("Yaaay! Connected to the server. :)");
+				c.sendTCP(new YesNoMessage(true));
+//				c.sendTCP("Testar");
+				System.out.println("Messages sent");
+			}
+
+			public void received(Connection c, Object object) {
+				System.out.println("Object received from server.");
+				
 			}
 
 			public void disconnected(Connection connection) {
@@ -45,15 +48,11 @@ public class ClientTest {
 			}
 		});
 
-		
 		new Thread("Connect") {
 			public void run() {
 				try {
-					String host = JOptionPane.showInputDialog("Host:");
-					client.connect(5000, host, NetworkCommon.PORT);
-					client.setTimeout(900000);
-					client.setKeepAliveTCP(900000);
-
+//					String host = JOptionPane.showInputDialog("Host:");
+					client.connect(5000, "localhost", NetworkCommon.PORT);
 					// Server communication after connection can go here, or in
 					// Listener#connected().
 
