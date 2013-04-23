@@ -26,7 +26,7 @@ public class ClientTest {
 	public static void main(String[] args) {
 		client = new Client();
 		
-		NetworkCommon.register(client);
+		
 
 		client.addListener(new Listener() {
 			public void connected(Connection connection) {
@@ -35,8 +35,8 @@ public class ClientTest {
 //					client.sendTCP(new CreateBoolMessage("Test?"));
 //				}
 				for(int i = 0; i < 30; i++) {
-//					client.sendTCP(new YesNoMessage(true));
-					client.sendTCP("Testar");
+					client.sendTCP(new YesNoMessage(true));
+//					client.sendTCP("Testar");
 				}
 			}
 
@@ -47,6 +47,7 @@ public class ClientTest {
 		});
 
 		client.start();
+		NetworkCommon.register(client);
 		new Thread("Connect") {
 			public void run() {
 				try {
