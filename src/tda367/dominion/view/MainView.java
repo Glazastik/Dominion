@@ -31,6 +31,4 @@ public class MainView extends StateBasedGame {
                 
                 container.start();
     }
-	
-
 }
