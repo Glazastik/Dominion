@@ -12,12 +12,18 @@ import tda367.dominion.server.GameConnection;
  */
 public class GameRoom {
 	LinkedList<Player> players;
+	LinkedList<GameConnection> gcs;
 	/**
 	 * Initiates a Game Room
 	 * @param gc
 	 */
-	public GameRoom (LinkedList<GameConnection> gc){
-		//TODO Add code
+	public GameRoom (LinkedList<GameConnection> gcs){
+		this.gcs = gcs;
+		
+		players = new LinkedList<Player>();
+		for(GameConnection gc: gcs){
+			players.add(new Player(gc.getPlayerName()));
+		}
 	}
 	
 	/**
