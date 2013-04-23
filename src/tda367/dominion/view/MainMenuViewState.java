@@ -1,10 +1,12 @@
 package tda367.dominion.view;
 
+import org.lwjgl.input.*;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
 
 public class MainMenuViewState extends BasicGameState {
 
+	String mouse = "";
 	Image exitButton = null;
 	Image playButton = null;
 	Image options = null;
@@ -27,8 +29,8 @@ public class MainMenuViewState extends BasicGameState {
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
-		g.drawString("Main Menu", 0, 0);
 		background.draw();
+		g.drawString("Main Menu "+mouse , 0, 0);
 		exitButton.draw(100, 400);
 		playButton.draw(100, 200);
 		options.draw(100, 300);
@@ -39,7 +41,14 @@ public class MainMenuViewState extends BasicGameState {
 	public void update(GameContainer gc, StateBasedGame sbg, int time)
 			throws SlickException {
 		Input input = gc.getInput();
+		int xPos = Mouse.getX();
+		int yPos = Mouse.getY();
+		mouse = "X: " + xPos + "Y: " + yPos;
 		
+		//Checks if mouse cursor is within playgame image
+		if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON) && xPos>=100 && xPos<=300 && yPos<=400 && yPos>=350) {
+			sbg.enterState(0);
+		}
 		if (input.isKeyPressed(Input.KEY_SPACE)) {
 			sbg.enterState(0);
 		}
