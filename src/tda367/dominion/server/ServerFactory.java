@@ -3,7 +3,6 @@ package tda367.dominion.server;
 import java.io.IOException;
 
 import tda367.dominion.messages.ConnectionMessage;
-import tda367.dominion.messages.Message;
 
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
@@ -21,7 +20,6 @@ public class ServerFactory {
 		if (server != null) {
 			return server;
 		}
-
 		server = new Server();
 		NetworkCommon.register(server);
 		server.start();
