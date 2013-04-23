@@ -1,10 +1,9 @@
 package tda367.dominion.controller;
 
-import com.esotericsoftware.kryonet.Server;
-
-import tda367.dominion.model.Dominion;
 import tda367.dominion.server.ServerFactory;
 import tda367.dominion.server.ServerFrame;
+
+import com.esotericsoftware.kryonet.Server;
 /**
  * The main executable class for this project.
  * Will start a server which the clients can connect to.
@@ -12,7 +11,6 @@ import tda367.dominion.server.ServerFrame;
  *
  */
 public class Main {
-	private static Dominion dominion;
 	private static ServerFrame window;
 	
 	/**
@@ -24,7 +22,7 @@ public class Main {
 		window.print("Window initiated.");
 		
 		Server server = ServerFactory.getInstance();
-		window.print("Server now running.");
+		window.print("Server is now running.");
 		
 		//dominion = new Dominion(, );
 		

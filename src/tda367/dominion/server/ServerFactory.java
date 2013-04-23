@@ -2,6 +2,7 @@ package tda367.dominion.server;
 
 import java.io.IOException;
 
+import tda367.dominion.messages.ConnectionMessage;
 import tda367.dominion.messages.Message;
 
 import com.esotericsoftware.kryonet.Connection;
@@ -25,6 +26,9 @@ public class ServerFactory {
 
 		server.addListener(new Listener() {
 			public void received(Connection c, Object obj) {
+				if(obj instanceof ConnectionMessage){
+					
+				}
 
 				if(obj instanceof Message){
 					Message msg = (Message) obj;
