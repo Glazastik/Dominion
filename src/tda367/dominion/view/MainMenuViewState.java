@@ -20,13 +20,15 @@ public class MainMenuViewState extends BasicGameState {
 			throws SlickException {
 		exitButton = new Image("res/img/gui/menu/exitGame.png");
 		playButton = new Image("res/img/gui/menu/playGame.png");
-		options = new Image("res/img/gui/menu/options.png");		
+		options = new Image("res/img/gui/menu/options.png");
+		background = new Image("res/img/gui/menu/background.jpg");
 	}
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
 		g.drawString("Main Menu", 0, 0);
+		background.draw();
 		exitButton.draw(100, 400);
 		playButton.draw(100, 200);
 		options.draw(100, 300);
