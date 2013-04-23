@@ -25,26 +25,12 @@ public class ClientTest {
 	 */
 	public static void main(String[] args) {
 		client = new Client();
-<<<<<<< HEAD
-		
-		NetworkCommon.register(client);
-
-		client.addListener(new Listener() {
-			public void connected(Connection connection) {
-//				while (true) {
-//					client.sendTCP(JOptionPane.showInputDialog("Message test:"));
-//					client.sendTCP(new CreateBoolMessage("Test?"));
-//				}
-				for(int i = 0; i < 30; i++) {
-//					client.sendTCP(new YesNoMessage(true));
-=======
 
 		client.addListener(new Listener() {
 			public void connected(Connection connection) {
 				//
 				for (int i = 0; i < 30; i++) {
 					client.sendTCP(new YesNoMessage(true));
->>>>>>> modified clientTest
 					client.sendTCP("Testar");
 					System.out.println("Messages sent");
 				}
