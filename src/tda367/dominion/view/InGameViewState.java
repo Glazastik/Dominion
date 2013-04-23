@@ -3,14 +3,10 @@ package tda367.dominion.view;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
 
-public class GameViewState extends BasicGameState {
+public class InGameViewState extends BasicGameState {
 
 	Image hrtatk = null;
-	private int id = 0;
-	
-	public GameViewState(int id) {
-		this.id = id;
-	}
+	int id = 0;
 	
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1)
@@ -20,9 +16,10 @@ public class GameViewState extends BasicGameState {
 	}
 
 	@Override
-	public void render(GameContainer arg0, StateBasedGame arg1, Graphics arg2)
+	public void render(GameContainer arg0, StateBasedGame arg1, Graphics g)
 			throws SlickException {
-		hrtatk.draw(200, 200);
+		hrtatk.draw();
+		g.drawString("InGameState", 0, 0);
 		
 	}
 
