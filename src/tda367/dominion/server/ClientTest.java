@@ -50,7 +50,7 @@ public class ClientTest {
 			public void run() {
 				try {
 					String host = JOptionPane.showInputDialog("Host:");
-					client.connect(5000, host, 54555, 54777);
+					client.connect(5000, host, NetworkCommon.PORT);
 					client.setTimeout(900000);
 					client.setKeepAliveTCP(900000);
 					
