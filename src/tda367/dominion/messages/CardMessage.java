@@ -5,7 +5,20 @@ package tda367.dominion.messages;
  * name and the location in which it was clicked (hand, supply etc.)
  * 
  * @author christoffer
- * 
+ * Cards using this message:
+ * Bureaucrat
+ * Cellar
+ * Chapel
+ * Feast
+ * Library
+ * Militia
+ * Mine
+ * Moneylender
+ * Remodel
+ * Spy
+ * Thief
+ * Throne room
+ * Workshop
  */
 public class CardMessage implements Message {
 	private String cardName;
