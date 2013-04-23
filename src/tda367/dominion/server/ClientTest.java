@@ -3,6 +3,10 @@ package tda367.dominion.server;
 import java.io.IOException;
 
 import javax.swing.JOptionPane;
+
+import tda367.dominion.messages.YesNoMessage;
+
+import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
@@ -21,12 +25,18 @@ public class ClientTest {
 	 */
 	public static void main(String[] args) {
 		client = new Client();
+		
+		NetworkCommon.register(client);
 
 		client.addListener(new Listener() {
 			public void connected(Connection connection) {
-				while (true) {
-					client.sendTCP(JOptionPane.showInputDialog("Message test:"));
-					
+//				while (true) {
+//					client.sendTCP(JOptionPane.showInputDialog("Message test:"));
+//					client.sendTCP(new CreateBoolMessage("Test?"));
+//				}
+				for(int i = 0; i < 30; i++) {
+//					client.sendTCP(new YesNoMessage(true));
+					client.sendTCP("Testar");
 				}
 			}
 

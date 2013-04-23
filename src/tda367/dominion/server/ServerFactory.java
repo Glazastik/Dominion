@@ -25,11 +25,17 @@ public class ServerFactory {
 
 		server.addListener(new Listener() {
 			public void received(Connection c, Object obj) {
-
+				
 				if(obj instanceof Message){
+					ServerFrame.getInstance().print("Data is a MESSAGE!!");
 					Message msg = (Message) obj;
 					System.out.println(msg.toString());
+					System.out.println(" class: " + msg.getClass());
+				} else {
+					ServerFrame.getInstance().print("Data is not message, lol");
 				}
+				
+				System.out.println("The class: " + obj.getClass());
 			}
 		});
 		
