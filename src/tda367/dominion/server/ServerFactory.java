@@ -27,6 +27,7 @@ public class ServerFactory {
 
 		server.addListener(new Listener() {
 			public void received(Connection c, Object obj) {
+				System.out.println("Received message");
 				if(obj instanceof YesNoMessage){
 					YesNoMessage msg = (YesNoMessage) obj;
 					System.out.println("Answer: " + msg.answerIsYes());
@@ -35,12 +36,13 @@ public class ServerFactory {
 		});
 		
 		try {
-			server.bind(54555, 54777);
+			server.bind(NetworkCommon.PORT);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		NetworkCommon.register(server);
+		
 		server.start();
+		NetworkCommon.register(server);
 		return server;
 
 	}
