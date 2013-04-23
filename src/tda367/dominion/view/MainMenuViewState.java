@@ -1,9 +1,7 @@
 package tda367.dominion.view;
 
 import org.lwjgl.input.*;
-import org.lwjgl.util.Rectangle;
 import org.newdawn.slick.*;
-import org.newdawn.slick.geom.*;
 import org.newdawn.slick.state.*;
 
 public class MainMenuViewState extends BasicGameState {
@@ -13,9 +11,6 @@ public class MainMenuViewState extends BasicGameState {
 	Image playButton = null;
 	Image options = null;
 	Image background = null;
-	Rectangle playRec = null;
-	Rectangle exitRec = null;
-	Rectangle optionsRec = null;
 	int id = 0;
 	
 	public MainMenuViewState(int id) {
@@ -29,8 +24,6 @@ public class MainMenuViewState extends BasicGameState {
 		playButton = new Image("res/img/gui/menu/playGame.png");
 		options = new Image("res/img/gui/menu/options.png");
 		background = new Image("res/img/gui/menu/background.jpg");
-		playRec = new Rectangle(100, 350, 200, 50);
-		exitRec = new Rectangle(100, 50, 200, 50);
 	}
 
 	@Override
@@ -50,19 +43,12 @@ public class MainMenuViewState extends BasicGameState {
 		Input input = gc.getInput();
 		int xPos = Mouse.getX();
 		int yPos = Mouse.getY();
-		mouse = "X: " + xPos + " Y: " + yPos;
+		mouse = "X: " + xPos + "Y: " + yPos;
 		
 		//Checks if mouse cursor is within playgame image
-		if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON) && playRec.contains(xPos, yPos)) {
+		if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON) && xPos>=100 && xPos<=300 && yPos<=400 && yPos>=350) {
 			sbg.enterState(0);
 		}
-		
-		//Checks if mouse cursor is within exitgame image
-		if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON) && exitRec.contains(xPos, yPos)) {
-			sbg.getContainer().exit();
-		}
-		
-		//Switches State to gameState
 		if (input.isKeyPressed(Input.KEY_SPACE)) {
 			sbg.enterState(0);
 		}
