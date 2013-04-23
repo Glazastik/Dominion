@@ -26,14 +26,16 @@ public class ClientTest {
 	public static void main(String[] args) {
 		client = new Client();
 		
-		
+		NetworkCommon.register(client);
 
 		client.addListener(new Listener() {
 			public void connected(Connection connection) {
-//				
+//				while (true) {
+//					client.sendTCP(JOptionPane.showInputDialog("Message test:"));
+//					client.sendTCP(new CreateBoolMessage("Test?"));
+//				}
 				for(int i = 0; i < 30; i++) {
-					System.out.println("I am here");
-					client.sendTCP(new YesNoMessage(true));
+//					client.sendTCP(new YesNoMessage(true));
 					client.sendTCP("Testar");
 				}
 			}
@@ -45,12 +47,11 @@ public class ClientTest {
 		});
 
 		client.start();
-		NetworkCommon.register(client);
 		new Thread("Connect") {
 			public void run() {
 				try {
 					String host = JOptionPane.showInputDialog("Host:");
-					client.connect(5000, host, NetworkCommon.PORT);
+					client.connect(5000, host, 54555, 54777);
 					client.setTimeout(900000);
 					client.setKeepAliveTCP(900000);
 					

@@ -4,7 +4,6 @@ import java.io.IOException;
 
 import tda367.dominion.messages.ConnectionMessage;
 import tda367.dominion.messages.Message;
-import tda367.dominion.messages.YesNoMessage;
 
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
@@ -24,27 +23,34 @@ public class ServerFactory {
 		}
 
 		server = new Server();
+		
 
 		server.addListener(new Listener() {
+			public void recieved(Connection x) {
+				print("Nånting hände");
+			}
 			public void received(Connection c, Object obj) {
-				System.out.println("Received message");
-				if(obj instanceof YesNoMessage){
-					YesNoMessage msg = (YesNoMessage) obj;
-					System.out.println("Answer: " + msg.answerIsYes());
+				if(obj instanceof ConnectionMessage){
+					print("Message!");
+				} else {
+					print("Classname: " + obj.getClass());
 				}
 			}
 		});
 		
 		try {
-			server.bind(NetworkCommon.PORT);
+			server.bind(54555, 54777);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
-		server.start();
 		NetworkCommon.register(server);
+		server.start();
 		return server;
 
+	}
+	
+	private static void print(String s) {
+		ServerFrame.getInstance().print(s);
 	}
 
 }
