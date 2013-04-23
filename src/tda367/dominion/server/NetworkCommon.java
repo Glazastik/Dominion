@@ -1,6 +1,7 @@
 package tda367.dominion.server;
 
 import tda367.dominion.messages.CardMessage;
+import tda367.dominion.messages.ConnectionMessage;
 import tda367.dominion.messages.DoneMessage;
 import tda367.dominion.messages.YesNoMessage;
 
@@ -18,6 +19,7 @@ public class NetworkCommon {
 		kryo.register(CardMessage.class);
 		kryo.register(YesNoMessage.class);
 		kryo.register(DoneMessage.class);
+		kryo.register(ConnectionMessage.class);
 	}
 	
 	public static class BasicMessage{

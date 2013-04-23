@@ -30,3 +30,4 @@ Village Action 3
 Witch Action 5
 Woodcutter Action 3
 Workshop Action 3
+Heartattack Action 3

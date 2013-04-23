@@ -2,6 +2,7 @@ package tda367.dominion.server;
 
 import java.io.IOException;
 
+import tda367.dominion.messages.ConnectionMessage;
 import tda367.dominion.messages.Message;
 
 import com.esotericsoftware.kryonet.Connection;
@@ -25,17 +26,9 @@ public class ServerFactory {
 
 		server.addListener(new Listener() {
 			public void received(Connection c, Object obj) {
-				
-				if(obj instanceof Message){
-					ServerFrame.getInstance().print("Data is a MESSAGE!!");
-					Message msg = (Message) obj;
-					System.out.println(msg.toString());
-					System.out.println(" class: " + msg.getClass());
-				} else {
-					ServerFrame.getInstance().print("Data is not message, lol");
+				if(obj instanceof ConnectionMessage){
+					
 				}
-				
-				System.out.println("The class: " + obj.getClass());
 			}
 		});
 		
