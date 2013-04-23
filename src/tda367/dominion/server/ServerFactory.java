@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import tda367.dominion.messages.ConnectionMessage;
 import tda367.dominion.messages.Message;
+import tda367.dominion.messages.YesNoMessage;
 
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
@@ -26,8 +27,9 @@ public class ServerFactory {
 
 		server.addListener(new Listener() {
 			public void received(Connection c, Object obj) {
-				if(obj instanceof ConnectionMessage){
-					
+				if(obj instanceof YesNoMessage){
+					YesNoMessage msg = (YesNoMessage) obj;
+					System.out.println("Answer: " + msg.answerIsYes());
 				}
 			}
 		});
