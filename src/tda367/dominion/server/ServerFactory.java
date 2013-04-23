@@ -2,6 +2,8 @@ package tda367.dominion.server;
 
 import java.io.IOException;
 
+import tda367.dominion.messages.Message;
+
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Server;
@@ -24,9 +26,10 @@ public class ServerFactory {
 		server.addListener(new Listener() {
 			public void received(Connection c, Object obj) {
 
-				ServerFrame.getInstance().print(
-						c.getRemoteAddressTCP().toString() + " > "
-								+ (String) obj);
+				if(obj instanceof Message){
+					Message msg = (Message) obj;
+					System.out.println(msg.toString());
+				}
 			}
 		});
 		
@@ -35,6 +38,7 @@ public class ServerFactory {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		NetworkCommon.register(server);
 		server.start();
 		return server;
 
