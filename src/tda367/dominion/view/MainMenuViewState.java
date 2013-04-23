@@ -1,10 +1,7 @@
 package tda367.dominion.view;
 
-import org.newdawn.slick.GameContainer;
-import org.newdawn.slick.Graphics;
-import org.newdawn.slick.SlickException;
-import org.newdawn.slick.state.BasicGameState;
-import org.newdawn.slick.state.StateBasedGame;
+import org.newdawn.slick.*;
+import org.newdawn.slick.state.*;
 
 public class MainMenuViewState extends BasicGameState {
 
@@ -22,16 +19,21 @@ public class MainMenuViewState extends BasicGameState {
 	}
 
 	@Override
-	public void render(GameContainer arg0, StateBasedGame arg1, Graphics arg2)
+	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
-		// TODO Auto-generated method stub
+		g.drawString("Main Menu", 0, 0);
 		
 	}
 
 	@Override
-	public void update(GameContainer arg0, StateBasedGame arg1, int arg2)
+	public void update(GameContainer gc, StateBasedGame sbg, int time)
 			throws SlickException {
-		// TODO Auto-generated method stub
+		Input input = gc.getInput();
+		
+		if (input.isKeyDown(Input.KEY_SPACE)) {
+			sbg.enterState(0);
+		}
+		
 		
 	}
 

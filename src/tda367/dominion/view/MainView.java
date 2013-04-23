@@ -5,8 +5,8 @@ import org.newdawn.slick.state.*;
 
 public class MainView extends StateBasedGame {
 	
-	public static final int INGAMESTATE = 0;
-	public static final int MAINMENUSTATE = 1;
+	public final int INGAMESTATE = 0;
+	public final int MAINMENUSTATE = 1;
 	
 	public MainView(String title) {
 		super(title);
@@ -18,9 +18,9 @@ public class MainView extends StateBasedGame {
 
 	@Override
 	public void initStatesList(GameContainer arg0) throws SlickException {
-		addState(new InGameViewState());
-		//addState(new MainMenuViewState(MAINMENUSTATE));
-		//enterState(INGAMESTATE);
+		addState(new InGameViewState(INGAMESTATE));
+		addState(new MainMenuViewState(MAINMENUSTATE));
+		enterState(INGAMESTATE);
 	}
 	
     public static void main(String[] argv) throws SlickException {
