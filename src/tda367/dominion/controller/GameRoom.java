@@ -3,6 +3,7 @@ package tda367.dominion.controller;
 import java.util.LinkedList;
 
 import tda367.dominion.model.Player;
+import tda367.dominion.server.GameConnection;
 
 /**
  * A game room, consists of four players playing a game of dominion.
