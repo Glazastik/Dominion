@@ -25,6 +25,7 @@ public class ClientTest {
 	 */
 	public static void main(String[] args) {
 		client = new Client();
+<<<<<<< HEAD
 		
 		NetworkCommon.register(client);
 
@@ -36,12 +37,22 @@ public class ClientTest {
 //				}
 				for(int i = 0; i < 30; i++) {
 //					client.sendTCP(new YesNoMessage(true));
+=======
+
+		client.addListener(new Listener() {
+			public void connected(Connection connection) {
+				//
+				for (int i = 0; i < 30; i++) {
+					client.sendTCP(new YesNoMessage(true));
+>>>>>>> modified clientTest
 					client.sendTCP("Testar");
+					System.out.println("Messages sent");
 				}
 			}
 
 			public void disconnected(Connection connection) {
-				System.out.println("Connection with server has been disconnected.");
+				System.out
+						.println("Connection with server has been disconnected.");
 				client.stop();
 			}
 		});
@@ -54,10 +65,10 @@ public class ClientTest {
 					client.connect(5000, host, 54555, 54777);
 					client.setTimeout(900000);
 					client.setKeepAliveTCP(900000);
-					
+
 					// Server communication after connection can go here, or in
 					// Listener#connected().
-					
+
 				} catch (IOException ex) {
 					ex.printStackTrace();
 					System.exit(1);
