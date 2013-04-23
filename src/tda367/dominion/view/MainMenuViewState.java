@@ -30,7 +30,7 @@ public class MainMenuViewState extends BasicGameState {
 			throws SlickException {
 		Input input = gc.getInput();
 		
-		if (input.isKeyDown(Input.KEY_SPACE)) {
+		if (input.isKeyPressed(Input.KEY_SPACE)) {
 			sbg.enterState(0);
 		}
 		

@@ -33,7 +33,7 @@ public class InGameViewState extends BasicGameState {
 		
 		Input input  = gc.getInput();
 		
-		if (input.isKeyDown(Input.KEY_SPACE)) {
+		if (input.isKeyPressed(Input.KEY_SPACE)) {
 			sbg.enterState(1);
 		}
 		
