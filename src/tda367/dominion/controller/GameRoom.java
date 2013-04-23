@@ -11,13 +11,13 @@ import tda367.dominion.server.GameConnection;
  *
  */
 public class GameRoom {
-	
+	LinkedList<Player> players;
 	/**
 	 * Initiates a Game Room
 	 * @param gc
 	 */
-	public GameRoom (GameConnection gc){
-		
+	public GameRoom (LinkedList<GameConnection> gc){
+		//TODO Add code
 	}
 	
 	/**
@@ -25,6 +25,6 @@ public class GameRoom {
 	 * @return
 	 */
 	public LinkedList<Player> getPlayers(){
-		
+		return players;
 	}
 }
