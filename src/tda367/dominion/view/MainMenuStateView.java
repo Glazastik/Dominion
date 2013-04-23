@@ -8,7 +8,11 @@ import org.newdawn.slick.state.StateBasedGame;
 
 public class MainMenuStateView extends BasicGameState {
 
-	public static final int ID = 1;
+	private int id = 0;
+	
+	public MainMenuStateView(int id) {
+		this.id = id;
+	}
 	
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1)
@@ -34,7 +38,7 @@ public class MainMenuStateView extends BasicGameState {
 	@Override
 	public int getID() {
 		// TODO Auto-generated method stub
-		return ID;
+		return id;
 	}
 	
 }

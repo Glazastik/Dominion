@@ -6,7 +6,11 @@ import org.newdawn.slick.state.*;
 public class GameViewState extends BasicGameState {
 
 	Image hrtatk = null;
-	public static final int ID = 0;
+	private int id = 0;
+	
+	public GameViewState(int id) {
+		this.id = id;
+	}
 	
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1)
@@ -31,7 +35,7 @@ public class GameViewState extends BasicGameState {
 
 	@Override
 	public int getID() {
-		return ID;
+		return id;
 	}
 
 }

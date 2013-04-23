@@ -15,8 +15,8 @@ public class MainView extends StateBasedGame {
 
 	@Override
 	public void initStatesList(GameContainer arg0) throws SlickException {
-		addState(new GameViewState());
-		
+		addState(new GameViewState(0));
+		addState(new MainMenuStateView(1));
 	}
 	
 	@Override
@@ -35,10 +35,11 @@ public class MainView extends StateBasedGame {
                 AppGameContainer container = new AppGameContainer(new MainView());
                 container.setDisplayMode(800,600,false);
                 container.start();
+                
         } catch (SlickException e) {
                 e.printStackTrace();
         }
-}
+    }
 	
 
 }
