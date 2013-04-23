@@ -26,9 +26,6 @@ public class ServerFactory {
 		
 
 		server.addListener(new Listener() {
-			public void recieved(Connection x) {
-				print("Nånting hände");
-			}
 			public void received(Connection c, Object obj) {
 				if(obj instanceof ConnectionMessage){
 					print("Message!");
