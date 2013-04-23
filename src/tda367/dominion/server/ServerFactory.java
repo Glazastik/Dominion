@@ -23,7 +23,8 @@ public class ServerFactory {
 		}
 
 		server = new Server();
-		
+		NetworkCommon.register(server);
+		server.start();
 
 		server.addListener(new Listener() {
 			public void received(Connection c, Object obj) {
@@ -36,12 +37,11 @@ public class ServerFactory {
 		});
 		
 		try {
-			server.bind(54555, 54777);
+			server.bind(NetworkCommon.PORT);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		NetworkCommon.register(server);
-		server.start();
+		
 		return server;
 
 	}

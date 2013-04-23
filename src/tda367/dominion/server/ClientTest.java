@@ -25,6 +25,9 @@ public class ClientTest {
 	 */
 	public static void main(String[] args) {
 		client = new Client();
+		client.start();
+		
+		NetworkCommon.register(client);
 
 		client.addListener(new Listener() {
 			public void connected(Connection connection) {
@@ -43,12 +46,12 @@ public class ClientTest {
 			}
 		});
 
-		client.start();
+		
 		new Thread("Connect") {
 			public void run() {
 				try {
 					String host = JOptionPane.showInputDialog("Host:");
-					client.connect(5000, host, 54555, 54777);
+					client.connect(5000, host, NetworkCommon.PORT);
 					client.setTimeout(900000);
 					client.setKeepAliveTCP(900000);
 
