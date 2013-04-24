@@ -35,11 +35,16 @@ public class OptionsViewState extends BasicGameState {
 			throws SlickException {
 		Input input = gc.getInput();
 		int xPos = Mouse.getX();
-		int yPos = Mouse.getY();
+		int yPos = gc.getHeight() - Mouse.getY();
 		
 		//Checks if mouse cursor is within Resolution rectangle
 		if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON) && fullScreenCheckbox.contains(xPos, yPos)) {
-			MainView.setFullscreen(true);
+			MainView.setFullscreen(!fullScreen);
+		}
+		
+		//Enter menu
+		if (input.isKeyPressed(Input.KEY_SPACE)) {
+			sbg.enterState(1);
 		}
 		
 		
