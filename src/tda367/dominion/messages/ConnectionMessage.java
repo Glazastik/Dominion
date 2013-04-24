@@ -4,9 +4,9 @@ package tda367.dominion.messages;
  * A message class for connecting to the server
  */
 public class ConnectionMessage implements Message{
-	private final String name;
+	private String name;
 	
-	public ConnectionMessage(String name) {
+	public void setName(String name){
 		this.name = name;
 	}
 	

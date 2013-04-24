@@ -23,7 +23,6 @@ public class NetworkCommon {
 		kryo.register(DoneMessage.class);
 		kryo.register(ConnectionMessage.class);
 		kryo.register(CardMessage.class);
-		kryo.register(PruttMessage.class);
 	}
 	
 	public static class BasicMessage{
@@ -36,10 +35,6 @@ public class NetworkCommon {
 		public void setMessage(String message){
 			this.message = message;
 		}
-	}
-	
-	public static class PruttMessage{
-		public boolean prutt;
 	}
 
 }
