@@ -11,7 +11,8 @@ import com.esotericsoftware.kryonet.EndPoint;
 
 public class NetworkCommon {
 
-	public static final int PORT = 54555;
+	public static final int TCPPORT = 54555;
+	public static final int UDPPORT = 54777; 
 	
 	public static void register(EndPoint ep){
 		Kryo kryo = ep.getKryo();
@@ -22,7 +23,7 @@ public class NetworkCommon {
 		kryo.register(DoneMessage.class);
 		kryo.register(ConnectionMessage.class);
 		kryo.register(CardMessage.class);
-		
+		kryo.register(PruttMessage.class);
 	}
 	
 	public static class BasicMessage{
@@ -35,6 +36,10 @@ public class NetworkCommon {
 		public void setMessage(String message){
 			this.message = message;
 		}
+	}
+	
+	public static class PruttMessage{
+		public boolean prutt;
 	}
 
 }

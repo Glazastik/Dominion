@@ -5,11 +5,9 @@ package tda367.dominion.messages;
  * @author christoffer
  *
  */
-public class YesNoMessage implements Message {
-	private Boolean bool;
-	public YesNoMessage(boolean bool) {
-		this.bool = bool;
-	}
+public class YesNoMessage {
+	public Boolean bool;
+	
 	
 	public boolean answerIsYes(){
 		return bool;

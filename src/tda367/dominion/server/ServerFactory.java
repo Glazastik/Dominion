@@ -16,13 +16,15 @@ public class ServerFactory {
 	 * 
 	 * @return
 	 */
-	public static synchronized Server getInstance() {
+	public static Server getInstance() {
 		if (server != null) {
 			return server;
 		}
+		
 		server = new Server();
-		NetworkCommon.register(server);
 		server.start();
+		NetworkCommon.register(server);
+		
 
 		server.addListener(new Listener() {
 			public void connected(Connection c){
@@ -47,7 +49,7 @@ public class ServerFactory {
 		});
 		
 		try {
-			server.bind(NetworkCommon.PORT);
+			server.bind(NetworkCommon.TCPPORT, NetworkCommon.UDPPORT);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
