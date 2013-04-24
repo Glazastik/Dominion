@@ -15,7 +15,7 @@ public class InGameViewState extends BasicGameState {
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1)
 			throws SlickException {
-		hrtatk = new Image("res/img/card/bonus/Heartattack.png");
+		hrtatk = new Image("res/img/card/Bonus/Heartattack.png");
 		
 	}
 
