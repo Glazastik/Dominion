@@ -17,7 +17,7 @@ public class SupplyTest {
 	public void getActiveCardsTest() {
 		int players = 2;
 		Supply supply = new Supply(players);
-		HashMap<String,Integer> activeCards = supply.getActiveCards();
+		HashMap<String,Integer> activeCards = supply.getCardsInSupply();
 		assertTrue(activeCards.size() == 17);
 		Set<String> iteratorSet = activeCards.keySet();
 		Iterator i = iteratorSet.iterator();
@@ -26,7 +26,7 @@ public class SupplyTest {
 	@Test
 	public void immutableTest(){
 		Supply supply = new Supply(2);
-		HashMap<String,Integer> activeCards = supply.getActiveCards();
+		HashMap<String,Integer> activeCards = supply.getCardsInSupply();
 		activeCards.put("Province", 0);
 		assertFalse(supply.gameIsOver());
 		
@@ -51,7 +51,7 @@ public class SupplyTest {
 		
 		Supply supply2 = new Supply(players);
 		assertFalse(supply2.gameIsOver());
-		HashMap<String,Integer> activeCards = supply2.getActiveCards();
+		HashMap<String,Integer> activeCards = supply2.getCardsInSupply();
 		Set<String> iteratorSet = activeCards.keySet();
 		Iterator i = iteratorSet.iterator();
 		String tempString;
