@@ -26,6 +26,7 @@ public class Main {
 
 		Server server = ServerFactory.getInstance();
 		window.print("Server is now running.");
+		
 
 	}
 
