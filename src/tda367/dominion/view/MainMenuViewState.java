@@ -58,7 +58,7 @@ public class MainMenuViewState extends BasicGameState {
 		
 		//Checks if mouse cursor is within playgame image
 		if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON) && playRec.contains(xPos, yPos)) {
-				sbg.enterState(0, null, createNewTransition());
+				sbg.enterState(0, null, createNewHorizontalSplitTransition());
 		}
 
 		//Checks if mouse cursor is within exitgame image
@@ -68,7 +68,7 @@ public class MainMenuViewState extends BasicGameState {
 		
 		//Checks if mouse cursor is within options image
 		if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON) && optionsRec.contains(xPos, yPos)) {
-			sbg.enterState(2);
+			sbg.enterState(2, null, createNewSelectTransition());
 		}
 	}
 
@@ -77,7 +77,7 @@ public class MainMenuViewState extends BasicGameState {
 		return id;
 	}
 	
-	public Transition createNewTransition() {
+	public Transition createNewHorizontalSplitTransition() {
 		Transition splitTransition = null;
 		try {
 			splitTransition = HorizontalSplitTransition.class.newInstance();
@@ -86,6 +86,17 @@ public class MainMenuViewState extends BasicGameState {
 	    }
 		
 		return splitTransition;
+	}
+	
+	public Transition createNewSelectTransition() {
+		Transition selectTransition = null;
+		try {
+			selectTransition = SelectTransition.class.newInstance();
+		} catch (Throwable e) {
+		      Log.error(e);
+	    }
+		
+		return selectTransition;
 	}
 	
 }
