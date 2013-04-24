@@ -41,8 +41,7 @@ public class ClientFactory {
 					client.connect(5000, "localhost", NetworkCommon.TCPPORT);
 
 				} catch (IOException ex) {
-					ex.printStackTrace();
-					System.exit(1);
+					System.out.println("Network is borken");
 				}
 			}
 		}.start();
