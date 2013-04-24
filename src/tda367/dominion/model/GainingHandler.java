@@ -53,7 +53,7 @@ public class GainingHandler {
 	 * @param cardName the card
 	 */
 	public void playerGainCardToHand(Player player, String cardName){
-		HashMap<String,Integer> cards = supply.getActiveCards();
+		HashMap<String,Integer> cards = supply.getCardsInSupply();
 		if(cards.containsKey(cardName)){
 			if(cards.get(cardName)>0){
 				player.addToHand((supply.take(cardName)));

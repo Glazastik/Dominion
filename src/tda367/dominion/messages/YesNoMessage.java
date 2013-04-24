@@ -8,7 +8,6 @@ package tda367.dominion.messages;
 public class YesNoMessage {
 	public Boolean bool;
 	
-	
 	public boolean answerIsYes(){
 		return bool;
 	}

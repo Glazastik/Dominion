@@ -3,8 +3,6 @@ package tda367.dominion.server;
 import java.io.IOException;
 
 import tda367.dominion.messages.YesNoMessage;
-import tda367.dominion.server.NetworkCommon.BasicMessage;
-import tda367.dominion.server.NetworkCommon.PruttMessage;
 
 import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
@@ -30,14 +28,11 @@ public class ClientTest {
 
 		client.addListener(new Listener() {
 			public void connected(Connection c) {
-				System.out.println("Yaaay! Connected to the server. :)");
-//				PruttMessage msg = new PruttMessage();
+				System.out.println("Successfully connected to the server on" + c.getRemoteAddressTCP());
 				YesNoMessage msg = new YesNoMessage();
 				msg.bool = true;
 				
 				c.sendUDP(msg);
-//				c.sendTCP("Testar");
-				System.out.println("Messages sent");
 			}
 
 			public void received(Connection c, Object object) {
@@ -56,7 +51,7 @@ public class ClientTest {
 			public void run() {
 				try {
 //					String host = JOptionPane.showInputDialog("Host:");
-					client.connect(5000, "localhost", NetworkCommon.TCPPORT, NetworkCommon.UDPPORT);
+					client.connect(5000, "localhost", NetworkCommon.TCPPORT);
 					// Server communication after connection can go here, or in
 					// Listener#connected().
 

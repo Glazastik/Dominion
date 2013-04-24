@@ -33,6 +33,7 @@ public class MainMenuViewState extends BasicGameState {
 		background = new Image("res/img/gui/menu/background.jpg");
 		playRec = new Rectangle(100, 350, 200, 50);
 		exitRec = new Rectangle(100, 150, 200, 50);
+		optionsRec = new Rectangle(100, 250, 200, 50);
 
 	}
 
@@ -63,6 +64,11 @@ public class MainMenuViewState extends BasicGameState {
 		//Checks if mouse cursor is within exitgame image
 		if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON) && exitRec.contains(xPos, yPos)) {
 			sbg.getContainer().exit();
+		}
+		
+		//Checks if mouse cursor is within options image
+		if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON) && optionsRec.contains(xPos, yPos)) {
+			sbg.enterState(2);
 		}
 	}
 

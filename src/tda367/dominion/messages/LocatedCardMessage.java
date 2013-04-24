@@ -24,21 +24,35 @@ public class LocatedCardMessage implements Message {
 	private String cardName;
 	private String location;
 
-	public LocatedCardMessage(String cardName, String location) {
-		this.cardName = cardName;
-		this.location = location;
-	}
-
-	public String getCard() {
-		return this.cardName;
-	}
-
 	public String getLocation() {
 		return this.location;
 	}
 
 	public String toString() {
 		return cardName + " " + location;
+	}
+	
+	
+
+	/**
+	 * @return the cardName
+	 */
+	public String getCardName() {
+		return cardName;
+	}
+
+	/**
+	 * @param cardName the cardName to set
+	 */
+	public void setCardName(String cardName) {
+		this.cardName = cardName;
+	}
+
+	/**
+	 * @param location the location to set
+	 */
+	public void setLocation(String location) {
+		this.location = location;
 	}
 
 	@Override
@@ -47,7 +61,7 @@ public class LocatedCardMessage implements Message {
 		
 		if (o instanceof LocatedCardMessage) {
 			LocatedCardMessage om = (LocatedCardMessage) o;
-			if (om.getCard() == this.getCard()
+			if (om.getCardName() == this.getCardName()
 					&& om.getLocation() == this.getLocation()) {
 				return true;
 			}

@@ -16,10 +16,10 @@ import java.util.Set;
 public class Supply {
 	//TODO: Further functionality might be added
 	private CardInfoHandler cardInfoHandler;
-	private final HashMap<String,Integer> cards;
+	private final HashMap<String,Integer> cardsInSupply;
 	public Supply(int amountOfPlayers){
 		cardInfoHandler = CardInfoHandler.getInstance();
-		cards = new HashMap<String,Integer>();
+		cardsInSupply = new HashMap<String,Integer>();
 		initializeSupply(amountOfPlayers);
 	}
 	/**
@@ -27,21 +27,21 @@ public class Supply {
 	 * @param amountOfPlayers amount of players in the game
 	 */
 	private void initializeSupply(int amountOfPlayers){
-		cards.put("Copper", 60 - (amountOfPlayers*7));
-		cards.put("Silver", 40);
-		cards.put("Gold", 30);
+		cardsInSupply.put("Copper", 60 - (amountOfPlayers*7));
+		cardsInSupply.put("Silver", 40);
+		cardsInSupply.put("Gold", 30);
 		//Set the amount of victorycards available depending on the amount of players.
 		//Further options are required to support 5 or 6 player games.
 		if(amountOfPlayers==2){
-			cards.put("Estate", 8);
-			cards.put("Duchy", 8);
-			cards.put("Province", 8);
+			cardsInSupply.put("Estate", 8);
+			cardsInSupply.put("Duchy", 8);
+			cardsInSupply.put("Province", 8);
 		} else {
-			cards.put("Estate", 12);
-			cards.put("Duchy", 12);
-			cards.put("Province", 12);
+			cardsInSupply.put("Estate", 12);
+			cardsInSupply.put("Duchy", 12);
+			cardsInSupply.put("Province", 12);
 		}
-		cards.put("Curse",((amountOfPlayers-1)*10));
+		cardsInSupply.put("Curse",((amountOfPlayers-1)*10));
 		
 		//Get the action cards and the gardens card
 		LinkedList<String> actionCards = cardInfoHandler.getActionCards();
@@ -63,9 +63,9 @@ public class Supply {
 		for(Integer i : numbers){
 			tempCard = actionCards.get(i);
 			if(tempCard.equals("Gardens")){
-				cards.put(tempCard, 12);
+				cardsInSupply.put(tempCard, 12);
 			} else {
-				cards.put(tempCard, 12);
+				cardsInSupply.put(tempCard, 12);
 			}
 		}
 	}
@@ -74,8 +74,8 @@ public class Supply {
 	 * These are not the cards that are available for purchase but the ones that are active
 	 * @return The active cards of the round
 	 */
-	public HashMap<String,Integer> getActiveCards(){
-		return (HashMap<String, Integer>) cards.clone();
+	public HashMap<String,Integer> getCardsInSupply(){
+		return (HashMap<String, Integer>) cardsInSupply.clone();
 		
 	}
 	/**
@@ -84,11 +84,11 @@ public class Supply {
 	 * @return the card, null if there were no cards left of the chosen type
 	 */
 	public String take(String cardName){
-		if(cards.containsKey(cardName)){
-			int temp = cards.get(cardName);
+		if(cardsInSupply.containsKey(cardName)){
+			int temp = cardsInSupply.get(cardName);
 			if(temp>0){
 				temp--;
-				cards.put(cardName, temp);
+				cardsInSupply.put(cardName, temp);
 				return cardName;
 			} else {
 				return null;
@@ -102,19 +102,19 @@ public class Supply {
 	 * @return true if the game is over
 	 */
 	public boolean gameIsOver(){
-		Set<String> cardKeys = cards.keySet();
+		Set<String> cardKeys = cardsInSupply.keySet();
 		Iterator i = cardKeys.iterator();
 		int pilesEmpty = 0;
 		while(i.hasNext()){
-			if(cards.get(i.next()) == 0){
+			if(cardsInSupply.get(i.next()) == 0){
 				pilesEmpty++;
 			}
 		}
-		return (pilesEmpty>= 3 || cards.get("Province") == 0);
+		return (pilesEmpty>= 3 || cardsInSupply.get("Province") == 0);
 	}
 	public boolean isAvailable(String card){
-		if(cards.containsKey(card)){
-			return (cards.get(card)>0);
+		if(cardsInSupply.containsKey(card)){
+			return (cardsInSupply.get(card)>0);
 		} else {
 			return false;
 		}
@@ -131,11 +131,11 @@ public class Supply {
 		HashMap<String, Integer> toSender = new HashMap<String, Integer>();
 		CardInfoHandler cih = CardInfoHandler.getInstance();
 		
-		Set<String> cardKeys = cards.keySet();
+		Set<String> cardKeys = cardsInSupply.keySet();
 		
 		for(String card : cardKeys){
 			if(cih.getCardValue(card) <= maxValue){
-				toSender.put(card, cards.get(card));
+				toSender.put(card, cardsInSupply.get(card));
 			}
 		}
 		
