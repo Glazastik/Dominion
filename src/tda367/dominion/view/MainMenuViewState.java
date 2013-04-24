@@ -3,6 +3,8 @@ package tda367.dominion.view;
 import org.lwjgl.input.*;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
+import org.newdawn.slick.state.transition.*;
+import org.newdawn.slick.util.Log;
 import org.lwjgl.util.Rectangle;
 
 public class MainMenuViewState extends BasicGameState {
@@ -55,7 +57,7 @@ public class MainMenuViewState extends BasicGameState {
 		
 		//Checks if mouse cursor is within playgame image
 		if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON) && playRec.contains(xPos, yPos)) {
-			sbg.enterState(0);
+				sbg.enterState(0, null, createNewTransition());
 		}
 
 		//Checks if mouse cursor is within exitgame image
@@ -67,6 +69,17 @@ public class MainMenuViewState extends BasicGameState {
 	@Override
 	public int getID() {
 		return id;
+	}
+	
+	public Transition createNewTransition() {
+		Transition splitTransition = null;
+		try {
+			splitTransition = HorizontalSplitTransition.class.newInstance();
+		} catch (Throwable e) {
+		      Log.error(e);
+	    }
+		
+		return splitTransition;
 	}
 	
 }
