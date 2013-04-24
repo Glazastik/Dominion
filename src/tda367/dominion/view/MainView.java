@@ -1,5 +1,12 @@
 package tda367.dominion.view;
 
+import java.io.BufferedReader;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.UnsupportedEncodingException;
+
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
 
@@ -46,5 +53,20 @@ public class MainView extends StateBasedGame {
     
     public static void setFullscreen(boolean fullScreen) throws SlickException {
     	theGame.setDisplayMode(1280, 800, fullScreen);
+    }
+    
+    public static void exit() {
+    	PrintWriter writer;
+		try {
+			writer = new PrintWriter("options.txt", "UTF-8");
+	    	writer.println(screenHeight);
+	    	writer.println(screenWidth);
+	    	writer.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			e.printStackTrace();
+		}
+		theGame.exit();
     }
 }
