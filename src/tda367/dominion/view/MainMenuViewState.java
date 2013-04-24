@@ -88,6 +88,11 @@ public class MainMenuViewState extends BasicGameState {
 			sbg.enterState(3, null, createNewSelectTransition());
 		}
 	}
+	
+	@Override
+	public void leave(GameContainer gc, StateBasedGame sbg) throws SlickException {
+		  gc.getInput().clearKeyPressedRecord();
+	}
 
 	@Override
 	public int getID() {
