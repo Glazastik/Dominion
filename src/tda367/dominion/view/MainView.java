@@ -33,9 +33,7 @@ public class MainView extends StateBasedGame {
 		addState(new InGameViewState(INGAMESTATE));
 		addState(new MainMenuViewState(MAINMENUSTATE));
 		addState(new OptionsViewState(OPTIONSSTATE));
-		/* TODO: Make sure this class works
 		addState(new ServerListState(SERVERLISTSTATE));
-		*/
 		enterState(MAINMENUSTATE);
 	}
 	
