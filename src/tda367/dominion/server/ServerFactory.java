@@ -32,9 +32,8 @@ public class ServerFactory {
 		server.addListener(new Listener() {
 			public void connected(Connection c){
 				print("Received connection from " + c.getRemoteAddressTCP());
-				RoomMessage rmsg = new RoomMessage();
-				rmsg.setRooms(roomHandler.getRoomsAsString());
-				c.sendTCP("nopp");
+				sendRoomList(c);
+				
 			}
 			
 			public void received (Connection c, Object object) {
@@ -63,6 +62,13 @@ public class ServerFactory {
 
 	}
 	
+	protected static void sendRoomList(Connection c) {
+		RoomMessage rmsg = new RoomMessage();
+		rmsg.setRooms(roomHandler.getRoomsAsString());
+		c.sendTCP(rmsg);
+		
+	}
+
 	private static void print(String s) {
 		ServerFrame.getInstance().print(s);
 	}

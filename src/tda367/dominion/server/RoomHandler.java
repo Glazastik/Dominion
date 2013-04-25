@@ -21,6 +21,15 @@ public class RoomHandler {
 	}
 	
 	public String[][] getRoomsAsString(){
+		String[][] roomString = new String[rooms.size()][];
+		for(int i = 0; i < rooms.size(); i++){
+			GameRoom gr = rooms.get(i);
+			String[] tempRoom = new String[2];
+			tempRoom[0] = gr.getName();
+			tempRoom[1] = ""+gr.getSlots();
+			roomString[i] = tempRoom;
+		}
+		
 		return null;
 	}
 }
