@@ -34,10 +34,25 @@ public class ServerListState extends BasicGameState {
 		Input input = gc.getInput();
 		
 		//Enter menu
-		if (input.isKeyPressed(Input.KEY_SPACE)) {
+		if (input.isKeyPressed(Input.KEY_SPACE) || input.isKeyPressed(Input.KEY_1)) {
 			sbg.enterState(1, null, Transitions.createNewSelectTransition());
 		}
 
+	}
+	
+	/**
+	 * This method is called every time this state is left.
+	 * 
+	 * Its current behavior is that it clears the record of 
+	 * keys pressed, removing any unwanted behavior in states
+	 * switched to.
+	 * 
+	 * @param gc the {@link GameContainer} this state is contained in
+	 * @param sbg the {@link StateBasedGame} this state is a part of
+	 */
+	@Override
+	public void leave(GameContainer gc, StateBasedGame sbg) throws SlickException {
+		  gc.getInput().clearKeyPressedRecord();
 	}
 
 	@Override
