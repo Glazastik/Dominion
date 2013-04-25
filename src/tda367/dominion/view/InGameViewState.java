@@ -8,10 +8,12 @@ import org.newdawn.slick.state.*;
 
 public class InGameViewState extends BasicGameState {
 
+	Supply supply;
 	CardInfoHandler cih;
 	Image[] cardsToShow;
 	Image board = null;
 	int id = 0;
+	int amountOfPlayers;
 	
 	public InGameViewState(int id) {
 		this.id = id;
@@ -22,7 +24,8 @@ public class InGameViewState extends BasicGameState {
 			throws SlickException {
 		board = new Image("res/img/gui/ingame/BoardTemp.png");
 		cardsToShow = new Image[5];
-		
+		amountOfPlayers = 2; //Should probably be supplied from network later
+		supply = new Supply(amountOfPlayers);
 		
 		for(int i = 0; i < cardsToShow.length; i++){
 			cardsToShow[i] = getRandomCard();
