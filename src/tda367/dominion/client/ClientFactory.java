@@ -10,11 +10,6 @@ import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 
 public class ClientFactory {
-	private MainView view;
-	
-	public ClientFactory() {
-		view = new MainView();
-	}
 	
 	public Client createClient() {
 		final Client client;
