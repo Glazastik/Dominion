@@ -5,7 +5,7 @@ import org.newdawn.slick.state.*;
 
 public class InGameViewState extends BasicGameState {
 
-	Image hrtatk = null;
+	Image board = null;
 	int id = 0;
 	
 	public InGameViewState(int id) {
@@ -15,6 +15,7 @@ public class InGameViewState extends BasicGameState {
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1)
 			throws SlickException {
+		board = new Image("res/img/gui/ingame/BoardTemp.png");
 		
 	}
 
@@ -22,6 +23,7 @@ public class InGameViewState extends BasicGameState {
 	public void render(GameContainer arg0, StateBasedGame arg1, Graphics g)
 			throws SlickException {
 		g.drawString("InGameState", 0, 0);
+		board.draw();
 		
 	}
 

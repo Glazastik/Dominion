@@ -97,6 +97,10 @@ public class MainMenuViewState extends BasicGameState {
 		}  else if(input.isKeyPressed(Input.KEY_2)) {
 			sbg.enterState(2, null, Transitions.createNewSelectTransition());
 		}
+		
+		if(input.isKeyPressed(Input.KEY_0)){
+			sbg.enterState(0, null, Transitions.createNewHorizontalSplitTransition());
+		}
 
 	}
 	
