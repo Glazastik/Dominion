@@ -8,6 +8,7 @@ import org.newdawn.slick.state.*;
 public class OptionsViewState extends BasicGameState {
 	
 	int id = 0;
+	Image checker = null;
 	public RoundedRectangle fullScreenCheckbox;
 	public boolean fullScreen = false;
 	
@@ -18,8 +19,8 @@ public class OptionsViewState extends BasicGameState {
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1)
 			throws SlickException {
-		fullScreenCheckbox = new RoundedRectangle(100, 420, 50, 50, 4); 
-		
+		fullScreenCheckbox = new RoundedRectangle(100, 420, 50, 50, 4);
+		checker = new Image("res/img/gui/menu/checker.png");		
 	}
 
 	@Override
@@ -30,7 +31,7 @@ public class OptionsViewState extends BasicGameState {
 	    g.draw(fullScreenCheckbox);	
 	    
 	    if (fullScreen == true) {
-	    	g.drawLine(100, 420, 120, 440);
+	    	checker.draw(fullScreenCheckbox.getMinX(), fullScreenCheckbox.getMinY());
 	    }
 	}
 

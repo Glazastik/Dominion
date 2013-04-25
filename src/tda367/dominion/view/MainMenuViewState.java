@@ -53,7 +53,7 @@ public class MainMenuViewState extends BasicGameState {
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
-		background.draw();
+		background.draw(0 , 0);
 		g.drawString("Main Menu " + mouse, 0, 0);
 		exitButton.draw(100, 400);
 		playButton.draw(100, 200);
