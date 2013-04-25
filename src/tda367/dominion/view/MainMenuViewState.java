@@ -12,13 +12,11 @@ public class MainMenuViewState extends BasicGameState {
 	String mouse = "";
 	Image exitButton = null;
 	Image playButton = null;
-	Image serverButton = null;
 	Image options = null;
 	Image background = null;
 
 	Rectangle playRec = null;
 	Rectangle exitRec = null;
-	Rectangle serverRec = null;
 	Rectangle optionsRec = null;
 
 	int id = 0;
@@ -32,15 +30,12 @@ public class MainMenuViewState extends BasicGameState {
 			throws SlickException {
 		exitButton = new Image("res/img/gui/menu/exitGame.png");
 		playButton = new Image("res/img/gui/menu/playGame.png");
-		serverButton = new Image("res/img/gui/menu/playGame.png")
-				.getFlippedCopy(true, true);
 		options = new Image("res/img/gui/menu/options.png");
 		background = new Image("res/img/gui/menu/background.jpg");
 
 		playRec = new Rectangle(100, 350, 200, 50);
 		exitRec = new Rectangle(100, 150, 200, 50);
 		optionsRec = new Rectangle(100, 250, 200, 50);
-		serverRec = new Rectangle(100, 500, 200, 50);
 
 	}
 
@@ -51,7 +46,6 @@ public class MainMenuViewState extends BasicGameState {
 		g.drawString("Main Menu " + mouse, 0, 0);
 		exitButton.draw(100, 400);
 		playButton.draw(100, 200);
-		serverButton.draw(100, 500);
 		options.draw(100, 300);
 
 	}
@@ -82,11 +76,6 @@ public class MainMenuViewState extends BasicGameState {
 			sbg.enterState(2, null, createNewSelectTransition());
 		}
 
-		// Checks if mouse cursor is within server image
-		if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)
-				&& serverRec.contains(xPos, yPos)) {
-			sbg.enterState(3, null, createNewSelectTransition());
-		}
 	}
 	
 	@Override
