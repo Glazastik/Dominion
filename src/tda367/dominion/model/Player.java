@@ -47,7 +47,7 @@ public class Player {
 		
 		init();
 	}
-	
+
 	private void init() {
 		for(int i = 0; i < 7; i++) {
 			deck.add("Copper");
