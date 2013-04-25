@@ -342,4 +342,11 @@ public class Player {
 	public String trashCard(String card) {
 		return hand.pop(card);
 	}
+
+	public void trashFromPlayingArea(String card) {
+		if(playingArea.contains(card)){
+			playingArea.pop(card);
+		}
+		
+	}
 }
