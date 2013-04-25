@@ -49,6 +49,8 @@ public class MainMenuViewState extends BasicGameState {
 		playRec = new Rectangle(100, 350, 200, 50);
 		exitRec = new Rectangle(100, 150, 200, 50);
 		optionsRec = new Rectangle(100, 250, 200, 50);
+		
+		gc.setMouseCursor("res/img/gui/menu/taco.gif", 0, 0);
 
 	}
 
