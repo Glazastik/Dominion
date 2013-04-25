@@ -1,9 +1,10 @@
 package tda367.dominion.server;
 
 import tda367.dominion.messages.CardMessage;
-import tda367.dominion.messages.LocatedCardMessage;
 import tda367.dominion.messages.ConnectionMessage;
 import tda367.dominion.messages.DoneMessage;
+import tda367.dominion.messages.LocatedCardMessage;
+import tda367.dominion.messages.RoomMessage;
 import tda367.dominion.messages.YesNoMessage;
 
 import com.esotericsoftware.kryo.Kryo;
@@ -22,6 +23,10 @@ public class NetworkCommon {
 		kryo.register(DoneMessage.class);
 		kryo.register(ConnectionMessage.class);
 		kryo.register(CardMessage.class);
+		kryo.register(RoomMessage.class);
+		
+		kryo.register(String[][].class);
+		kryo.register(String[].class);
 	}
 	
 	public static class BasicMessage{

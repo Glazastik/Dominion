@@ -3,6 +3,7 @@ package tda367.dominion.server;
 import java.io.IOException;
 
 import tda367.dominion.messages.ConnectionMessage;
+import tda367.dominion.messages.RoomMessage;
 
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
@@ -29,7 +30,9 @@ public class ServerFactory {
 		server.addListener(new Listener() {
 			public void connected(Connection c){
 				print("Received connection from " + c.getRemoteAddressTCP());
-				c.sendTCP("Hello");
+				RoomMessage rmsg = new RoomMessage();
+				rmsg;
+				c.sendTCP();
 			}
 			
 			public void received (Connection c, Object object) {
