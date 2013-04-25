@@ -37,6 +37,9 @@ public class MainView extends StateBasedGame {
 		}
 	}
 
+	/**
+	 * Initaites all the different states and enters main menu state
+	 */
 	@Override
 	public void initStatesList(GameContainer arg0) throws SlickException {
 		addState(new InGameViewState(INGAMESTATE));
@@ -46,17 +49,31 @@ public class MainView extends StateBasedGame {
 		enterState(MAINMENUSTATE);
 	}
     
-    public static void setResolution(int width, int heigth) throws SlickException {
-    	screenHeight = heigth;
+    /**
+     * Sets the resolution of the game to width and height
+     * @param width
+     * @param height
+     * @throws SlickException
+     */
+	public static void setResolution(int width, int height) throws SlickException {
+    	screenHeight = height;
     	screenWidth = width;
     	theGame.setDisplayMode(screenHeight, screenWidth, fullS);
     }
     
+	/**
+	 * Sets the game to chosen fullscreen value (Either false or true) and saves it to the local fullScreen boolean
+	 * @param fullScreen
+	 * @throws SlickException
+	 */
     public static void setFullscreen(boolean fullScreen) throws SlickException {
     	fullS = fullScreen;
     	theGame.setDisplayMode(1280, 800, fullScreen);
     }
     
+    /**
+     * Writes all the current configurations in options to a file and exits the game
+     */
     public static void exit() {
     	PrintWriter writer;
 		try {
