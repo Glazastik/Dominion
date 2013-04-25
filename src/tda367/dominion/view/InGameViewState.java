@@ -15,14 +15,12 @@ public class InGameViewState extends BasicGameState {
 	@Override
 	public void init(GameContainer arg0, StateBasedGame arg1)
 			throws SlickException {
-		hrtatk = new Image("res/img/card/Bonus/Heartattack.png");
 		
 	}
 
 	@Override
 	public void render(GameContainer arg0, StateBasedGame arg1, Graphics g)
 			throws SlickException {
-		hrtatk.draw();
 		g.drawString("InGameState", 0, 0);
 		
 	}
