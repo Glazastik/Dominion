@@ -23,12 +23,16 @@ public class GameRoom {
 	 * @param gc
 	 */
 	public GameRoom(LinkedList<GameConnection> gcs) {
-		this.gcs = gcs;
+		
 		slots = 0;
 		name = "test";
-		players = new LinkedList<Player>();
-		for (GameConnection gc : gcs) {
-			players.add(new Player(gc.getPlayerName()));
+
+		if (gcs != null) {
+			this.gcs = gcs;
+			players = new LinkedList<Player>();
+			for (GameConnection gc : gcs) {
+				players.add(new Player(gc.getPlayerName()));
+			}
 		}
 	}
 
@@ -49,7 +53,8 @@ public class GameRoom {
 	}
 
 	/**
-	 * @param slots the slots to set
+	 * @param slots
+	 *            the slots to set
 	 */
 	public void setSlots(int slots) {
 		this.slots = slots;
@@ -63,7 +68,8 @@ public class GameRoom {
 	}
 
 	/**
-	 * @param name the name to set
+	 * @param name
+	 *            the name to set
 	 */
 	public void setName(String name) {
 		this.name = name;

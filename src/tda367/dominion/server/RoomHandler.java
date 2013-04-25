@@ -16,11 +16,12 @@ public class RoomHandler {
 		rooms = new LinkedList<GameRoom>();
 	}
 	
-	public void createRoom(LinkedList<GameConnection> gcs){
-		rooms.add(new GameRoom(gcs));
+	public void createRoom(GameRoom gr){
+		rooms.add(gr);
 	}
 	
 	public String[][] getRoomsAsString(){
+		
 		System.out.println("Rooms " + rooms.size());
 		String[][] roomString = new String[rooms.size()][];
 		for(int i = 0; i < rooms.size(); i++){

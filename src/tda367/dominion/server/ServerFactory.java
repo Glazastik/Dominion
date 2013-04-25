@@ -2,6 +2,7 @@ package tda367.dominion.server;
 
 import java.io.IOException;
 
+import tda367.dominion.controller.GameRoom;
 import tda367.dominion.messages.ConnectionMessage;
 import tda367.dominion.messages.RoomMessage;
 
@@ -24,6 +25,7 @@ public class ServerFactory {
 		}
 		
 		roomHandler = new RoomHandler();
+		roomHandler.createRoom(new GameRoom(null));
 		server = new Server();
 		server.start();
 		NetworkCommon.register(server);
