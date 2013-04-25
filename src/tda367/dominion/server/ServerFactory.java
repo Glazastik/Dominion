@@ -11,6 +11,7 @@ import com.esotericsoftware.kryonet.Server;
 
 public class ServerFactory {
 	private static Server server;
+	private static RoomHandler roomHandler;
 
 	/**
 	 * Creates and returns a fresh instance of the server.
@@ -22,6 +23,7 @@ public class ServerFactory {
 			return server;
 		}
 		
+		roomHandler = new RoomHandler();
 		server = new Server();
 		server.start();
 		NetworkCommon.register(server);
@@ -31,8 +33,8 @@ public class ServerFactory {
 			public void connected(Connection c){
 				print("Received connection from " + c.getRemoteAddressTCP());
 				RoomMessage rmsg = new RoomMessage();
-				rmsg;
-				c.sendTCP();
+				rmsg.setRooms(roomHandler.getRoomsAsString());
+				c.sendTCP("nopp");
 			}
 			
 			public void received (Connection c, Object object) {

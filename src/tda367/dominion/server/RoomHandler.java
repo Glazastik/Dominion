@@ -19,4 +19,8 @@ public class RoomHandler {
 	public void createRoom(LinkedList<GameConnection> gcs){
 		rooms.add(new GameRoom(gcs));
 	}
+	
+	public String[][] getRoomsAsString(){
+		return null;
+	}
 }
