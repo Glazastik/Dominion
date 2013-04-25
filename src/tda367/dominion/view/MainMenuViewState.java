@@ -3,8 +3,6 @@ package tda367.dominion.view;
 import org.lwjgl.input.*;
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
-import org.newdawn.slick.state.transition.*;
-import org.newdawn.slick.util.Log;
 import org.lwjgl.util.Rectangle;
 
 public class MainMenuViewState extends BasicGameState {
