@@ -1,5 +1,5 @@
 Adventurer Action 6
-Bereaucrat Action 4
+Bureaucrat Action 4
 Cellar Action 2
 Chancellor Action 3
 Chapel Action 2
