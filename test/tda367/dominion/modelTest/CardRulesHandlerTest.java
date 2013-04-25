@@ -22,8 +22,7 @@ public class CardRulesHandlerTest {
 		players.add(player1);
 		players.add(player2);
 		Supply supply = new Supply(players.size());
-		GainingHandler gainingHandler = new GainingHandler(supply);
-		CardRulesHandler rulesHandler = new CardRulesHandler(players, gainingHandler);
+		CardRulesHandler rulesHandler = new CardRulesHandler(players, supply);
 		player1.addToHand("Village");
 		rulesHandler.playCard(player1, "Village");
 		assertTrue(player1.getActions() == 2);

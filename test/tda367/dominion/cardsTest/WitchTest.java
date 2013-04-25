@@ -23,8 +23,7 @@ public class WitchTest {
 		players.add(p1);
 		players.add(p2);
 		players.add(p3);
-		GainingHandler gh = new GainingHandler(supply);
-		Witch.play(p1, players, gh);
+		Witch.play(p1, players, supply);
 		boolean p1curse = p1.getDiscardPile().contains("Curse");
 		boolean p2curse = p2.getDiscardPile().contains("Curse");
 		boolean p3curse = p3.getDiscardPile().contains("Curse");
