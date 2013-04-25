@@ -1,19 +1,17 @@
 package tda367.dominion.cards;
 
-import javax.swing.JOptionPane;
-
 import tda367.dominion.model.Player;
 
 public class Chancellor implements ICard {
 
 	public static void play(Player player) {
 		player.increaseMoney(2);
-		int yesNoResult = JOptionPane.showConfirmDialog(null,
-				"Do you want to discard your deck?", "Chancellor",
-				JOptionPane.YES_NO_OPTION);
-		if (yesNoResult == JOptionPane.YES_OPTION) {
-			discardDeck(player);
-		}
+		//player.createBoolMessage("Do you wish to discard your deck?")
+		//if(player.getNextMessage().instanceOf(YesNoMessage)){
+			//if((YesNoMessage)player.getNextMessage().isTrue()){
+				//player.discardDeck();
+			//}
+		//}
 	}
 
 	public static void discardDeck(Player player) {
