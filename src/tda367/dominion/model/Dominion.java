@@ -11,7 +11,6 @@ public class Dominion {
 	private final LinkedList<Player> players;
 	//TODO: hashmap that pairs a player to a controller/ networklistener : private final HashMap<,Player>
 	private final Supply supply;
-	private final GainingHandler gainingHandler;
 	private final CardRulesHandler cardRulesHandler;
 	/**
 	 * Constructs a fine game of Dominion!
@@ -21,8 +20,7 @@ public class Dominion {
 	public Dominion(LinkedList<Player> players){
 		this.players = players;
 		this.supply = new Supply(players.size());
-		gainingHandler = new GainingHandler(supply);
-		cardRulesHandler = new CardRulesHandler(players, gainingHandler);
+		cardRulesHandler = new CardRulesHandler(players, supply);
 	}
 	
 	/**
@@ -44,14 +42,6 @@ public class Dominion {
 		return this.supply;
 	}
 	
-	/**
-	 * Returns the {@link GainingHandler} used in the game.
-	 * 
-	 * @return the {@link GainingHandler}
-	 */
-	public GainingHandler getGainingHandler(){
-		return this.gainingHandler;
-	}
 	
 	/**
 	 * Returns the {@link CardRulesHandler} used in the game.

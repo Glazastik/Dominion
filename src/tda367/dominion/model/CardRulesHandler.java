@@ -21,7 +21,7 @@ import tda367.dominion.cardsTest.*;
  */
 public class CardRulesHandler {
 	private LinkedList<Player> players;
-	private GainingHandler gainingHandler;
+	private Supply supply;
 	
 	/**
 	 * Creates a new CardRulesHandler with a list of players 
@@ -31,8 +31,8 @@ public class CardRulesHandler {
 	 * @param gainingHandler the GainingHandler that will be used
 	 */
 	public CardRulesHandler(LinkedList<Player> players,
-			GainingHandler gainingHandler) {
-		this.gainingHandler = gainingHandler;
+			Supply supply) {
+		this.supply = supply;
 		this.players = players;
 	}
 
@@ -57,7 +57,7 @@ public class CardRulesHandler {
 		} else if (cardName.equals("Festival")) {
 			Festival.play(player);
 		} else if (cardName.equals("Witch")) {
-			Witch.play(player, players, gainingHandler);
+			Witch.play(player, players, supply);
 		} else if (cardName.equals("Woodcutter")) {
 			Woodcutter.play(player);
 		} else if (cardName.equals("Moat")) {
