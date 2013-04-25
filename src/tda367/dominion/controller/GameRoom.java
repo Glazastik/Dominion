@@ -12,8 +12,9 @@ import tda367.dominion.server.GameConnection;
  * 
  */
 public class GameRoom {
-	LinkedList<Player> players;
-	LinkedList<GameConnection> gcs;
+	private LinkedList<Player> players;
+	private LinkedList<GameConnection> gcs;
+	private int slots;
 
 	/**
 	 * Initiates a Game Room
