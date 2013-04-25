@@ -20,10 +20,19 @@ public class MainView extends StateBasedGame {
 	
 	public MainView(String title) {
 		super(title);
+		
+		try {
+			theGame = new AppGameContainer(this);
+			theGame.setDisplayMode(screenHeight, screenWidth, false);
+	        theGame.setAlwaysRender(true);
+	        theGame.start();
+		} catch (SlickException e) {
+			e.printStackTrace();
+		}
 	}
 	
 	public MainView() {
-		super("Dominion");
+		this("Dominion");
 	}
 
 	@Override
@@ -34,14 +43,6 @@ public class MainView extends StateBasedGame {
 		addState(new ServerListState(SERVERLISTSTATE));
 		enterState(MAINMENUSTATE);
 	}
-	
-    public static void main(String[] argv) throws SlickException {
-        theGame = new AppGameContainer(new MainView());
-                
-        theGame.setDisplayMode(screenHeight, screenWidth, false);
-        theGame.setAlwaysRender(true);
-        theGame.start();
-    }
     
     public static void setResolution(int width, int heigth) throws SlickException {
     	screenHeight = heigth;
