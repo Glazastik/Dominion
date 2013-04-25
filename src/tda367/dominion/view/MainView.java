@@ -17,7 +17,13 @@ public class MainView extends StateBasedGame {
 	public static int screenHeight = 800;
 	public static int screenWidth = 600;
 	public static AppGameContainer theGame;
+	public static boolean fullS = false;
 	
+	
+	/**
+	 * Constructs a new StateBasedGame which in turn creates a AppGameContainer, TODO read from file
+	 * @param title of the window
+	 */
 	public MainView(String title) {
 		super(title);
 		
@@ -29,10 +35,6 @@ public class MainView extends StateBasedGame {
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
-	}
-	
-	public MainView() {
-		this("Dominion");
 	}
 
 	@Override
@@ -47,10 +49,11 @@ public class MainView extends StateBasedGame {
     public static void setResolution(int width, int heigth) throws SlickException {
     	screenHeight = heigth;
     	screenWidth = width;
-    	theGame.setDisplayMode(screenHeight, screenWidth, false);
+    	theGame.setDisplayMode(screenHeight, screenWidth, fullS);
     }
     
     public static void setFullscreen(boolean fullScreen) throws SlickException {
+    	fullS = fullScreen;
     	theGame.setDisplayMode(1280, 800, fullScreen);
     }
     
@@ -60,6 +63,7 @@ public class MainView extends StateBasedGame {
 			writer = new PrintWriter("options.txt", "UTF-8");
 	    	writer.println(screenHeight);
 	    	writer.println(screenWidth);
+	    	writer.println(fullS);
 	    	writer.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();

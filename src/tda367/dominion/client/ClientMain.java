@@ -6,7 +6,7 @@ public class ClientMain {
 	private static MainView view;
 	
 	public static void main(String[] args) {
-		view = new MainView();
+		view = new MainView("Dominion");
 		
 		ClientFactory connection = new ClientFactory();
 		connection.createClient();
