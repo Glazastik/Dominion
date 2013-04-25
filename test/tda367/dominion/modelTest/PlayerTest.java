@@ -2,6 +2,8 @@ package tda367.dominion.modelTest;
 
 import static org.junit.Assert.*;
 
+import java.util.List;
+
 import org.junit.Test;
 
 import tda367.dominion.model.Player;
@@ -203,5 +205,16 @@ public class PlayerTest {
 		}
 		p.draw(5);
 		assertTrue(p.getHandSize() == 0);
+	}
+	
+	@Test
+	public void testRevealTopOfDeck(){
+		Player p = new Player("Player");
+		p.draw(5);
+		System.out.println(p.revealTopOfDeck());
+//		List<String> lista = p.revealTopOfDeck();
+//		for(String s : lista){
+//			System.out.println(s);
+//		}
 	}
 }
