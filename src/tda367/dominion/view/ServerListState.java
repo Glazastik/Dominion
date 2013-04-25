@@ -24,7 +24,7 @@ public class ServerListState extends BasicGameState {
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
 		g.setColor(Color.green);
-		g.fillRect(100, 100, 800, 600);
+		g.fillRect(50, 50, gc.getWidth()-100, gc.getHeight()-100);
 	}
 
 	@Override
