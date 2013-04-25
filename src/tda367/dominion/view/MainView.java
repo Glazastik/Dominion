@@ -70,7 +70,7 @@ public class MainView extends StateBasedGame {
 	 */
     public static void setFullscreen(boolean fullScreen) throws SlickException {
     	fullS = fullScreen;
-    	theGame.setDisplayMode(1280, 800, fullScreen);
+    	theGame.setDisplayMode(screenHeight, screenWidth, fullScreen);
     }
     
     /**

@@ -12,7 +12,10 @@ public class OptionsViewState extends BasicGameState {
 	
 	int id = 0;
 	Image checker = null;
+	Image checker2 = null;
 	public RoundedRectangle fullScreenCheckbox;
+	public RoundedRectangle hiResCheckbox;
+	public RoundedRectangle lowResCheckbox;
 	public TextField resolutionField;
 	public boolean fullScreen = false;
 	
@@ -23,11 +26,15 @@ public class OptionsViewState extends BasicGameState {
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
-		fullScreenCheckbox = new RoundedRectangle(100, 420, 50, 50, 4);
+		fullScreenCheckbox = new RoundedRectangle(100, 420, 25, 25, 1);
+		hiResCheckbox = new RoundedRectangle(180, 335, 25, 25, 1);
+		lowResCheckbox = new RoundedRectangle(100, 335, 25, 25, 1);
 		resolutionField = new TextField(gc, gc.getDefaultFont(), 100, 215, 100, 30);
 		resolutionField.setBackgroundColor(Color.white);
 		resolutionField.setTextColor(Color.black);
-		checker = new Image("res/img/gui/menu/checker.png");		
+		resolutionField.setBorderColor(Color.black);
+		checker = new Image("res/img/gui/menu/checker.png");
+		checker2 = new Image("res/img/gui/menu/checker.png");
 	}
 
 	@Override
@@ -35,14 +42,25 @@ public class OptionsViewState extends BasicGameState {
 			throws SlickException {
 		g.drawString("Username:", 100, 200);
 		g.drawString("Options Menu", 0, 0);
-		g.drawString("Rsolution:", 100, 300);
+		g.drawString("Resolution:", 100, 300);
+		g.drawString("800x600", 100, 317);
+		g.drawString("1280x800", 180, 317);
 		g.drawString("Set Fullscreen", 100, 400);
-	    g.draw(fullScreenCheckbox);	
+	    g.draw(fullScreenCheckbox);
+	    g.draw(hiResCheckbox);
+	    g.draw(lowResCheckbox);
 	    resolutionField.render(gc, g);
 	    
 	    if (fullScreen == true) {
 	    	checker.draw(fullScreenCheckbox.getMinX(), fullScreenCheckbox.getMinY());
 	    }
+	    
+	    if (gc.getHeight() == 600){
+	    	checker2.draw(lowResCheckbox.getMinX(), lowResCheckbox.getMinY());
+	    } else {
+	    	checker2.draw(hiResCheckbox.getMinX(), hiResCheckbox.getMinY());
+	    }
+	    	
 	}
 
 	@Override
@@ -52,7 +70,17 @@ public class OptionsViewState extends BasicGameState {
 		int xPos = Mouse.getX();
 		int yPos = gc.getHeight() - Mouse.getY();
 		
-		//Checks if mouse cursor is within Resolution rectangle
+		//Checks if mouse cursor is within lowResolution rectangle
+		if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON) && lowResCheckbox.contains(xPos, yPos)) {
+			MainView.setResolution(600, 800);
+		}
+		
+		//Checks if mouse cursor is within  hiResolution rectangle
+		if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON) && hiResCheckbox.contains(xPos, yPos)) {
+			MainView.setResolution(800, 1280);
+		}
+		
+		//Checks if mouse cursor is within full screen rectangle
 		if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON) && fullScreenCheckbox.contains(xPos, yPos)) {
 			fullScreen = !fullScreen;
 			MainView.setFullscreen(fullScreen);
