@@ -21,6 +21,7 @@ public class RoomHandler {
 	}
 	
 	public String[][] getRoomsAsString(){
+		System.out.println("Rooms " + rooms.size());
 		String[][] roomString = new String[rooms.size()][];
 		for(int i = 0; i < rooms.size(); i++){
 			GameRoom gr = rooms.get(i);
@@ -30,6 +31,6 @@ public class RoomHandler {
 			roomString[i] = tempRoom;
 		}
 		
-		return null;
+		return roomString;
 	}
 }

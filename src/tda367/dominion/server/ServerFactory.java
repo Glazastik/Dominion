@@ -65,6 +65,7 @@ public class ServerFactory {
 	protected static void sendRoomList(Connection c) {
 		RoomMessage rmsg = new RoomMessage();
 		rmsg.setRooms(roomHandler.getRoomsAsString());
+		print(roomHandler.getRoomsAsString()[0][1]);
 		c.sendTCP(rmsg);
 		
 	}
