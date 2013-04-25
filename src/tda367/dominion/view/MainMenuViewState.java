@@ -68,11 +68,15 @@ public class MainMenuViewState extends BasicGameState {
 		if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)
 				&& playRec.contains(xPos, yPos)) {
 			sbg.enterState(0, null, createNewHorizontalSplitTransition());
+		} else if(input.isKeyPressed(Input.KEY_0)) {
+			sbg.enterState(0, null, createNewHorizontalSplitTransition());
 		}
 
 		// Checks if mouse cursor is within exitgame image
 		if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)
 				&& exitRec.contains(xPos, yPos)) {
+			sbg.getContainer().exit();
+		} else if(input.isKeyPressed(Input.KEY_3)) {
 			sbg.getContainer().exit();
 		}
 
@@ -80,6 +84,8 @@ public class MainMenuViewState extends BasicGameState {
 		if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)
 				&& optionsRec.contains(xPos, yPos)) {
 			sbg.enterState(2, null, createNewSelectTransition());
+		}  else if(input.isKeyPressed(Input.KEY_2)) {
+			sbg.enterState(2, null, createNewHorizontalSplitTransition());
 		}
 
 		// Checks if mouse cursor is within server image
