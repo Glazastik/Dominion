@@ -72,9 +72,9 @@ public class MainMenuViewState extends BasicGameState {
 		// Checks if mouse cursor is within playgame image
 		if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)
 				&& playRec.contains(xPos, yPos)) {
-			sbg.enterState(3, null, createNewHorizontalSplitTransition());
+			sbg.enterState(3, null, Transitions.createNewHorizontalSplitTransition());
 		} else if(input.isKeyPressed(Input.KEY_1)) {
-			sbg.enterState(3, null, createNewHorizontalSplitTransition());
+			sbg.enterState(3, null, Transitions.createNewHorizontalSplitTransition());
 		}
 
 		// Checks if mouse cursor is within exitgame image
@@ -88,9 +88,9 @@ public class MainMenuViewState extends BasicGameState {
 		// Checks if mouse cursor is within options image
 		if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)
 				&& optionsRec.contains(xPos, yPos)) {
-			sbg.enterState(2, null, createNewSelectTransition());
+			sbg.enterState(2, null, Transitions.createNewSelectTransition());
 		}  else if(input.isKeyPressed(Input.KEY_2)) {
-			sbg.enterState(2, null, createNewHorizontalSplitTransition());
+			sbg.enterState(2, null, Transitions.createNewSelectTransition());
 		}
 
 	}
@@ -118,38 +118,6 @@ public class MainMenuViewState extends BasicGameState {
 	@Override
 	public int getID() {
 		return id;
-	}
-
-	/**
-	 * Returns a new instance of a HorizontalSplitTransition
-	 * 
-	 * @return an instance of a HorizontalSplitTransition
-	 */
-	public Transition createNewHorizontalSplitTransition() {
-		Transition splitTransition = null;
-		try {
-			splitTransition = HorizontalSplitTransition.class.newInstance();
-		} catch (Throwable e) {
-			Log.error(e);
-		}
-
-		return splitTransition;
-	}
-
-	/**
-	 * Returns a new instance of a SelectTransition
-	 * 
-	 * @return an instance of a SelectTransition
-	 */
-	public Transition createNewSelectTransition() {
-		Transition selectTransition = null;
-		try {
-			selectTransition = SelectTransition.class.newInstance();
-		} catch (Throwable e) {
-			Log.error(e);
-		}
-
-		return selectTransition;
 	}
 
 }
