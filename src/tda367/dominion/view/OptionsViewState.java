@@ -28,6 +28,10 @@ public class OptionsViewState extends BasicGameState {
 		g.drawString("Options Menu", 0, 0);
 		g.drawString("Set Fullscreen", 100, 400);
 	    g.draw(fullScreenCheckbox);	
+	    
+	    if (fullScreen == true) {
+	    	g.drawLine(100, 420, 120, 440);
+	    }
 	}
 
 	@Override
@@ -39,7 +43,8 @@ public class OptionsViewState extends BasicGameState {
 		
 		//Checks if mouse cursor is within Resolution rectangle
 		if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON) && fullScreenCheckbox.contains(xPos, yPos)) {
-			MainView.setFullscreen(!fullScreen);
+			fullScreen = !fullScreen;
+			MainView.setFullscreen(fullScreen);
 		}
 		
 		//Enter menu
@@ -47,7 +52,11 @@ public class OptionsViewState extends BasicGameState {
 			sbg.enterState(1);
 		}
 		
-		
+		//Exit fullScreen
+		if (input.isKeyPressed(Input.KEY_F)) {
+			fullScreen = !fullScreen;
+			MainView.setFullscreen(fullScreen);
+		}
 	}
 
 	@Override

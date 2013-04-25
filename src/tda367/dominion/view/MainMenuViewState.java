@@ -12,35 +12,41 @@ public class MainMenuViewState extends BasicGameState {
 	String mouse = "";
 	Image exitButton = null;
 	Image playButton = null;
-	Image serverButton = null;
 	Image options = null;
 	Image background = null;
 
 	Rectangle playRec = null;
 	Rectangle exitRec = null;
-	Rectangle serverRec = null;
 	Rectangle optionsRec = null;
 
 	int id = 0;
 
+	/**
+	 * Creates a new instance of this state with the supplied ID.
+	 * 
+	 * @param id the ID this state will be identified with
+	 */
 	public MainMenuViewState(int id) {
 		this.id = id;
 	}
 
+	/**
+	 * This method is called when this state is initialized.
+	 * 
+	 * @param gc the {@link GameContainer} this state is contained in
+	 * @param sbg the {@link StateBasedGame} this state is a part of
+	 */
 	@Override
-	public void init(GameContainer arg0, StateBasedGame arg1)
+	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
 		exitButton = new Image("res/img/gui/menu/exitGame.png");
 		playButton = new Image("res/img/gui/menu/playGame.png");
-		serverButton = new Image("res/img/gui/menu/playGame.png")
-				.getFlippedCopy(true, true);
 		options = new Image("res/img/gui/menu/options.png");
 		background = new Image("res/img/gui/menu/background.jpg");
 
 		playRec = new Rectangle(100, 350, 200, 50);
 		exitRec = new Rectangle(100, 150, 200, 50);
 		optionsRec = new Rectangle(100, 250, 200, 50);
-		serverRec = new Rectangle(100, 500, 200, 50);
 
 	}
 
@@ -51,7 +57,6 @@ public class MainMenuViewState extends BasicGameState {
 		g.drawString("Main Menu " + mouse, 0, 0);
 		exitButton.draw(100, 400);
 		playButton.draw(100, 200);
-		serverButton.draw(100, 500);
 		options.draw(100, 300);
 
 	}
@@ -67,9 +72,9 @@ public class MainMenuViewState extends BasicGameState {
 		// Checks if mouse cursor is within playgame image
 		if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)
 				&& playRec.contains(xPos, yPos)) {
-			sbg.enterState(0, null, createNewHorizontalSplitTransition());
-		} else if(input.isKeyPressed(Input.KEY_0)) {
-			sbg.enterState(0, null, createNewHorizontalSplitTransition());
+			sbg.enterState(3, null, createNewHorizontalSplitTransition());
+		} else if(input.isKeyPressed(Input.KEY_1)) {
+			sbg.enterState(3, null, createNewHorizontalSplitTransition());
 		}
 
 		// Checks if mouse cursor is within exitgame image
@@ -88,23 +93,38 @@ public class MainMenuViewState extends BasicGameState {
 			sbg.enterState(2, null, createNewHorizontalSplitTransition());
 		}
 
-		// Checks if mouse cursor is within server image
-		if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)
-				&& serverRec.contains(xPos, yPos)) {
-			sbg.enterState(3, null, createNewSelectTransition());
-		}
 	}
 	
+	/**
+	 * This method is called every time this state is left.
+	 * 
+	 * Its current behavior is that it clears the record of 
+	 * keys pressed, removing any unwanted behavior in states
+	 * switched to.
+	 * 
+	 * @param gc the {@link GameContainer} this state is contained in
+	 * @param sbg the {@link StateBasedGame} this state is a part of
+	 */
 	@Override
 	public void leave(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		  gc.getInput().clearKeyPressedRecord();
 	}
 
+	/**
+	 * Returns the ID of this state.
+	 * 
+	 * @return an int that is representative of this state
+	 */
 	@Override
 	public int getID() {
 		return id;
 	}
 
+	/**
+	 * Returns a new instance of a HorizontalSplitTransition
+	 * 
+	 * @return an instance of a HorizontalSplitTransition
+	 */
 	public Transition createNewHorizontalSplitTransition() {
 		Transition splitTransition = null;
 		try {
@@ -116,6 +136,11 @@ public class MainMenuViewState extends BasicGameState {
 		return splitTransition;
 	}
 
+	/**
+	 * Returns a new instance of a SelectTransition
+	 * 
+	 * @return an instance of a SelectTransition
+	 */
 	public Transition createNewSelectTransition() {
 		Transition selectTransition = null;
 		try {
