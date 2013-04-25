@@ -14,6 +14,7 @@ public class MainMenuViewState extends BasicGameState {
 	Image playButton = null;
 	Image options = null;
 	Image background = null;
+	Image logo = null;
 
 	Rectangle playRec = null;
 	Rectangle exitRec = null;
@@ -43,6 +44,7 @@ public class MainMenuViewState extends BasicGameState {
 		playButton = new Image("res/img/gui/menu/playGame.png");
 		options = new Image("res/img/gui/menu/options.png");
 		background = new Image("res/img/gui/menu/background.jpg");
+		logo = new Image("res/img/gui/menu/logo.png");
 
 		playRec = new Rectangle(100, 350, 200, 50);
 		exitRec = new Rectangle(100, 150, 200, 50);
@@ -58,6 +60,7 @@ public class MainMenuViewState extends BasicGameState {
 		exitButton.draw(100, 400);
 		playButton.draw(100, 200);
 		options.draw(100, 300);
+		logo.draw(20 ,20);
 
 	}
 
