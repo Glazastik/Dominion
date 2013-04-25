@@ -21,12 +21,23 @@ public class MainMenuViewState extends BasicGameState {
 
 	int id = 0;
 
+	/**
+	 * Creates a new instance of this state with the supplied ID.
+	 * 
+	 * @param id the ID this state will be identified with
+	 */
 	public MainMenuViewState(int id) {
 		this.id = id;
 	}
 
+	/**
+	 * This method is called when this state is initialized.
+	 * 
+	 * @param gc the {@link GameContainer} this state is contained in
+	 * @param sbg the {@link StateBasedGame} this state is a part of
+	 */
 	@Override
-	public void init(GameContainer arg0, StateBasedGame arg1)
+	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
 		exitButton = new Image("res/img/gui/menu/exitGame.png");
 		playButton = new Image("res/img/gui/menu/playGame.png");
@@ -78,16 +89,36 @@ public class MainMenuViewState extends BasicGameState {
 
 	}
 	
+	/**
+	 * This method is called every time this state is left.
+	 * 
+	 * Its current behavior is that it clears the record of 
+	 * keys pressed, removing any unwanted behavior in states
+	 * switched to.
+	 * 
+	 * @param gc the {@link GameContainer} this state is contained in
+	 * @param sbg the {@link StateBasedGame} this state is a part of
+	 */
 	@Override
 	public void leave(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		  gc.getInput().clearKeyPressedRecord();
 	}
 
+	/**
+	 * Returns the ID of this state.
+	 * 
+	 * @return an int that is representative of this state
+	 */
 	@Override
 	public int getID() {
 		return id;
 	}
 
+	/**
+	 * Returns a new instance of a HorizontalSplitTransition
+	 * 
+	 * @return an instance of a HorizontalSplitTransition
+	 */
 	public Transition createNewHorizontalSplitTransition() {
 		Transition splitTransition = null;
 		try {
@@ -99,6 +130,11 @@ public class MainMenuViewState extends BasicGameState {
 		return splitTransition;
 	}
 
+	/**
+	 * Returns a new instance of a SelectTransition
+	 * 
+	 * @return an instance of a SelectTransition
+	 */
 	public Transition createNewSelectTransition() {
 		Transition selectTransition = null;
 		try {
