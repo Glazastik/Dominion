@@ -9,9 +9,7 @@ public class ClientMain {
 		ClientFactory connection = new ClientFactory();
 		connection.createClient();
 		
-		view = new MainView("Dominion");
-		
-		
+		view = new MainView();
 	}
 	
 	

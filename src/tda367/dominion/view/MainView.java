@@ -24,8 +24,8 @@ public class MainView extends StateBasedGame {
 	 * Constructs a new StateBasedGame which in turn creates a AppGameContainer, TODO read from file
 	 * @param title of the window
 	 */
-	public MainView(String title) {
-		super(title);
+	public MainView() {
+		super("Dominion");
 		
 		try {
 			theGame = new AppGameContainer(this);
