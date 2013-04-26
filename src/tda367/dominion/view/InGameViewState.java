@@ -334,7 +334,19 @@ public class InGameViewState extends BasicGameState {
 	 * @param cards the images to be painted
 	 */
 	public void paintActionCards(Image[] cards) {
-
+		int cardHeight;
+		double scale;
+		int cardWidth = gameContainerWidth/7;
+		
+		for(int i = 0; i < cards.length; i++){
+			scale = (double) cardWidth/cards[i].getWidth();
+			cardHeight = (int) (cards[i].getHeight()*scale);
+			if(i < cards.length/2){
+				cards[i].draw(cardWidth*(i+1), 0, cardWidth, cardHeight);
+			} else {
+				cards[i].draw(cardWidth*(i+1-5), cardHeight, cardWidth, cardHeight);
+			}
+		}
 	}
 	
 	/**
