@@ -118,6 +118,8 @@ public class InGameViewState extends BasicGameState {
 	private void getSupply() 
 			throws SlickException {
 		
+		
+		
 		cih = CardInfoHandler.getInstance();
 		String[] cardsArray = supply.getCardsInSupply().keySet().toArray(new String[0]);
 		cardsToShow = new Image[cardsArray.length];
@@ -135,6 +137,9 @@ public class InGameViewState extends BasicGameState {
 	 * This is because a copy of gardens should be displayed with the actioncards
 	 * in the supply, and the true purpose of this method is the get the ten cards
 	 * that should be displayed in the supply.</p>
+	 * 
+	 * <p>Worthy of mention is that the cards are retured sorted in descending
+	 * order, i.e. the most expensive first.</p>
 	 * 
 	 * @param cards the array of cardnames that will be searched for actioncards
 	 * @return an array containing every actioncard found
@@ -158,7 +163,7 @@ public class InGameViewState extends BasicGameState {
 			}
 		}
 		
-		return cardsToReturn;
+		return sortStringArray(cardsToReturn);
 	}
 	
 	/**
@@ -167,6 +172,9 @@ public class InGameViewState extends BasicGameState {
 	 * <p>Although it says victorycards, this method will also fetch curse
 	 * cards, as they are somewhat related, at least when they will be drawn 
 	 * out in the supply are.</p>
+	 * 
+	 * <p>Worthy of mention is that the cards are retured sorted in descending
+	 * order, i.e. the most expensive first.</p>
 	 * 
 	 * @param cards the array of cardnames that will be searched for victorycards
 	 * @return an array containing every victorycard found
@@ -192,10 +200,12 @@ public class InGameViewState extends BasicGameState {
 			}
 		}
 		
-		return cardsToReturn;
+		return sortStringArray(cardsToReturn);
 	}
 	 /**
-	  * Returns all the treasurecards from an array of cardnames
+	  * Returns all the treasurecards from an array of cardnames.
+	  * 
+	  * <p>The cards are returned in descending order, i.e. highest cost first.</p>
 	  * 
 	  * @param cards the array of cardnames that will be searched for treasurecards
 	  * @return an array containg every treasurecard found
@@ -213,7 +223,7 @@ public class InGameViewState extends BasicGameState {
 			}
 		}
 		
-		return cardsToReturn;
+		return sortStringArray(cardsToReturn);
 	}
 	
 	/**
@@ -244,7 +254,7 @@ public class InGameViewState extends BasicGameState {
 	 * Returns a sorted clone of the given String array containing cardnames.
 	 * 
 	 * <p>This method is only good for String arrays containing cardnames,
-	 * much like {@link StringArrayToImageArray}. THis method sorts in ascending order
+	 * much like {@link StringArrayToImageArray}. This method sorts in desscending order
 	 * based in cost, i.e. the most expensive card is the first element.</p>
 	 * 
 	 * @param cards an array of strings containing cardnames
