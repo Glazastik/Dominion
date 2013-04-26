@@ -103,7 +103,7 @@ public class InGameViewState extends BasicGameState {
 	 * return a copy of gardens if one is present in the string of cardnames.
 	 * This is because a copy of gardens should be displayed with the actioncards
 	 * in the supply, and the true purpose of this method is the get the ten cards
-	 * that should be displayed in the supply.
+	 * that should be displayed in the supply.<p>
 	 * 
 	 * @param cards the array of cardnames that will be searched for actioncards
 	 * @return an array containing every actioncard found
@@ -122,7 +122,7 @@ public class InGameViewState extends BasicGameState {
 		}
 		
 		for(int i = 0; i < cards.length; i++){
-			if(cards[i].equals("Gardens")){
+			if(cards[i].equals("Gardens")){//Ensures Gardens DOES end up with the actioncards
 				actioncards[index] = cards[i];
 			}
 		}
@@ -132,15 +132,35 @@ public class InGameViewState extends BasicGameState {
 	/**
 	 * Returns all the victorycards from an array of cardnames
 	 * 
-	 * Although it says victorycards, this method will also fetch curse
+	 * <p>Although it says victorycards, this method will also fetch curse
 	 * cards, as they are somewhat related, at least when they will be drawn 
-	 * out in the supply are.
+	 * out in the supply are.<p>
 	 * 
 	 * @param cards the array of cardnames that will be searched for victorycards
 	 * @return an array containing every victorycard found
 	 */
 	private String[] getVictoryCards(String[] cards) {
-		return null;
+		cih = CardInfoHandler.getInstance();
+		List<String> allVictorycards = cih.getVictoryCards();
+		String[] victorycards = new String[4];
+		
+		int index = 0;
+		for(int i = 0; i < cards.length; i++){
+			if(allVictorycards.contains(cards[i])){
+				if(!cards[i].equals("Gardens")){//Ensures Gardens does NOT end up with the victorycards
+					victorycards[index] = cards[i];
+					index++;
+				}
+			}
+		}
+		
+		for(int i = 0; i < cards.length; i++){
+			if(cards[i].equals("Curse")){
+				victorycards[index] = cards[i];
+			}
+		}
+		
+		return victorycards;
 	}
 	 /**
 	  * Returns all the treasurecards from an array of cardnames
