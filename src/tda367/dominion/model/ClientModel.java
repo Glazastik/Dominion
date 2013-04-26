@@ -1,8 +1,8 @@
-package tda367.dominion.client;
+package tda367.dominion.model;
 
 import java.io.IOException;
 
-import tda367.dominion.messages.RoomMessage;
+import tda367.dominion.client.ClientConnection;
 import tda367.dominion.server.NetworkCommon;
 import tda367.dominion.view.MainView;
 

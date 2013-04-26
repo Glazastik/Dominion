@@ -1,6 +1,7 @@
 package tda367.dominion.client;
 
 import tda367.dominion.controller.ClientController;
+import tda367.dominion.model.ClientModel;
 import tda367.dominion.view.MainView;
 
 public class ClientMain {
