@@ -27,15 +27,19 @@ public class Remodel {
 				//	}
 				//}
 			}
-			
-			
-			
-			//if(p.getNextMessage().instanceOf(LocatedCardMessage)){
-			//LocatedCardMessage tempMessage = (LocatedCardMessage) p.getNextMessage()
-			//Message message = new Message();
-			//LocatedCardMessage message = LocatedCardMessage)
-			//
-			//}
+			while(!doneGaining){
+				//p.sendMessage("Gain a card costing up to " + trashedValue);
+				//Message tempMessage = p.getNextMessage();
+				//LocatedCardMessage tempLCMessage;
+				//if(tempMessage instanceOf LocatedCardMessage{
+				//tempLCMessage = (LocatedCardMessage) tempMessage;
+				//String tempCard = tempLCMessage.getCardName();
+				//if(gH.isCardGainable(tempCard) && tempLCMessage.getLocation().equals("Supply")){
+				// gH.playerGainCard(p, tempCard);
+				// doneGaining = true;
+				//}
+				//}
+			}
 		}
 	}
 }
