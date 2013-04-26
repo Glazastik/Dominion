@@ -45,7 +45,9 @@ public class InGameViewState extends BasicGameState {
 		amountOfPlayers = 2; //Should probably be supplied from network later
 		supply = new Supply(amountOfPlayers);
 		player = new Player("Mr.Testificate");
-		getSupply();
+		actionCards = StringArraytoImageArray(getActionCards(getSupply()));
+		victoryCards = StringArraytoImageArray(getVictoryCards(getSupply()));
+		treasureCards = StringArraytoImageArray(getTreasureCards(getSupply()));
 		counterZone = new RoundedRectangle(0, gc.getHeight() - gc.getHeight()/3 - 50, gc.getWidth(), 40, 2);
 		riksdaler = new Image("res/img/gui/ingame/Coin.png");
 	}
@@ -63,7 +65,6 @@ public class InGameViewState extends BasicGameState {
 		g.drawString("Buys: " + nmbOfBuys, 200, gc.getHeight() - gc.getHeight()/3 - 40);
 		g.drawString("x"+nmbOfRiksdaler, 380, gc.getHeight() - gc.getHeight()/3 - 40);
 		riksdaler.draw((float)350, (float)gc.getHeight() - gc.getHeight()/3 - 43, (float)0.035);
-		paintCardArray(gc);
 		
 	}
 
@@ -115,7 +116,7 @@ public class InGameViewState extends BasicGameState {
 	 * @return every cardname in the supply
 	 */
 	private String[] getSupply() {
-		return supply.getCardsInSupply().keySet().toArray(new String[0]);	
+		return supply.getCardsInSupply().keySet().toArray(new String[0]);
 	}
 	
 	/**
