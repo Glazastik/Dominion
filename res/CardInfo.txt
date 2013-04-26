@@ -5,7 +5,7 @@ Chancellor Action 3
 Chapel Action 2
 Copper Treasure 0
 Councilroom Action 5
-Curse Victory 0
+Curse Curse 0
 Duchy Victory 5
 Estate Victory 2
 Feast Action 4
