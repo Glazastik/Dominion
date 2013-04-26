@@ -19,7 +19,6 @@ public class Mine {
 			//Message temp = p.getNextMessage();
 			//if(temp instanceOf LocatedCardMessage){
 			//LocatedCardMessage tempMessage = (LocatedCardMessage) p.getNextMessage();
-			
 			//String tempCard = tempMessage.getCardName;
 				//if(cif.getCardType(tempCard).equals("Treasure") && tempMessage.getLocation().equals("Hand")){
 					//switch(tempCard){
@@ -37,7 +36,7 @@ public class Mine {
 			//LocatedCardMessage temp = (LocatedCardMessage) p.getNextMessage();
 			//tempCard = temp.getCardName();
 			//if(cif.getCardType(tempCard).equals("Treasure") && gH.isCardGainable(tempCard, 3 + trashedValue){
-			//gH.playerGainCard(p, tempCard);
+			//gH.playerGainCardToHand(p, tempCard);
 			//doneGaining = true;
 			//}
 			
