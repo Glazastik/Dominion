@@ -86,7 +86,7 @@ public class OptionsViewState extends BasicGameState {
 		
 		//Enter menu
 		if (input.isKeyPressed(Input.KEY_SPACE)) {
-			sbg.enterState(1, null, Transitions.createNewSelectTransition());
+			sbg.enterState(1, null, Transitions.createNewHorizontalSplitTransition());
 		}
 		
 		//Exit fullScreen

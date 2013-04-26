@@ -78,9 +78,9 @@ public class MainMenuViewState extends BasicGameState {
 		// Checks if mouse cursor is within playgame image
 		if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)
 				&& playRec.contains(xPos, yPos)) {
-			sbg.enterState(3, null, Transitions.createNewSelectTransition());
+			sbg.enterState(3, null, Transitions.createNewHorizontalSplitTransition());
 		} else if(input.isKeyPressed(Input.KEY_1)) {
-			sbg.enterState(3, null, Transitions.createNewSelectTransition());
+			sbg.enterState(3, null, Transitions.createNewHorizontalSplitTransition());
 		}
 
 		// Checks if mouse cursor is within exitgame image
@@ -94,9 +94,9 @@ public class MainMenuViewState extends BasicGameState {
 		// Checks if mouse cursor is within options image
 		if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)
 				&& optionsRec.contains(xPos, yPos)) {
-			sbg.enterState(2, null, Transitions.createNewSelectTransition());
+			sbg.enterState(2, null, Transitions.createNewHorizontalSplitTransition());
 		}  else if(input.isKeyPressed(Input.KEY_2)) {
-			sbg.enterState(2, null, Transitions.createNewSelectTransition());
+			sbg.enterState(2, null, Transitions.createNewHorizontalSplitTransition());
 		}
 		
 		if(input.isKeyPressed(Input.KEY_0)){

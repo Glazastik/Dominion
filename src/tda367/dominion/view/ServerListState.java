@@ -35,7 +35,7 @@ public class ServerListState extends BasicGameState {
 		
 		//Enter menu
 		if (input.isKeyPressed(Input.KEY_SPACE) || input.isKeyPressed(Input.KEY_1)) {
-			sbg.enterState(1, null, Transitions.createNewSelectTransition());
+			sbg.enterState(1, null, Transitions.createNewHorizontalSplitTransition());
 		}
 
 	}
