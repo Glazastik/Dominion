@@ -1,9 +1,10 @@
 package tda367.dominion.view;
 
-import java.util.*;
 import tda367.dominion.model.*;
 
 import org.newdawn.slick.*;
+import org.newdawn.slick.geom.Line;
+import org.newdawn.slick.geom.RoundedRectangle;
 import org.newdawn.slick.state.*;
 
 public class InGameViewState extends BasicGameState {
@@ -17,26 +18,31 @@ public class InGameViewState extends BasicGameState {
 	Image board = null;
 	int id = 0;
 	int amountOfPlayers;
+	RoundedRectangle counterZone = null;
 	
 	public InGameViewState(int id) {
 		this.id = id;
 	}
 	
 	@Override
-	public void init(GameContainer arg0, StateBasedGame arg1)
+	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
 		board = new Image("res/img/gui/ingame/BoardTemp.png");
 		amountOfPlayers = 2; //Should probably be supplied from network later
 		supply = new Supply(amountOfPlayers);
 		getSupply();
+		counterZone = new RoundedRectangle(0, gc.getHeight()-gc.getHeight()/4, gc.getWidth(), 50, 1);
 		
 	}
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
-			throws SlickException {		
+			throws SlickException {	
+		board.draw();	
+		g.setLineWidth(10);
+		g.setColor(Color.darkGray);
 		g.drawString("InGameState", 0, 0);
-		board.draw();
+		g.draw(counterZone);
 		
 		paintCardArray(gc);
 		
