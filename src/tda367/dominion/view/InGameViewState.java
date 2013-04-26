@@ -18,21 +18,21 @@ import tda367.dominion.model.Supply;
 
 public class InGameViewState extends BasicGameState {
 
-	Supply supply;
-	Player player;
-	CardInfoHandler cih;
-	Image[] actionCards;
-	Image[] victoryCards;
-	Image[] treasureCards;
-	Image[] cardsToShow;
-	Image board = null;
-	int id = 0;
-	int amountOfPlayers;
-	RoundedRectangle counterZone = null;
-	String nmbOfActions;
-	String nmbOfBuys;
-	String nmbOfRiksdaler;
-	Image riksdaler = null;
+	private Supply supply;
+	private Player player;
+	private CardInfoHandler cih;
+	private Image[] actionCards;
+	private Image[] victoryCards;
+	private Image[] treasureCards;
+	private Image[] cardsToShow;
+	private Image board = null;
+	private int id = 0;
+	private int amountOfPlayers;
+	private RoundedRectangle counterZone = null;
+	private String nmbOfActions;
+	private String nmbOfBuys;
+	private String nmbOfRiksdaler;
+	private Image riksdaler = null;
 	
 	public InGameViewState(int id) {
 		this.id = id;
