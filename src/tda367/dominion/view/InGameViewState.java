@@ -69,6 +69,7 @@ public class InGameViewState extends BasicGameState {
 		riksdaler.draw((float)350, (float)gc.getHeight() - gc.getHeight()/3 - 43, (float)0.035);
 		paintVictoryCards(victoryCards);
 		paintActionCards(actionCards);
+		paintTreasureCards(treasureCards);
 		
 	}
 
@@ -364,7 +365,15 @@ public class InGameViewState extends BasicGameState {
 	 * @param cards
 	 */
 	public void paintTreasureCards(Image[] cards) {
+		int cardHeight;
+		double scale;
+		int cardWidth = gameContainerWidth/7;
 		
+		for(int i = 0; i < cards.length; i++){
+			scale = (double) cardWidth/cards[i].getWidth();
+			cardHeight = (int) (cards[i].getHeight()*scale);
+			cards[i].draw(cardWidth*6, cardHeight*i, cardWidth, cardHeight);
+		}
 	}
 
 }
