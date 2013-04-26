@@ -27,6 +27,10 @@ public class InGameViewState extends BasicGameState {
 	int id = 0;
 	int amountOfPlayers;
 	RoundedRectangle counterZone = null;
+	String nmbOfActions = "1";
+	String nmbOfBuys = "1";
+	String nmbOfRiksdaler = "5";
+	Image riksdaler = null;
 	
 	public InGameViewState(int id) {
 		this.id = id;
@@ -39,8 +43,8 @@ public class InGameViewState extends BasicGameState {
 		amountOfPlayers = 2; //Should probably be supplied from network later
 		supply = new Supply(amountOfPlayers);
 		getSupply();
-		counterZone = new RoundedRectangle(0, gc.getHeight()-gc.getHeight()/4, gc.getWidth(), 50, 1);
-		
+		counterZone = new RoundedRectangle(0, gc.getHeight() - gc.getHeight()/3 - 50, gc.getWidth(), 40, 2);
+		riksdaler = new Image("res/img/gui/ingame/Coin.png");
 	}
 
 	@Override
@@ -51,7 +55,11 @@ public class InGameViewState extends BasicGameState {
 		g.setColor(Color.darkGray);
 		g.drawString("InGameState", 0, 0);
 		g.draw(counterZone);
-		
+		g.setColor(Color.white);
+		g.drawString("Actions: " + nmbOfActions, 50, gc.getHeight() - gc.getHeight()/3 - 40);
+		g.drawString("Buys: " + nmbOfBuys, 200, gc.getHeight() - gc.getHeight()/3 - 40);
+		g.drawString("x"+nmbOfRiksdaler, 380, gc.getHeight() - gc.getHeight()/3 - 40);
+		riksdaler.draw((float)350, (float)gc.getHeight() - gc.getHeight()/3 - 43, (float)0.035);
 		paintCardArray(gc);
 		
 	}
