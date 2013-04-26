@@ -106,27 +106,16 @@ public class InGameViewState extends BasicGameState {
 	}
 	
 	/**
-	 * Gets the supply and creates images out of all the cards.
+	 * Returns all the cardnames in the supply.
 	 * 
 	 * <p>In future updates, this should probably also do 
 	 * something sensible with the amount of cards left in 
 	 * the supply. But we'll get to that when we have to.</p>
 	 * 
-	 * @return a randomly selected card from the list of cards
-	 * @throws SlickException
+	 * @return every cardname in the supply
 	 */
-	private void getSupply() 
-			throws SlickException {
-		
-		
-		
-		cih = CardInfoHandler.getInstance();
-		String[] cardsArray = supply.getCardsInSupply().keySet().toArray(new String[0]);
-		cardsToShow = new Image[cardsArray.length];
-		
-		for(int i = 0; i < cardsArray.length; i++){
-			cardsToShow[i] = new Image(cih.getImageLink(cardsArray[i]));
-		}	
+	private String[] getSupply() {
+		return supply.getCardsInSupply().keySet().toArray(new String[0]);	
 	}
 	
 	/**
