@@ -208,6 +208,22 @@ public class InGameViewState extends BasicGameState {
 	}
 	
 	/**
+	 * This method takes an array of cardnames in the form of strings
+	 * and returns an array with the path to the image of these cards.
+	 * 
+	 * <p>Note that this method is only useable for string arrays with
+	 * cardnames, and nothing else. While you can send in any kind of 
+	 * String array, anything but the recommended will not result in 
+	 * anything but a garbled heap of crap.
+	 * 
+	 * @param cards
+	 * @return
+	 */
+	private Image[] StringArraytoImageArray(String[] cards) {
+		return null;
+	}
+	
+	/**
 	 * Prints the entire array filled with cards.
 	 * 
 	 * <p>This method (and the array filled with cards),
