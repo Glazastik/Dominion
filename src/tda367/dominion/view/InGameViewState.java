@@ -13,11 +13,13 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import tda367.dominion.model.CardInfoHandler;
+import tda367.dominion.model.Player;
 import tda367.dominion.model.Supply;
 
 public class InGameViewState extends BasicGameState {
 
 	Supply supply;
+	Player player;
 	CardInfoHandler cih;
 	Image[] actionCards;
 	Image[] victoryCards;
@@ -27,9 +29,9 @@ public class InGameViewState extends BasicGameState {
 	int id = 0;
 	int amountOfPlayers;
 	RoundedRectangle counterZone = null;
-	String nmbOfActions = "1";
-	String nmbOfBuys = "1";
-	String nmbOfRiksdaler = "5";
+	String nmbOfActions;
+	String nmbOfBuys;
+	String nmbOfRiksdaler;
 	Image riksdaler = null;
 	
 	public InGameViewState(int id) {
@@ -42,6 +44,7 @@ public class InGameViewState extends BasicGameState {
 		board = new Image("res/img/gui/ingame/BoardTemp.png");
 		amountOfPlayers = 2; //Should probably be supplied from network later
 		supply = new Supply(amountOfPlayers);
+		player = new Player("Mr.Testificate");
 		getSupply();
 		counterZone = new RoundedRectangle(0, gc.getHeight() - gc.getHeight()/3 - 50, gc.getWidth(), 40, 2);
 		riksdaler = new Image("res/img/gui/ingame/Coin.png");
@@ -67,6 +70,12 @@ public class InGameViewState extends BasicGameState {
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int time)
 			throws SlickException {
+		
+		player.increaseMoney(1);
+		
+		nmbOfActions = String.valueOf(player.getActions());
+		nmbOfBuys = String.valueOf(player.getBuys());
+		nmbOfRiksdaler = String.valueOf(player.getMoney());
 		
 		Input input  = gc.getInput();
 		

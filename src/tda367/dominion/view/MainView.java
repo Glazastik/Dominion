@@ -30,7 +30,6 @@ public class MainView extends StateBasedGame {
 			theGame = new AppGameContainer(this);
 			theGame.setDisplayMode(screenHeight, screenWidth, false);
 	        theGame.setAlwaysRender(true);
-	        theGame.setMaximumLogicUpdateInterval(120);
 	        theGame.setVSync(true);
 	        theGame.start();
 		} catch (SlickException e) {
