@@ -16,12 +16,12 @@ public class Mine {
 		if(p.getHand().contains("Copper") || p.getHand().contains("Silver") || p.getHand().contains("Gold") ){
 			//while(!doneTrashing){
 			//p.sendMessage("Trash a treasure from you hand.")
+			//Message temp = p.getNextMessage();
+			//if(temp instanceOf LocatedCardMessage){
+			//LocatedCardMessage tempMessage = (LocatedCardMessage) p.getNextMessage();
 			
-			//if(p.getNextMessage().instanceOf(LocatedCardMessage)){
-			//LocatedCardMessage temp = (LocatedCardMessage) p.getNextMessage();
-			
-			//String tempCard = temp.getCardName;
-				//if(cif.getCardType(tempCard).equals("Treasure"){
+			//String tempCard = tempMessage.getCardName;
+				//if(cif.getCardType(tempCard).equals("Treasure") && tempMessage.getLocation().equals("Hand")){
 					//switch(tempCard){
 					//case "Copper"; p.trashCard("Copper"); trashedValue = 0; break;
 					//case "Silver"; p.trashCard("Silver"); trashedValue = 3; break;
