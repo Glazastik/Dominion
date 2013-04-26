@@ -264,7 +264,7 @@ public class InGameViewState extends BasicGameState {
 			}
 		}
 		
-		return null;
+		return sortedArray;
 	}
 	
 	/**
