@@ -126,7 +126,8 @@ public class InGameViewState extends BasicGameState {
 				actioncards[index] = cards[i];
 			}
 		}
-		return null;
+		
+		return actioncards;
 	}
 	
 	/**
