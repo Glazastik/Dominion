@@ -79,9 +79,9 @@ public class InGameViewState extends BasicGameState {
 	/**
 	 * This method is called every time this state is left.
 	 * 
-	 * Its current behavior is that it clears the record of 
+	 * <p>Its current behavior is that it clears the record of 
 	 * keys pressed, removing any unwanted behavior in states
-	 * switched to.
+	 * switched to.<p/>
 	 * 
 	 * @param gc the {@link GameContainer} this state is contained in
 	 * @param sbg the {@link StateBasedGame} this state is a part of
@@ -101,7 +101,7 @@ public class InGameViewState extends BasicGameState {
 	 * 
 	 * <p>In future updates, this should probably also do 
 	 * something sensible with the amount of cards left in 
-	 * the supply. But we'll get to that when we have to.
+	 * the supply. But we'll get to that when we have to.</p>
 	 * 
 	 * @return a randomly selected card from the list of cards
 	 * @throws SlickException
@@ -125,7 +125,7 @@ public class InGameViewState extends BasicGameState {
 	 * return a copy of gardens if one is present in the string of cardnames.
 	 * This is because a copy of gardens should be displayed with the actioncards
 	 * in the supply, and the true purpose of this method is the get the ten cards
-	 * that should be displayed in the supply.<p>
+	 * that should be displayed in the supply.</p>
 	 * 
 	 * @param cards the array of cardnames that will be searched for actioncards
 	 * @return an array containing every actioncard found
@@ -157,7 +157,7 @@ public class InGameViewState extends BasicGameState {
 	 * 
 	 * <p>Although it says victorycards, this method will also fetch curse
 	 * cards, as they are somewhat related, at least when they will be drawn 
-	 * out in the supply are.<p>
+	 * out in the supply are.</p>
 	 * 
 	 * @param cards the array of cardnames that will be searched for victorycards
 	 * @return an array containing every victorycard found
@@ -214,7 +214,7 @@ public class InGameViewState extends BasicGameState {
 	 * <p>Note that this method is only useable for string arrays with
 	 * cardnames, and nothing else. While you can send in any kind of 
 	 * String array, anything but the recommended will not result in 
-	 * anything but a garbled heap of crap.
+	 * anything but a garbled heap of crap.</p>
 	 * 
 	 * @param cards
 	 * @return
@@ -237,7 +237,7 @@ public class InGameViewState extends BasicGameState {
 	 * <p>This method (and the array filled with cards),
 	 * is mainly for demonstrative and experimental
 	 * purposes and will probably become obsolete or
-	 * have to go trough extensive modification.
+	 * have to go trough extensive modification.<p>
 	 */
 	private void paintCardArray(GameContainer gc) {	
 		
