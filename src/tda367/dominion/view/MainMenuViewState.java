@@ -9,6 +9,9 @@ public class MainMenuViewState extends BasicGameState {
 
 	String mouse = "";
 	Image exitButton = null;
+	int exitY = 400;
+	int playY = 200;
+	int optionsY = 300;
 	Image playButton = null;
 	Image options = null;
 	Image background = null;
@@ -44,9 +47,9 @@ public class MainMenuViewState extends BasicGameState {
 		background = new Image("res/img/gui/menu/background.jpg");
 		logo = new Image("res/img/gui/menu/logo.png");
 
-		playRec = new Rectangle(100, 350, 200, 50);
-		exitRec = new Rectangle(100, 150, 200, 50);
-		optionsRec = new Rectangle(100, 250, 200, 50);
+		playRec = new Rectangle(100, playY, 200, 50);
+		exitRec = new Rectangle(100, exitY, 200, 50);
+		optionsRec = new Rectangle(100, optionsY, 200, 50);
 		
 		gc.setMouseCursor("res/img/gui/menu/taco.gif", 0, 0);
 
@@ -55,11 +58,11 @@ public class MainMenuViewState extends BasicGameState {
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
-		background.draw(0 , 0);
+		background.draw();
 		g.drawString("Main Menu " + mouse, 0, 0);
-		exitButton.draw(100, 400);
-		playButton.draw(100, 200);
-		options.draw(100, 300);
+		exitButton.draw(100, exitY);
+		playButton.draw(100, playY);
+		options.draw(100, optionsY);
 		logo.draw(20 ,20);
 
 	}
@@ -69,7 +72,7 @@ public class MainMenuViewState extends BasicGameState {
 			throws SlickException {
 		Input input = gc.getInput();
 		int xPos = Mouse.getX();
-		int yPos = Mouse.getY();
+		int yPos = 600-Mouse.getY();
 		mouse = "X: " + xPos + " Y: " + yPos;
 
 		// Checks if mouse cursor is within playgame image
