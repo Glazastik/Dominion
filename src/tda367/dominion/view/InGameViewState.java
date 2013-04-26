@@ -10,6 +10,9 @@ public class InGameViewState extends BasicGameState {
 
 	Supply supply;
 	CardInfoHandler cih;
+	Image[] actionCards;
+	Image[] victoryCards;
+	Image[] treasureCards;
 	Image[] cardsToShow;
 	Image board = null;
 	int id = 0;
@@ -91,6 +94,35 @@ public class InGameViewState extends BasicGameState {
 		for(int i = 0; i < cardsArray.length; i++){
 			cardsToShow[i] = new Image(cih.getImageLink(cardsArray[i]));
 		}	
+	}
+	
+	/**
+	 * Returns all the actioncards from an array of cardnames
+	 * 
+	 * @param cards the array of cardnames that will be searched for actioncards
+	 * @return an array containing every actioncard found
+	 */
+	private String[] getActionCards(String[] cards) {
+		return null;
+	}
+	
+	/**
+	 * Returns all the victorycards from an array of cardnames
+	 * 
+	 * @param cards the array of cardnames that will be searched for victorycards
+	 * @return an array containing every victorycard found
+	 */
+	private String[] getVictoryCards(String[] cards) {
+		return null;
+	}
+	 /**
+	  * Returns all the treasurecards from an array of cardnames
+	  * 
+	  * @param cards the array of cardnames that will be searched for treasurecards
+	  * @return an array containg every treasurecard found
+	  */
+	private String[] getTreasureCards(String[] cards) {
+		return null;
 	}
 	
 	/**
