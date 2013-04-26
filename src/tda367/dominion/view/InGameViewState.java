@@ -23,13 +23,9 @@ public class InGameViewState extends BasicGameState {
 	public void init(GameContainer arg0, StateBasedGame arg1)
 			throws SlickException {
 		board = new Image("res/img/gui/ingame/BoardTemp.png");
-		cardsToShow = new Image[5];
 		amountOfPlayers = 2; //Should probably be supplied from network later
 		supply = new Supply(amountOfPlayers);
-		
-		for(int i = 0; i < cardsToShow.length; i++){
-			cardsToShow[i] = getRandomCard();
-		}
+		getSupply();
 		
 	}
 
@@ -38,6 +34,7 @@ public class InGameViewState extends BasicGameState {
 			throws SlickException {		
 		g.drawString("InGameState", 0, 0);
 		board.draw();
+		
 		paintCardArray(gc);
 		
 	}
@@ -75,20 +72,25 @@ public class InGameViewState extends BasicGameState {
 	}
 	
 	/**
-	 * Returns a random card of any type
+	 * Gets the supply and creates images out of all the cards.
+	 * 
+	 * <p>In future updates, this should probably also do 
+	 * something sensible with the amount of cards left in 
+	 * the supply. But we'll get to that when we have to.
 	 * 
 	 * @return a randomly selected card from the list of cards
 	 * @throws SlickException
 	 */
-	private Image getRandomCard() 
+	private void getSupply() 
 			throws SlickException {
+		
 		cih = CardInfoHandler.getInstance();
+		String[] cardsArray = supply.getCardsInSupply().keySet().toArray(new String[0]);
+		cardsToShow = new Image[cardsArray.length];
 		
-		List<String> cardList = cih.getCardList();
-		Random r = new Random();
-		
-		int index = r.nextInt(cardList.size()-1);
-		return new Image(cih.getImageLink(cardList.get(index)));	
+		for(int i = 0; i < cardsArray.length; i++){
+			cardsToShow[i] = new Image(cih.getImageLink(cardsArray[i]));
+		}	
 	}
 	
 	/**
@@ -101,11 +103,15 @@ public class InGameViewState extends BasicGameState {
 	 */
 	private void paintCardArray(GameContainer gc) {	
 		
-		int cardWidth = gc.getWidth()/5;
+		int cardWidth = gc.getWidth()/(cardsToShow.length/2);
 		for(int i = 0; i < cardsToShow.length; i++){
 			double scale = (double)cardWidth/cardsToShow[i].getWidth();
 			int cardHeight = (int) (cardsToShow[i].getHeight()*scale);
-			cardsToShow[i].draw(cardWidth*i, 0, cardWidth, cardHeight);
+			if(i < cardsToShow.length/2){
+				cardsToShow[i].draw(cardWidth*i, 0, cardWidth, cardHeight);
+			} else {
+				cardsToShow[i].draw(cardWidth*(i - (cardsToShow.length/2)), cardHeight, cardWidth, cardHeight);
+			}
 		}
 	}
 
