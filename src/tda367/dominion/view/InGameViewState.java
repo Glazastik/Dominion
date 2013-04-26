@@ -219,8 +219,16 @@ public class InGameViewState extends BasicGameState {
 	 * @param cards
 	 * @return
 	 */
-	private Image[] StringArraytoImageArray(String[] cards) {
-		return null;
+	private Image[] StringArraytoImageArray(String[] cards) 
+			throws SlickException {
+		Image[] imageArray = new Image[cards.length];
+		cih = CardInfoHandler.getInstance();
+		
+		for(int i = 0; i < cards.length; i++){
+			imageArray[i] = new Image(cih.getImageLink(cards[i]));
+		}
+		
+		return imageArray;
 	}
 	
 	/**
