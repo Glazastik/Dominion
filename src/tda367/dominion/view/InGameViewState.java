@@ -288,5 +288,60 @@ public class InGameViewState extends BasicGameState {
 			}
 		}
 	}
+	
+	/**
+	 * Paints the victorycards in appropriate places.
+	 * 
+	 * <p>Although any sort of image array may be passed
+	 * to this method, it is tailored for images of dominion
+	 * cards, specifically those of the victory category,
+	 * and nothing else.</p>
+	 * 
+	 * <p>Also note that victorycards in this sense includes
+	 * the Curse-card, but excludes Gardens, and that the size of the array should
+	 * be 4. If it is not, this method cannot be guaranteeed
+	 * to work properly.</p>
+	 * 
+	 * @param cards the images to be painted
+	 */
+	public void paintVictoryCards(Image[] cards) {
+		
+	}
+	
+	/**
+	 * Paints the actioncards in appropriate places.
+	 * 
+	 * <p>Although any sort of image array may be passed
+	 * to this method, it is tailored for images of dominion
+	 * cards, specifically those of the action category,
+	 * and nothing else.</p>
+	 * 
+	 * <p>Also note that action cards in this sense includes
+	 * Gardens. The size of the array should be 10. If it is not, 
+	 * this method cannot be guaranteeed to work properly.</p>
+	 * 
+	 * @param cards the images to be painted
+	 */
+	public void paintActionCards(Image[] cards) {
+		
+	}
+	
+	/**
+	 * Paints the treasurecards in appropriate places.
+	 * 
+	 * <p>Although any sort of image array may be passed
+	 * to this method, it is tailored for images of dominion
+	 * cards, specifically those of the action category,
+	 * and nothing else.</p>
+	 * 
+	 * <p>Also note that the size of the array should be 3.
+	 * If it is not, this method cannot be guaranteeed to 
+	 * work properly.</p>
+	 * 
+	 * @param cards
+	 */
+	public void paintTreasureCards(Image[] cards) {
+		
+	}
 
 }
