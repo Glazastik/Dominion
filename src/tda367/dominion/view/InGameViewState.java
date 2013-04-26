@@ -232,6 +232,33 @@ public class InGameViewState extends BasicGameState {
 	}
 	
 	/**
+	 * Returns a sorted clone of the given String array containing cardnames.
+	 * 
+	 * <p>This method is only good for String arrays containing cardnames,
+	 * much like {@link StringArrayToImageArray}. THis method sorts in ascending order
+	 * based in cost, i.e. the most expensive card is the first element.</p>
+	 * 
+	 * @param cards an array of strings containing cardnames
+	 * @return a clone of the given array in sorted order.
+	 */
+	private String[] sortStringArray(String[] cards) {
+		cih = CardInfoHandler.getInstance();
+		String[] sortedArray = cards.clone();
+		
+		for(int threshold = sortedArray.length; threshold > 0; threshold--){
+			for(int i = 0; i < threshold; i++){
+				if(cih.getCardValue(sortedArray[(i+1)]) > cih.getCardValue(sortedArray[i])){
+					String temp = sortedArray[i];
+					sortedArray[i] = sortedArray[(i+1)];
+					sortedArray[(i+1)] = temp;
+				}
+			}
+		}
+		
+		return null;
+	}
+	
+	/**
 	 * Prints the entire array filled with cards.
 	 * 
 	 * <p>This method (and the array filled with cards),
