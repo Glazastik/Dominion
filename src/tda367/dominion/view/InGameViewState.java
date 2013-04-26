@@ -116,24 +116,24 @@ public class InGameViewState extends BasicGameState {
 	 */
 	private String[] getActionCards(String[] cards) {
 		cih = CardInfoHandler.getInstance();
-		List<String> allActioncards = cih.getActionCards();
-		String[] actioncards = new String[10];
+		List<String> allActionCards = cih.getActionCards();
+		String[] cardsToReturn = new String[10];
 		
 		int index = 0;
 		for(int i = 0; i < cards.length; i++){
-			if(allActioncards.contains(cards[i])){
-				actioncards[index] = cards[i];
+			if(allActionCards.contains(cards[i])){
+				cardsToReturn[index] = cards[i];
 				index++;
 			}
 		}
 		
 		for(int i = 0; i < cards.length; i++){
 			if(cards[i].equals("Gardens")){//Ensures Gardens DOES end up with the actioncards
-				actioncards[index] = cards[i];
+				cardsToReturn[index] = cards[i];
 			}
 		}
 		
-		return actioncards;
+		return cardsToReturn;
 	}
 	
 	/**
@@ -148,26 +148,26 @@ public class InGameViewState extends BasicGameState {
 	 */
 	private String[] getVictoryCards(String[] cards) {
 		cih = CardInfoHandler.getInstance();
-		List<String> allVictorycards = cih.getVictoryCards();
-		String[] victorycards = new String[4];
+		List<String> allVictoryCards = cih.getVictoryCards();
+		String[] cardsToReturn = new String[4];
 		
 		int index = 0;
 		for(int i = 0; i < cards.length; i++){
-			if(allVictorycards.contains(cards[i])){
+			if(allVictoryCards.contains(cards[i])){
 				if(!cards[i].equals("Gardens")){//Ensures Gardens does NOT end up with the victorycards
-					victorycards[index] = cards[i];
+					cardsToReturn[index] = cards[i];
 					index++;
 				}
 			}
 		}
 		
 		for(int i = 0; i < cards.length; i++){
-			if(cards[i].equals("Curse")){
-				victorycards[index] = cards[i];
+			if(cards[i].equals("Curse")){//Ensures that Curse DOES end up with the victorycards
+				cardsToReturn[index] = cards[i];
 			}
 		}
 		
-		return victorycards;
+		return cardsToReturn;
 	}
 	 /**
 	  * Returns all the treasurecards from an array of cardnames
@@ -176,7 +176,19 @@ public class InGameViewState extends BasicGameState {
 	  * @return an array containg every treasurecard found
 	  */
 	private String[] getTreasureCards(String[] cards) {
-		return null;
+		cih = CardInfoHandler.getInstance();
+		List<String> allTreasureCards = cih.getTreasureCards();
+		String[] cardsToReturn = new String[3];
+		
+		int index = 0;
+		for(int i = 0; i < cards.length; i++){
+			if(allTreasureCards.contains(cards[i])){
+				cardsToReturn[index] = cards[i];
+				index++;
+			}
+		}
+		
+		return cardsToReturn;
 	}
 	
 	/**
