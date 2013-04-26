@@ -26,6 +26,7 @@ public class InGameViewState extends BasicGameState {
 	private Image[] treasureCards;
 	private Image[] cardsToShow;
 	private Image board = null;
+	private int gameContainerWidth;
 	private int id = 0;
 	private int amountOfPlayers;
 	private RoundedRectangle counterZone = null;
@@ -50,6 +51,7 @@ public class InGameViewState extends BasicGameState {
 		treasureCards = StringArraytoImageArray(getTreasureCards(getSupply()));
 		counterZone = new RoundedRectangle(0, gc.getHeight() - gc.getHeight()/3 - 50, gc.getWidth(), 40, 2);
 		riksdaler = new Image("res/img/gui/ingame/Coin.png");
+		gameContainerWidth = gc.getWidth();
 	}
 
 	@Override
@@ -65,13 +67,14 @@ public class InGameViewState extends BasicGameState {
 		g.drawString("Buys: " + nmbOfBuys, 200, gc.getHeight() - gc.getHeight()/3 - 40);
 		g.drawString("x"+nmbOfRiksdaler, 380, gc.getHeight() - gc.getHeight()/3 - 40);
 		riksdaler.draw((float)350, (float)gc.getHeight() - gc.getHeight()/3 - 43, (float)0.035);
+		paintVictoryCards(victoryCards);
+		paintActionCards(actionCards);
 		
 	}
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int time)
 			throws SlickException {
-		
 		player.increaseMoney(1);
 		
 		nmbOfActions = String.valueOf(player.getActions());
@@ -305,7 +308,15 @@ public class InGameViewState extends BasicGameState {
 	 * @param cards the images to be painted
 	 */
 	public void paintVictoryCards(Image[] cards) {
+		int cardHeight;
+		double scale;
+		int cardWidth = gameContainerWidth/7;
 		
+		for(int i = 0; i < cards.length; i++){
+			scale = (double) cardWidth/cards[i].getWidth();
+			cardHeight = (int) (cards[i].getHeight()*scale);
+			cards[i].draw(0, cardHeight*i, cardWidth, cardHeight);
+		}
 	}
 	
 	/**
@@ -323,7 +334,7 @@ public class InGameViewState extends BasicGameState {
 	 * @param cards the images to be painted
 	 */
 	public void paintActionCards(Image[] cards) {
-		
+
 	}
 	
 	/**
