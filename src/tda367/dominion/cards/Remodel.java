@@ -20,7 +20,7 @@ public class Remodel {
 				//if(tempMessage instanceOf LocatedCardMessage{
 				//tempLCMessage = (LocatedCardMessage) tempMessage;
 				//String tempCard = tempLCMessage.getCardName();
-				//	if(p.getHand().contains(tempCard){
+				//	if(p.getHand().contains(tempCard) && tempLCMessage.getLocation().equals("Hand")){
 				//		p.trashCard(tempCard);
 				//		trashedValue = cif.getCardValue(tempCard) + 2;
 				//		doneTrashing = true
