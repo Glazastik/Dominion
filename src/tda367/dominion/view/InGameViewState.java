@@ -97,17 +97,44 @@ public class InGameViewState extends BasicGameState {
 	}
 	
 	/**
-	 * Returns all the actioncards from an array of cardnames
+	 * Returns all the actioncards from an array of cardnames.
+	 * 
+	 * <p> Although this method promises to return all actioncards, it will also
+	 * return a copy of gardens if one is present in the string of cardnames.
+	 * This is because a copy of gardens should be displayed with the actioncards
+	 * in the supply, and the true purpose of this method is the get the ten cards
+	 * that should be displayed in the supply.
 	 * 
 	 * @param cards the array of cardnames that will be searched for actioncards
 	 * @return an array containing every actioncard found
 	 */
 	private String[] getActionCards(String[] cards) {
+		cih = CardInfoHandler.getInstance();
+		List<String> allActioncards = cih.getActionCards();
+		String[] actioncards = new String[10];
+		
+		int index = 0;
+		for(int i = 0; i < cards.length; i++){
+			if(allActioncards.contains(cards[i])){
+				actioncards[index] = cards[i];
+				index++;
+			}
+		}
+		
+		for(int i = 0; i < cards.length; i++){
+			if(cards[i].equals("Gardens")){
+				actioncards[index] = cards[i];
+			}
+		}
 		return null;
 	}
 	
 	/**
 	 * Returns all the victorycards from an array of cardnames
+	 * 
+	 * Although it says victorycards, this method will also fetch curse
+	 * cards, as they are somewhat related, at least when they will be drawn 
+	 * out in the supply are.
 	 * 
 	 * @param cards the array of cardnames that will be searched for victorycards
 	 * @return an array containing every victorycard found
