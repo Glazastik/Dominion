@@ -1,11 +1,19 @@
 package tda367.dominion.view;
 
-import tda367.dominion.model.*;
+import java.util.List;
 
-import org.newdawn.slick.*;
-import org.newdawn.slick.geom.Line;
+import org.newdawn.slick.Color;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
+import org.newdawn.slick.Input;
+import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.RoundedRectangle;
-import org.newdawn.slick.state.*;
+import org.newdawn.slick.state.BasicGameState;
+import org.newdawn.slick.state.StateBasedGame;
+
+import tda367.dominion.model.CardInfoHandler;
+import tda367.dominion.model.Supply;
 
 public class InGameViewState extends BasicGameState {
 
