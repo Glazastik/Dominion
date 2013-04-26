@@ -254,7 +254,7 @@ public class InGameViewState extends BasicGameState {
 		cih = CardInfoHandler.getInstance();
 		String[] sortedArray = cards.clone();
 		
-		for(int threshold = sortedArray.length; threshold > 0; threshold--){
+		for(int threshold = sortedArray.length-1; threshold > 0; threshold--){
 			for(int i = 0; i < threshold; i++){
 				if(cih.getCardValue(sortedArray[(i+1)]) > cih.getCardValue(sortedArray[i])){
 					String temp = sortedArray[i];
