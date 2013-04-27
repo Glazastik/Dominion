@@ -19,7 +19,9 @@ public class ClientConnection extends Listener {
 		client.addListener(controller);
 
 		NetworkCommon.register(client);
-
+	}
+	
+	public void connect() {
 		new Thread("Connect") {
 			public void run() {
 				try {

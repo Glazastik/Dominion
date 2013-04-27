@@ -17,6 +17,10 @@ public class ClientModel {
 		this.connection = connection;
 	}
 	
+	public void searchForGame() {
+		connection.connect();
+	}
+	
 	public void disconnected() {
 		
 	}

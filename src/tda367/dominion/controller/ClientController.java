@@ -32,6 +32,10 @@ public class ClientController extends Listener {
 		}
 
 	}
+	
+	public void searchForGame() {
+		model.searchForGame();
+	}
 
 	public void disconnected(Connection c) {
 		model.disconnected();
