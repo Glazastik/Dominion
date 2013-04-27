@@ -3,12 +3,11 @@ package tda367.dominion.client;
 import java.io.IOException;
 
 import tda367.dominion.controller.ClientController;
-import tda367.dominion.messages.RoomMessage;
 import tda367.dominion.server.NetworkCommon;
 
 import com.esotericsoftware.kryonet.*;
 
-public class ClientConnection extends Listener {
+public class ClientConnection {
 	private ClientController controller;
 	private final Client client;
 	

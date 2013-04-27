@@ -1,7 +1,6 @@
 package tda367.dominion.controller;
 
-import tda367.dominion.messages.ConnectionMessage;
-import tda367.dominion.messages.RoomMessage;
+import tda367.dominion.messages.*;
 import tda367.dominion.model.ClientModel;
 
 import com.esotericsoftware.kryonet.*;
