@@ -23,53 +23,68 @@ public class ServerFactory {
 		if (server != null) {
 			return server;
 		}
-		
+
 		roomHandler = new RoomHandler();
 		roomHandler.createRoom(new GameRoom(null));
-		server = new Server();
+		server = new Server() {
+			public Connection newConnection() {
+				return new GameConnection();
+			}
+		};
 		server.start();
 		NetworkCommon.register(server);
-		
 
 		server.addListener(new Listener() {
-			public void connected(Connection c){
+			public void connected(Connection c) {
 				print("Received connection from " + c.getRemoteAddressTCP());
 				sendRoomList(c);
-				
+
 			}
-			
-			public void received (Connection c, Object object) {
-				
+
+			public void received(Connection c, Object object) {
+				GameConnection gc = (GameConnection) c;
+
 				print("Received stuff");
-				if(object instanceof ConnectionMessage){
-					print("Message!");
+				if (object instanceof ConnectionMessage) {
+					ConnectionMessage cmsg = (ConnectionMessage) object;
+					connectPlayer(gc, cmsg);
 				} else {
 					print("Classname: " + object.getClass());
 					print(object.toString());
 				}
 			}
-			
-			public void disconnected(Connection c){
+
+			public void disconnected(Connection c) {
 				print(c.getID() + " disconnected");
 			}
 		});
-		
+
 		try {
 			server.bind(NetworkCommon.TCPPORT);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
-		
+
 		return server;
 
 	}
-	
+
+	protected static void connectPlayer(GameConnection c, ConnectionMessage cmsg) {
+		int id = Integer.parseInt(cmsg.getRoomId());
+		roomHandler.addPlayer(c, id);
+
+	}
+
+	public static RoomHandler getRoomHandler() {
+		return roomHandler;
+	}
+
 	protected static void sendRoomList(Connection c) {
 		RoomMessage rmsg = new RoomMessage();
 		rmsg.setRooms(roomHandler.getRoomsAsString());
 		print(roomHandler.getRoomsAsString()[0][1]);
 		c.sendTCP(rmsg);
-		
+
 	}
 
 	private static void print(String s) {

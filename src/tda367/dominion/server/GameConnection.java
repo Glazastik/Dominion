@@ -10,6 +10,10 @@ import com.esotericsoftware.kryonet.Connection;
 public class GameConnection extends Connection{
 	private String playerName;
 	
+	public GameConnection(){
+		
+	}
+	
 	public void setPlayerName(String name){
 		this.playerName = name;
 	}

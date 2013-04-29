@@ -15,6 +15,8 @@ public class ClientController extends Listener {
 	public void connected(Connection c) {
 		System.out.println("Connected to the server on: "
 				+ c.getRemoteAddressTCP());
+		
+		
 	}
 
 	public void received(Connection c, Object object) {
@@ -28,6 +30,10 @@ public class ClientController extends Listener {
 				System.out.println("Room:");
 				System.out.println("Name: " + s[0] + " \n Slots: "+ s[1] + "\n");
 			}
+			
+			ConnectionMessage cmsg = new ConnectionMessage();
+			cmsg.setName("Plebben");
+			cmsg.setRoomId("0");
 		}
 
 	}

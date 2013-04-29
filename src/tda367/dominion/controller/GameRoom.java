@@ -16,6 +16,7 @@ public class GameRoom {
 	private LinkedList<GameConnection> gcs;
 	private int slots;
 	private String name;
+	private int id;
 
 	/**
 	 * Initiates a Game Room
@@ -26,6 +27,7 @@ public class GameRoom {
 		
 		slots = 0;
 		name = "test";
+		id = 0;
 
 		if (gcs != null) {
 			this.gcs = gcs;
@@ -73,5 +75,19 @@ public class GameRoom {
 	 */
 	public void setName(String name) {
 		this.name = name;
+	}
+
+	public void setID(int id){
+		this.id = id;
+	}
+	
+	public String getID() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	public void addPlayer(GameConnection c) {
+		// TODO Auto-generated method stub
+		
 	}
 }

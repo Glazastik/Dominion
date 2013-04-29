@@ -29,9 +29,24 @@ public class RoomHandler {
 			String[] tempRoom = new String[2];
 			tempRoom[0] = gr.getName();
 			tempRoom[1] = ""+gr.getSlots();
+			tempRoom[2] = ""+gr.getID();
 			roomString[i] = tempRoom;
 		}
 		
 		return roomString;
+	}
+
+	public void addPlayer(GameConnection c, int id) {
+		this.getRoomById(id).addPlayer(c);
+	}
+	
+	private GameRoom getRoomById(int id){
+		for(GameRoom gr: rooms){
+			int tempID = Integer.parseInt(gr.getID());
+			if(tempID == id){
+				return gr;
+			}
+		}
+		return null;
 	}
 }
