@@ -4,6 +4,8 @@ import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 
+import tda367.dominion.controller.ClientController;
+
 import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
 
@@ -17,14 +19,16 @@ public class MainView extends StateBasedGame {
 	public static int screenWidth = 800;
 	public static AppGameContainer theGame;
 	public static boolean fullS = false;
+	public static ClientController controller;
 	
 	
 	/**
 	 * Constructs a new StateBasedGame which in turn creates a AppGameContainer, TODO read from file
 	 * @param title of the window
 	 */
-	public MainView() {
+	public MainView(ClientController controller) {
 		super("Dominion");
+		this.controller = controller;
 		
 		try {
 			theGame = new AppGameContainer(this);

@@ -15,7 +15,7 @@ public class ClientMain {
 		connection = new ClientConnection(controller);
 		model = new ClientModel(connection);
 		controller.setModel(model);
-		view = new MainView();
+		view = new MainView(controller);
 	}
 	
 }
