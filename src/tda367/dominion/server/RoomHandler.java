@@ -16,10 +16,18 @@ public class RoomHandler {
 		rooms = new LinkedList<GameRoom>();
 	}
 	
+	/**
+	 * Adds a GameRoom to the list.
+	 * @param gr
+	 */
 	public void createRoom(GameRoom gr){
 		rooms.add(gr);
 	}
 	
+	/**
+	 * Messages will use Strings for information.
+	 * @return
+	 */
 	public String[][] getRoomsAsString(){
 		
 		System.out.println("Rooms " + rooms.size());
@@ -35,12 +43,23 @@ public class RoomHandler {
 		
 		return roomString;
 	}
-
+	
+	/**
+	 * Adds a player to the given room (id).
+	 * @param c Connection c.
+	 * @param id The id of the room to add the player to.
+	 */
 	public void addPlayer(GameConnection c, int id) {
 		System.out.println("Trying to add player " + c.getPlayerName() + " to " +  id);
 		this.getRoomById(id).addPlayer(c);
 	}
 	
+	
+	/**
+	 * Returns a room with corresponding ID.
+	 * @param id the ID to search for.
+	 * @return GameRoom or null if no room was found.
+	 */
 	private GameRoom getRoomById(int id){
 		for(GameRoom gr: rooms){
 			int tempID = gr.getID();

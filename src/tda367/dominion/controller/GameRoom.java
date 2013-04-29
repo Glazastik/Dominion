@@ -86,7 +86,12 @@ public class GameRoom {
 	public int getID() {
 		return id;
 	}
-
+	
+	/**
+	 * This is how we add a player to a game room. We need the current connection to be able to retrieve and send items.
+	 * 
+	 * @param c the current connection of the player
+	 */
 	public void addPlayer(GameConnection c) {
 		gcs.add(c);
 		players.add(new Player(c.getPlayerName()));
