@@ -1,0 +1,20 @@
+package tda367.dominion.cards;
+
+import java.util.LinkedList;
+
+import tda367.dominion.model.Player;
+
+public class Spy {
+	public static void play(Player p, LinkedList<Player> players){
+		for(Player player: players){
+			//p.sendCardMessage(player.revealTopOfDeck());
+			//p.createBoolMessage("Discard card?");
+			//Message message = p.getNextMessage();
+			//if(message instanceOf YesNoMessage){
+			//YesNoMessage tempMessage = (YesNoMessage) message;
+			//if(tempMessage.isTrue()){
+				//player.discardTopOfDeck();
+			//}
+		}
+	}
+}

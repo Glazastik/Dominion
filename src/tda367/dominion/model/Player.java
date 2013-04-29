@@ -342,11 +342,18 @@ public class Player {
 	public String trashCard(String card) {
 		return hand.pop(card);
 	}
-
+	/**
+	 * Trashes the selected card from the playing area. (Only used for feast)
+	 * @param card the selected card.
+	 */
 	public void trashFromPlayingArea(String card) {
 		if(playingArea.contains(card)){
 			playingArea.pop(card);
 		}
 		
 	}
+	public void discardTopOfDeck(){
+		discard.add(deck.pop());
+	}
+	
 }
