@@ -22,4 +22,13 @@ public abstract class ControlledGameState extends BasicGameState {
 	public int getID() {
 		return id;
 	}
+	
+	/**
+	 * Returns the controller object.
+	 * 
+	 * @return controller
+	 */
+	public ClientController getController() {
+		return controller;
+	}
 }
