@@ -57,7 +57,8 @@ public class InGameViewState extends BasicGameState {
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
-			throws SlickException {	
+			throws SlickException {
+		gameContainerWidth = gc.getWidth();
 		board.draw();	
 		g.setLineWidth(10);
 		g.setColor(Color.darkGray);
