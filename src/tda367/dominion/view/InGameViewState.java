@@ -424,9 +424,9 @@ public class InGameViewState extends ControlledGameState {
 		}
 		
 		for(int i = 0; i < imageCards.length; i++){
-			float cardWidth = (float) gameContainerWidth/7;
-			double scale = (double) cardWidth/imageCards[i].getWidth();
-			float cardHeight = (float) (imageCards[i].getHeight()*scale);
+			float cardHeight = (float) gameContainerHeight*((float)1/3);
+			double scale = (double) cardHeight/imageCards[i].getHeight();
+			float cardWidth = (float) (imageCards[i].getWidth()*scale);
 			imageCards[i].draw(cardWidth*i, gameContainerHeight - cardHeight, cardWidth, cardHeight);
 		}
 		
