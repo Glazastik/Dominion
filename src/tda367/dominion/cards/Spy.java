@@ -15,6 +15,7 @@ public class Spy {
 			//if(tempMessage.isTrue()){
 				//player.discardTopOfDeck();
 			//}
+			//p.sendRemoveRevealedMessage();
 		}
 	}
 }

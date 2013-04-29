@@ -24,6 +24,7 @@ public class Library {
 				p.draw();
 			}
 		}
+		//p.sendRemoveRevealedMessages();
 		p.putRevealedCardsInDiscard();
 	}
 
