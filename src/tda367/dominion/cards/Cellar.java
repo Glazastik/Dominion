@@ -7,7 +7,7 @@ public class Cellar {
 	public static void play(Player p){
 		int amountDiscarded = 0;
 		p.increaseActions(1);
-		//p.sendMessage("Discard any number of cards and then draw that many cards.")
+		//p.sendInstructionMessage("Discard any number of cards and then draw that many cards.")
 //		Message temp = p.getNextMessage();
 //		while(!temp instanceOf doneMessage || p.getHandSize() == 0){
 //			if(temp.instanceOf(LocatedCardMessage)){
@@ -18,6 +18,7 @@ public class Cellar {
 //				}
 //			}
 //		}
+//		p.removeInstructionMessage();
 		p.draw(amountDiscarded);
 	}
 }
