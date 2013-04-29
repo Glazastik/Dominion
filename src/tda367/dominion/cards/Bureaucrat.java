@@ -25,14 +25,18 @@ public class Bureaucrat {
 					}
 				}
 				if(hasVictoryCard){
+					boolean done = false;
 					//p.sendInformationMessage("Chose a victory card to put on top of your deck.");
-					//Message message = p.getNextMessage();
-					//if(message instanceOf LocatedCardMessage){
-						//LocatedCardMessage tempMessage = (LocatedCardMessage) message;
-						//if(tempMessage.getLocation().equals("Hand") && cif.getCardType(tempMessage.getCardName().equals("Victory"))){
-							//p.putOnTopOfDeck(p.getHand().pop(tempMessage.getCardName());)
+					while(!done){
+						//Message message = p.getNextMessage();
+						//if(message instanceOf LocatedCardMessage){
+							//LocatedCardMessage tempMessage = (LocatedCardMessage) message;
+							//if(tempMessage.getLocation().equals("Hand") && cif.getCardType(tempMessage.getCardName().equals("Victory"))){
+								//p.putOnTopOfDeck(p.getHand().pop(tempMessage.getCardName());)
+								//done = true;
+							//}
 						//}
-					//}
+					}
 					//p.removeInformationMessage();
 				} else {
 					//player.sendMultipleCardMessage(p.getHand().getCards());
