@@ -6,7 +6,8 @@ public class Chancellor implements ICard {
 
 	public static void play(Player player) {
 		player.increaseMoney(2);
-		//player.createBoolMessage("Do you wish to discard your deck?")
+		//player.createInformationMessage("Do you wish to discard your deck?");
+		//player.createBoolMessage();
 		//Message temp = player.getNextMessage()
 		//if(temp instanceOf BoolMessage){
 			//BoolMessage tempMessage = (BoolMessage) temp;
@@ -15,5 +16,6 @@ public class Chancellor implements ICard {
 			//}
 		//}
 		//player.removeBoolMessage();
+		//player.removeInformationMessage();
 	}
 }

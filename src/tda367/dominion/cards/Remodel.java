@@ -14,31 +14,33 @@ public class Remodel {
 		boolean doneGaining = false;
 		if(p.getHandSize() > 0){
 			while(!doneTrashing){
-				//p.sendMessage("Trash a card from your hand.");
+				//p.sendInformationMessage("Trash a card from your hand.");
 				//Message tempMessage = p.getNextMessage();
 				//LocatedCardMessage tempLCMessage;
 				//if(tempMessage instanceOf LocatedCardMessage{
-				//tempLCMessage = (LocatedCardMessage) tempMessage;
-				//String tempCard = tempLCMessage.getCardName();
-				//	if(p.getHand().contains(tempCard) && tempLCMessage.getLocation().equals("Hand")){
-				//		p.trashCard(tempCard);
-				//		trashedValue = cif.getCardValue(tempCard) + 2;
-				//		doneTrashing = true
-				//	}
+					//tempLCMessage = (LocatedCardMessage) tempMessage;
+					//String tempCard = tempLCMessage.getCardName();
+					//if(p.getHand().contains(tempCard) && tempLCMessage.getLocation().equals("Hand")){
+						//p.trashCard(tempCard);
+						//trashedValue = cif.getCardValue(tempCard) + 2;
+						//doneTrashing = true
+					//}
 				//}
+				//p.removeInformationMessage();
 			}
 			while(!doneGaining){
-				//p.sendMessage("Gain a card costing up to " + trashedValue);
+				//p.sendInformationMessage("Gain a card costing up to " + trashedValue);
 				//Message tempMessage = p.getNextMessage();
 				//LocatedCardMessage tempLCMessage;
 				//if(tempMessage instanceOf LocatedCardMessage{
-				//tempLCMessage = (LocatedCardMessage) tempMessage;
-				//String tempCard = tempLCMessage.getCardName();
-				//if(gH.isCardGainable(tempCard) && tempLCMessage.getLocation().equals("Supply")){
-				// gH.playerGainCard(p, tempCard);
-				// doneGaining = true;
+					//tempLCMessage = (LocatedCardMessage) tempMessage;
+					//String tempCard = tempLCMessage.getCardName();
+					//if(gH.isCardGainable(tempCard) && tempLCMessage.getLocation().equals("Supply")){
+						//gH.playerGainCard(p, tempCard);
+						//doneGaining = true;
+					//}
 				//}
-				//}
+				//p.removeInformationMessage();
 			}
 		}
 	}

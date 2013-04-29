@@ -11,8 +11,9 @@ public class Library {
 			if(p.revealTopOfDeck() == null){
 				break;
 			} else if(cif.getCardType(p.revealTopOfDeck()).equals("Action")){
-				//p.sendCardMessage(p.revealTopOfDeck())
-				//p.createBoolMessage("Set aside?")
+				//p.sendCardMessage(p.revealTopOfDeck());
+				//p.sendInformationMessage("Set aside?");
+				//p.createBoolMessage();
 				//Message temp = p.getNextMessage();
 				//if(temp instanceOf YesNoMessage){
 				//	if((YesNoMessage) temp.isTrue()){
@@ -20,6 +21,7 @@ public class Library {
 					//} else {
 					//	p.setAsideTopOfDeck();
 					//}
+				//p.sendRemoveInstructionMessage();
 			} else {
 				p.draw();
 			}

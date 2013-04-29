@@ -6,7 +6,8 @@ public class Chapel {
 
 	public static void play(Player p){
 		int amountTrashed = 0;
-		//p.sendMessage("Trash up to 4 cards from your hand")
+		//p.sendInformationMessage("Trash up to 4 cards from your hand")
+		//p.sendCreateDoneMessage();
 //		Message temp = p.getNextMessage();
 //		while(!temp instanceOf DoneMessage || trashedCards < 4 ){
 //			if(temp instanceOf LocatedCardMessage){
@@ -17,6 +18,8 @@ public class Chapel {
 //				}
 //			}
 //		}
+		//p.removeDoneMessage();
+		//p.removeInformationMessage();
 	}
 
 }

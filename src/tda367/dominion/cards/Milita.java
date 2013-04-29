@@ -10,9 +10,8 @@ public class Milita {
 		player.increaseMoney(2);
 		for(Player p: players){
 			if(player!=p){
-				//TODO: Needs the client class on the server side for communication.
 				while(p.getHandSize()>3){
-					//p.sendMessage("Discard down to 3 cards");
+					//p.sendInformationMessage("Discard down to 3 cards");
 					//Message temp = p.getNextMessage
 					//if(temp instanceOf LocatedCardMessage){
 						//LocatedCardMessage tempMessage = (LocatedCardMessage) temp;
@@ -20,6 +19,7 @@ public class Milita {
 							//p.discardCard((LocatedCardMessage) temp.getCard)
 						//}
 					//}
+					//p.removeInformationMessage();
 				}
 			}
 		}

@@ -12,7 +12,7 @@ public class Feast {
 		CardInfoHandler cardInfoHandler = CardInfoHandler.getInstance();
 		p.trashFromPlayingArea("Feast");
 		GainingHandler gH = new GainingHandler(supply);
-		//p.sendMessage("Chose a card to gain (costing 5 or less).
+		//p.sendInformationMessage("Chose a card to gain (costing 5 or less).
 		while(!done){
 			//Message temp = p.getNextMessage();
 			//if(temp instanceOf LocatedCardMessage){
@@ -24,6 +24,7 @@ public class Feast {
 				//}
 			//}
 		}
+		//p.removeInformationMessage();
 	}
 
 }

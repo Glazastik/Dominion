@@ -62,6 +62,5 @@ public class Thief {
 			//p.sendRemoveRevealedMessage;
 			//p.sendRemoveBoolMessage;
 		}
-		
 	}
 }
