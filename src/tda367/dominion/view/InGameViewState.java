@@ -10,15 +10,15 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.RoundedRectangle;
-import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+import tda367.dominion.controller.ClientController;
 import tda367.dominion.model.CardInfoHandler;
 import tda367.dominion.model.Pile;
 import tda367.dominion.model.Player;
 import tda367.dominion.model.Supply;
 
-public class InGameViewState extends BasicGameState {
+public class InGameViewState extends ControlledGameState {
 
 	private Supply supply;
 	private Player player;
@@ -29,7 +29,6 @@ public class InGameViewState extends BasicGameState {
 	private Image board = null;
 	private int gameContainerWidth;
 	private int gameContainerHeight;
-	private int id = 0;
 	private int amountOfPlayers;
 	private int ROWS_IN_SUPPLY;
 	private RoundedRectangle counterZone = null;
@@ -41,8 +40,8 @@ public class InGameViewState extends BasicGameState {
 	private Rectangle[] victoryRectangles;
 	private Rectangle[] treasureRectangles;
 	
-	public InGameViewState(int id) {
-		this.id = id;
+	public InGameViewState(int id, ClientController controller) {
+		super(id, controller);
 	}
 	
 	@Override
@@ -124,15 +123,6 @@ public class InGameViewState extends BasicGameState {
 		  gc.getInput().clearKeyPressedRecord();
 	}
 
-	/**
-	 * Returns the ID of this state
-	 * @return the ID
-	 */
-	@Override
-	public int getID() {
-		return id;
-	}
-	
 	/**
 	 * Returns all the cardnames in the supply.
 	 * 
