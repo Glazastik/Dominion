@@ -24,7 +24,6 @@ public class InGameViewState extends BasicGameState {
 	private Image[] actionCards;
 	private Image[] victoryCards;
 	private Image[] treasureCards;
-	private Image[] cardsToShow;
 	private Image board = null;
 	private int gameContainerWidth;
 	private int id = 0;
@@ -271,28 +270,6 @@ public class InGameViewState extends BasicGameState {
 		}
 		
 		return sortedArray;
-	}
-	
-	/**
-	 * Prints the entire array filled with cards.
-	 * 
-	 * <p>This method (and the array filled with cards),
-	 * is mainly for demonstrative and experimental
-	 * purposes and will probably become obsolete or
-	 * have to go trough extensive modification.<p>
-	 */
-	private void paintCardArray(GameContainer gc) {	
-		
-		int cardWidth = gc.getWidth()/(cardsToShow.length/2);
-		for(int i = 0; i < cardsToShow.length; i++){
-			double scale = (double)cardWidth/cardsToShow[i].getWidth();
-			int cardHeight = (int) (cardsToShow[i].getHeight()*scale);
-			if(i < cardsToShow.length/2){
-				cardsToShow[i].draw(cardWidth*i, 0, cardWidth, cardHeight);
-			} else {
-				cardsToShow[i].draw(cardWidth*(i - (cardsToShow.length/2)), cardHeight, cardWidth, cardHeight);
-			}
-		}
 	}
 	
 	/**
