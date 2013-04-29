@@ -87,7 +87,8 @@ public class GameRoom {
 	}
 
 	public void addPlayer(GameConnection c) {
-		// TODO Auto-generated method stub
+		gcs.add(c);
+		players.add(new Player(c.getPlayerName()));
 		
 	}
 }
