@@ -2,7 +2,6 @@ package tda367.dominion.view;
 
 import java.util.List;
 
-import org.lwjgl.input.Mouse;
 import org.lwjgl.util.Rectangle;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
@@ -100,8 +99,6 @@ public class InGameViewState extends ControlledGameState {
 			throws SlickException {
 		
 		Input input  = gc.getInput();
-		int mouseX = input.getMouseX();
-		int mouseY = input.getMouseY();
 		gameContainerWidth = gc.getWidth();
 		gameContainerHeight = gc.getHeight();
 		
@@ -123,16 +120,30 @@ public class InGameViewState extends ControlledGameState {
 	@Override
 	public void mouseClicked(int button, int x, int y, int clickCount) {
 		super.mouseClicked(button, x, y, clickCount);
-		for (int i=0; i<4; i++) {
-			if (button == Input.MOUSE_LEFT_BUTTON && victoryRectangles[i].contains(x, y)) {
+		for(int i=0; i<4; i++) {
+			if(button == Input.MOUSE_LEFT_BUTTON && victoryRectangles[i].contains(x, y)) {
 				if(i == 0) {
-					System.out.println(1);
+					System.out.println("victory card: 1");
 				} else if(i == 1) {
-					System.out.println(2);
+					System.out.println("victory card: 2");
 				} else if(i == 2) {
-					System.out.println(3);
+					System.out.println("victory card: 3");
 				} else if(i == 3) {
-					System.out.println(4);
+					System.out.println("victory card: 4");
+				}
+			}
+		}
+		
+		for(int i=0; i<3; i++) {
+			if(button == Input.MOUSE_LEFT_BUTTON && treasureRectangles[i].contains(x,y)) {
+				if(i == 0) {
+					System.out.println("treasure card: 1");
+				} else if(i == 1) {
+					System.out.println("treasure card: 2");
+				} else if(i == 2) {
+					System.out.println("treasure card: 3");
+				} else if(i == 3) {
+					System.out.println("treasure card: 4");
 				}
 			}
 		}
