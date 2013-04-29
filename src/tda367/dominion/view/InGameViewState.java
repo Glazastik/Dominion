@@ -357,5 +357,19 @@ public class InGameViewState extends BasicGameState {
 			cards[i].draw(cardWidth*6, cardHeight*i, cardWidth, cardHeight);
 		}
 	}
+	
+	/**
+	 * Paints the cards in the players hand.
+	 * 
+	 * <p>Although any sort of image array may be passed 
+	 * to thus method, it is tailored for images of dominion 
+	 * cards, and giving it anything else may result in
+	 * unwanted behaviour.</p>
+	 * 
+	 * @param cards
+	 */
+	private void paintPlayerHand(Image[] cards){
+		
+	}
 
 }
