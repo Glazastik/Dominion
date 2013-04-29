@@ -2,6 +2,7 @@ package tda367.dominion.view;
 
 import java.util.List;
 
+import org.lwjgl.util.Rectangle;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -36,6 +37,9 @@ public class InGameViewState extends BasicGameState {
 	private String nmbOfBuys;
 	private String nmbOfRiksdaler;
 	private Image riksdaler = null;
+	private Rectangle[] actionRectangles;
+	private Rectangle[] victoryRectangles;
+	private Rectangle[] treasureRectangles;
 	
 	public InGameViewState(int id) {
 		this.id = id;
@@ -56,6 +60,9 @@ public class InGameViewState extends BasicGameState {
 		riksdaler = new Image("res/img/gui/ingame/Coin.png");
 		gameContainerWidth = gc.getWidth();
 		gameContainerHeight = gc.getHeight();
+		actionRectangles = new Rectangle[10];
+		victoryRectangles = new Rectangle[4];
+		treasureRectangles = new Rectangle[3];
 	}
 
 	@Override
@@ -75,24 +82,27 @@ public class InGameViewState extends BasicGameState {
 		paintActionCards(actionCards);
 		paintTreasureCards(treasureCards);
 		paintPlayerHand(actionCards);
-		
 	}
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int time)
 			throws SlickException {
+		
+		Input input  = gc.getInput();
+		int mouseX = input.getMouseX();
+		int mouseY = input.getMouseY();
 		gameContainerWidth = gc.getWidth();
 		gameContainerHeight = gc.getHeight();
-		player.increaseMoney(1);
 		
 		counterZone.setWidth(gameContainerWidth);
 		counterZone.setY(gc.getHeight() - gc.getHeight()/3 - 50);
+		
+		//Update values
 		nmbOfActions = String.valueOf(player.getActions());
 		nmbOfBuys = String.valueOf(player.getBuys());
-		nmbOfRiksdaler = String.valueOf(player.getMoney());
+		nmbOfRiksdaler = String.valueOf(player.getMoney());		
 		
-		Input input  = gc.getInput();
-		
+		//Return to menu
 		if (input.isKeyPressed(Input.KEY_SPACE)) {
 			sbg.enterState(1);
 		}
@@ -114,6 +124,10 @@ public class InGameViewState extends BasicGameState {
 		  gc.getInput().clearKeyPressedRecord();
 	}
 
+	/**
+	 * Returns the ID of this state
+	 * @return the ID
+	 */
 	@Override
 	public int getID() {
 		return id;
@@ -305,6 +319,8 @@ public class InGameViewState extends BasicGameState {
 			scale = (double) cardWidth/cards[i].getWidth();
 			cardHeight = (float) (cards[i].getHeight()*scale);
 			cards[i].draw(0, cardHeight*i, cardWidth, cardHeight);
+			victoryRectangles[i].setLocation(0, (int)cardHeight*i);
+			victoryRectangles[i].setSize((int)cardWidth, (int)cardHeight);
 		}
 	}
 	
