@@ -2,6 +2,7 @@ package tda367.dominion.view;
 
 import java.util.List;
 
+import org.lwjgl.input.Mouse;
 import org.lwjgl.util.Rectangle;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
@@ -59,9 +60,20 @@ public class InGameViewState extends ControlledGameState {
 		riksdaler = new Image("res/img/gui/ingame/Coin.png");
 		gameContainerWidth = gc.getWidth();
 		gameContainerHeight = gc.getHeight();
+		
+		//Initiate all rectangles
 		actionRectangles = new Rectangle[10];
 		victoryRectangles = new Rectangle[4];
 		treasureRectangles = new Rectangle[3];
+		for (int i = 0; i<10; i++) {
+			actionRectangles[i] = new Rectangle();
+		}
+		for (int i = 0; i<4; i++) {
+			victoryRectangles[i] = new Rectangle();
+		}
+		for (int i = 0; i<3; i++) {
+			treasureRectangles[i] = new Rectangle();
+		}
 	}
 
 	@Override
@@ -108,6 +120,24 @@ public class InGameViewState extends ControlledGameState {
 		
 	}
 	
+	@Override
+	public void mouseClicked(int button, int x, int y, int clickCount) {
+		super.mouseClicked(button, x, y, clickCount);
+		for (int i=0; i<4; i++) {
+			if (button == Input.MOUSE_LEFT_BUTTON && victoryRectangles[i].contains(x, y)) {
+				if(i == 0) {
+					System.out.println(1);
+				} else if(i == 1) {
+					System.out.println(2);
+				} else if(i == 2) {
+					System.out.println(3);
+				} else if(i == 3) {
+					System.out.println(4);
+				}
+			}
+		}
+	}
+
 	/**
 	 * This method is called every time this state is left.
 	 * 
