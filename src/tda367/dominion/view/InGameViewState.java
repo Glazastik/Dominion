@@ -313,9 +313,10 @@ public class InGameViewState extends BasicGameState {
 	private void paintVictoryCards(Image[] cards) {
 		int cardHeight;
 		double scale;
-		int cardWidth = gameContainerWidth/ROWS_IN_SUPPLY;
+		int cardWidth;
 		
 		for(int i = 0; i < cards.length; i++){
+			cardWidth = gameContainerWidth/ROWS_IN_SUPPLY;
 			scale = (double) cardWidth/cards[i].getWidth();
 			cardHeight = (int) (cards[i].getHeight()*scale);
 			cards[i].draw(0, cardHeight*i, cardWidth, cardHeight);
@@ -339,9 +340,10 @@ public class InGameViewState extends BasicGameState {
 	private void paintActionCards(Image[] cards) {
 		int cardHeight;
 		double scale;
-		int cardWidth = gameContainerWidth/ROWS_IN_SUPPLY;
+		int cardWidth;
 		
 		for(int i = 0; i < cards.length; i++){
+			cardWidth = gameContainerWidth/ROWS_IN_SUPPLY;
 			scale = (double) cardWidth/cards[i].getWidth();
 			cardHeight = (int) (cards[i].getHeight()*scale);
 			if(i < cards.length/2){
@@ -369,9 +371,10 @@ public class InGameViewState extends BasicGameState {
 	private void paintTreasureCards(Image[] cards) {
 		int cardHeight;
 		double scale;
-		int cardWidth = gameContainerWidth/ROWS_IN_SUPPLY;
+		int cardWidth;
 		
 		for(int i = 0; i < cards.length; i++){
+			cardWidth = gameContainerWidth/ROWS_IN_SUPPLY;
 			scale = (double) cardWidth/cards[i].getWidth();
 			cardHeight = (int) (cards[i].getHeight()*scale);
 			cards[i].draw(cardWidth*6, cardHeight*i, cardWidth, cardHeight);
