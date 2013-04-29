@@ -239,7 +239,7 @@ public class InGameViewState extends BasicGameState {
 		cih = CardInfoHandler.getInstance();
 		
 		for(int i = 0; i < cards.length; i++){
-			imageArray[i] = new Image(cih.getImageLink(cards[i]));
+			imageArray[i] = new Image(cih.getCroppedImageLink(cards[i]));
 		}
 		
 		return imageArray;
