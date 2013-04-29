@@ -310,7 +310,7 @@ public class InGameViewState extends BasicGameState {
 	 * 
 	 * @param cards the images to be painted
 	 */
-	public void paintVictoryCards(Image[] cards) {
+	private void paintVictoryCards(Image[] cards) {
 		int cardHeight;
 		double scale;
 		int cardWidth = gameContainerWidth/ROWS_IN_SUPPLY;
@@ -336,7 +336,7 @@ public class InGameViewState extends BasicGameState {
 	 * 
 	 * @param cards the images to be painted
 	 */
-	public void paintActionCards(Image[] cards) {
+	private void paintActionCards(Image[] cards) {
 		int cardHeight;
 		double scale;
 		int cardWidth = gameContainerWidth/ROWS_IN_SUPPLY;
@@ -366,7 +366,7 @@ public class InGameViewState extends BasicGameState {
 	 * 
 	 * @param cards
 	 */
-	public void paintTreasureCards(Image[] cards) {
+	private void paintTreasureCards(Image[] cards) {
 		int cardHeight;
 		double scale;
 		int cardWidth = gameContainerWidth/ROWS_IN_SUPPLY;
