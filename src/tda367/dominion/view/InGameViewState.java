@@ -29,6 +29,7 @@ public class InGameViewState extends BasicGameState {
 	private int gameContainerWidth;
 	private int id = 0;
 	private int amountOfPlayers;
+	private int ROWS_IN_SUPPLY;
 	private RoundedRectangle counterZone = null;
 	private String nmbOfActions;
 	private String nmbOfBuys;
@@ -43,6 +44,7 @@ public class InGameViewState extends BasicGameState {
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
 		board = new Image("res/img/gui/ingame/BoardTemp.png");
+		ROWS_IN_SUPPLY = 7;
 		amountOfPlayers = 2; //Should probably be supplied from network later
 		supply = new Supply(amountOfPlayers);
 		player = new Player("Mr.Testificate");
@@ -311,7 +313,7 @@ public class InGameViewState extends BasicGameState {
 	public void paintVictoryCards(Image[] cards) {
 		int cardHeight;
 		double scale;
-		int cardWidth = gameContainerWidth/7;
+		int cardWidth = gameContainerWidth/ROWS_IN_SUPPLY;
 		
 		for(int i = 0; i < cards.length; i++){
 			scale = (double) cardWidth/cards[i].getWidth();
@@ -337,7 +339,7 @@ public class InGameViewState extends BasicGameState {
 	public void paintActionCards(Image[] cards) {
 		int cardHeight;
 		double scale;
-		int cardWidth = gameContainerWidth/7;
+		int cardWidth = gameContainerWidth/ROWS_IN_SUPPLY;
 		
 		for(int i = 0; i < cards.length; i++){
 			scale = (double) cardWidth/cards[i].getWidth();
@@ -367,7 +369,7 @@ public class InGameViewState extends BasicGameState {
 	public void paintTreasureCards(Image[] cards) {
 		int cardHeight;
 		double scale;
-		int cardWidth = gameContainerWidth/7;
+		int cardWidth = gameContainerWidth/ROWS_IN_SUPPLY;
 		
 		for(int i = 0; i < cards.length; i++){
 			scale = (double) cardWidth/cards[i].getWidth();
