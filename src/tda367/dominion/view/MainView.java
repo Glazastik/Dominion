@@ -48,9 +48,9 @@ public class MainView extends StateBasedGame {
 	@Override
 	public void initStatesList(GameContainer arg0) throws SlickException {
 		addState(new InGameViewState(INGAMESTATE));
-		addState(new MainMenuViewState(MAINMENUSTATE));
-		addState(new OptionsViewState(OPTIONSSTATE));
-		addState(new ServerListState(SERVERLISTSTATE));
+		addState(new MainMenuViewState(MAINMENUSTATE, controller));
+		addState(new OptionsViewState(OPTIONSSTATE, controller));
+		addState(new ServerListState(SERVERLISTSTATE, controller));
 		enterState(MAINMENUSTATE);
 	}
     

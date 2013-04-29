@@ -8,11 +8,12 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-public class ServerListState extends BasicGameState {
-	private final int id;
+import tda367.dominion.controller.ClientController;
+
+public class ServerListState extends ControlledGameState {
 	
-	public ServerListState(int id){
-		this.id = id;
+	public ServerListState(int id, ClientController controller) {
+		super(id, controller);
 	}
 	
 	@Override
@@ -53,11 +54,6 @@ public class ServerListState extends BasicGameState {
 	@Override
 	public void leave(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		  gc.getInput().clearKeyPressedRecord();
-	}
-
-	@Override
-	public int getID() {
-		return id;
 	}
 
 }

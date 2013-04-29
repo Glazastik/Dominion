@@ -6,9 +6,10 @@ import org.newdawn.slick.geom.RoundedRectangle;
 import org.newdawn.slick.gui.TextField;
 import org.newdawn.slick.state.*;
 
-public class OptionsViewState extends BasicGameState {
+import tda367.dominion.controller.ClientController;
+
+public class OptionsViewState extends ControlledGameState {
 	
-	int id = 0;
 	Image checker = null;
 	Image checker2 = null;
 	public RoundedRectangle fullScreenCheckbox;
@@ -17,8 +18,8 @@ public class OptionsViewState extends BasicGameState {
 	public TextField resolutionField;
 	public boolean fullScreen = false;
 	
-	public OptionsViewState(int id) {
-		this.id = id;
+	public OptionsViewState(int id, ClientController controller) {
+		super(id, controller);
 	}
 	
 	@Override
@@ -110,10 +111,4 @@ public class OptionsViewState extends BasicGameState {
 	public void leave(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		  gc.getInput().clearKeyPressedRecord();
 	}
-
-	@Override
-	public int getID() {
-		return id;
-	}
-
 }

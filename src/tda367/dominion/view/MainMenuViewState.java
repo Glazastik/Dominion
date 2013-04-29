@@ -5,7 +5,9 @@ import org.newdawn.slick.*;
 import org.newdawn.slick.state.*;
 import org.lwjgl.util.Rectangle;
 
-public class MainMenuViewState extends BasicGameState {
+import tda367.dominion.controller.ClientController;
+
+public class MainMenuViewState extends ControlledGameState {
 
 	String mouse = "";
 	Image exitButton = null;
@@ -21,15 +23,13 @@ public class MainMenuViewState extends BasicGameState {
 	Rectangle exitRec = null;
 	Rectangle optionsRec = null;
 
-	int id = 0;
-
 	/**
-	 * Creates a new instance of this state with the supplied ID.
+	 * Creates a new instance of this state with the supplied ID and controller.
 	 * 
 	 * @param id the ID this state will be identified with
 	 */
-	public MainMenuViewState(int id) {
-		this.id = id;
+	public MainMenuViewState(int id, ClientController controller) {
+		super(id, controller);
 	}
 
 	/**
@@ -132,16 +132,6 @@ public class MainMenuViewState extends BasicGameState {
 	@Override
 	public void leave(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		  gc.getInput().clearKeyPressedRecord();
-	}
-
-	/**
-	 * Returns the ID of this state.
-	 * 
-	 * @return an int that is representative of this state
-	 */
-	@Override
-	public int getID() {
-		return id;
 	}
 
 }
