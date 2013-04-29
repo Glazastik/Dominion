@@ -35,7 +35,7 @@ public class CardInfoHandler {
 				  cardTypes.put(split[0], split[1]);
 				  cardValues.put(split[0], Integer.parseInt(split[2]));
 				  String temp = ("res/img/card/" +split[0]+".jpg");
-				  String temp2 = ("res/img/card/" + split[0] + "Supply.jgp");
+				  String temp2 = ("res/img/card/" + split[0] + "Supply.jpg");
 				  croppedImages.put(split[0], temp2);
 				  cardImages.put(split[0], temp);
 			  }
