@@ -67,4 +67,12 @@ public class GainingHandler {
 		}
 		return false;
 	}
+	public boolean isCardGainable(String cardName) {
+		HashMap<String,Integer> gainableCards = supply.getCardsInSupply();
+		if(gainableCards.containsKey(cardName)){
+			return (gainableCards.get(cardName))>0;
+		}
+		return false;
+		
+	}
 }
