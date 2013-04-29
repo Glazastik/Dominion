@@ -58,7 +58,6 @@ public class InGameViewState extends BasicGameState {
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
-		gameContainerWidth = gc.getWidth();
 		board.draw();	
 		g.setLineWidth(10);
 		g.setColor(Color.darkGray);
@@ -78,8 +77,11 @@ public class InGameViewState extends BasicGameState {
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int time)
 			throws SlickException {
+		gameContainerWidth = gc.getWidth();
 		player.increaseMoney(1);
 		
+		counterZone.setWidth(gameContainerWidth);
+		counterZone.setY(gc.getHeight() - gc.getHeight()/3 - 50);
 		nmbOfActions = String.valueOf(player.getActions());
 		nmbOfBuys = String.valueOf(player.getBuys());
 		nmbOfRiksdaler = String.valueOf(player.getMoney());
