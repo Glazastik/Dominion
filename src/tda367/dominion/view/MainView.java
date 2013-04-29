@@ -13,8 +13,8 @@ public class MainView extends StateBasedGame {
 	public final int MAINMENUSTATE = 1;
 	public final int OPTIONSSTATE = 2;
 	public final int SERVERLISTSTATE = 3;
-	public static int screenHeight = 800;
-	public static int screenWidth = 600;
+	public static int screenHeight = 1280;
+	public static int screenWidth = 800;
 	public static AppGameContainer theGame;
 	public static boolean fullS = false;
 	
