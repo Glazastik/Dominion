@@ -25,7 +25,7 @@ public class GameRoom {
 	 */
 	public GameRoom(LinkedList<GameConnection> gcs) {
 		
-		slots = 0;
+		slots = 4;
 		name = "test";
 		id = 0;
 
@@ -89,6 +89,8 @@ public class GameRoom {
 	public void addPlayer(GameConnection c) {
 		gcs.add(c);
 		players.add(new Player(c.getPlayerName()));
+		System.out.println("Added player to gameroom.");
+		slots--;
 		
 	}
 }
