@@ -16,6 +16,7 @@ public class Spy {
 				//player.discardTopOfDeck();
 			//}
 			//p.sendRemoveRevealedMessage();
+			//p.sendRemoveBoolMessage();
 		}
 	}
 }
