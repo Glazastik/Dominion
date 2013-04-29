@@ -11,7 +11,7 @@ public class Thief {
 	public static void play(Player p, LinkedList<Player> players){
 		CardInfoHandler cif = CardInfoHandler.getInstance();
 		boolean hasTreasure  = false;
-		LinkedList<String> trashedCards = new LinkedList<String>();
+		Pile trashedCards = new Pile();
 		for(Player player : players){
 			hasTreasure = false;
 			if(player!=p){
@@ -47,14 +47,14 @@ public class Thief {
 				//p.sendRemoveRevealedMessage();
 			}
 		}
-		if(trashedCards.size()>0){
+		if(trashedCards.getSize()>0){
 			//p.sendMultipleCardMessage(trashedCards);
 			//p.sendCreateDoneMessage("Done stealing");
-			//while(!Message message = p.getNextMessage() instanceOf DoneMessage && trashedCards.size()>0){
+			//while(!Message message = p.getNextMessage() instanceOf DoneMessage && trashedCards.getSize()>0){
 				//if(message instanceOf LocatedCardsMessage){
 				//	LocatedCardMessage tempMessage = (LocatedCardMessage) message;
 				//	if(tempMessage.getLocation().equals("Revealed")){
-				//		p.gain(tempMessage.getCardName());
+				//		p.gain(trashedCards.pop(tempMessage.getCardName()));
 				//	}
 				//}
 			//}
