@@ -13,6 +13,7 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import tda367.dominion.model.CardInfoHandler;
+import tda367.dominion.model.Pile;
 import tda367.dominion.model.Player;
 import tda367.dominion.model.Supply;
 
@@ -26,6 +27,7 @@ public class InGameViewState extends BasicGameState {
 	private Image[] treasureCards;
 	private Image board = null;
 	private int gameContainerWidth;
+	private int gameContainerHeight;
 	private int id = 0;
 	private int amountOfPlayers;
 	private int ROWS_IN_SUPPLY;
@@ -53,6 +55,7 @@ public class InGameViewState extends BasicGameState {
 		counterZone = new RoundedRectangle(0, gc.getHeight() - gc.getHeight()/3 - 50, gc.getWidth(), 40, 2);
 		riksdaler = new Image("res/img/gui/ingame/Coin.png");
 		gameContainerWidth = gc.getWidth();
+		gameContainerHeight = gc.getHeight();
 	}
 
 	@Override
@@ -71,6 +74,7 @@ public class InGameViewState extends BasicGameState {
 		paintVictoryCards(victoryCards);
 		paintActionCards(actionCards);
 		paintTreasureCards(treasureCards);
+		paintPlayerHand(actionCards);
 		
 	}
 
@@ -78,6 +82,7 @@ public class InGameViewState extends BasicGameState {
 	public void update(GameContainer gc, StateBasedGame sbg, int time)
 			throws SlickException {
 		gameContainerWidth = gc.getWidth();
+		gameContainerHeight = gc.getHeight();
 		player.increaseMoney(1);
 		
 		counterZone.setWidth(gameContainerWidth);
@@ -296,7 +301,7 @@ public class InGameViewState extends BasicGameState {
 		float cardWidth;
 		
 		for(int i = 0; i < cards.length; i++){
-			cardWidth = (float) gameContainerWidth/ROWS_IN_SUPPLY;
+			cardWidth = (float) gameContainerWidth/12;
 			scale = (double) cardWidth/cards[i].getWidth();
 			cardHeight = (float) (cards[i].getHeight()*scale);
 			cards[i].draw(0, cardHeight*i, cardWidth, cardHeight);
@@ -354,10 +359,10 @@ public class InGameViewState extends BasicGameState {
 		float cardWidth;
 		
 		for(int i = 0; i < cards.length; i++){
-			cardWidth = (float) gameContainerWidth/ROWS_IN_SUPPLY;
+			cardWidth = (float) gameContainerWidth/12;
 			scale = (double) cardWidth/cards[i].getWidth();
 			cardHeight = (float) (cards[i].getHeight()*scale);
-			cards[i].draw(cardWidth*6, cardHeight*i, cardWidth, cardHeight);
+			cards[i].draw(cardWidth*11, cardHeight*i, cardWidth, cardHeight);
 		}
 	}
 	
@@ -371,7 +376,23 @@ public class InGameViewState extends BasicGameState {
 	 * 
 	 * @param cards
 	 */
-	private void paintPlayerHand(Image[] cards){
+	private void paintPlayerHand(Image[] cards) 
+			throws SlickException {
+		cih = CardInfoHandler.getInstance();
+		Pile p = player.getHand();
+		String[] stringCards = p.getCards().toArray(new String[0]);
+		Image[] imageCards = new Image[stringCards.length];
+		
+		for(int i = 0; i < stringCards.length; i++){
+			imageCards[i] = new Image(cih.getImageLink(stringCards[i]));
+		}
+		
+		for(int i = 0; i < imageCards.length; i++){
+			float cardWidth = (float) gameContainerWidth/7;
+			double scale = (double) cardWidth/imageCards[i].getWidth();
+			float cardHeight = (float) (imageCards[i].getHeight()*scale);
+			imageCards[i].draw(cardWidth*i, gameContainerHeight - cardHeight, cardWidth, cardHeight);
+		}
 		
 	}
 
