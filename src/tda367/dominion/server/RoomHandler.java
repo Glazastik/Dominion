@@ -37,6 +37,7 @@ public class RoomHandler {
 	}
 
 	public void addPlayer(GameConnection c, int id) {
+		System.out.println("Trying to add player " + c.getPlayerName() + " to " +  id);
 		this.getRoomById(id).addPlayer(c);
 	}
 	

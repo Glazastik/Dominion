@@ -25,7 +25,7 @@ public class ServerFactory {
 		}
 
 		roomHandler = new RoomHandler();
-		roomHandler.createRoom(new GameRoom(null));
+		roomHandler.createRoom(new GameRoom());
 		server = new Server() {
 			public Connection newConnection() {
 				return new GameConnection();
@@ -72,6 +72,7 @@ public class ServerFactory {
 
 	protected static void connectPlayer(GameConnection c, ConnectionMessage cmsg) {
 		int id = Integer.parseInt(cmsg.getRoomId());
+		c.setPlayerName(cmsg.getName());;
 		roomHandler.addPlayer(c, id);
 
 	}

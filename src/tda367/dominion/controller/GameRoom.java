@@ -23,14 +23,13 @@ public class GameRoom {
 	 * 
 	 * @param gc
 	 */
-	public GameRoom(LinkedList<GameConnection> gcs) {
+	public GameRoom() {
 		
 		slots = 4;
 		name = "test";
 		id = 0;
 
 		if (gcs != null) {
-			this.gcs = gcs;
 			players = new LinkedList<Player>();
 			for (GameConnection gc : gcs) {
 				players.add(new Player(gc.getPlayerName()));

@@ -15,11 +15,11 @@ public class GameConnection extends Connection{
 	}
 	
 	public void setPlayerName(String name){
-		this.playerName = name;
+		playerName = name;
 	}
 	
 	public String getPlayerName() {
-		return null;
+		return playerName;
 	}
 	
 	
