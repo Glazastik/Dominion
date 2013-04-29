@@ -16,7 +16,6 @@ public class ClientController extends Listener {
 		System.out.println("Connected to the server on: "
 				+ c.getRemoteAddressTCP());
 		
-		
 	}
 
 	public void received(Connection c, Object object) {
@@ -27,7 +26,7 @@ public class ClientController extends Listener {
 			RoomMessage rmsg = (RoomMessage) object;
 			
 			for(String[] s: rmsg.getRooms()){
-				System.out.println("Room:");
+				System.out.println("RoomID:" + s[2]);
 				System.out.println("Name: " + s[0] + " \n Slots: "+ s[1] + "\n");
 			}
 			

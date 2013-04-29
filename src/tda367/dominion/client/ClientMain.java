@@ -13,8 +13,11 @@ public class ClientMain {
 	public static void main(String[] args) {
 		controller = new ClientController();
 		connection = new ClientConnection(controller);
+		
+		
 		model = new ClientModel(connection);
 		controller.setModel(model);
+		controller.searchForGame();
 		view = new MainView(controller);
 	}
 	
