@@ -5,7 +5,7 @@ import tda367.dominion.messages.ConnectionMessage;
 import tda367.dominion.messages.DoneMessage;
 import tda367.dominion.messages.LocatedCardMessage;
 import tda367.dominion.messages.RoomMessage;
-import tda367.dominion.messages.YesNoMessage;
+import tda367.dominion.messages.BoolMessage;
 
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryonet.EndPoint;
@@ -19,7 +19,7 @@ public class NetworkCommon {
 		//TODO Viktigt att registrera alla klasser här.
 		kryo.register(BasicMessage.class);
 		kryo.register(LocatedCardMessage.class);
-		kryo.register(YesNoMessage.class);
+		kryo.register(BoolMessage.class);
 		kryo.register(DoneMessage.class);
 		kryo.register(ConnectionMessage.class);
 		kryo.register(CardMessage.class);

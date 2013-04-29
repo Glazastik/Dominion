@@ -51,6 +51,7 @@ public class Thief {
 			//p.sendMultipleCardMessage(trashedCards);
 			//p.sendCreateDoneMessage("Done stealing");
 			//while(!Message message = p.getNextMessage() instanceOf DoneMessage && trashedCards.getSize()>0){
+				//p.sendMultipleCardMessage(trashedCards);
 				//if(message instanceOf LocatedCardsMessage){
 				//	LocatedCardMessage tempMessage = (LocatedCardMessage) message;
 				//	if(tempMessage.getLocation().equals("Revealed")){
@@ -58,6 +59,8 @@ public class Thief {
 				//	}
 				//}
 			//}
+			//p.sendRemoveRevealedMessage;
+			//p.sendRemoveBoolMessage;
 		}
 		
 	}
