@@ -355,8 +355,8 @@ public class Player {
 	public void discardTopOfDeck(){
 		discard.add(deck.pop());
 	}
-	public void trashFromDeck(String cardName){
-		deck.pop(cardName);
+	public String trashFromDeck(String cardName){
+		return deck.pop(cardName);
 	}
 	
 }
