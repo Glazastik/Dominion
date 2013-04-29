@@ -14,14 +14,13 @@ public class Feast {
 		GainingHandler gH = new GainingHandler(supply);
 		//p.sendMessage("Chose a card to gain (costing 5 or less).
 		while(!done){
-			//if(p.getNextMessage().instanceOf(LocatedCardMessage)){
-				//LocatedCardMessage temp = (LocatedCardMessage) p.getNextMessage();
-				//if(temp.getLocation().equals("Supply"){
-					//if(gH.isCardGainable(temp.getCard(), 5)){
+			//Message temp = p.getNextMessage();
+			//if(temp instanceOf LocatedCardMessage){
+				//LocatedCardMessage tempMessage = (LocatedCardMessage) temp;
+				//if(tempMessage.getLocation().equals("Supply" &&
+					//gH.isCardGainable(tempMessage.getCardName(), 5)){
 						//done = true;
-						//gH.playerGainCard(player, temp.getCardName())
-						
-					//}	
+						//gH.playerGainCard(player, tempMessage.getCardName())
 				//}
 			//}
 		}

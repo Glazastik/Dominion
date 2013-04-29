@@ -13,9 +13,12 @@ public class Milita {
 				//TODO: Needs the client class on the server side for communication.
 				while(p.getHandSize()>3){
 					//p.sendMessage("Discard down to 3 cards");
-					//if(p.getNextMessage().instanceOf(LocatedCardMessage)){
-					//LocatedCardMessage temp = (LocatedCardMessage)p.getNextMessage();
-						//p.discardCard(temp.getCard)
+					//Message temp = p.getNextMessage
+					//if(temp instanceOf LocatedCardMessage){
+						//LocatedCardMessage tempMessage = (LocatedCardMessage) temp;
+						//if(p.getHand().contains(tempMessage.getCard()) && tempMessage.getLocation().equals("Hand")){
+							//p.discardCard((LocatedCardMessage) temp.getCard)
+						//}
 					//}
 				}
 			}

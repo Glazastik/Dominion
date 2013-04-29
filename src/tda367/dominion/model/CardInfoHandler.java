@@ -21,6 +21,7 @@ public class CardInfoHandler {
 	private static final HashMap<String,String> cardTypes = new HashMap<String,String>();
 	private static final HashMap<String,Integer> cardValues = new HashMap<String,Integer>();
 	private static final HashMap<String,String> cardImages = new HashMap<String,String>();
+	private static final HashMap<String,String> croppedImages = new HashMap<String,String>();
 	private CardInfoHandler(){
 		try {
 			//Reads the file containing all the info about the cards 
@@ -34,6 +35,8 @@ public class CardInfoHandler {
 				  cardTypes.put(split[0], split[1]);
 				  cardValues.put(split[0], Integer.parseInt(split[2]));
 				  String temp = ("res/img/card/" +split[0]+".jpg");
+				  String temp2 = ("res/img/card/" + split[0] + "Supply.jgp");
+				  croppedImages.put(split[0], temp2);
 				  cardImages.put(split[0], temp);
 			  }
 			  br.close();
@@ -126,5 +129,13 @@ public class CardInfoHandler {
 	 */
 	public String getImageLink(String cardName){
 		return cardImages.get(cardName);
+	}
+	/**
+	 * Gives the cropped image link of any given card
+	 * @param cardName the card
+	 * @return the cards cropped image link
+	 */
+	public String getCroppedImageLink(String cardName){
+		return croppedImages.get(cardName);
 	}
 }
