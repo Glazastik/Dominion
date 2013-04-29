@@ -42,7 +42,7 @@ public class RoomHandler {
 	
 	private GameRoom getRoomById(int id){
 		for(GameRoom gr: rooms){
-			int tempID = Integer.parseInt(gr.getID());
+			int tempID = gr.getID();
 			if(tempID == id){
 				return gr;
 			}

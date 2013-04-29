@@ -26,13 +26,14 @@ public class ClientController extends Listener {
 			RoomMessage rmsg = (RoomMessage) object;
 			
 			for(String[] s: rmsg.getRooms()){
-				System.out.println("RoomID:" + s[2]);
+				System.out.println("RoomID: " + s[2]);
 				System.out.println("Name: " + s[0] + " \n Slots: "+ s[1] + "\n");
 			}
 			
 			ConnectionMessage cmsg = new ConnectionMessage();
 			cmsg.setName("Plebben");
 			cmsg.setRoomId("0");
+			c.sendTCP(cmsg);
 		}
 
 	}

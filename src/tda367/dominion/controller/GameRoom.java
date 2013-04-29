@@ -35,6 +35,9 @@ public class GameRoom {
 			for (GameConnection gc : gcs) {
 				players.add(new Player(gc.getPlayerName()));
 			}
+		} else {
+			gcs = new LinkedList<GameConnection>();
+			players = new LinkedList<Player>();
 		}
 	}
 
@@ -81,9 +84,8 @@ public class GameRoom {
 		this.id = id;
 	}
 	
-	public String getID() {
-		// TODO Auto-generated method stub
-		return null;
+	public int getID() {
+		return id;
 	}
 
 	public void addPlayer(GameConnection c) {
