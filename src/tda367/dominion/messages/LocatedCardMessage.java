@@ -20,7 +20,7 @@ package tda367.dominion.messages;
  * Throne room
  * Workshop
  */
-public class LocatedCardMessage implements Message {
+public class LocatedCardMessage implements InstructionMessage {
 	private String cardName;
 	private String location;
 

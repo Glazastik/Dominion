@@ -1,6 +1,6 @@
 package tda367.dominion.messages;
 
-public class RoomMessage implements Message {
+public class RoomMessage implements InstructionMessage {
 	private String[][] rooms;
 
 	/**
