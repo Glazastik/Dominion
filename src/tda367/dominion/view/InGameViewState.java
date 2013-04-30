@@ -114,8 +114,8 @@ public class InGameViewState extends ControlledGameState {
 		
 		menuRec.setSize(100, 50);
 		
-		counterZone.setWidth(gameContainerWidth - 5);
-		counterZone.setY(gc.getHeight() - gc.getHeight()/3 - 50);
+		counterZone.setWidth(gameContainerWidth - 2);
+		counterZone.setY(gc.getHeight() - gc.getHeight()/3 - 60);
 		
 		//Update values
 		nmbOfActions = String.valueOf(player.getActions());
@@ -380,8 +380,8 @@ public class InGameViewState extends ControlledGameState {
 			cardWidth = (float) gameContainerWidth/12;
 			scale = (double) cardWidth/cards[i].getWidth();
 			cardHeight = (float) (cards[i].getHeight()*scale);
-			cards[i].draw(0, cardHeight*i, cardWidth, cardHeight);
-			victoryRectangles[i].setLocation(0, (int)cardHeight*i);
+			cards[i].draw(5, cardHeight*i+(i*5)+5, cardWidth, cardHeight);
+			victoryRectangles[i].setLocation(5, (int)cardHeight*i+(i*5)+5);
 			victoryRectangles[i].setSize((int)cardWidth, (int)cardHeight);
 		}
 	}
@@ -407,16 +407,16 @@ public class InGameViewState extends ControlledGameState {
 		float cardWidth;
 		
 		for(int i = 0; i < cards.length; i++){
-			cardWidth = (float) gameContainerWidth/ROWS_IN_SUPPLY;
+			cardWidth = (float) (gameContainerWidth/ROWS_IN_SUPPLY);
 			scale = (double) cardWidth/cards[i].getWidth();
 			cardHeight = (float) (cards[i].getHeight()*scale);
 			if(i < cards.length/2){
-				cards[i].draw(cardWidth*(i+1), 0, cardWidth, cardHeight);
-				actionRectangles[i].setLocation((int)cardWidth*(i+1), 0);
-				actionRectangles[i].setSize((int)cardWidth, (int)cardHeight);
+				cards[i].draw(50 + cardWidth*(i+1)+(i*5), 5, cardWidth, cardHeight);
+				actionRectangles[i].setLocation((int)(50 + cardWidth*(i+1)), 0);
+				actionRectangles[i].setSize((int)cardWidth, (int)cardHeight + 5);
 			} else {
-				cards[i].draw(cardWidth*(i+1-5), cardHeight, cardWidth, cardHeight);
-				actionRectangles[i].setLocation((int)cardWidth*(i+1-5), (int)cardHeight);
+				cards[i].draw(50 + cardWidth*(i+1-5)+((i-5)*5), cardHeight + 10, cardWidth, cardHeight);
+				actionRectangles[i].setLocation((int)(50 + cardWidth*(i+1-5)), (int)cardHeight + 10);
 				actionRectangles[i].setSize((int)cardWidth, (int)cardHeight);
 			}
 		}
@@ -446,8 +446,8 @@ public class InGameViewState extends ControlledGameState {
 			cardWidth = (float) gameContainerWidth/12;
 			scale = (double) cardWidth/cards[i].getWidth();
 			cardHeight = (float) (cards[i].getHeight()*scale);
-			cards[i].draw(cardWidth*11, cardHeight*i, cardWidth, cardHeight);
-			treasureRectangles[i].setLocation((int)cardWidth*11, (int)cardHeight*i);
+			cards[i].draw(10+cardWidth, 5+cardHeight*i+(i*5), cardWidth, cardHeight);
+			treasureRectangles[i].setLocation((int)(10+cardWidth), (int)cardHeight*i+(i*5)+5);
 			treasureRectangles[i].setSize((int)cardWidth, (int)cardHeight);
 		}
 	}
@@ -477,8 +477,8 @@ public class InGameViewState extends ControlledGameState {
 			float cardHeight = (float) gameContainerHeight*((float)1/3);
 			double scale = (double) cardHeight/imageCards[i].getHeight();
 			float cardWidth = (float) (imageCards[i].getWidth()*scale);
-			imageCards[i].draw(cardWidth*i, gameContainerHeight - cardHeight, cardWidth, cardHeight);
-			handRectangles[i].setLocation((int)cardWidth*i, (int)(gameContainerHeight - cardHeight));
+			imageCards[i].draw(cardWidth*i+(10*(i+1)), gameContainerHeight - cardHeight - 10, cardWidth, cardHeight);
+			handRectangles[i].setLocation((int)cardWidth*i+(10*(i+1)), (int)(gameContainerHeight - cardHeight - 10));
 			handRectangles[i].setSize((int)cardWidth, (int)cardHeight);
 		}
 		
@@ -504,15 +504,14 @@ public class InGameViewState extends ControlledGameState {
 	 */
 	private void paintCounterZone(Graphics g) 
 			throws SlickException {
-		g.setLineWidth(10);
+		g.setLineWidth(5);
 		g.setColor(Color.darkGray);
-		g.drawString("InGameState", 0, 0);
 		g.draw(counterZone);
 		g.setColor(Color.white);
-		g.drawString("Actions: " + nmbOfActions, 50, gameContainerHeight - gameContainerHeight/3 - 40);
-		g.drawString("Buys: " + nmbOfBuys, 200, gameContainerHeight - gameContainerHeight/3 - 40);
-		g.drawString("x"+nmbOfRiksdaler, 380, gameContainerHeight - gameContainerHeight - 40);
-		riksdaler.draw((float)350, (float)gameContainerHeight - gameContainerHeight/3 - 43, (float)0.035);
+		g.drawString("Actions: " + nmbOfActions, 50, gameContainerHeight - gameContainerHeight/3 - 50);
+		g.drawString("Buys: " + nmbOfBuys, 200, gameContainerHeight - gameContainerHeight/3 - 50);
+		g.drawString("x"+nmbOfRiksdaler, 380, gameContainerHeight - gameContainerHeight/3 - 50);
+		riksdaler.draw((float)350, (float)gameContainerHeight - gameContainerHeight/3 - 53, (float)0.035);
 	}
 
 }

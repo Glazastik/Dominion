@@ -39,6 +39,7 @@ public class OptionsViewState extends ControlledGameState {
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
+		g.setColor(Color.white);
 		g.drawString("Username:", 100, 200);
 		g.drawString("Options Menu", 0, 0);
 		g.drawString("Resolution:", 100, 300);
