@@ -73,7 +73,6 @@ public class ServerListState extends ControlledGameState {
 			throws SlickException {
 		super.enter(container, game);
 		controller.searchForGame();
-		System.out.println("Hej");
 	}
 
 	/**
