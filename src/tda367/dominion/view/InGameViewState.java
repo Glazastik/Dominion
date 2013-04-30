@@ -133,8 +133,8 @@ public class InGameViewState extends ControlledGameState {
 	 * Takes care of all actions that calls mouseClicked
 	 */
 	@Override
-	public void mousePressed(int button, int x, int y) {
-		super.mousePressed(button, x, y);
+	public void mouseClicked(int button, int x, int y, int clicks) {
+		super.mouseClicked(button, x, y, clicks);
 		//Victory cards listener
 		for(int i=0; i<4; i++) {
 			if(button == Input.MOUSE_LEFT_BUTTON && victoryRectangles[i].contains(x, y)) {

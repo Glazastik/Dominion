@@ -10,13 +10,16 @@ import tda367.dominion.controller.ClientController;
 
 public class OptionsViewState extends ControlledGameState {
 	
-	Image checker = null;
-	Image checker2 = null;
+	Image checker;
+	Image checker2;
+	Image checker3;
 	public RoundedRectangle fullScreenCheckbox;
 	public RoundedRectangle hiResCheckbox;
 	public RoundedRectangle lowResCheckbox;
+	public RoundedRectangle fpsCheckbox;
 	public TextField resolutionField;
 	public boolean fullScreen = false;
+	public boolean fps = false;
 	
 	public OptionsViewState(int id, ClientController controller) {
 		super(id, controller);
@@ -28,12 +31,14 @@ public class OptionsViewState extends ControlledGameState {
 		fullScreenCheckbox = new RoundedRectangle(100, 420, 25, 25, 1);
 		hiResCheckbox = new RoundedRectangle(180, 335, 25, 25, 1);
 		lowResCheckbox = new RoundedRectangle(100, 335, 25, 25, 1);
+		fpsCheckbox = new RoundedRectangle(100, 520, 25, 25, 1);
 		resolutionField = new TextField(gc, gc.getDefaultFont(), 100, 215, 100, 30);
 		resolutionField.setBackgroundColor(Color.white);
 		resolutionField.setTextColor(Color.black);
 		resolutionField.setBorderColor(Color.black);
 		checker = new Image("res/img/gui/menu/checker.png");
 		checker2 = new Image("res/img/gui/menu/checker.png");
+		checker3 = new Image("res/img/gui/menu/checker.png");
 	}
 
 	@Override
@@ -46,9 +51,11 @@ public class OptionsViewState extends ControlledGameState {
 		g.drawString("800x600", 100, 317);
 		g.drawString("1280x800", 180, 317);
 		g.drawString("Set Fullscreen", 100, 400);
+		g.drawString("Show fps:", 100, 500);
 	    g.draw(fullScreenCheckbox);
 	    g.draw(hiResCheckbox);
 	    g.draw(lowResCheckbox);
+	    g.draw(fpsCheckbox);
 	    resolutionField.render(gc, g);
 	    
 	    if (fullScreen == true) {
@@ -59,6 +66,10 @@ public class OptionsViewState extends ControlledGameState {
 	    	checker2.draw(lowResCheckbox.getMinX(), lowResCheckbox.getMinY());
 	    } else {
 	    	checker2.draw(hiResCheckbox.getMinX(), hiResCheckbox.getMinY());
+	    }
+	    
+	    if(fps == true) {
+	    	checker3.draw(fpsCheckbox.getMinX(), fpsCheckbox.getMinY());
 	    }
 	    	
 	}
@@ -80,10 +91,16 @@ public class OptionsViewState extends ControlledGameState {
 			MainView.setResolution(800, 1280);
 		}
 		
-		//Checks if mouse cursor is within full screen rectangle
+		//Checks if mouse cursor is within fullscreen rectangle
 		if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON) && fullScreenCheckbox.contains(xPos, yPos)) {
 			fullScreen = !fullScreen;
 			MainView.setFullscreen(fullScreen);
+		}
+		
+		//Checks if mouse cursor is within fps rectangle
+		if(input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON) && fpsCheckbox.contains(xPos, yPos)) {
+			fps = !fps;
+			MainView.showFps(fps);
 		}
 		
 		//Enter menu

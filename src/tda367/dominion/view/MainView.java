@@ -19,6 +19,7 @@ public class MainView extends StateBasedGame {
 	public static int screenWidth = 800;
 	public static AppGameContainer theGame;
 	public static boolean fullS = false;
+	public static boolean fpsSet = false;
 	public static ClientController controller;
 	
 	
@@ -65,6 +66,11 @@ public class MainView extends StateBasedGame {
     	theGame.setDisplayMode(screenHeight, screenWidth, fullScreen);
     }
     
+    public static void showFps(boolean fps) throws SlickException {
+    	fpsSet = fps;
+    	theGame.setShowFPS(fpsSet);
+    }
+    
     public void updateRoomData(String[][] s) {
     	GameState g = this.getState(SERVERLISTSTATE);
     	((ServerListState) g).updateRoomData(s);
@@ -96,6 +102,7 @@ public class MainView extends StateBasedGame {
 			theGame.setDisplayMode(screenHeight, screenWidth, false);
 	        theGame.setAlwaysRender(true);
 	        theGame.setVSync(true);
+	        theGame.setShowFPS(fpsSet);
 	        theGame.start();
 		} catch (SlickException e) {
 			e.printStackTrace();
