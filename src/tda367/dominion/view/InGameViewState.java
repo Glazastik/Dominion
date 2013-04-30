@@ -31,7 +31,7 @@ public class InGameViewState extends ControlledGameState {
 	private int gameContainerHeight;
 	private int amountOfPlayers;
 	private int ROWS_IN_SUPPLY;
-	private RoundedRectangle counterZone = null;
+	private RoundedRectangle counterZone;
 	private String nmbOfActions;
 	private String nmbOfBuys;
 	private String nmbOfRiksdaler;
@@ -42,6 +42,10 @@ public class InGameViewState extends ControlledGameState {
 	private Rectangle[] handRectangles;
 	private Image menuButton;
 	private Image chatButton;
+	private Image logButton;
+	private Rectangle menuRec;
+	private Rectangle chatRec;
+	private Rectangle logRec;
 	
 	public InGameViewState(int id, ClientController controller) {
 		super(id, controller);
@@ -65,10 +69,14 @@ public class InGameViewState extends ControlledGameState {
 		//Initiate all images
 		menuButton = new Image("res/img/gui/ingame/MenuButton.png");
 		chatButton = new Image("res/img/gui/ingame/ChatButton.png");
+		logButton = new Image("res/img/gui/ingame/LogButton.png");
 		riksdaler = new Image("res/img/gui/ingame/Coin.png");
 		board = new Image("res/img/gui/ingame/BoardTemp.png");
 		
 		//Initiate all rectangles
+		menuRec = new Rectangle(gameContainerWidth - 110, gameContainerHeight - 70, 100, 50);
+		chatRec = new Rectangle(gameContainerWidth - 110, gameContainerHeight - 130, 100, 50);
+		logRec = new Rectangle(gameContainerWidth -110, gameContainerHeight - 190, 100, 50);
 		actionRectangles = new Rectangle[10];
 		victoryRectangles = new Rectangle[4];
 		treasureRectangles = new Rectangle[3];
@@ -93,6 +101,7 @@ public class InGameViewState extends ControlledGameState {
 		board.draw();	
 		menuButton.draw(gameContainerWidth - 110, gameContainerHeight - 70);
 		chatButton.draw(gameContainerWidth - 110, gameContainerHeight - 130);
+		logButton.draw(gameContainerWidth - 110, gameContainerHeight - 190);
 		g.setLineWidth(10);
 		g.setColor(Color.darkGray);
 		g.drawString("InGameState", 0, 0);
@@ -116,6 +125,8 @@ public class InGameViewState extends ControlledGameState {
 		gameContainerWidth = gc.getWidth();
 		gameContainerHeight = gc.getHeight();
 		
+		menuRec.setSize(100, 50);
+		
 		counterZone.setWidth(gameContainerWidth - 5);
 		counterZone.setY(gc.getHeight() - gc.getHeight()/3 - 50);
 		
@@ -137,27 +148,47 @@ public class InGameViewState extends ControlledGameState {
 	@Override
 	public void mousePressed(int button, int x, int y) {
 		super.mousePressed(button, x, y);
+		//Victory cards listener
 		for(int i=0; i<4; i++) {
 			if(button == Input.MOUSE_LEFT_BUTTON && victoryRectangles[i].contains(x, y)) {
 				System.out.println("Victory Card: " + (i+1));
 			}
 		}
 		
+		//Treasure cards listener
 		for(int i=0; i<3; i++) {
 			if(button == Input.MOUSE_LEFT_BUTTON && treasureRectangles[i].contains(x,y)) {
 				System.out.println("Treasure card: " + (i+1));
 			}
 		}
 		
+		//Action cards listener
 		for(int i=0; i<10; i++) {
 			if(button == Input.MOUSE_LEFT_BUTTON && actionRectangles[i].contains(x,y)) {
 				System.out.println("Action card: " + (i+1));
 			}
 		}
+		
+		//Hand cards listener
 		for(int i=0; i<handRectangles.length; i++) {
 			if(button == Input.MOUSE_LEFT_BUTTON && handRectangles[i].contains(x,y)) {
 				System.out.println("Hand card: " + (i+1));
 			}
+		}
+		
+		//Menu button listener
+		if(button == Input.MOUSE_LEFT_BUTTON && menuRec.contains(x, y)) {
+			System.out.println("Menu button");
+		}
+		
+		//Chat button listener
+		if(button == Input.MOUSE_LEFT_BUTTON && chatRec.contains(x, y)) {
+			System.out.println("Chat Button");
+		}
+		
+		//Log button listener
+		if(button == Input.MOUSE_LEFT_BUTTON && logRec.contains(x, y)) {
+			System.out.println("Log Button");
 		}
 	}
 
