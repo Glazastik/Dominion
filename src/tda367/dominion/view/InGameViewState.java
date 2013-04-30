@@ -39,6 +39,7 @@ public class InGameViewState extends ControlledGameState {
 	private Rectangle[] actionRectangles;
 	private Rectangle[] victoryRectangles;
 	private Rectangle[] treasureRectangles;
+	private Rectangle[] handRectangles;
 	
 	public InGameViewState(int id, ClientController controller) {
 		super(id, controller);
@@ -64,6 +65,7 @@ public class InGameViewState extends ControlledGameState {
 		actionRectangles = new Rectangle[10];
 		victoryRectangles = new Rectangle[4];
 		treasureRectangles = new Rectangle[3];
+		handRectangles = new Rectangle[40];
 		for (int i = 0; i<10; i++) {
 			actionRectangles[i] = new Rectangle();
 		}
@@ -72,6 +74,9 @@ public class InGameViewState extends ControlledGameState {
 		}
 		for (int i = 0; i<3; i++) {
 			treasureRectangles[i] = new Rectangle();
+		}
+		for(int i = 0; i<40; i++) {
+			handRectangles[i] = new Rectangle();
 		}
 	}
 
@@ -117,60 +122,32 @@ public class InGameViewState extends ControlledGameState {
 		
 	}
 	
+	/**
+	 * Takes care of all actions that calls mouseClicked
+	 */
 	@Override
 	public void mouseClicked(int button, int x, int y, int clickCount) {
 		super.mouseClicked(button, x, y, clickCount);
 		for(int i=0; i<4; i++) {
 			if(button == Input.MOUSE_LEFT_BUTTON && victoryRectangles[i].contains(x, y)) {
-				if(i == 0) {
-					System.out.println("victory card: 1");
-				} else if(i == 1) {
-					System.out.println("victory card: 2");
-				} else if(i == 2) {
-					System.out.println("victory card: 3");
-				} else if(i == 3) {
-					System.out.println("victory card: 4");
-				}
+				System.out.println("Victory Card: " + i);
 			}
 		}
 		
 		for(int i=0; i<3; i++) {
 			if(button == Input.MOUSE_LEFT_BUTTON && treasureRectangles[i].contains(x,y)) {
-				if(i == 0) {
-					System.out.println("treasure card: 1");
-				} else if(i == 1) {
-					System.out.println("treasure card: 2");
-				} else if(i == 2) {
-					System.out.println("treasure card: 3");
-				} else if(i == 3) {
-					System.out.println("treasure card: 4");
-				}
+				System.out.println("Treasure card: " + i);
 			}
 		}
 		
 		for(int i=0; i<10; i++) {
 			if(button == Input.MOUSE_LEFT_BUTTON && actionRectangles[i].contains(x,y)) {
-				if(i == 0) {
-					System.out.println("action card: 1");
-				} else if(i == 1) {
-					System.out.println("action card: 2");
-				} else if(i == 2) {
-					System.out.println("action card: 3");
-				} else if(i == 3) {
-					System.out.println("action card: 4");
-				} else if(i == 4) {
-					System.out.println("action card: 5");
-				} else if(i == 5) {
-					System.out.println("action card: 6");
-				} else if(i == 6) {
-					System.out.println("action card: 7");
-				} else if(i == 7) {
-					System.out.println("action card: 8");
-				} else if(i == 8) {
-					System.out.println("action card: 9");
-				} else if(i == 9) {
-					System.out.println("action card: 10");
-				}
+				System.out.println("Action card: " + i);
+			}
+		}
+		for(int i=0; i<handRectangles.length; i++) {
+			if(button == Input.MOUSE_LEFT_BUTTON && handRectangles[i].contains(x,y)) {
+				System.out.println("Hand card: " + i);
 			}
 		}
 	}
@@ -474,6 +451,8 @@ public class InGameViewState extends ControlledGameState {
 			double scale = (double) cardHeight/imageCards[i].getHeight();
 			float cardWidth = (float) (imageCards[i].getWidth()*scale);
 			imageCards[i].draw(cardWidth*i, gameContainerHeight - cardHeight, cardWidth, cardHeight);
+			handRectangles[i].setLocation((int)cardWidth*i, (int)(gameContainerHeight - cardHeight));
+			handRectangles[i].setSize((int)cardWidth, (int)cardHeight);
 		}
 		
 	}
