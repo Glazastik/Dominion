@@ -93,10 +93,8 @@ public class MainMenuViewState extends ControlledGameState {
 		if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)
 				&& playRec.contains(xPos, yPos)) {
 			sbg.enterState(3, null, Transitions.createNewHorizontalSplitTransition());
-			this.getController().searchForGame();
 		} else if(input.isKeyPressed(Input.KEY_1)) {
 			sbg.enterState(3, null, Transitions.createNewHorizontalSplitTransition());
-			this.getController().searchForGame();
 		}
 
 		// Checks if mouse cursor is within exitgame image

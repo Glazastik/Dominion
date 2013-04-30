@@ -100,5 +100,7 @@ public class MainView extends StateBasedGame {
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
+		
+		controller.searchForGame();
 	}
 }
