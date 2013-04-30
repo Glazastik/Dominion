@@ -147,6 +147,32 @@ public class InGameViewState extends ControlledGameState {
 				}
 			}
 		}
+		
+		for(int i=0; i<10; i++) {
+			if(button == Input.MOUSE_LEFT_BUTTON && actionRectangles[i].contains(x,y)) {
+				if(i == 0) {
+					System.out.println("action card: 1");
+				} else if(i == 1) {
+					System.out.println("action card: 2");
+				} else if(i == 2) {
+					System.out.println("action card: 3");
+				} else if(i == 3) {
+					System.out.println("action card: 4");
+				} else if(i == 4) {
+					System.out.println("action card: 5");
+				} else if(i == 5) {
+					System.out.println("action card: 6");
+				} else if(i == 6) {
+					System.out.println("action card: 7");
+				} else if(i == 7) {
+					System.out.println("action card: 8");
+				} else if(i == 8) {
+					System.out.println("action card: 9");
+				} else if(i == 9) {
+					System.out.println("action card: 10");
+				}
+			}
+		}
 	}
 
 	/**
@@ -326,7 +352,8 @@ public class InGameViewState extends ControlledGameState {
 	}
 	
 	/**
-	 * Paints the victorycards in appropriate places.
+	 * Paints the victorycards in appropriate places. Also sets the location of 
+	 * victoryRectangles to the same places.
 	 * 
 	 * <p>Although any sort of image array may be passed
 	 * to this method, it is tailored for images of dominion
@@ -356,7 +383,8 @@ public class InGameViewState extends ControlledGameState {
 	}
 	
 	/**
-	 * Paints the actioncards in appropriate places.
+	 * Paints the actioncards in appropriate places. Also places
+	 * actionRectangles in the same places. 
 	 * 
 	 * <p>Although any sort of image array may be passed
 	 * to this method, it is tailored for images of dominion
@@ -380,14 +408,19 @@ public class InGameViewState extends ControlledGameState {
 			cardHeight = (float) (cards[i].getHeight()*scale);
 			if(i < cards.length/2){
 				cards[i].draw(cardWidth*(i+1), 0, cardWidth, cardHeight);
+				actionRectangles[i].setLocation((int)cardWidth*(i+1), 0);
+				actionRectangles[i].setSize((int)cardWidth, (int)cardHeight);
 			} else {
 				cards[i].draw(cardWidth*(i+1-5), cardHeight, cardWidth, cardHeight);
+				actionRectangles[i].setLocation((int)cardWidth*(i+1-5), (int)cardHeight);
+				actionRectangles[i].setSize((int)cardWidth, (int)cardHeight);
 			}
 		}
 	}
 	
 	/**
-	 * Paints the treasurecards in appropriate places.
+	 * Paints the treasurecards in appropriate places. Also places
+	 * treasureRectangles in the same places.
 	 * 
 	 * <p>Although any sort of image array may be passed
 	 * to this method, it is tailored for images of dominion
@@ -410,6 +443,8 @@ public class InGameViewState extends ControlledGameState {
 			scale = (double) cardWidth/cards[i].getWidth();
 			cardHeight = (float) (cards[i].getHeight()*scale);
 			cards[i].draw(cardWidth*11, cardHeight*i, cardWidth, cardHeight);
+			treasureRectangles[i].setLocation((int)cardWidth*11, (int)cardHeight*i);
+			treasureRectangles[i].setSize((int)cardWidth, (int)cardHeight);
 		}
 	}
 	
