@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import tda367.dominion.controller.ClientController;
 import tda367.dominion.server.NetworkCommon;
+import tda367.dominion.messages.*;
 
 import com.esotericsoftware.kryonet.*;
 
@@ -41,6 +42,15 @@ public class ClientConnection {
 	public void received(Connection c, Object object) {
 		System.out.println("response!");
 		controller.received(c, object);
+	}
+	
+	/**
+	 * Send a response to the server in the form of a boolean message.
+	 */
+	public void boolAnswer(boolean bool) {
+		BoolMessage msg = new BoolMessage();
+		msg.bool = bool;
+		client.sendTCP(msg);
 	}
 
 	public void disconnected(Connection c) {

@@ -12,12 +12,13 @@ public class ClientController extends Listener {
 		this.model = model;
 	}
 	
+	// TODO: remove connection object
 	public void connected(Connection c) {
 		System.out.println("Connected to the server on: "
 				+ c.getRemoteAddressTCP());
-		
 	}
 
+	// TODO: remove connection object
 	public void received(Connection c, Object object) {
 		System.out.println("Received \"" + object.getClass().getName()
 				+ "\" from server.");
@@ -32,7 +33,14 @@ public class ClientController extends Listener {
 			cmsg.setRoomId("0");
 			c.sendTCP(cmsg);
 		}
-
+		
+		if (object instanceof CreateBoolMessage) {
+			
+		}
+	}
+	
+	public void boolAnswer(boolean bool) {
+		model.boolAnswer(bool);
 	}
 	
 	public void searchForGame() {
