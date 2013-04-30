@@ -55,7 +55,7 @@ public class MainMenuViewState extends ControlledGameState {
 		exitRec = new Rectangle(100, exitY - 50, 200, 50);
 		optionsRec = new Rectangle(100, optionsY - 50, 200, 50);
 		
-		gc.setMouseCursor("res/img/gui/menu/taco.gif", 0, 0);
+		gc.setMouseCursor("res/img/gui/menu/wow.gif", 0, 0);
 
 	}
 
