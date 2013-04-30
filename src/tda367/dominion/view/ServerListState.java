@@ -3,9 +3,9 @@ package tda367.dominion.view;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
 import tda367.dominion.controller.ClientController;
@@ -13,6 +13,8 @@ import tda367.dominion.controller.ClientController;
 public class ServerListState extends ControlledGameState {
 	private ClientController controller;
 	private String[][] roomData = new String[0][0];
+	private Image board;
+	private Image room;
 
 	public ServerListState(int id, ClientController controller) {
 		super(id, controller);
@@ -22,6 +24,8 @@ public class ServerListState extends ControlledGameState {
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
+		board = new Image("res/img/gui/ingame/BoardTemp.png");
+		room = new Image("res/img/gui/menu/room.png");
 	}
 
 	public void updateRoomData(String[][] s) {
@@ -36,7 +40,9 @@ public class ServerListState extends ControlledGameState {
 		g.setColor(Color.green);
 		g.fillRect(50, 50, gc.getWidth() - 100, gc.getHeight() - 100);
 		g.setColor(Color.black);
+		
 		for (int i = 0; i < roomData.length; i++) {
+			room.draw(60, 40);
 			g.drawString("<Room " + roomData[0][2] + ">", 80, 50);
 			g.drawString("Name:" + roomData[0][0], 80, 60);
 			g.drawString("Slots: " + roomData[0][1], 80, 70);
