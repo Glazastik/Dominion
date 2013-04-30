@@ -14,11 +14,10 @@ public class ClientMain {
 		controller = new ClientController();
 		connection = new ClientConnection(controller);
 		
-		
-		model = new ClientModel(connection);
-		controller.setModel(model);
-		controller.searchForGame();
 		view = new MainView(controller);
+		model = new ClientModel(connection, view);
+		controller.setModel(model);
+		view.start();
 	}
 	
 }

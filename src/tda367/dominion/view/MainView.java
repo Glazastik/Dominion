@@ -29,17 +29,6 @@ public class MainView extends StateBasedGame {
 	public MainView(ClientController controller) {
 		super("Dominion");
 		this.controller = controller;
-		
-		try {
-			theGame = new AppGameContainer(this);
-			theGame.setDisplayMode(screenHeight, screenWidth, false);
-	        theGame.setAlwaysRender(true);
-	        theGame.setVSync(true);
-	        theGame.start();
-		} catch (SlickException e) {
-			e.printStackTrace();
-		}
-		
 	}
 
 	/**
@@ -94,4 +83,16 @@ public class MainView extends StateBasedGame {
 		}
 		theGame.exit();
     }
+
+	public void start() {
+		try {
+			theGame = new AppGameContainer(this);
+			theGame.setDisplayMode(screenHeight, screenWidth, false);
+	        theGame.setAlwaysRender(true);
+	        theGame.setVSync(true);
+	        theGame.start();
+		} catch (SlickException e) {
+			e.printStackTrace();
+		}
+	}
 }
