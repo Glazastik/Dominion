@@ -40,6 +40,8 @@ public class InGameViewState extends ControlledGameState {
 	private Rectangle[] victoryRectangles;
 	private Rectangle[] treasureRectangles;
 	private Rectangle[] handRectangles;
+	private Image menuButton;
+	private Image chatButton;
 	
 	public InGameViewState(int id, ClientController controller) {
 		super(id, controller);
@@ -48,7 +50,6 @@ public class InGameViewState extends ControlledGameState {
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
-		board = new Image("res/img/gui/ingame/BoardTemp.png");
 		ROWS_IN_SUPPLY = 7;
 		amountOfPlayers = 2; //Should probably be supplied from network later
 		supply = new Supply(amountOfPlayers);
@@ -57,9 +58,15 @@ public class InGameViewState extends ControlledGameState {
 		victoryCards = StringArraytoImageArray(getVictoryCards(getSupply()));
 		treasureCards = StringArraytoImageArray(getTreasureCards(getSupply()));
 		counterZone = new RoundedRectangle(0, gc.getHeight() - gc.getHeight()/3 - 50, gc.getWidth(), 40, 2);
-		riksdaler = new Image("res/img/gui/ingame/Coin.png");
+
 		gameContainerWidth = gc.getWidth();
 		gameContainerHeight = gc.getHeight();
+		
+		//Initiate all images
+		menuButton = new Image("res/img/gui/ingame/MenuButton.png");
+		chatButton = new Image("res/img/gui/ingame/ChatButton.png");
+		riksdaler = new Image("res/img/gui/ingame/Coin.png");
+		board = new Image("res/img/gui/ingame/BoardTemp.png");
 		
 		//Initiate all rectangles
 		actionRectangles = new Rectangle[10];
@@ -84,6 +91,8 @@ public class InGameViewState extends ControlledGameState {
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
 		board.draw();	
+		menuButton.draw(gameContainerWidth - 110, gameContainerHeight - 70);
+		chatButton.draw(gameContainerWidth - 110, gameContainerHeight - 130);
 		g.setLineWidth(10);
 		g.setColor(Color.darkGray);
 		g.drawString("InGameState", 0, 0);
@@ -107,7 +116,7 @@ public class InGameViewState extends ControlledGameState {
 		gameContainerWidth = gc.getWidth();
 		gameContainerHeight = gc.getHeight();
 		
-		counterZone.setWidth(gameContainerWidth);
+		counterZone.setWidth(gameContainerWidth - 5);
 		counterZone.setY(gc.getHeight() - gc.getHeight()/3 - 50);
 		
 		//Update values
