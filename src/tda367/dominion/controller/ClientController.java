@@ -45,4 +45,12 @@ public class ClientController extends Listener {
 	public void disconnected(Connection c) {
 		model.disconnected();
 	}
+	
+	public void setRoomData(String[][] data){
+		model.setRoomData(data);
+	}
+	
+	public String[][] getRoomData(){
+		return model.getRoomData();
+	}
 }
