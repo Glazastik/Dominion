@@ -25,7 +25,6 @@ public class ServerListState extends ControlledGameState {
 	}
 
 	public void updateRoomData(String[][] s) {
-		System.out.println("Updated game room data");
 		if (s != null) {
 			roomData = s;
 		}
