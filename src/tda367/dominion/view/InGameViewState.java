@@ -74,9 +74,6 @@ public class InGameViewState extends ControlledGameState {
 		board = new Image("res/img/gui/ingame/BoardTemp.png");
 		
 		//Initiate all rectangles
-		menuRec = new Rectangle(gameContainerWidth - 110, gameContainerHeight - 70, 100, 50);
-		chatRec = new Rectangle(gameContainerWidth - 110, gameContainerHeight - 130, 100, 50);
-		logRec = new Rectangle(gameContainerWidth -110, gameContainerHeight - 190, 100, 50);
 		actionRectangles = new Rectangle[10];
 		victoryRectangles = new Rectangle[4];
 		treasureRectangles = new Rectangle[3];
@@ -99,22 +96,12 @@ public class InGameViewState extends ControlledGameState {
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
 		board.draw();	
-		menuButton.draw(gameContainerWidth - 110, gameContainerHeight - 70);
-		chatButton.draw(gameContainerWidth - 110, gameContainerHeight - 130);
-		logButton.draw(gameContainerWidth - 110, gameContainerHeight - 190);
-		g.setLineWidth(10);
-		g.setColor(Color.darkGray);
-		g.drawString("InGameState", 0, 0);
-		g.draw(counterZone);
-		g.setColor(Color.white);
-		g.drawString("Actions: " + nmbOfActions, 50, gc.getHeight() - gc.getHeight()/3 - 40);
-		g.drawString("Buys: " + nmbOfBuys, 200, gc.getHeight() - gc.getHeight()/3 - 40);
-		g.drawString("x"+nmbOfRiksdaler, 380, gc.getHeight() - gc.getHeight()/3 - 40);
-		riksdaler.draw((float)350, (float)gc.getHeight() - gc.getHeight()/3 - 43, (float)0.035);
 		paintVictoryCards(victoryCards);
 		paintActionCards(actionCards);
 		paintTreasureCards(treasureCards);
 		paintPlayerHand(actionCards);
+		paintButtons();
+		paintCounterZone(g);
 	}
 
 	@Override
@@ -495,6 +482,37 @@ public class InGameViewState extends ControlledGameState {
 			handRectangles[i].setSize((int)cardWidth, (int)cardHeight);
 		}
 		
+	}
+	
+	/**
+	 * Paints the buttons: menu, log and chat
+	 * @throws SlickException
+	 */
+	private void paintButtons() 
+			throws SlickException {
+		menuButton.draw(gameContainerWidth - 110, gameContainerHeight - 70);
+		chatButton.draw(gameContainerWidth - 110, gameContainerHeight - 130);
+		logButton.draw(gameContainerWidth - 110, gameContainerHeight - 190);
+		menuRec = new Rectangle(gameContainerWidth - 110, gameContainerHeight - 70, 100, 50);
+		chatRec = new Rectangle(gameContainerWidth - 110, gameContainerHeight - 130, 100, 50);
+		logRec = new Rectangle(gameContainerWidth - 110, gameContainerHeight - 190, 100, 50);
+	}
+	
+	/**
+	 * Paints the counterZone i.e the status bar
+	 * @throws slickException
+	 */
+	private void paintCounterZone(Graphics g) 
+			throws SlickException {
+		g.setLineWidth(10);
+		g.setColor(Color.darkGray);
+		g.drawString("InGameState", 0, 0);
+		g.draw(counterZone);
+		g.setColor(Color.white);
+		g.drawString("Actions: " + nmbOfActions, 50, gameContainerHeight - gameContainerHeight/3 - 40);
+		g.drawString("Buys: " + nmbOfBuys, 200, gameContainerHeight - gameContainerHeight/3 - 40);
+		g.drawString("x"+nmbOfRiksdaler, 380, gameContainerHeight - gameContainerHeight - 40);
+		riksdaler.draw((float)350, (float)gameContainerHeight - gameContainerHeight/3 - 43, (float)0.035);
 	}
 
 }
