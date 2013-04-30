@@ -43,9 +43,9 @@ public class ServerListState extends ControlledGameState {
 		
 		for (int i = 0; i < roomData.length; i++) {
 			room.draw(60, 40);
-			g.drawString("<Room " + roomData[0][2] + ">", 80, 50);
-			g.drawString("Name:" + roomData[0][0], 80, 60);
-			g.drawString("Slots: " + roomData[0][1], 80, 70);
+//			g.drawString("<Room " + roomData[0][2] + ">", 80, 50);
+			g.drawString("" + roomData[0][0], 110, 90);
+			g.drawString("" + roomData[0][1] + "/4", 110, 210);
 		}
 	}
 
