@@ -11,15 +11,17 @@ import org.newdawn.slick.state.StateBasedGame;
 import tda367.dominion.controller.ClientController;
 
 public class ServerListState extends ControlledGameState {
+	private ClientController controller;
 	
 	public ServerListState(int id, ClientController controller) {
 		super(id, controller);
+		this.controller = controller;
 	}
 	
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
-
+		
 	}
 
 	@Override
@@ -27,6 +29,11 @@ public class ServerListState extends ControlledGameState {
 			throws SlickException {
 		g.setColor(Color.green);
 		g.fillRect(50, 50, gc.getWidth()-100, gc.getHeight()-100);
+		g.setColor(Color.black);
+		g.drawString("Room 0:", 80, 50);
+		g.drawString("Name:" + controller.getRoomData()[0][0], 80, 60);
+		g.drawString("Slots: "+controller.getRoomData()[0][1], 80, 70);
+		g.drawString("ID: "+controller.getRoomData()[0][2], 80, 80);
 	}
 
 	@Override
