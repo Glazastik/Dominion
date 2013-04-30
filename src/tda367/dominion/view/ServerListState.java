@@ -12,7 +12,7 @@ import tda367.dominion.controller.ClientController;
 
 public class ServerListState extends ControlledGameState {
 	private ClientController controller;
-	private String[][] roomData;
+	private String[][] roomData = new String[0][0];
 
 	public ServerListState(int id, ClientController controller) {
 		super(id, controller);
@@ -22,13 +22,12 @@ public class ServerListState extends ControlledGameState {
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
-		updateRoomData();
 	}
 
-	private void updateRoomData() {
-		roomData = controller.getRoomData();
-		if (roomData == null) {
-			roomData = new String[0][0];
+	public void updateRoomData(String[][] s) {
+		System.out.println("Updated game room data");
+		if (s != null) {
+			roomData = s;
 		}
 	}
 

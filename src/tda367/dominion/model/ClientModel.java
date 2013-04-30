@@ -22,17 +22,10 @@ public class ClientModel {
 	}
 
 	/**
-	 * @return the roomData
-	 */
-	public String[][] getRoomData() {
-		return roomData;
-	}
-
-	/**
 	 * @param roomData the roomData to set
 	 */
 	public void setRoomData(String[][] roomData) {
-		this.roomData = roomData;
+		view.updateRoomData(roomData);
 	}
 	
 	

@@ -65,6 +65,12 @@ public class MainView extends StateBasedGame {
     	theGame.setDisplayMode(screenHeight, screenWidth, fullScreen);
     }
     
+    public void updateRoomData(String[][] s) {
+    	GameState g = this.getState(SERVERLISTSTATE);
+    	((ServerListState) g).updateRoomData(s);
+    	System.out.println("Updating game rooms");
+    }
+    
     /**
      * Writes all the current configurations in options to a file and exits the game
      */
