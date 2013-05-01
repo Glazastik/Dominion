@@ -47,7 +47,6 @@ public class ServerListState extends ControlledGameState {
 
 		for (int i = 0; i < roomData.length; i++) {
 			room.draw(60, 40);
-			// g.drawString("<Room " + roomData[0][2] + ">", 80, 50);
 			g.drawString("" + roomData[0][0], 110, 90);
 			g.drawString("" + roomData[0][1] + "/4", 110, 210);
 			g.fillRect(join.getX(), join.getY(), join.getWidth(),
@@ -105,7 +104,7 @@ public class ServerListState extends ControlledGameState {
 	public void mouseClicked(int button, int x, int y, int clickCount) {
 		super.mouseClicked(button, x, y, clickCount);
 		if(join.contains(x, y)){
-			//TODO Join code goes here
+			controller.joinRoom(0);
 		}
 	}
 	
