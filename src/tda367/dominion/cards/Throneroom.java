@@ -9,12 +9,23 @@ import tda367.dominion.model.Supply;
 public class Throneroom {
 	public static void play(Player p, LinkedList<Player> players, Supply supply){
 		CardInfoHandler cif = CardInfoHandler.getInstance();
-		//p.sendInformationMessage("Choose an actioncard from your hand to play twice");
+		//p.sendInformationMessage("Choose an action card from your hand to play twice");
+		boolean hasActionCards = false;
+		boolean done = false;
+		for(String s :p.getHand().getCards()){
+			if(cif.getCardType(s).equals("Action")){
+				hasActionCards = true;
+			}
+		}
+		if(hasActionCards){
+			while(!done){
 		//Message message = p.getNextMessage();
 		//if (message instanceOf LocatedCardMessage){
 			//LocatedCardMessage lcm = (LocatedCardMessage) message;
 			//String cardName = lcm.getCardName
 			//if(lcm.getLocation().equals("Hand") && cif.getCardType(cardName).equals("Action"){
+				//done=true;
+				//p.removeInformationMessage();
 				//player.increaseAction(1);
 				//player.play(cardName);
 				//for (int i = 0 ; i < 2 ; i++){
@@ -46,5 +57,7 @@ public class Throneroom {
 				//}
 			//}
 		//}
+			}
+		}
 	}
 }
