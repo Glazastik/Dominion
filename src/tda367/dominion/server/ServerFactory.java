@@ -7,6 +7,7 @@ import tda367.dominion.messages.ConnectionMessage;
 import tda367.dominion.messages.RoomMessage;
 
 import com.esotericsoftware.kryonet.Connection;
+import com.esotericsoftware.kryonet.FrameworkMessage.KeepAlive;
 import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Server;
 
@@ -48,6 +49,8 @@ public class ServerFactory {
 					print("Connection wants to connect to a room.");
 					ConnectionMessage cmsg = (ConnectionMessage) object;
 					connectPlayer(gc, cmsg);
+				} else if(object instanceof KeepAlive) {
+					//TODO: To stop it from printing these.
 				} else {
 					print("Classname: " + object.getClass());
 					print(object.toString());
