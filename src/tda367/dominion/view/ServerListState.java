@@ -6,6 +6,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.StateBasedGame;
 
 import tda367.dominion.controller.ClientController;
@@ -15,6 +16,9 @@ public class ServerListState extends ControlledGameState {
 	private String[][] roomData = new String[0][0];
 	private Image board;
 	private Image room;
+
+	//TODO: Temporary rectangle
+	private Rectangle join;
 
 	public ServerListState(int id, ClientController controller) {
 		super(id, controller);
@@ -26,6 +30,7 @@ public class ServerListState extends ControlledGameState {
 			throws SlickException {
 		board = new Image("res/img/gui/ingame/BoardTemp.png");
 		room = new Image("res/img/gui/menu/room.png");
+		join = new Rectangle(600, 120, 250, 100);
 	}
 
 	public void updateRoomData(String[][] s) {
@@ -40,12 +45,13 @@ public class ServerListState extends ControlledGameState {
 		g.setColor(Color.green);
 		g.fillRect(50, 50, gc.getWidth() - 100, gc.getHeight() - 100);
 		g.setColor(Color.black);
-		
+
 		for (int i = 0; i < roomData.length; i++) {
 			room.draw(60, 40);
-//			g.drawString("<Room " + roomData[0][2] + ">", 80, 50);
 			g.drawString("" + roomData[0][0], 110, 90);
 			g.drawString("" + roomData[0][1] + "/4", 110, 210);
+			g.fillRect(join.getX(), join.getY(), join.getWidth(),
+					join.getHeight());
 		}
 	}
 
@@ -62,7 +68,7 @@ public class ServerListState extends ControlledGameState {
 		}
 
 	}
-	
+
 	/**
 	 * This method is called every time this state is entered.
 	 * 
@@ -91,5 +97,32 @@ public class ServerListState extends ControlledGameState {
 			throws SlickException {
 		gc.getInput().clearKeyPressedRecord();
 	}
+
+	/**
+	 * @see org.newdawn.slick.state.BasicGameState#mouseClicked(int, int, int, int)
+	 */
+	@Override
+	public void mouseClicked(int button, int x, int y, int clickCount) {
+		super.mouseClicked(button, x, y, clickCount);
+		if(join.contains(x, y)){
+			controller.joinRoom(0);
+		}
+	}
+
+	/**
+	 * @see org.newdawn.slick.state.BasicGameState#keyPressed(int, char)
+	 */
+	@Override
+	public void keyPressed(int key, char c) {
+		
+		super.keyPressed(key, c);
+		if(key == Input.KEY_U){
+			//TODO: Request new rooms.
+		}
+	}
+	
+	
+	
+	
 
 }

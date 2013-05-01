@@ -8,13 +8,5 @@ package tda367.dominion.messages;
  * Spy
  * Chancellor
  */
-public class CreateBoolMessage implements InstructionMessage {
-	private String message;
-	
-	public String getMessage(){
-		return this.message;
-	}
-	public void setMessage(String message){
-		this.message = message;
-	}
+public class CreateBoolMessage{
 }

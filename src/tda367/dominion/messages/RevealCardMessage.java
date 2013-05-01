@@ -1,6 +1,6 @@
 package tda367.dominion.messages;
 
-public class CardMessage {
+public class RevealCardMessage {
 	private String cardName;
 
 	public void setCard(String cardName) {
