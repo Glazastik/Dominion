@@ -1,6 +1,6 @@
 package tda367.dominion.server;
 
-import tda367.dominion.messages.CardMessage;
+import tda367.dominion.messages.RevealCardMessage;
 import tda367.dominion.messages.ConnectionMessage;
 import tda367.dominion.messages.DoneMessage;
 import tda367.dominion.messages.LocatedCardMessage;
@@ -22,7 +22,7 @@ public class NetworkCommon {
 		kryo.register(BoolMessage.class);
 		kryo.register(DoneMessage.class);
 		kryo.register(ConnectionMessage.class);
-		kryo.register(CardMessage.class);
+		kryo.register(RevealCardMessage.class);
 		kryo.register(RoomMessage.class);
 		
 		kryo.register(String[][].class);
