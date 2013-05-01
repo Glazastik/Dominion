@@ -17,6 +17,7 @@ public class ServerListState extends ControlledGameState {
 	private Image board;
 	private Image room;
 
+	//TODO: Temporary rectangle
 	private Rectangle join;
 
 	public ServerListState(int id, ClientController controller) {
@@ -107,6 +108,20 @@ public class ServerListState extends ControlledGameState {
 			controller.joinRoom(0);
 		}
 	}
+
+	/**
+	 * @see org.newdawn.slick.state.BasicGameState#keyPressed(int, char)
+	 */
+	@Override
+	public void keyPressed(int key, char c) {
+		
+		super.keyPressed(key, c);
+		if(key == Input.KEY_U){
+			//TODO: Request new rooms.
+		}
+	}
+	
+	
 	
 	
 

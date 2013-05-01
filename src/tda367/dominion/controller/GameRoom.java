@@ -24,7 +24,7 @@ public class GameRoom {
 	 * @param gc
 	 */
 	public GameRoom() {
-		
+
 		slots = 4;
 		name = "test";
 		id = 0;
@@ -79,24 +79,30 @@ public class GameRoom {
 		this.name = name;
 	}
 
-	public void setID(int id){
+	public void setID(int id) {
 		this.id = id;
 	}
-	
+
 	public int getID() {
 		return id;
 	}
-	
+
 	/**
-	 * This is how we add a player to a game room. We need the current connection to be able to retrieve and send items.
+	 * This is how we add a player to a game room. We need the current
+	 * connection to be able to retrieve and send items.
 	 * 
-	 * @param c the current connection of the player
+	 * @param c
+	 *            the current connection of the player
 	 */
 	public void addPlayer(GameConnection c) {
 		gcs.add(c);
 		players.add(new Player(c.getPlayerName()));
 		System.out.println("Added player to gameroom.");
 		slots--;
-		
+
+	}
+
+	public boolean isFull() {
+		return slots <= 0;
 	}
 }

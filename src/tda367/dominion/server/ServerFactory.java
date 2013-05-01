@@ -44,7 +44,6 @@ public class ServerFactory {
 			public void received(Connection c, Object object) {
 				GameConnection gc = (GameConnection) c;
 
-				print("Received stuff");
 				if (object instanceof ConnectionMessage) {
 					print("Connection wants to connect to a room.");
 					ConnectionMessage cmsg = (ConnectionMessage) object;
