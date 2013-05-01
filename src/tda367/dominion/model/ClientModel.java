@@ -28,11 +28,15 @@ public class ClientModel {
 		view.updateRoomData(roomData);
 	}
 	
+	public void cardResponse() {
+		
+	}
+	
 	/**
 	 * A boolean response from the view.
 	 */
-	public void boolAnswer(boolean bool) {
-		connection.boolAnswer(bool);
+	public void boolMessage(boolean bool) {
+		connection.boolMessage(bool);
 	}
 	
 }

@@ -39,8 +39,8 @@ public class ClientController extends Listener {
 		}
 	}
 	
-	public void boolAnswer(boolean bool) {
-		model.boolAnswer(bool);
+	public void boolMessage(boolean bool) {
+		model.boolMessage(bool);
 	}
 	
 	public void searchForGame() {

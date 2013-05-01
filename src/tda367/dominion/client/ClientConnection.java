@@ -2,6 +2,7 @@ package tda367.dominion.client;
 
 import java.io.IOException;
 
+import tda367.dominion.cards.ICard;
 import tda367.dominion.controller.ClientController;
 import tda367.dominion.server.NetworkCommon;
 import tda367.dominion.messages.*;
@@ -47,10 +48,18 @@ public class ClientConnection {
 	/**
 	 * Send a response to the server in the form of a boolean message.
 	 */
-	public void boolAnswer(boolean bool) {
+	public void boolMessage(boolean bool) {
 		BoolMessage msg = new BoolMessage();
 		msg.bool = bool;
 		client.sendTCP(msg);
+	}
+	
+	/**
+	 * Send a response to the server in the form of a card.
+	 */
+	public void cardMessage(ICard card) {
+		CardMessage msg = new CardMessage();
+		msg.setCard("" + card.getClass());
 	}
 
 	public void disconnected(Connection c) {
