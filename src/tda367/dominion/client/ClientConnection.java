@@ -50,7 +50,7 @@ public class ClientConnection {
 	 */
 	public void boolMessage(boolean bool) {
 		BoolMessage msg = new BoolMessage();
-		msg.bool = bool;
+		msg.setBool(bool);
 		client.sendTCP(msg);
 	}
 	
