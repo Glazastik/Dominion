@@ -1,7 +1,6 @@
-package tda367.dominion.model;
+package tda367.dominion.server.model;
 
 import java.util.HashMap;
-import java.util.LinkedList;
 
 /**
  * A class designed to help players gain card, which means

@@ -1,8 +1,8 @@
-package tda367.dominion.server;
+package tda367.dominion.server.model;
 
 import java.util.LinkedList;
 
-import tda367.dominion.controller.GameRoom;
+import tda367.dominion.server.network.GameConnection;
 
 /**
  * Knows about the states of the game rooms.

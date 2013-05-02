@@ -1,10 +1,8 @@
-package tda367.dominion.model;
+package tda367.dominion.server.model;
 
 import java.util.Collections;
 import java.util.LinkedList;
 import java.util.NoSuchElementException;
-
-import java.util.List;
 
 /**
  * Class for the piles which contain the cards.

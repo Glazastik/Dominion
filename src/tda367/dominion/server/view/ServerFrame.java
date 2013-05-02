@@ -1,4 +1,4 @@
-package tda367.dominion.server;
+package tda367.dominion.server.view;
 
 import java.awt.BorderLayout;
 import java.awt.Color;

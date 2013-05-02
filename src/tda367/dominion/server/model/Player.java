@@ -1,4 +1,4 @@
-package tda367.dominion.model;
+package tda367.dominion.server.model;
 
 import java.util.List;
 

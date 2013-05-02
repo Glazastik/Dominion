@@ -1,7 +1,7 @@
-package tda367.dominion.model;
+package tda367.dominion.server.model;
 
-import tda367.dominion.client.ClientConnection;
-import tda367.dominion.view.MainView;
+import tda367.dominion.client.network.ClientConnection;
+import tda367.dominion.client.view.MainView;
 
 public class ClientModel {
 	private ClientConnection connection;

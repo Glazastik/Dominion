@@ -1,9 +1,8 @@
-package tda367.dominion.model;
+package tda367.dominion.server.model;
 
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Random;
 import java.util.Set;
 

@@ -1,10 +1,13 @@
-package tda367.dominion.server;
+package tda367.dominion.server.network;
 
 import java.io.IOException;
 
-import tda367.dominion.controller.GameRoom;
-import tda367.dominion.messages.ConnectionMessage;
-import tda367.dominion.messages.RoomMessage;
+import tda367.dominion.commons.messages.ConnectionMessage;
+import tda367.dominion.commons.messages.RoomMessage;
+import tda367.dominion.commons.network.NetworkCommon;
+import tda367.dominion.server.model.GameRoom;
+import tda367.dominion.server.model.RoomHandler;
+import tda367.dominion.server.view.ServerFrame;
 
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.FrameworkMessage.KeepAlive;

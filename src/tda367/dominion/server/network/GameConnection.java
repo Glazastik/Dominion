@@ -1,4 +1,4 @@
-package tda367.dominion.server;
+package tda367.dominion.server.network;
 
 import com.esotericsoftware.kryonet.Connection;
 

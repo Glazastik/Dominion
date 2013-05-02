@@ -1,7 +1,7 @@
-package tda367.dominion.controller;
+package tda367.dominion.server.main;
 
-import tda367.dominion.server.ServerFactory;
-import tda367.dominion.server.ServerFrame;
+import tda367.dominion.server.network.ServerFactory;
+import tda367.dominion.server.view.ServerFrame;
 
 import com.esotericsoftware.kryonet.Server;
 
