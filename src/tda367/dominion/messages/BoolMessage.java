@@ -2,13 +2,15 @@ package tda367.dominion.messages;
 
 /**
  * A message used to deliver a players yes/no choice
- * @author christoffer
- *
  */
 public class BoolMessage {
-	public Boolean bool;
+	private Boolean bool;
 	
-	public boolean answerIsYes(){
+	public void setBool(boolean bool) {
+		this.bool = bool;
+	}
+	
+	public boolean getBool() {
 		return bool;
 	}
 
