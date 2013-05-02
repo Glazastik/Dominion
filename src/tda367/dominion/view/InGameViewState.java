@@ -165,6 +165,7 @@ public class InGameViewState extends ControlledGameState {
 					playCard(player.getHand().getCards().get(i));
 				} catch (SlickException e) {
 				}
+				player.discardCard(player.getHand().getCards().get(i));
 				System.out.println("Hand card: " + (i+1));
 			}
 		}
