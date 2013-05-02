@@ -46,7 +46,7 @@ public class ServerFactory {
 				GameConnection gc = (GameConnection) c;
 
 				if (object instanceof ConnectionMessage) {
-					print("Connection wants to connect to a room.");
+					print(c.getRemoteAddressTCP() + " wants to connect to a room.");
 					ConnectionMessage cmsg = (ConnectionMessage) object;
 					connectPlayer(gc, cmsg);
 				} else if(object instanceof KeepAlive) {
