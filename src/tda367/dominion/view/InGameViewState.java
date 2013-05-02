@@ -26,6 +26,7 @@ public class InGameViewState extends ControlledGameState {
 	private Image[] actionCards;
 	private Image[] victoryCards;
 	private Image[] treasureCards;
+	private Image[] playedCards;
 	private Image board = null;
 	private int gameContainerWidth;
 	private int gameContainerHeight;
@@ -72,6 +73,7 @@ public class InGameViewState extends ControlledGameState {
 		logButton = new Image("res/img/gui/ingame/LogButton.png");
 		riksdaler = new Image("res/img/gui/ingame/Coin.png");
 		board = new Image("res/img/gui/ingame/BoardTemp.png");
+		playedCards = new Image[20];
 		
 		//Initiate all rectangles
 		actionRectangles = new Rectangle[10];
@@ -159,6 +161,10 @@ public class InGameViewState extends ControlledGameState {
 		//Hand cards listener
 		for(int i=0; i<handRectangles.length; i++) {
 			if(button == Input.MOUSE_LEFT_BUTTON && handRectangles[i].contains(x,y)) {
+				try {
+					playCard(player.getHand().getCards().get(i));
+				} catch (SlickException e) {
+				}
 				System.out.println("Hand card: " + (i+1));
 			}
 		}
@@ -512,6 +518,17 @@ public class InGameViewState extends ControlledGameState {
 		g.drawString("Buys: " + nmbOfBuys, 200, gameContainerHeight - gameContainerHeight/3 - 50);
 		g.drawString("x"+nmbOfRiksdaler, 380, gameContainerHeight - gameContainerHeight/3 - 50);
 		riksdaler.draw((float)350, (float)gameContainerHeight - gameContainerHeight/3 - 53, (float)0.035);
+	}
+	
+	/**
+	 * Paints a card in the play zone, Maybe add animation if played from your own hand
+	 * @param card
+	 * @throws SlickException
+	 */
+	private void playCard(String card) throws SlickException {
+		cih = CardInfoHandler.getInstance();
+		playedCards[1] = new Image(cih.getImageLink(card));
+		playedCards[1].draw(100, 100, 90, 150);
 	}
 
 }
