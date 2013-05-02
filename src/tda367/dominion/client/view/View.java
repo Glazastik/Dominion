@@ -1,4 +1,4 @@
-package tda367.dominion.view;
+package tda367.dominion.client.view;
 
 public class View {
 

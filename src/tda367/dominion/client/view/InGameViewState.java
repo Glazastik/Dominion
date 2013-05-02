@@ -1,4 +1,4 @@
-package tda367.dominion.view;
+package tda367.dominion.client.view;
 
 import java.util.List;
 
@@ -12,11 +12,11 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.RoundedRectangle;
 import org.newdawn.slick.state.StateBasedGame;
 
-import tda367.dominion.controller.ClientController;
-import tda367.dominion.model.CardInfoHandler;
-import tda367.dominion.model.Pile;
-import tda367.dominion.model.Player;
-import tda367.dominion.model.Supply;
+import tda367.dominion.server.controller.ClientController;
+import tda367.dominion.server.model.CardInfoHandler;
+import tda367.dominion.server.model.Pile;
+import tda367.dominion.server.model.Player;
+import tda367.dominion.server.model.Supply;
 
 public class InGameViewState extends ControlledGameState {
 

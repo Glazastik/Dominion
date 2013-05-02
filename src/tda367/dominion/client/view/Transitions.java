@@ -1,6 +1,8 @@
-package tda367.dominion.view;
+package tda367.dominion.client.view;
 
-import org.newdawn.slick.state.transition.*;
+import org.newdawn.slick.state.transition.HorizontalSplitTransition;
+import org.newdawn.slick.state.transition.SelectTransition;
+import org.newdawn.slick.state.transition.Transition;
 import org.newdawn.slick.util.Log;
 
 /**

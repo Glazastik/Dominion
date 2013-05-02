@@ -1,4 +1,4 @@
-package tda367.dominion.view;
+package tda367.dominion.client.view;
 
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
@@ -9,7 +9,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.StateBasedGame;
 
-import tda367.dominion.controller.ClientController;
+import tda367.dominion.server.controller.ClientController;
 
 public class ServerListState extends ControlledGameState {
 	private ClientController controller;

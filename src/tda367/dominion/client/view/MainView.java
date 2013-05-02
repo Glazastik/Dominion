@@ -1,13 +1,16 @@
-package tda367.dominion.view;
+package tda367.dominion.client.view;
 
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 
-import tda367.dominion.controller.ClientController;
+import org.newdawn.slick.AppGameContainer;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.state.GameState;
+import org.newdawn.slick.state.StateBasedGame;
 
-import org.newdawn.slick.*;
-import org.newdawn.slick.state.*;
+import tda367.dominion.server.controller.ClientController;
 
 public class MainView extends StateBasedGame {
 	

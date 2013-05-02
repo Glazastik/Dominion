@@ -1,8 +1,8 @@
-package tda367.dominion.view;
+package tda367.dominion.client.view;
 
 import org.newdawn.slick.state.BasicGameState;
 
-import tda367.dominion.controller.ClientController;
+import tda367.dominion.server.controller.ClientController;
 
 public abstract class ControlledGameState extends BasicGameState {
 	

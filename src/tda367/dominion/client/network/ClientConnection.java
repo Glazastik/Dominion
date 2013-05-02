@@ -1,13 +1,14 @@
-package tda367.dominion.client;
+package tda367.dominion.client.network;
 
 import java.io.IOException;
 
-import tda367.dominion.cards.ICard;
-import tda367.dominion.controller.ClientController;
-import tda367.dominion.server.NetworkCommon;
-import tda367.dominion.messages.*;
+import tda367.dominion.commons.messages.BoolMessage;
+import tda367.dominion.commons.network.NetworkCommon;
+import tda367.dominion.server.cards.ICard;
+import tda367.dominion.server.controller.ClientController;
 
-import com.esotericsoftware.kryonet.*;
+import com.esotericsoftware.kryonet.Client;
+import com.esotericsoftware.kryonet.Connection;
 
 public class ClientConnection {
 	private ClientController controller;

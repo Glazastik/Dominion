@@ -1,8 +1,9 @@
-package tda367.dominion.client;
+package tda367.dominion.client.main;
 
-import tda367.dominion.controller.ClientController;
-import tda367.dominion.model.ClientModel;
-import tda367.dominion.view.MainView;
+import tda367.dominion.client.network.ClientConnection;
+import tda367.dominion.client.view.MainView;
+import tda367.dominion.server.controller.ClientController;
+import tda367.dominion.server.model.ClientModel;
 
 public class ClientMain {
 	private static MainView view;

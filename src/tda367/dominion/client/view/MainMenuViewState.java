@@ -1,11 +1,15 @@
-package tda367.dominion.view;
+package tda367.dominion.client.view;
 
-import org.lwjgl.input.*;
-import org.newdawn.slick.*;
-import org.newdawn.slick.state.*;
+import org.lwjgl.input.Mouse;
 import org.lwjgl.util.Rectangle;
+import org.newdawn.slick.GameContainer;
+import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
+import org.newdawn.slick.Input;
+import org.newdawn.slick.SlickException;
+import org.newdawn.slick.state.StateBasedGame;
 
-import tda367.dominion.controller.ClientController;
+import tda367.dominion.server.controller.ClientController;
 
 public class MainMenuViewState extends ControlledGameState {
 
