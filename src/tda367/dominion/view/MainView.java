@@ -15,6 +15,7 @@ public class MainView extends StateBasedGame {
 	public final int MAINMENUSTATE = 1;
 	public final int OPTIONSSTATE = 2;
 	public final int SERVERLISTSTATE = 3;
+	public final int SPLASHSTATE = 4;
 	public static int screenHeight = 1280;
 	public static int screenWidth = 800;
 	public static AppGameContainer theGame;
@@ -37,11 +38,13 @@ public class MainView extends StateBasedGame {
 	 */
 	@Override
 	public void initStatesList(GameContainer arg0) throws SlickException {
+		addState(new SplashScreen(SPLASHSTATE));
+		enterState(SPLASHSTATE);
 		addState(new InGameViewState(INGAMESTATE, controller));
 		addState(new MainMenuViewState(MAINMENUSTATE, controller));
 		addState(new OptionsViewState(OPTIONSSTATE, controller));
 		addState(new ServerListState(SERVERLISTSTATE, controller));
-		enterState(MAINMENUSTATE);
+		
 	}
     
     /**
