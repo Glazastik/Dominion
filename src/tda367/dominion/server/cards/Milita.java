@@ -1,8 +1,8 @@
-package tda367.dominion.cards;
+package tda367.dominion.server.cards;
 
 import java.util.LinkedList;
 
-import tda367.dominion.model.Player;
+import tda367.dominion.server.model.Player;
 
 public class Milita {
 

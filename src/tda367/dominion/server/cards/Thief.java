@@ -1,10 +1,10 @@
-package tda367.dominion.cards;
+package tda367.dominion.server.cards;
 
 import java.util.LinkedList;
 
-import tda367.dominion.model.CardInfoHandler;
-import tda367.dominion.model.Pile;
-import tda367.dominion.model.Player;
+import tda367.dominion.server.model.CardInfoHandler;
+import tda367.dominion.server.model.Pile;
+import tda367.dominion.server.model.Player;
 
 public class Thief {
 	

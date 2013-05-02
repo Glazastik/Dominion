@@ -1,11 +1,11 @@
-package tda367.dominion.server;
+package tda367.dominion.commons.network;
 
-import tda367.dominion.messages.RevealCardMessage;
-import tda367.dominion.messages.ConnectionMessage;
-import tda367.dominion.messages.DoneMessage;
-import tda367.dominion.messages.LocatedCardMessage;
-import tda367.dominion.messages.RoomMessage;
-import tda367.dominion.messages.BoolMessage;
+import tda367.dominion.commons.messages.BoolMessage;
+import tda367.dominion.commons.messages.ConnectionMessage;
+import tda367.dominion.commons.messages.DoneMessage;
+import tda367.dominion.commons.messages.LocatedCardMessage;
+import tda367.dominion.commons.messages.RevealCardMessage;
+import tda367.dominion.commons.messages.RoomMessage;
 
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryonet.EndPoint;

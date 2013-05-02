@@ -1,10 +1,10 @@
-package tda367.dominion.cards;
+package tda367.dominion.server.cards;
 
 import java.util.LinkedList;
 
-import tda367.dominion.model.CardInfoHandler;
-import tda367.dominion.model.Player;
-import tda367.dominion.model.Supply;
+import tda367.dominion.server.model.CardInfoHandler;
+import tda367.dominion.server.model.Player;
+import tda367.dominion.server.model.Supply;
 
 public class Throneroom {
 	public static void play(Player p, LinkedList<Player> players, Supply supply){

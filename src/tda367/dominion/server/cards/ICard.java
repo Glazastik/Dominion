@@ -1,6 +1,4 @@
-package tda367.dominion.cards;
-
-import tda367.dominion.model.Player;
+package tda367.dominion.server.cards;
 
 public interface ICard {
 
