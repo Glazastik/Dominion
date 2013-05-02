@@ -1,4 +1,4 @@
-package tda367.dominion.messages;
+package tda367.dominion.commons.messages;
 
 /**
  * A class that updates the stats for a player.

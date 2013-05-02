@@ -1,4 +1,4 @@
-package tda367.dominion.messages;
+package tda367.dominion.commons.messages;
 
 import java.util.LinkedList;
 /**

@@ -1,4 +1,4 @@
-package tda367.dominion.messages;
+package tda367.dominion.commons.messages;
 
 public class RevealCardMessage implements Message{
 	private String cardName;

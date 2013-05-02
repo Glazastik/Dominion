@@ -1,4 +1,4 @@
-package tda367.dominion.messages;
+package tda367.dominion.commons.messages;
 
 /**
  * A message class used to represent cards clicked by the user Contains the card

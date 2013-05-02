@@ -1,4 +1,4 @@
-package tda367.dominion.messages;
+package tda367.dominion.commons.messages;
 /**
  * A class used to tell the view to remove all the revealed cards.
  * @author christoffer

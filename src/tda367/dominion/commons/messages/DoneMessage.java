@@ -1,4 +1,4 @@
-package tda367.dominion.messages;
+package tda367.dominion.commons.messages;
 
 /**
  * A message to be sent when the turn is over 
