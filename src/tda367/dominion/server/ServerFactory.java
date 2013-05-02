@@ -46,11 +46,12 @@ public class ServerFactory {
 				GameConnection gc = (GameConnection) c;
 
 				if (object instanceof ConnectionMessage) {
-					print(c.getRemoteAddressTCP() + " wants to connect to a room.");
+					print(c.getRemoteAddressTCP()
+							+ " wants to connect to a room.");
 					ConnectionMessage cmsg = (ConnectionMessage) object;
 					connectPlayer(gc, cmsg);
-				} else if(object instanceof KeepAlive) {
-					//TODO: To stop it from printing these.
+				} else if (object instanceof KeepAlive) {
+					// TODO: To stop it from printing these.
 				} else {
 					print("Classname: " + object.getClass());
 					print(object.toString());
@@ -74,8 +75,11 @@ public class ServerFactory {
 
 	protected static void connectPlayer(GameConnection c, ConnectionMessage cmsg) {
 		int id = Integer.parseInt(cmsg.getRoomId());
-		c.setPlayerName(cmsg.getName());;
-		roomHandler.addPlayer(c, id);
+		c.setPlayerName(cmsg.getName());
+		
+		if (!roomHandler.addPlayer(c, id)){
+			print("Couldn't add " + cmsg.getName() + " to room " + cmsg.getRoomId());
+		}
 
 	}
 
