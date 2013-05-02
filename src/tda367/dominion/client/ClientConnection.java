@@ -58,8 +58,8 @@ public class ClientConnection {
 	 * Send a response to the server in the form of a card.
 	 */
 	public void cardMessage(ICard card) {
-		CardMessage msg = new CardMessage();
-		msg.setCard("" + card.getClass());
+//		CardMessage msg = new CardMessage();
+//		msg.setCard("" + card.getClass());
 	}
 
 	public void disconnected(Connection c) {
