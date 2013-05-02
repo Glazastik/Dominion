@@ -3,7 +3,7 @@ package tda367.dominion.messages;
 /**
  * A message class for connecting to the server
  */
-public class ConnectionMessage implements InstructionMessage{
+public class ConnectionMessage implements Message{
 	private String name;
 	private String roomId;
 	

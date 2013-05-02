@@ -4,6 +4,6 @@ package tda367.dominion.messages;
  * @author christoffer
  *
  */
-public class RemoveRevealedMessage {
+public class RemoveRevealedMessage implements Message{
 
 }

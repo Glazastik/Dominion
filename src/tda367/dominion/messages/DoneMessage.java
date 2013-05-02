@@ -1,6 +1,6 @@
 package tda367.dominion.messages;
 
-public class DoneMessage implements InstructionMessage {
+public class DoneMessage implements Message {
 	private String message;
 
 	public String getMessage() {

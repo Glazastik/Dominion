@@ -8,5 +8,5 @@ package tda367.dominion.messages;
  * Spy
  * Chancellor
  */
-public class CreateBoolMessage{
+public class CreateBoolMessage implements Message{
 }

@@ -9,7 +9,7 @@ import java.util.LinkedList;
  * @author christoffer
  *
  */
-public class InitializeMessege implements InstructionMessage {
+public class InitializeMessege implements Message {
 	//TODO: More data to add.
 	private HashMap<String, Integer> cardsInSupply;
 	private LinkedList<String> players;

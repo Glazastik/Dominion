@@ -6,7 +6,7 @@ import java.util.LinkedList;
  * @author christoffer
  *
  */
-public class RevealMultipleCardMessage {
+public class RevealMultipleCardMessage implements Message{
 	private LinkedList<String> cards;
 	public void setCards(LinkedList<String> cards){
 		this.cards=cards;
