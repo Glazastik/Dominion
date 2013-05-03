@@ -19,6 +19,7 @@ Militia Action 4
 Mine Action 6
 Moat Action 2
 Moneylender Action 4
+Plebian Action 3
 Province Victory 8
 Remodel Action 4
 Silver Treasure 3
