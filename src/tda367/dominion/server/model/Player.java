@@ -117,6 +117,16 @@ public class Player {
 	}
 	
 	/**
+	 * Returns all playedCards in a pile
+	 * 
+	 * @Return playingArea
+	 */
+	public String[] getPlayedCards(){
+		return this.playingArea.getCards().toArray(new String[0]);
+	}
+	
+	
+	/**
 	 * Returns the number of cards currently in the deck
 	 * 
 	 * @return number of cards
