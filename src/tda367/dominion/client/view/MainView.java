@@ -14,11 +14,11 @@ import tda367.dominion.server.controller.ClientController;
 
 public class MainView extends StateBasedGame {
 	
-	public final int INGAMESTATE = 0;
-	public final int MAINMENUSTATE = 1;
-	public final int OPTIONSSTATE = 2;
-	public final int SERVERLISTSTATE = 3;
-	public final int SPLASHSTATE = 4;
+	public static final int INGAMESTATE = 0;
+	public static final int MAINMENUSTATE = 1;
+	public static final int OPTIONSSTATE = 2;
+	public static final int SERVERLISTSTATE = 3;
+	public static final int SPLASHSTATE = 4;
 	public static int screenHeight = 1280;
 	public static int screenWidth = 800;
 	public static AppGameContainer theGame;
