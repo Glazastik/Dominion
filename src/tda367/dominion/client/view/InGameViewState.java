@@ -167,8 +167,8 @@ public class InGameViewState extends ControlledGameState {
 		//Hand cards listener
 		for(int i=0; i<handRectangles.length; i++) {
 			if(button == Input.MOUSE_LEFT_BUTTON && handRectangles[i].contains(x,y)) {
-				player.play(player.getHand().getCards().get(i));
-				System.out.println("Hand card: " + (i+1));
+				player.play(i);
+				System.out.println("Hand card: " + player.revealHand().get(i));
 				resetHandRectangles();
 			}
 		}
