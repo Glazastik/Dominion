@@ -1,15 +1,14 @@
-package tda367.dominion.cardsTest;
+package tda367.dominion.server.cardsTest;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import java.util.LinkedList;
 
 import org.junit.Test;
 
-import tda367.dominion.cards.Witch;
-import tda367.dominion.model.GainingHandler;
-import tda367.dominion.model.Player;
-import tda367.dominion.model.Supply;
+import tda367.dominion.server.cards.Witch;
+import tda367.dominion.server.model.Player;
+import tda367.dominion.server.model.Supply;
 
 public class WitchTest {
 

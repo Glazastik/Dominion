@@ -1,11 +1,11 @@
-package tda367.dominion.cardsTest;
+package tda367.dominion.server.cardsTest;
 
 import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import tda367.dominion.cards.Chancellor;
-import tda367.dominion.model.Player;
+import tda367.dominion.server.cards.Chancellor;
+import tda367.dominion.server.model.Player;
 
 public class ChancellorTest {
 

@@ -1,11 +1,11 @@
-package tda367.dominion.cardsTest;
+package tda367.dominion.server.cardsTest;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import tda367.dominion.cards.Village;
-import tda367.dominion.model.*;
+import tda367.dominion.server.cards.Village;
+import tda367.dominion.server.model.Player;
 
 public class VillageTest {
 
