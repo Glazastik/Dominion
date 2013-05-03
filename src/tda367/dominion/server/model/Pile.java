@@ -133,6 +133,10 @@ public class Pile {
 		return l;
 	}
 	
+	public String getCard(int index) {
+		return cards.get(index);
+	}
+	
 	/**
 	 * Checks whether the pile contains a given card or not.
 	 * 
