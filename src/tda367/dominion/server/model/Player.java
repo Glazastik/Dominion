@@ -287,17 +287,9 @@ public class Player {
 			if(cardInfoHandler.getCardType(card).equals("Action")){
 				actions--;
 			}
-			playingArea.add(hand.pop(card));
-		}
-	}
-	
-	public void play(int card) {
-		if(hand.getSize() > 0) {
-			String c = hand.getCard(card);
-			if(cardInfoHandler.getCardType(c).equals("Action")){
-				actions--;
+			if(!cardInfoHandler.getCardType(card).equals("Victory") && !cardInfoHandler.getCardType(card).equals("Curse") ){
+				playingArea.add(hand.pop(card));
 			}
-			playingArea.add(hand.pop(c));
 		}
 	}
 	
