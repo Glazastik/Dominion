@@ -7,11 +7,25 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+/**
+ * A class that shows a pretty picture while loading
+ * all resources. It is not perfect since Slick2D 
+ * loads first, and later enters this state, but it 
+ * is as good as it gets.
+ * 
+ * @author Pontus
+ *
+ */
 public class SplashScreen extends BasicGameState {
 
 	private Image splash;
 	private int id;
 	
+	/**
+	 * Creates a new state with the specified ID.
+	 * 
+	 * @param id the id that this state will be recognized by
+	 */
 	public SplashScreen(int id){
 		this.id = id;
 	}
@@ -38,6 +52,14 @@ public class SplashScreen extends BasicGameState {
 			
 	}
 	
+	/**
+	 * Adds all the states to the parent {@link StateBasedGame} and 
+	 * initializes them.
+	 * 
+	 * @param gc the {@link GameContainer} that the game is contained in
+	 * @param sbg the {@link StateBasedGame} that controls the game
+	 * @throws SlickException
+	 */
 	private void initStates(GameContainer gc, StateBasedGame sbg) 
 			throws SlickException{
 		sbg.addState(new MainMenuViewState(MainView.MAINMENUSTATE, MainView.controller));
