@@ -11,6 +11,7 @@ import tda367.dominion.server.network.GameConnection;
  * 
  */
 public class GameRoom {
+	private static final int MAXPLAYERS = 4;
 	private LinkedList<Player> players;
 	private LinkedList<GameConnection> gcs;
 	private int slots;
@@ -96,12 +97,26 @@ public class GameRoom {
 	public void addPlayer(GameConnection c) {
 		gcs.add(c);
 		players.add(new Player(c.getPlayerName()));
-		System.out.println("Added player to gameroom.");
-		slots--;
+		System.out.println("Added " + c.getPlayerName() + " to gameroom.");
+		updateSlots();
 
+	}
+
+	private void updateSlots() {
+		slots = MAXPLAYERS-players.size();
+		
 	}
 
 	public boolean isFull() {
 		return slots <= 0;
+	}
+
+	public void kickPlayer(String playerName) {
+		for(int i = 0; i < players.size(); i++){
+			if(players.get(i).getName().equals(null) ){
+				
+			}
+		}
+		
 	}
 }

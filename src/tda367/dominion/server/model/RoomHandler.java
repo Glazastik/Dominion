@@ -2,6 +2,8 @@ package tda367.dominion.server.model;
 
 import java.util.LinkedList;
 
+import com.esotericsoftware.kryonet.Connection;
+
 import tda367.dominion.server.network.GameConnection;
 
 /**
@@ -82,5 +84,13 @@ public class RoomHandler {
 			}
 		}
 		return null;
+	}
+
+	public void kickConnection(GameConnection c) {
+		
+		for(GameRoom gr: rooms){
+			gr.kickPlayer(c.getPlayerName());
+		}
+		
 	}
 }

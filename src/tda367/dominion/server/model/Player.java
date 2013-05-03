@@ -126,6 +126,13 @@ public class Player {
 	}
 	
 	/**
+	 * @return the name
+	 */
+	public String getName() {
+		return name;
+	}
+
+	/**
 	 * Discards every card in the players hand
 	 */
 	public void discardHand() {
