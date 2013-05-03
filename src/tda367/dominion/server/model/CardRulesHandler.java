@@ -59,11 +59,11 @@ public class CardRulesHandler {
 			case "Adventurer": Adventurer.play(player); break;
 			case "Cellar": Cellar.play(player); break;
 			case "Chapel": Chapel.play(player); break;
-			case "Copper": player.increaseMoney(1); break
+			case "Copper": player.increaseMoney(1); break;
 			case "Councilroom": Councilroom.play(player, players); break;
 			case "Feast": Feast.play(player, supply); break;
 			case "Festival": Festival.play(player); break;
-			case "Gold": player.increaseMoney(3); break
+			case "Gold": player.increaseMoney(3); break;
 			case "Laboratory": Laboratory.play(player); break;
 			case "Library": Library.play(player); break;
 			case "Market": Market.play(player); break;
@@ -72,7 +72,7 @@ public class CardRulesHandler {
 			case "Moat": Moat.play(player); break;
 			case "Moneylender": Moneylender.play(player); break;
 			case "Remodel": Remodel.play(player, supply); break;
-			case "Silver": player.increaseMoney(2); break
+			case "Silver": player.increaseMoney(2); break;
 			case "Smithy": Smithy.play(player); break;
 			case "Spy": Spy.play(player, players); break;
 			case "Thief": Thief.play(player, players); break;
