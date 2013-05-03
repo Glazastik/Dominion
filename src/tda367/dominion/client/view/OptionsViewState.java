@@ -41,7 +41,9 @@ public class OptionsViewState extends ControlledGameState {
 		resolutionField.setBackgroundColor(Color.white);
 		resolutionField.setTextColor(Color.black);
 		resolutionField.setBorderColor(Color.black);
-		resolutionField.setText("Pleb" + (int) Math.random()*1000);
+		resolutionField.setMaxLength(10);
+		resolutionField.setText("Pleb" + (int) (Math.random()*1000));
+		
 		checker = new Image("res/img/gui/menu/checker.png");
 		checker2 = new Image("res/img/gui/menu/checker.png");
 		checker3 = new Image("res/img/gui/menu/checker.png");
