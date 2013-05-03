@@ -31,7 +31,6 @@ public class InGameViewState extends ControlledGameState {
 	private int gameContainerWidth;
 	private int gameContainerHeight;
 	private int amountOfPlayers;
-	private int ROWS_IN_SUPPLY;
 	private RoundedRectangle counterZone;
 	private String nmbOfActions;
 	private String nmbOfBuys;
@@ -55,7 +54,6 @@ public class InGameViewState extends ControlledGameState {
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
-		ROWS_IN_SUPPLY = 7;
 		amountOfPlayers = 2; //Should probably be supplied from network later
 		supply = new Supply(amountOfPlayers);
 		player = new Player("Mr.Testificate");
@@ -113,11 +111,6 @@ public class InGameViewState extends ControlledGameState {
 		Input input  = gc.getInput();
 		gameContainerWidth = gc.getWidth();
 		gameContainerHeight = gc.getHeight();
-		
-		menuRec.setSize(100, 50);
-		
-		counterZone.setWidth(gameContainerWidth - 2);
-		counterZone.setY(gc.getHeight() - gc.getHeight()/3 - 60);
 		
 		//Update values
 		nmbOfActions = String.valueOf(player.getActions());
@@ -387,7 +380,7 @@ public class InGameViewState extends ControlledGameState {
 		int cardSpacing = 5;
 		
 		for(int i = 0; i < cards.length; i++){
-			cardWidth = (float) gameContainerWidth/12;
+			cardWidth = (float) gameContainerWidth/14;
 			scale = (double) cardWidth/cards[i].getWidth();
 			cardHeight = (float) (cards[i].getHeight()*scale);
 			
@@ -416,12 +409,12 @@ public class InGameViewState extends ControlledGameState {
 		float cardHeight;
 		double scale;
 		float cardWidth;
-		int xOffset = 15 + gameContainerWidth/6;
+		int xOffset = 15 + gameContainerWidth/7;
 		int cardSpacing = 5;
 		int yOffset = 5;
 		
 		for(int i = 0; i < cards.length; i++){
-			cardWidth = (float) (gameContainerWidth/ROWS_IN_SUPPLY);
+			cardWidth = (float) (gameContainerWidth/9);
 			scale = (double) cardWidth/cards[i].getWidth();
 			cardHeight = (float) (cards[i].getHeight()*scale);
 			
@@ -460,7 +453,7 @@ public class InGameViewState extends ControlledGameState {
 		int cardSpacing = 5;
 		
 		for(int i = 0; i < cards.length; i++){
-			cardWidth = (float) gameContainerWidth/12;
+			cardWidth = (float) gameContainerWidth/14;
 			scale = (double) cardWidth/cards[i].getWidth();
 			cardHeight = (float) (cards[i].getHeight()*scale);
 			int xOffset = (int) (cardWidth+10);
@@ -496,6 +489,7 @@ public class InGameViewState extends ControlledGameState {
 			float cardHeight = (float) gameContainerHeight*((float)1/3);
 			double scale = (double) cardHeight/imageCards[i].getHeight();
 			float cardWidth = (float) (imageCards[i].getWidth()*scale);
+			
 			imageCards[i].draw(cardWidth*i+(10*(i+1)), gameContainerHeight - cardHeight - 10, cardWidth, cardHeight);
 			handRectangles[i].setLocation((int)cardWidth*i+(10*(i+1)), (int)(gameContainerHeight - cardHeight - 10));
 			handRectangles[i].setSize((int)cardWidth, (int)cardHeight);
@@ -528,6 +522,7 @@ public class InGameViewState extends ControlledGameState {
 	 */
 	private void paintCounterZone(Graphics g) 
 			throws SlickException {
+		counterZone.setBounds((float)3, (float)gameContainerHeight - gameContainerHeight/3 - 60, gameContainerWidth - 5, 40);
 		g.setLineWidth(5);
 		g.setColor(Color.darkGray);
 		g.draw(counterZone);
