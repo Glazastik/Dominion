@@ -290,6 +290,17 @@ public class Player {
 			playingArea.add(hand.pop(card));
 		}
 	}
+	
+	public void play(int card) {
+		if(hand.getSize() > 0) {
+			String c = hand.getCard(card);
+			if(cardInfoHandler.getCardType(c).equals("Action")){
+				actions--;
+			}
+			playingArea.add(hand.pop(c));
+		}
+	}
+	
 	/**
 	 * Readies the player for a new turn, Empties the playing area into the discard pile,
 	 * discards all cards in hand, draws 5 new and resets values. 
