@@ -279,7 +279,7 @@ public class Player {
 		}
 	}
 	/**
-	 * Takes a specified card from hand and puts it in the playing area
+	 * Takes a specified card from hand and puts it in the playing area.
 	 * @param card the card
 	 */
 	public void play(String card){
@@ -290,6 +290,20 @@ public class Player {
 			if(!cardInfoHandler.getCardType(card).equals("Victory") && !cardInfoHandler.getCardType(card).equals("Curse") ){
 				playingArea.add(hand.pop(card));
 			}
+		}
+	}
+	
+	/**
+	 * Play the card in the specified position.
+	 * @param index
+	 */
+	public void play(int index) {
+		if(hand.getSize() > 0) {
+			String card = hand.getCard(index);
+			if(cardInfoHandler.getCardType(card).equals("Action")) {
+				actions--;
+			}
+		playingArea.add(hand.pop(card));
 		}
 	}
 	
