@@ -8,13 +8,13 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-public class ShowCardViewState extends BasicGameState {
+public class ShowCardState extends BasicGameState {
 
 	private final int ID;
 	private Image bigCard;
 	private Image backdrop;
 	
-	public ShowCardViewState(int id) {
+	public ShowCardState(int id) {
 		ID = id;
 	}
 	

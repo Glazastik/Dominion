@@ -18,7 +18,7 @@ import tda367.dominion.server.model.Pile;
 import tda367.dominion.server.model.Player;
 import tda367.dominion.server.model.Supply;
 
-public class InGameViewState extends ControlledGameState {
+public class InGameState extends ControlledGameState {
 
 	private Supply supply;
 	private Player player;
@@ -51,7 +51,7 @@ public class InGameViewState extends ControlledGameState {
 	private boolean enterShowCard;//Temporary
 	private Image cardToShow;//Temporary
 	
-	public InGameViewState(int id, ClientController controller) {
+	public InGameState(int id, ClientController controller) {
 		super(id, controller);
 	}
 	
@@ -138,7 +138,7 @@ public class InGameViewState extends ControlledGameState {
 			enterShowCard = false;
 			String temp = cardToShow.getResourceReference();
 			cardToShow = new Image(temp.split("Supply")[0]+".jpg");
-			((ShowCardViewState)sbg.getState(MainView.SHOWCARDSTATE)).showCard(cardToShow);
+			((ShowCardState)sbg.getState(MainView.SHOWCARDSTATE)).showCard(cardToShow);
 			sbg.enterState(MainView.SHOWCARDSTATE);
 		}
 		

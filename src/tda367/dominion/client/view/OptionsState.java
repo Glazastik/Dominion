@@ -13,7 +13,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import tda367.dominion.server.controller.ClientController;
 
-public class OptionsViewState extends ControlledGameState {
+public class OptionsState extends ControlledGameState {
 	
 	Image checker;
 	Image checker2;
@@ -26,7 +26,7 @@ public class OptionsViewState extends ControlledGameState {
 	public boolean fullScreen = false;
 	public boolean fps = false;
 	
-	public OptionsViewState(int id, ClientController controller) {
+	public OptionsState(int id, ClientController controller) {
 		super(id, controller);
 	}
 	

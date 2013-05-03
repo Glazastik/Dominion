@@ -11,7 +11,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import tda367.dominion.server.controller.ClientController;
 
-public class MainMenuViewState extends ControlledGameState {
+public class MainMenuState extends ControlledGameState {
 
 	String mouse = "";
 	Image exitButton = null;
@@ -32,7 +32,7 @@ public class MainMenuViewState extends ControlledGameState {
 	 * 
 	 * @param id the ID this state will be identified with
 	 */
-	public MainMenuViewState(int id, ClientController controller) {
+	public MainMenuState(int id, ClientController controller) {
 		super(id, controller);
 	}
 
