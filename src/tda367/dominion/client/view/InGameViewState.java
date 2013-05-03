@@ -382,13 +382,17 @@ public class InGameViewState extends ControlledGameState {
 		float cardHeight;
 		double scale;
 		float cardWidth;
+		int xOffset = 5;
+		int yOffset = 5;
+		int cardSpacing = 5;
 		
 		for(int i = 0; i < cards.length; i++){
 			cardWidth = (float) gameContainerWidth/12;
 			scale = (double) cardWidth/cards[i].getWidth();
 			cardHeight = (float) (cards[i].getHeight()*scale);
-			cards[i].draw(5, cardHeight*i+(i*5)+5, cardWidth, cardHeight);
-			victoryRectangles[i].setLocation(5, (int)cardHeight*i+(i*5)+5);
+			
+			cards[i].draw(xOffset, cardHeight*i+(i*cardSpacing)+yOffset, cardWidth, cardHeight);
+			victoryRectangles[i].setLocation(xOffset, (int)cardHeight*i+(i*cardSpacing)+yOffset);
 			victoryRectangles[i].setSize((int)cardWidth, (int)cardHeight);
 		}
 	}
@@ -417,6 +421,7 @@ public class InGameViewState extends ControlledGameState {
 			cardWidth = (float) (gameContainerWidth/ROWS_IN_SUPPLY);
 			scale = (double) cardWidth/cards[i].getWidth();
 			cardHeight = (float) (cards[i].getHeight()*scale);
+			
 			if(i < cards.length/2){
 				cards[i].draw(50 + cardWidth*(i+1)+(i*5), 5, cardWidth, cardHeight);
 				actionRectangles[i].setLocation((int)(50 + cardWidth*(i+1)), 0);
@@ -448,13 +453,17 @@ public class InGameViewState extends ControlledGameState {
 		float cardHeight;
 		double scale;
 		float cardWidth;
+		int yOffset = 5;
+		int cardSpacing = 5;
 		
 		for(int i = 0; i < cards.length; i++){
 			cardWidth = (float) gameContainerWidth/12;
 			scale = (double) cardWidth/cards[i].getWidth();
 			cardHeight = (float) (cards[i].getHeight()*scale);
-			cards[i].draw(10+cardWidth, 5+cardHeight*i+(i*5), cardWidth, cardHeight);
-			treasureRectangles[i].setLocation((int)(10+cardWidth), (int)cardHeight*i+(i*5)+5);
+			int xOffset = (int) (cardWidth+10);
+			
+			cards[i].draw(xOffset, yOffset+cardHeight*i+(i*cardSpacing), cardWidth, cardHeight);
+			treasureRectangles[i].setLocation((int)(xOffset), (int)cardHeight*i+(i*cardSpacing)+yOffset);
 			treasureRectangles[i].setSize((int)cardWidth, (int)cardHeight);
 		}
 	}
