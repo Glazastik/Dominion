@@ -267,14 +267,6 @@ public class Player {
 	}
 	
 	/**
-	 * Resets the number of actions, buys and money available, after each turn.
-	 */
-	public void resetForNewTurn() {
-		this.actions = 1;
-		this.money = 0;
-		this.buys = 1;
-	}
-	/**
 	 * An equals method
 	 * @param p
 	 * @return
@@ -299,10 +291,16 @@ public class Player {
 		}
 	}
 	/**
-	 * Empties the playing area into the discard pile
+	 * Readies the player for a new turn, Empties the playing area into the discard pile,
+	 * discards all cards in hand, draws 5 new and resets values. 
 	 */
 	public void cleanUp() {
 		discard.add(playingArea);
+		discardHand();
+		draw(5);
+		this.actions = 1;
+		this.money = 0;
+		this.buys = 1;
 	}
 	/**
 	 * Returns the number of cards in the players hand
