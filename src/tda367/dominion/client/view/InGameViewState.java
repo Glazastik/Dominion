@@ -416,6 +416,9 @@ public class InGameViewState extends ControlledGameState {
 		float cardHeight;
 		double scale;
 		float cardWidth;
+		int xOffset = 15 + gameContainerWidth/6;
+		int cardSpacing = 5;
+		int yOffset = 5;
 		
 		for(int i = 0; i < cards.length; i++){
 			cardWidth = (float) (gameContainerWidth/ROWS_IN_SUPPLY);
@@ -423,12 +426,12 @@ public class InGameViewState extends ControlledGameState {
 			cardHeight = (float) (cards[i].getHeight()*scale);
 			
 			if(i < cards.length/2){
-				cards[i].draw(50 + cardWidth*(i+1)+(i*5), 5, cardWidth, cardHeight);
-				actionRectangles[i].setLocation((int)(50 + cardWidth*(i+1)), 0);
+				cards[i].draw(xOffset + cardWidth*(i)+(i*cardSpacing), yOffset, cardWidth, cardHeight);
+				actionRectangles[i].setLocation((int)(xOffset + cardWidth*(i)+(i*cardSpacing)), yOffset);
 				actionRectangles[i].setSize((int)cardWidth, (int)cardHeight + 5);
 			} else {
-				cards[i].draw(50 + cardWidth*(i+1-5)+((i-5)*5), cardHeight + 10, cardWidth, cardHeight);
-				actionRectangles[i].setLocation((int)(50 + cardWidth*(i+1-5)), (int)cardHeight + 10);
+				cards[i].draw(xOffset + cardWidth*(i-5)+((i-5)*cardSpacing), cardHeight + 2*yOffset, cardWidth, cardHeight);
+				actionRectangles[i].setLocation((int)(xOffset + cardWidth*(i-5)+(i*cardSpacing)), (int)cardHeight + 2*yOffset);
 				actionRectangles[i].setSize((int)cardWidth, (int)cardHeight);
 			}
 		}
