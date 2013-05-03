@@ -497,12 +497,17 @@ public class InGameViewState extends ControlledGameState {
 	 */
 	private void paintButtons() 
 			throws SlickException {
-		menuButton.draw(gameContainerWidth - 110, gameContainerHeight - 70);
-		chatButton.draw(gameContainerWidth - 110, gameContainerHeight - 130);
-		logButton.draw(gameContainerWidth - 110, gameContainerHeight - 190);
-		menuRec = new Rectangle(gameContainerWidth - 110, gameContainerHeight - 70, 100, 50);
-		chatRec = new Rectangle(gameContainerWidth - 110, gameContainerHeight - 130, 100, 50);
-		logRec = new Rectangle(gameContainerWidth - 110, gameContainerHeight - 190, 100, 50);
+		int xOffset = 110;
+		int yOffset = 60;
+		int buttonHeight = menuButton.getHeight();
+		int buttonWidth = menuButton.getWidth();
+		int buttonSpacing = 10;
+		menuButton.draw(gameContainerWidth - xOffset, gameContainerHeight - (yOffset + buttonSpacing));
+		chatButton.draw(gameContainerWidth - xOffset, gameContainerHeight - (2*yOffset + buttonSpacing));
+		logButton.draw(gameContainerWidth - xOffset, gameContainerHeight - (3*yOffset + buttonSpacing));
+		menuRec = new Rectangle(gameContainerWidth - xOffset, gameContainerHeight - (yOffset + buttonSpacing), buttonWidth, buttonHeight);
+		chatRec = new Rectangle(gameContainerWidth - xOffset, gameContainerHeight - (2*yOffset + buttonSpacing), buttonWidth, buttonHeight);
+		logRec = new Rectangle(gameContainerWidth - xOffset, gameContainerHeight - (3*yOffset + buttonSpacing), buttonWidth, buttonHeight);
 	}
 	
 	/**
