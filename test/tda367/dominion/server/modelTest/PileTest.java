@@ -1,13 +1,14 @@
-package tda367.dominion.modelTest;
+package tda367.dominion.server.modelTest;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertNull;
+import static org.junit.Assert.assertTrue;
 
 import java.util.LinkedList;
-import java.util.List;
 
 import org.junit.Test;
 
-import tda367.dominion.model.Pile;
+import tda367.dominion.server.model.Pile;
 
 public class PileTest {
 

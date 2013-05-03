@@ -1,16 +1,16 @@
-package tda367.dominion.modelTest;
+package tda367.dominion.server.modelTest;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.LinkedList;
 
 import org.junit.Test;
 
-import tda367.dominion.model.CardRulesHandler;
-import tda367.dominion.model.GainingHandler;
-import tda367.dominion.model.Pile;
-import tda367.dominion.model.Player;
-import tda367.dominion.model.Supply;
+import tda367.dominion.server.model.CardRulesHandler;
+import tda367.dominion.server.model.Pile;
+import tda367.dominion.server.model.Player;
+import tda367.dominion.server.model.Supply;
 
 public class CardRulesHandlerTest {
 

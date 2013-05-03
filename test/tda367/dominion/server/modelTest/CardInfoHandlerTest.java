@@ -1,8 +1,7 @@
-package tda367.dominion.modelTest;
+package tda367.dominion.server.modelTest;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertTrue;
 
-import java.awt.Image;
 import java.util.Iterator;
 import java.util.LinkedList;
 
@@ -10,7 +9,7 @@ import javax.swing.ImageIcon;
 
 import org.junit.Test;
 
-import tda367.dominion.model.CardInfoHandler;
+import tda367.dominion.server.model.CardInfoHandler;
 
 public class CardInfoHandlerTest {
 

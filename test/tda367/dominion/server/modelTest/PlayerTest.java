@@ -1,12 +1,11 @@
-package tda367.dominion.modelTest;
+package tda367.dominion.server.modelTest;
 
-import static org.junit.Assert.*;
-
-import java.util.List;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import tda367.dominion.model.Player;
+import tda367.dominion.server.model.Player;
 
 public class PlayerTest {
 

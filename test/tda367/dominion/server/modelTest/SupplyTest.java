@@ -1,6 +1,7 @@
-package tda367.dominion.modelTest;
+package tda367.dominion.server.modelTest;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertFalse;
+import static org.junit.Assert.assertTrue;
 
 import java.util.HashMap;
 import java.util.HashSet;
@@ -9,7 +10,7 @@ import java.util.Set;
 
 import org.junit.Test;
 
-import tda367.dominion.model.Supply;
+import tda367.dominion.server.model.Supply;
 
 public class SupplyTest {
 
