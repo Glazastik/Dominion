@@ -169,6 +169,7 @@ public class InGameViewState extends ControlledGameState {
 			if(button == Input.MOUSE_LEFT_BUTTON && handRectangles[i].contains(x,y)) {
 				player.play(player.getHand().getCards().get(i));
 				System.out.println("Hand card: " + (i+1));
+				resetHandRectangles();
 			}
 		}
 		
@@ -577,6 +578,12 @@ public class InGameViewState extends ControlledGameState {
 			int yOffset = gameContainerHeight - gameContainerWidth/3 - 20;
 			
 			cards[i].draw(xOffset, yOffset, cardWidth, cardHeight);
+		}
+	}
+	
+	private void resetHandRectangles() {
+		for(int i = 0; i < handRectangles.length; i++){
+			handRectangles[i] = new Rectangle();
 		}
 	}
 
