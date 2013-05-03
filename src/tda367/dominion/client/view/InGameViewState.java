@@ -136,6 +136,8 @@ public class InGameViewState extends ControlledGameState {
 		
 		if(enterShowCard){
 			enterShowCard = false;
+			String temp = cardToShow.getResourceReference();
+			cardToShow = new Image(temp.split("Supply")[0]+".jpg");
 			((ShowCardViewState)sbg.getState(MainView.SHOWCARDSTATE)).showCard(cardToShow);
 			sbg.enterState(MainView.SHOWCARDSTATE);
 		}

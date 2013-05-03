@@ -31,7 +31,7 @@ public class ShowCardViewState extends BasicGameState {
 			throws SlickException {
 		backdrop.draw();
 		if(bigCard != null) {
-			bigCard.draw(200, 200);
+			bigCard.draw(640 - bigCard.getWidth()/2, 400 - bigCard.getHeight()/2);
 		}
 	}
 
@@ -40,6 +40,10 @@ public class ShowCardViewState extends BasicGameState {
 			throws SlickException {
 		Input input = gc.getInput();
 		if(input.isKeyPressed(Input.KEY_SPACE)) {
+			sbg.enterState(0);
+		} else if(input.isMousePressed(Input.MOUSE_RIGHT_BUTTON)) {
+			sbg.enterState(0);
+		} else if(input.isMousePressed(Input.MOUSE_LEFT_BUTTON)) {
 			sbg.enterState(0);
 		}
 	}
