@@ -592,7 +592,6 @@ public class InGameViewState extends ControlledGameState {
 		float cardHeight;
 		double scale;
 		float cardWidth;
-		int cardSpacing = -5;
 		
 		for(int i = 0; i < cards.length; i++){
 			cardWidth = (float) gameContainerWidth/14;

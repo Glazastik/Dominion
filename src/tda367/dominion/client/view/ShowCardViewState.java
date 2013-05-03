@@ -8,8 +8,6 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-import tda367.dominion.server.model.CardInfoHandler;
-
 public class ShowCardViewState extends BasicGameState {
 
 	private final int ID;
