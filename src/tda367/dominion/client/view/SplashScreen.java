@@ -70,6 +70,9 @@ public class SplashScreen extends BasicGameState {
 		sbg.getState(MainView.SERVERLISTSTATE).init(gc, sbg);
 		sbg.addState(new OptionsViewState(MainView.OPTIONSSTATE, MainView.controller));
 		sbg.getState(MainView.OPTIONSSTATE).init(gc, sbg);
+		sbg.addState(new ShowCardViewState(MainView.SHOWCARDSTATE));
+		sbg.getState(MainView.SHOWCARDSTATE).init(gc, sbg);
+		
 	}
 
 	@Override

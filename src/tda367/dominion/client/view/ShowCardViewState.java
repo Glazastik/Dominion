@@ -29,24 +29,24 @@ public class ShowCardViewState extends BasicGameState {
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
+		backdrop.draw();
 		if(bigCard != null) {
 			bigCard.draw(200, 200);
 		}
-		backdrop.draw();
 	}
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 			throws SlickException {
 		Input input = gc.getInput();
-		if(input.equals(Input.MOUSE_RIGHT_BUTTON)) {
+		if(input.isKeyPressed(Input.KEY_SPACE)) {
 			sbg.enterState(0);
 		}
 	}
 	
-	public void showCard(String card) 
+	public void showCard(Image card) 
 			throws SlickException {
-		bigCard = new Image(CardInfoHandler.getInstance().getImageLink(card));
+		bigCard = card;
 	}
 
 	@Override

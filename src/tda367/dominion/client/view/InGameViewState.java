@@ -48,6 +48,8 @@ public class InGameViewState extends ControlledGameState {
 	private Rectangle chatRec;
 	private Rectangle logRec;
 	private Rectangle nextRec;
+	private boolean enterShowCard;//Temporary
+	private Image cardToShow;//Temporary
 	
 	public InGameViewState(int id, ClientController controller) {
 		super(id, controller);
@@ -56,6 +58,8 @@ public class InGameViewState extends ControlledGameState {
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
+		enterShowCard = false;
+		
 		amountOfPlayers = 2; //Should probably be supplied from network later
 		supply = new Supply(amountOfPlayers);
 		player = new Player("Mr.Testificate");
@@ -130,6 +134,12 @@ public class InGameViewState extends ControlledGameState {
 		nmbOfBuys = String.valueOf(player.getBuys());
 		nmbOfRiksdaler = String.valueOf(player.getMoney());		
 		
+		if(enterShowCard){
+			enterShowCard = false;
+			((ShowCardViewState)sbg.getState(MainView.SHOWCARDSTATE)).showCard(cardToShow);
+			sbg.enterState(MainView.SHOWCARDSTATE);
+		}
+		
 		//Return to menu
 		if (input.isKeyPressed(Input.KEY_SPACE)) {
 			sbg.enterState(1);
@@ -147,6 +157,9 @@ public class InGameViewState extends ControlledGameState {
 		for(int i=0; i<4; i++) {
 			if(button == Input.MOUSE_LEFT_BUTTON && victoryRectangles[i].contains(x, y)) {
 				System.out.println("Victory Card: " + (i+1));
+			} else if(button == Input.MOUSE_RIGHT_BUTTON && victoryRectangles[i].contains(x, y)){//Checking for detailed view
+				enterShowCard = true;
+				cardToShow = victoryCards[i];
 			}
 		}
 		
@@ -154,6 +167,9 @@ public class InGameViewState extends ControlledGameState {
 		for(int i=0; i<3; i++) {
 			if(button == Input.MOUSE_LEFT_BUTTON && treasureRectangles[i].contains(x,y)) {
 				System.out.println("Treasure card: " + (i+1));
+			} else if(button == Input.MOUSE_RIGHT_BUTTON && treasureRectangles[i].contains(x, y)){//Checking for detailed view
+				enterShowCard = true;
+				cardToShow = treasureCards[i];
 			}
 		}
 		
@@ -161,6 +177,9 @@ public class InGameViewState extends ControlledGameState {
 		for(int i=0; i<10; i++) {
 			if(button == Input.MOUSE_LEFT_BUTTON && actionRectangles[i].contains(x,y)) {
 				System.out.println("Action card: " + (i+1));
+			} else if(button == Input.MOUSE_RIGHT_BUTTON && actionRectangles[i].contains(x, y)){//Checking for detailed view
+				enterShowCard = true;
+				cardToShow = actionCards[i];
 			}
 		}
 		
@@ -170,6 +189,9 @@ public class InGameViewState extends ControlledGameState {
 				System.out.println("Hand card: " + player.revealHand().get(i));
 				player.play(i);
 				resetHandRectangles();
+			} else if(button == Input.MOUSE_RIGHT_BUTTON && handRectangles[i].contains(x, y)){//Checking for detailed view
+				//enterShowCard = true;
+				//cardToShow = handCards[i];
 			}
 		}
 		
