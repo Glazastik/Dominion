@@ -43,9 +43,11 @@ public class InGameViewState extends ControlledGameState {
 	private Image menuButton;
 	private Image chatButton;
 	private Image logButton;
+	private Image nextButton;
 	private Rectangle menuRec;
 	private Rectangle chatRec;
 	private Rectangle logRec;
+	private Rectangle nextRec;
 	
 	public InGameViewState(int id, ClientController controller) {
 		super(id, controller);
@@ -72,6 +74,7 @@ public class InGameViewState extends ControlledGameState {
 		logButton = new Image("res/img/gui/ingame/LogButton.png");
 		riksdaler = new Image("res/img/gui/ingame/Coin.png");
 		board = new Image("res/img/gui/ingame/BoardTemp.png");
+		nextButton = new Image("res/img/gui/ingame/NextButton.png");
 		
 		//Initiate all rectangles
 		actionRectangles = new Rectangle[10];
@@ -118,6 +121,8 @@ public class InGameViewState extends ControlledGameState {
 		
 		if(player.getPlayedCards().length>0) {
 			playedCards = StringArraytoImageArray(player.getPlayedCards());
+		} else {
+			playedCards = null;
 		}
 		
 		//Update values
@@ -180,6 +185,20 @@ public class InGameViewState extends ControlledGameState {
 		//Log button listener
 		if(button == Input.MOUSE_LEFT_BUTTON && logRec.contains(x, y)) {
 			System.out.println("Log Button");
+		}
+		
+		//Next/End button listener
+		if(button == Input.MOUSE_LEFT_BUTTON && nextRec.contains(x, y)) {
+			try {
+				if(nextButton.getResourceReference() == "res/img/gui/ingame/NextButton.png") {
+					nextButton = new Image("res/img/gui/ingame/EndTurnButton.png");
+				} else {
+					player.cleanUp();
+					nextButton = new Image("res/img/gui/ingame/NextButton.png");
+				}
+			} catch(SlickException s) {
+				
+			}
 		}
 	}
 
@@ -515,9 +534,11 @@ public class InGameViewState extends ControlledGameState {
 		menuButton.draw(gameContainerWidth - xOffset, gameContainerHeight - (yOffset + buttonSpacing));
 		chatButton.draw(gameContainerWidth - xOffset, gameContainerHeight - (2*yOffset + buttonSpacing));
 		logButton.draw(gameContainerWidth - xOffset, gameContainerHeight - (3*yOffset + buttonSpacing));
+		nextButton.draw(gameContainerWidth - 2*xOffset, gameContainerHeight - (yOffset + buttonSpacing + 50));
 		menuRec = new Rectangle(gameContainerWidth - xOffset, gameContainerHeight - (yOffset + buttonSpacing), buttonWidth, buttonHeight);
 		chatRec = new Rectangle(gameContainerWidth - xOffset, gameContainerHeight - (2*yOffset + buttonSpacing), buttonWidth, buttonHeight);
 		logRec = new Rectangle(gameContainerWidth - xOffset, gameContainerHeight - (3*yOffset + buttonSpacing), buttonWidth, buttonHeight);
+		nextRec = new Rectangle(gameContainerWidth - 2*xOffset, gameContainerHeight - (yOffset + buttonSpacing + 50), 100, 100);
 	}
 	
 	/**
