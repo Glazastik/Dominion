@@ -63,8 +63,8 @@ public class ServerFactory {
 
 			public void disconnected(Connection c) {
 				GameConnection gc = (GameConnection) c;
-				print(c.getID() + " disconnected");
 				roomHandler.kickConnection(gc);
+				print(c.getID() + " disconnected and kicked");
 			}
 		});
 

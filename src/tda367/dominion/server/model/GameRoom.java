@@ -95,16 +95,41 @@ public class GameRoom {
 	 *            the current connection of the player
 	 */
 	public void addPlayer(GameConnection c) {
-		gcs.add(c);
-		players.add(new Player(c.getPlayerName()));
-		System.out.println("Added " + c.getPlayerName() + " to gameroom.");
+
+		if (!hasPlayer(c.getPlayerName())) {
+			gcs.add(c);
+			players.add(new Player(c.getPlayerName()));
+			System.out.println("Added " + c.getPlayerName() + " to gameroom.");
+		} else {
+			System.out.println("Player already existed...");
+		}
+
 		updateSlots();
 
 	}
 
+	public boolean hasPlayer(String playerName) {
+		for (Player p : players) {
+			if (playerName.equals(p.getName())){
+				return true;
+			}
+		}
+		return false;
+
+	}
+
+	public boolean hasConnection(GameConnection c) {
+		for (GameConnection gc : gcs) {
+			if (gc.equals(c)) {
+				return true;
+			}
+		}
+		return false;
+	}
+
 	private void updateSlots() {
-		slots = MAXPLAYERS-players.size();
-		
+		slots = MAXPLAYERS - players.size();
+
 	}
 
 	public boolean isFull() {
@@ -112,11 +137,19 @@ public class GameRoom {
 	}
 
 	public void kickPlayer(String playerName) {
-		for(int i = 0; i < players.size(); i++){
-			if(players.get(i).getName().equals(null) ){
-				
+		for (Player p : players) {
+			if (p.getName().equals(playerName)) {
+				players.remove(p);
+				return;
 			}
 		}
-		
+
+		for (GameConnection gc : gcs) {
+			if (gc.getPlayerName().equals(playerName)) {
+				gcs.remove(gc);
+				return;
+			}
+		}
+		updateSlots();
 	}
 }

@@ -61,7 +61,7 @@ public class RoomHandler {
 		System.out.println("Trying to add player " + c.getPlayerName() + " to "
 				+ id);
 		GameRoom gr = this.getRoomById(id);
-		if (!gr.isFull()) {
+		if (!gr.isFull() && !gr.hasConnection(c)) {
 			gr.addPlayer(c);
 			return true;
 		}
@@ -90,6 +90,7 @@ public class RoomHandler {
 		
 		for(GameRoom gr: rooms){
 			gr.kickPlayer(c.getPlayerName());
+			
 		}
 		
 	}
