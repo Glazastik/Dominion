@@ -284,10 +284,11 @@ public class Player {
 	 */
 	public void play(String card){
 		if(hand.contains(card)){
-			if(cardInfoHandler.getCardType(card).equals("Action")){
+			String type = cardInfoHandler.getCardType(card);
+			if(type.equals("Action")){
 				actions--;
 			}
-			if(!cardInfoHandler.getCardType(card).equals("Victory") && !cardInfoHandler.getCardType(card).equals("Curse") ){
+			if(!type.equals("Victory") && !type.equals("Curse") ){
 				playingArea.add(hand.pop(card));
 			}
 		}
@@ -300,10 +301,15 @@ public class Player {
 	public void play(int index) {
 		if(hand.getSize() > 0) {
 			String card = hand.getCard(index);
-			if(cardInfoHandler.getCardType(card).equals("Action")) {
+			String type = cardInfoHandler.getCardType(card);
+			
+			if(type.equals("Action")) {
 				actions--;
 			}
-		playingArea.add(hand.pop(card));
+			
+			if(!type.equals("Victory") && !type.equals("Curse") ) {
+				playingArea.add(hand.pop(card));
+			}
 		}
 	}
 	
