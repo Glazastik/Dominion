@@ -13,7 +13,6 @@ import tda367.dominion.server.model.CardInfoHandler;
 public class ShowCardViewState extends BasicGameState {
 
 	private final int ID;
-	private String showCard;
 	private Image bigCard;
 	private Image backdrop;
 	
@@ -25,7 +24,6 @@ public class ShowCardViewState extends BasicGameState {
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
 		backdrop = new Image("res/img/gui/ingame/BoardTemp.png");
-		bigCard = new Image(CardInfoHandler.getInstance().getImageLink(showCard));
 	}
 
 	@Override
@@ -44,6 +42,11 @@ public class ShowCardViewState extends BasicGameState {
 		if(input.equals(Input.MOUSE_RIGHT_BUTTON)) {
 			sbg.enterState(0);
 		}
+	}
+	
+	public void showCard(String card) 
+			throws SlickException {
+		bigCard = new Image(CardInfoHandler.getInstance().getImageLink(card));
 	}
 
 	@Override
