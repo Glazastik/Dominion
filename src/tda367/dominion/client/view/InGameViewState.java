@@ -57,6 +57,7 @@ public class InGameViewState extends ControlledGameState {
 		amountOfPlayers = 2; //Should probably be supplied from network later
 		supply = new Supply(amountOfPlayers);
 		player = new Player("Mr.Testificate");
+		player.addToHand("Thief");
 		actionCards = StringArraytoImageArray(getActionCards(getSupply()));
 		victoryCards = StringArraytoImageArray(getVictoryCards(getSupply()));
 		treasureCards = StringArraytoImageArray(getTreasureCards(getSupply()));
@@ -71,7 +72,6 @@ public class InGameViewState extends ControlledGameState {
 		logButton = new Image("res/img/gui/ingame/LogButton.png");
 		riksdaler = new Image("res/img/gui/ingame/Coin.png");
 		board = new Image("res/img/gui/ingame/BoardTemp.png");
-		playedCards = new Image[20];
 		
 		//Initiate all rectangles
 		actionRectangles = new Rectangle[10];
@@ -102,6 +102,10 @@ public class InGameViewState extends ControlledGameState {
 		paintPlayerHand(actionCards);
 		paintButtons();
 		paintCounterZone(g);
+		
+		if(playedCards!=null) { 
+			paintPlayedCards(playedCards);
+		}
 	}
 
 	@Override
@@ -111,6 +115,10 @@ public class InGameViewState extends ControlledGameState {
 		Input input  = gc.getInput();
 		gameContainerWidth = gc.getWidth();
 		gameContainerHeight = gc.getHeight();
+		
+		if(player.getPlayedCards().length>0) {
+			playedCards = StringArraytoImageArray(player.getPlayedCards());
+		}
 		
 		//Update values
 		nmbOfActions = String.valueOf(player.getActions());
@@ -154,11 +162,7 @@ public class InGameViewState extends ControlledGameState {
 		//Hand cards listener
 		for(int i=0; i<handRectangles.length; i++) {
 			if(button == Input.MOUSE_LEFT_BUTTON && handRectangles[i].contains(x,y)) {
-				try {
-					playCard(player.getHand().getCards().get(i));
-				} catch (SlickException e) {
-				}
-				player.discardCard(player.getHand().getCards().get(i));
+				player.play(player.getHand().getCards().get(i));
 				System.out.println("Hand card: " + (i+1));
 			}
 		}
@@ -538,10 +542,21 @@ public class InGameViewState extends ControlledGameState {
 	 * @param card
 	 * @throws SlickException
 	 */
-	private void playCard(String card) throws SlickException {
-		cih = CardInfoHandler.getInstance();
-		playedCards[1] = new Image(cih.getImageLink(card));
-		playedCards[1].draw(100, 100, 90, 150);
+	private void paintPlayedCards(Image[] cards) {
+		float cardHeight;
+		double scale;
+		float cardWidth;
+		int cardSpacing = -5;
+		
+		for(int i = 0; i < cards.length; i++){
+			cardWidth = (float) gameContainerWidth/14;
+			scale = (double) cardWidth/cards[i].getWidth();
+			cardHeight = (float) (cards[i].getHeight()*scale);
+			int xOffset = gameContainerWidth/2 - (int)cardWidth/2 - (int)((cardWidth*3/4)*i);
+			int yOffset = gameContainerHeight - gameContainerWidth/3 - 20;
+			
+			cards[i].draw(xOffset, yOffset, cardWidth, cardHeight);
+		}
 	}
 
 }
