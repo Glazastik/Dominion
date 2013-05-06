@@ -16,6 +16,7 @@ import org.newdawn.slick.state.StateBasedGame;
 import tda367.dominion.client.controller.ClientController;
 import tda367.dominion.server.model.CardInfoHandler;
 import tda367.dominion.server.model.CardRulesHandler;
+import tda367.dominion.server.model.GainingHandler;
 import tda367.dominion.server.model.Pile;
 import tda367.dominion.server.model.Player;
 import tda367.dominion.server.model.Supply;
@@ -27,6 +28,7 @@ public class InGameState extends ControlledGameState {
 	private Player player;
 	private Player player2;
 	private CardRulesHandler crh;
+	private GainingHandler gh;
 	
 	private CardInfoHandler cih;
 	private Image[] actionCards;
@@ -74,8 +76,8 @@ public class InGameState extends ControlledGameState {
 		players.add(player);
 		players.add(player2);
 		crh = new CardRulesHandler(players, supply);
+		gh = new GainingHandler(supply);
 		
-		player.addToHand("Thief");
 		player.addToHand("Woodcutter");
 		actionCards = StringArraytoImageArray(getActionCards(getSupply()));
 		victoryCards = StringArraytoImageArray(getVictoryCards(getSupply()));
@@ -171,7 +173,10 @@ public class InGameState extends ControlledGameState {
 		//Victory cards listener
 		for(int i=0; i<4; i++) {
 			if(button == Input.MOUSE_LEFT_BUTTON && victoryRectangles[i].contains(x, y)) {
-				System.out.println("Victory Card: " + (i+1));
+				String temp = victoryCards[i].getResourceReference().split("card/")[1];
+				temp = temp.split("Supply.jpg")[0];
+				System.out.println("Victory Card: " + temp);
+				gh.playerBuyCard(player, temp);					
 			} else if(button == Input.MOUSE_RIGHT_BUTTON && victoryRectangles[i].contains(x, y)){//Checking for detailed view
 				enterShowCard = true;
 				cardToShow = victoryCards[i];
@@ -181,7 +186,10 @@ public class InGameState extends ControlledGameState {
 		//Treasure cards listener
 		for(int i=0; i<3; i++) {
 			if(button == Input.MOUSE_LEFT_BUTTON && treasureRectangles[i].contains(x,y)) {
-				System.out.println("Treasure card: " + (i+1));
+				String temp = treasureCards[i].getResourceReference().split("card/")[1];
+				temp = temp.split("Supply.jpg")[0];
+				System.out.println("Treasure card: " + temp);
+				gh.playerBuyCard(player, temp);				
 			} else if(button == Input.MOUSE_RIGHT_BUTTON && treasureRectangles[i].contains(x, y)){//Checking for detailed view
 				enterShowCard = true;
 				cardToShow = treasureCards[i];
@@ -191,7 +199,10 @@ public class InGameState extends ControlledGameState {
 		//Action cards listener
 		for(int i=0; i<10; i++) {
 			if(button == Input.MOUSE_LEFT_BUTTON && actionRectangles[i].contains(x,y)) {
-				System.out.println("Action card: " + (i+1));
+				String temp = actionCards[i].getResourceReference().split("card/")[1];
+				temp = temp.split("Supply.jpg")[0];
+				System.out.println("Action card: " + temp);
+				gh.playerBuyCard(player, temp);
 			} else if(button == Input.MOUSE_RIGHT_BUTTON && actionRectangles[i].contains(x, y)){//Checking for detailed view
 				enterShowCard = true;
 				cardToShow = actionCards[i];
