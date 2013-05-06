@@ -46,7 +46,7 @@ public class ClientController extends Listener {
 		//TODO: Connection object?
 		ConnectionMessage cmsg = new ConnectionMessage();
 		cmsg.setName("Plebben");
-		cmsg.setRoomId(id);
+		cmsg.setRoomId("" + id);
 		c.sendTCP(cmsg);
 	}
 	
