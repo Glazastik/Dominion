@@ -1,8 +1,12 @@
 package tda367.dominion.server.network;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.LinkedList;
 
+import tda367.dominion.commons.messages.CardUpdateMessage;
 import tda367.dominion.commons.messages.ConnectionMessage;
+import tda367.dominion.commons.messages.PlayerUpdateMessage;
 import tda367.dominion.commons.messages.RoomMessage;
 import tda367.dominion.commons.network.NetworkCommon;
 import tda367.dominion.server.model.GameRoom;
@@ -97,7 +101,21 @@ public class ServerFactory {
 		rmsg.setRooms(roomHandler.getRoomsAsString());
 		print(roomHandler.getRoomsAsString()[0][1]);
 		c.sendTCP(rmsg);
-
+		
+		PlayerUpdateMessage pm = new PlayerUpdateMessage();
+		pm.setActions(2);
+		pm.setBuys(1);
+		pm.setMoney(5);
+		c.sendTCP(pm);
+		
+		CardUpdateMessage cm = new CardUpdateMessage();
+		ArrayList<String> l = new ArrayList<String>();
+		l.add("Gold");
+		cm.setHand(l);
+		cm.setInPlay(l);
+		cm.setDiscard(null);
+		cm.setDeckSize(10);
+		c.sendTCP(cm);
 	}
 
 	private static void print(String s) {
