@@ -12,7 +12,25 @@ public class Witch implements ICard {
 		player.draw(2);
 		for(Player p :players){
 			if(p!=player){
-				gH.playerGainCard(p, "Curse");
+				if(!p.getHand().contains("Moat")){
+					gH.playerGainCard(p, "Curse");
+				} else if(gH.isCardGainable("Curse")) {
+					/**
+					 * p.sendInformationMessage("Do you wish to reveal Moat?");
+					 * p.createBoolMessage();
+					 * boolean done = false;
+					 * while(!done){
+					 * 	Message message = p.getNextMessage();
+					 * 	if(message instanceOf BoolMessage){
+					 * 		done = true;
+					 * 		BoolMessage boolMessage = (BoolMessage) message;
+					 * 		if(!boolMessage.isTrue()){
+					 * 			gH.playerGainCard(p, "Curse");
+					 * 		}
+					 * 	}
+					 * } 
+					 */
+				}
 			}
 		}
 	}
