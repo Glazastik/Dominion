@@ -12,7 +12,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.RoundedRectangle;
 import org.newdawn.slick.state.StateBasedGame;
 
-import tda367.dominion.server.controller.ClientController;
+import tda367.dominion.client.controller.ClientController;
 import tda367.dominion.server.model.CardInfoHandler;
 import tda367.dominion.server.model.Pile;
 import tda367.dominion.server.model.Player;

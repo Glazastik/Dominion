@@ -1,9 +1,9 @@
-package tda367.dominion.server.controller;
+package tda367.dominion.client.controller;
 
+import tda367.dominion.client.model.ClientModel;
 import tda367.dominion.commons.messages.ConnectionMessage;
 import tda367.dominion.commons.messages.CreateBoolMessage;
 import tda367.dominion.commons.messages.RoomMessage;
-import tda367.dominion.server.model.ClientModel;
 
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;

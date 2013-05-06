@@ -10,7 +10,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.GameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-import tda367.dominion.server.controller.ClientController;
+import tda367.dominion.client.controller.ClientController;
 
 public class MainView extends StateBasedGame {
 	

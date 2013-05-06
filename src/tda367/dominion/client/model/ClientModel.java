@@ -1,4 +1,4 @@
-package tda367.dominion.server.model;
+package tda367.dominion.client.model;
 
 import tda367.dominion.client.network.ClientConnection;
 import tda367.dominion.client.view.MainView;
