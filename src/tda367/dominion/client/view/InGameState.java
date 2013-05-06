@@ -1,5 +1,6 @@
 package tda367.dominion.client.view;
 
+import java.util.LinkedList;
 import java.util.List;
 
 import org.lwjgl.util.Rectangle;
@@ -14,6 +15,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import tda367.dominion.client.controller.ClientController;
 import tda367.dominion.server.model.CardInfoHandler;
+import tda367.dominion.server.model.CardRulesHandler;
 import tda367.dominion.server.model.Pile;
 import tda367.dominion.server.model.Player;
 import tda367.dominion.server.model.Supply;
@@ -21,7 +23,11 @@ import tda367.dominion.server.model.Supply;
 public class InGameState extends ControlledGameState {
 
 	private Supply supply;
+	private LinkedList<Player> players;
 	private Player player;
+	private Player player2;
+	private CardRulesHandler crh;
+	
 	private CardInfoHandler cih;
 	private Image[] actionCards;
 	private Image[] victoryCards;
@@ -63,7 +69,14 @@ public class InGameState extends ControlledGameState {
 		amountOfPlayers = 2; //Should probably be supplied from network later
 		supply = new Supply(amountOfPlayers);
 		player = new Player("Mr.Testificate");
+		player2 = new Player("Ben Dover");
+		players = new LinkedList<Player>();
+		players.add(player);
+		players.add(player2);
+		crh = new CardRulesHandler(players, supply);
+		
 		player.addToHand("Thief");
+		player.addToHand("Woodcutter");
 		actionCards = StringArraytoImageArray(getActionCards(getSupply()));
 		victoryCards = StringArraytoImageArray(getVictoryCards(getSupply()));
 		treasureCards = StringArraytoImageArray(getTreasureCards(getSupply()));
@@ -189,7 +202,7 @@ public class InGameState extends ControlledGameState {
 		for(int i=0; i<handRectangles.length; i++) {
 			if(button == Input.MOUSE_LEFT_BUTTON && handRectangles[i].contains(x,y)) {
 				System.out.println("Hand card: " + player.revealHand().get(i));
-				player.play(i);
+				crh.playCard(player, player.getHand().getCard(i));
 				resetHandRectangles();
 			} else if(button == Input.MOUSE_RIGHT_BUTTON && handRectangles[i].contains(x, y)){//Checking for detailed view
 				//enterShowCard = true;

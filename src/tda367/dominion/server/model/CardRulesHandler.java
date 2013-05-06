@@ -3,7 +3,9 @@ package tda367.dominion.server.model;
 import java.util.LinkedList;
 
 import tda367.dominion.server.cards.Adventurer;
+import tda367.dominion.server.cards.Bureaucrat;
 import tda367.dominion.server.cards.Cellar;
+import tda367.dominion.server.cards.Chancellor;
 import tda367.dominion.server.cards.Chapel;
 import tda367.dominion.server.cards.Councilroom;
 import tda367.dominion.server.cards.Feast;
@@ -22,6 +24,7 @@ import tda367.dominion.server.cards.Thief;
 import tda367.dominion.server.cards.Throneroom;
 import tda367.dominion.server.cards.Village;
 import tda367.dominion.server.cards.Witch;
+import tda367.dominion.server.cards.Woodcutter;
 import tda367.dominion.server.cards.Workshop;
 
 /**
@@ -57,7 +60,9 @@ public class CardRulesHandler {
 		player.play(cardName);
 		switch(cardName){
 			case "Adventurer": Adventurer.play(player); break;
+			case "Bureaucrat": Bureaucrat.play(player, players, supply); break;
 			case "Cellar": Cellar.play(player); break;
+			case "Chancellor": Chancellor.play(player); break;
 			case "Chapel": Chapel.play(player); break;
 			case "Copper": player.increaseMoney(1); break;
 			case "Councilroom": Councilroom.play(player, players); break;
@@ -79,6 +84,7 @@ public class CardRulesHandler {
 			case "Throneroom": Throneroom.play(player, players, supply); break;
 			case "Village": Village.play(player); break;
 			case "Witch": Witch.play(player, players, supply); break;
+			case "Woodcutter": Woodcutter.play(player); break;
 			case "Workshop": Workshop.play(player, supply); break;
 		}
 	}
