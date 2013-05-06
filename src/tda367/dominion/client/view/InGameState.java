@@ -83,7 +83,6 @@ public class InGameState extends ControlledGameState {
 		crh = new CardRulesHandler(players, supply);
 		gh = new GainingHandler(supply);
 		
-		player.addToHand("Woodcutter");
 		actionCards = StringArraytoImageArray(getActionCards(getSupply()));
 		victoryCards = StringArraytoImageArray(getVictoryCards(getSupply()));
 		treasureCards = StringArraytoImageArray(getTreasureCards(getSupply()));
