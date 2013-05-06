@@ -4,6 +4,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.LinkedList;
 
+import tda367.dominion.commons.messages.CardMessage;
 import tda367.dominion.commons.messages.CardUpdateMessage;
 import tda367.dominion.commons.messages.ConnectionMessage;
 import tda367.dominion.commons.messages.PlayerUpdateMessage;
@@ -59,6 +60,9 @@ public class ServerFactory {
 					connectPlayer(gc, cmsg);
 				} else if (object instanceof KeepAlive) {
 					// TODO: To stop it from printing these.
+				} else if (object instanceof CardMessage) {
+					// TODO: Play the card
+					print("Player played: " + ((CardMessage) object).getCard());
 				} else {
 					print("Classname: " + object.getClass());
 					print(object.toString());
@@ -110,6 +114,7 @@ public class ServerFactory {
 		
 		CardUpdateMessage cm = new CardUpdateMessage();
 		ArrayList<String> l = new ArrayList<String>();
+		l.add("Village");
 		l.add("Gold");
 		cm.setHand(l);
 		cm.setInPlay(l);

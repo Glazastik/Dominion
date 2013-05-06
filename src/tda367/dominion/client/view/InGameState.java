@@ -16,24 +16,17 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import tda367.dominion.client.controller.ClientController;
 import tda367.dominion.server.model.CardInfoHandler;
-import tda367.dominion.server.model.CardRulesHandler;
-import tda367.dominion.server.model.GainingHandler;
-import tda367.dominion.server.model.Player;
 import tda367.dominion.server.model.Supply;
 
 public class InGameState extends ControlledGameState {
 
+	private CardInfoHandler cih;
 	private Supply supply;
-	private LinkedList<Player> players;
-	private Player player;
-	private Player player2;
-	private CardRulesHandler crh;
-	private GainingHandler gh;
 	
 	private int[] nbrOfActionCards;
 	private int[] nbrOfTreasureCards;
 	private int[] nbrOfVictoryCards;
-	private CardInfoHandler cih;
+
 	private Image[] actionCards;
 	private Image[] victoryCards;
 	private Image[] treasureCards;
@@ -83,13 +76,6 @@ public class InGameState extends ControlledGameState {
 		
 		amountOfPlayers = 2; //Should probably be supplied from network later
 		supply = new Supply(amountOfPlayers);
-		player = new Player("Mr.Testificate");
-		player2 = new Player("Ben Dover");
-		players = new LinkedList<Player>();
-		players.add(player);
-		players.add(player2);
-		crh = new CardRulesHandler(players, supply);
-		gh = new GainingHandler(supply);
 		
 		actionCards = StringArraytoImageArray(getActionCards(getSupply()));
 		victoryCards = StringArraytoImageArray(getVictoryCards(getSupply()));
@@ -216,7 +202,6 @@ public class InGameState extends ControlledGameState {
 				String temp = victoryCards[i].getResourceReference().split("card/")[1];
 				temp = temp.split("Supply.jpg")[0];
 				System.out.println("Victory Card: " + temp);
-				gh.playerBuyCard(player, temp);					
 			} else if(button == Input.MOUSE_RIGHT_BUTTON && victoryRectangles[i].contains(x, y)){//Checking for detailed view
 				enterShowCard = true;
 				cardToShow = victoryCards[i];
@@ -229,7 +214,6 @@ public class InGameState extends ControlledGameState {
 				String temp = treasureCards[i].getResourceReference().split("card/")[1];
 				temp = temp.split("Supply.jpg")[0];
 				System.out.println("Treasure card: " + temp);
-				gh.playerBuyCard(player, temp);				
 			} else if(button == Input.MOUSE_RIGHT_BUTTON && treasureRectangles[i].contains(x, y)){//Checking for detailed view
 				enterShowCard = true;
 				cardToShow = treasureCards[i];
@@ -242,7 +226,6 @@ public class InGameState extends ControlledGameState {
 				String temp = actionCards[i].getResourceReference().split("card/")[1];
 				temp = temp.split("Supply.jpg")[0];
 				System.out.println("Action card: " + temp);
-				gh.playerBuyCard(player, temp);
 			} else if(button == Input.MOUSE_RIGHT_BUTTON && actionRectangles[i].contains(x, y)){//Checking for detailed view
 				enterShowCard = true;
 				cardToShow = actionCards[i];
@@ -253,7 +236,7 @@ public class InGameState extends ControlledGameState {
 		for(int i=0; i<handRectangles.length; i++) {
 			if(button == Input.MOUSE_LEFT_BUTTON && handRectangles[i].contains(x,y)) {
 				// TODO: Send to server
-				System.out.println("Hand card: " + player.revealHand().get(i));
+				System.out.println("Hand card: " + hand.get(i));
 //				crh.playCard(player, player.getHand().getCard(i));
 				this.getController().playCard(hand.get(i));
 				
@@ -286,7 +269,8 @@ public class InGameState extends ControlledGameState {
 				if(nextButton.getResourceReference() == "res/img/gui/ingame/NextButton.png") {
 					nextButton = new Image("res/img/gui/ingame/EndTurnButton.png");
 				} else {
-					player.cleanUp();
+//					TODO: Replace with network stuff
+//					player.cleanUp();
 					nextButton = new Image("res/img/gui/ingame/NextButton.png");
 				}
 			} catch(SlickException s) {
@@ -297,7 +281,8 @@ public class InGameState extends ControlledGameState {
 		//play all treasures button listener
 		if(button == Input.MOUSE_LEFT_BUTTON && playAllRec.contains(x, y)) {
 			System.out.println("Play all treasures");
-			crh.playAllTreasures(player);
+//			TODO: Replace with network stuff
+//			crh.playAllTreasures(player);
 		}
 	}
 
