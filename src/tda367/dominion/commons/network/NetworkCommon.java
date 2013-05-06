@@ -1,5 +1,7 @@
 package tda367.dominion.commons.network;
 
+import java.util.ArrayList;
+
 import tda367.dominion.commons.messages.*;
 
 import com.esotericsoftware.kryo.Kryo;
@@ -21,6 +23,10 @@ public class NetworkCommon {
 		kryo.register(RoomMessage.class);
 		kryo.register(CardMessage.class);
 		
+		kryo.register(CardUpdateMessage.class);
+		kryo.register(PlayerUpdateMessage.class);
+		
+		kryo.register(ArrayList.class);
 		kryo.register(String[][].class);
 		kryo.register(String[].class);
 	}

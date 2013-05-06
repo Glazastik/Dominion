@@ -18,7 +18,6 @@ import tda367.dominion.client.controller.ClientController;
 import tda367.dominion.server.model.CardInfoHandler;
 import tda367.dominion.server.model.CardRulesHandler;
 import tda367.dominion.server.model.GainingHandler;
-import tda367.dominion.server.model.Pile;
 import tda367.dominion.server.model.Player;
 import tda367.dominion.server.model.Supply;
 
@@ -63,9 +62,9 @@ public class InGameState extends ControlledGameState {
 	private Image cardToShow;//Temporary
 	
 	// Player stats
-	private String nmbOfActions;
-	private String nmbOfBuys;
-	private String nmbOfRiksdaler;
+	private int actions;
+	private int buys;
+	private int money;
 	
 	// Cards
 	private ArrayList<String> hand = new ArrayList<String>();
@@ -155,16 +154,11 @@ public class InGameState extends ControlledGameState {
 		gameContainerWidth = gc.getWidth();
 		gameContainerHeight = gc.getHeight();
 		
-		if(player.getPlayedCards().length>0) {
-			playedCards = StringArraytoImageArray(player.getPlayedCards());
+		if(inPlay.size() > 0) {
+			playedCards = StringListToImageArray(inPlay);
 		} else {
 			playedCards = null;
-		}
-		
-		//Update values
-		nmbOfActions = String.valueOf(player.getActions());
-		nmbOfBuys = String.valueOf(player.getBuys());
-		nmbOfRiksdaler = String.valueOf(player.getMoney());		
+		}	
 		
 		if(enterShowCard){
 			enterShowCard = false;
@@ -181,6 +175,35 @@ public class InGameState extends ControlledGameState {
 		
 	}
 	
+	public void setActions(int actions) {
+		this.actions = actions;
+	}
+
+	public void setBuys(int buys) {
+		this.buys = buys;
+	}
+
+	public void setMoney(int money) {
+		this.money = money;
+	}
+
+	public void setHand(ArrayList<String> hand) {
+		this.hand = hand;
+		resetHandRectangles();
+	}
+
+	public void setInPlay(ArrayList<String> inPlay) {
+		this.inPlay = inPlay;
+	}
+
+	public void setTopOfPile(String topOfPile) {
+		this.topOfPile = topOfPile;
+	}
+	
+	public void setDeckSize(int size) {
+		deckSize = size;
+	}
+
 	/**
 	 * Takes care of all actions that calls mouseClicked
 	 */
@@ -229,9 +252,12 @@ public class InGameState extends ControlledGameState {
 		//Hand cards listener
 		for(int i=0; i<handRectangles.length; i++) {
 			if(button == Input.MOUSE_LEFT_BUTTON && handRectangles[i].contains(x,y)) {
+				// TODO: Send to server
 				System.out.println("Hand card: " + player.revealHand().get(i));
-				crh.playCard(player, player.getHand().getCard(i));
-//				this.getController().playCard(hand.get(i));
+//				crh.playCard(player, player.getHand().getCard(i));
+				this.getController().playCard(hand.get(i));
+				
+				// TODO: Remove the Rectangle reset
 				resetHandRectangles();
 			} else if(button == Input.MOUSE_RIGHT_BUTTON && handRectangles[i].contains(x, y)){//Checking for detailed view
 				//enterShowCard = true;
@@ -425,6 +451,30 @@ public class InGameState extends ControlledGameState {
 	}
 	
 	/**
+	 * This method takes an array of cardnames in the form of strings
+	 * and returns an array with the path to the image of these cards.
+	 * 
+	 * <p>Note that this method is only useable for string arrays with
+	 * cardnames, and nothing else. While you can send in any kind of 
+	 * String array, anything but the recommended will not result in 
+	 * anything but a garbled heap of crap.</p>
+	 * 
+	 * @param cards
+	 * @return
+	 */
+	private Image[] StringListToImageArray(ArrayList<String> cards) 
+			throws SlickException {
+		Image[] imageArray = new Image[cards.size()];
+		cih = CardInfoHandler.getInstance();
+		
+		for(int i = 0; i < cards.size(); i++){
+			imageArray[i] = new Image(cih.getCroppedImageLink(cards.get(i)));
+		}
+		
+		return imageArray;
+	}
+	
+	/**
 	 * Returns a sorted clone of the given String array containing cardnames.
 	 * 
 	 * <p>This method is only good for String arrays containing cardnames,
@@ -573,11 +623,10 @@ public class InGameState extends ControlledGameState {
 	private void paintPlayerHand(Image[] cards) 
 			throws SlickException {
 		cih = CardInfoHandler.getInstance();
-		Pile p = player.getHand();
-		String[] stringCards = p.getCards().toArray(new String[0]);
+		String[] stringCards = hand.toArray(new String[0]);
 		Image[] imageCards = new Image[stringCards.length];
 		
-		for(int i = 0; i < stringCards.length; i++){
+		for(int i = 0; i < hand.size(); i++){
 			imageCards[i] = new Image(cih.getImageLink(stringCards[i]));
 		}
 		
@@ -627,9 +676,9 @@ public class InGameState extends ControlledGameState {
 		g.setColor(Color.darkGray);
 		g.draw(counterZone);
 		g.setColor(Color.white);
-		g.drawString("Actions: " + nmbOfActions, 50, gameContainerHeight - gameContainerHeight/3 - 50);
-		g.drawString("Buys: " + nmbOfBuys, 200, gameContainerHeight - gameContainerHeight/3 - 50);
-		g.drawString("x"+nmbOfRiksdaler, 380, gameContainerHeight - gameContainerHeight/3 - 50);
+		g.drawString("Actions: " + actions, 50, gameContainerHeight - gameContainerHeight/3 - 50);
+		g.drawString("Buys: " + buys, 200, gameContainerHeight - gameContainerHeight/3 - 50);
+		g.drawString("x"+money, 380, gameContainerHeight - gameContainerHeight/3 - 50);
 		riksdaler.draw((float)350, (float)gameContainerHeight - gameContainerHeight/3 - 53, (float)0.035);
 	}
 	

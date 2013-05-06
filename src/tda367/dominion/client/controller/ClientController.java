@@ -1,8 +1,10 @@
 package tda367.dominion.client.controller;
 
 import tda367.dominion.client.model.ClientModel;
+import tda367.dominion.commons.messages.CardUpdateMessage;
 import tda367.dominion.commons.messages.ConnectionMessage;
 import tda367.dominion.commons.messages.CreateBoolMessage;
+import tda367.dominion.commons.messages.PlayerUpdateMessage;
 import tda367.dominion.commons.messages.RoomMessage;
 
 import com.esotericsoftware.kryonet.Connection;
@@ -35,6 +37,16 @@ public class ClientController extends Listener {
 
 		if (object instanceof CreateBoolMessage) {
 
+		}
+		
+		if (object instanceof PlayerUpdateMessage) {
+			System.out.println("Update Stats");
+			model.updateStat((PlayerUpdateMessage) object);
+		}
+		
+		if (object instanceof CardUpdateMessage) {
+			System.out.println("Update Cards");
+			model.updateCards((CardUpdateMessage) object);
 		}
 	}
 	

@@ -3,6 +3,7 @@ package tda367.dominion.client.view;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
+import java.util.ArrayList;
 
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
@@ -96,6 +97,21 @@ public class MainView extends StateBasedGame {
 			e.printStackTrace();
 		}
 		theGame.exit();
+    }
+    
+    public void updatePlayer(int actions, int buys, int money) {
+    	InGameState g = ((InGameState)this.getState(INGAMESTATE));
+    	g.setActions(actions);
+    	g.setBuys(buys);
+    	g.setMoney(money);
+    }
+    
+    public void updateCards(ArrayList hand, ArrayList inPlay, String topOfPile, int deckSize) {
+    	InGameState g = ((InGameState)this.getState(INGAMESTATE));
+    	g.setHand(hand);
+    	g.setInPlay(inPlay);
+    	g.setTopOfPile(topOfPile);
+    	g.setDeckSize(deckSize);
     }
 
 	public void start() {
