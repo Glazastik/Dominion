@@ -94,4 +94,19 @@ public class RoomHandler {
 		}
 		
 	}
+
+	public String[] getInfo(int id) {
+		for(GameRoom gr: rooms){
+			if(gr.getID() == id){
+				String names = "";
+				for(Player p: gr.getPlayers()){
+					names += p.getName();
+				}
+				return new String[] {""+gr.getID(), gr.getName(), ""+gr.getSlots(), names};
+			}
+			
+		}
+		return null;
+		
+	}
 }

@@ -21,13 +21,12 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
-		window = ServerFrame.getInstance();
-		window.print("Window initiated.");
-
 		Server server = ServerFactory.getInstance();
-		window.print("Server is now running.");
-		
 
+		window = ServerFrame.getInstance();
+		window.setRoomHandler(ServerFactory.getRoomHandler());
+		window.print("Window initiated.");
+		window.print("Server is now running.");
 	}
 
 }

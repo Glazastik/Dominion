@@ -12,6 +12,8 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
+import tda367.dominion.server.model.RoomHandler;
+
 public class ServerFrame extends JFrame implements ActionListener {
 
 	// Frame-related variables
@@ -20,6 +22,7 @@ public class ServerFrame extends JFrame implements ActionListener {
 	private static final String FRAMETITLE = "Dominion Server 0.1";
 	private static final int FRAMEHEIGHT = 400;
 	private static final int FRAMEWIDTH = 600;
+	private RoomHandler roomHandler;
 
 	// List of components:
 	/**
@@ -119,9 +122,26 @@ public class ServerFrame extends JFrame implements ActionListener {
 	 */
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		this.print("\"" + consoleIn.getText().trim() + "\"");
+		String input = consoleIn.getText().trim();
+		this.print(input);
+		if(input.split(" ")[0].equals("info")){
+			String[] info = roomHandler.getInfo(Integer.parseInt(input.split(" ")[1]));
+			print("Room " + info[0] + ": Name:" + info[1] + " Slots:" + info[2]);
+			print("Players: " + info[3]);
+		}
 		consoleIn.setText("");
 
+	}
+
+	public void setRoomHandler(RoomHandler handler){
+		this.roomHandler = handler;
+	}
+	
+	/**
+	 * @return the roomHandler
+	 */
+	public RoomHandler getRoomHandler() {
+		return roomHandler;
 	}
 
 }
