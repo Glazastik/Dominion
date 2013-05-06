@@ -30,6 +30,9 @@ public class InGameState extends ControlledGameState {
 	private CardRulesHandler crh;
 	private GainingHandler gh;
 	
+	private int[] nbrOfActionCards;
+	private int[] nbrOfTreasureCards;
+	private int[] nbrOfVictoryCards;
 	private CardInfoHandler cih;
 	private Image[] actionCards;
 	private Image[] victoryCards;
@@ -82,6 +85,9 @@ public class InGameState extends ControlledGameState {
 		actionCards = StringArraytoImageArray(getActionCards(getSupply()));
 		victoryCards = StringArraytoImageArray(getVictoryCards(getSupply()));
 		treasureCards = StringArraytoImageArray(getTreasureCards(getSupply()));
+		nbrOfActionCards = getNbrOfCards(getActionCards(getSupply()));
+		nbrOfTreasureCards = getNbrOfCards(getTreasureCards(getSupply()));
+		nbrOfVictoryCards = getNbrOfCards(getVictoryCards(getSupply()));
 		counterZone = new RoundedRectangle(0, gc.getHeight() - gc.getHeight()/3 - 50, gc.getWidth(), 40, 2);
 
 		gameContainerWidth = gc.getWidth();
@@ -632,6 +638,26 @@ public class InGameState extends ControlledGameState {
 		for(int i = 0; i < handRectangles.length; i++){
 			handRectangles[i] = new Rectangle();
 		}
+	}
+	
+	/**
+	 * Return the number of cards that are in the supply of
+	 * the cards supplied.
+	 * 
+	 * The method returns an array where every index is connected
+	 * to its parent array. This means that if index 0 returns 12, 
+	 * there exist 12 cards of the one in index 0 in the parent
+	 * array.
+	 * 
+	 * @param cards cards that exist within the {@link Supply}
+	 * @return an array with the number of cards
+	 */
+	private int[] getNbrOfCards (String cards[]){
+		int[] nbrOfCards = new int[cards.length];
+		for(int i = 0; i < cards.length; i++){
+			nbrOfCards[i] = supply.getCardsInSupply().get(cards[i]);
+		}
+		return nbrOfCards;
 	}
 
 }
