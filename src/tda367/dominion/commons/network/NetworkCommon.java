@@ -1,11 +1,6 @@
 package tda367.dominion.commons.network;
 
-import tda367.dominion.commons.messages.BoolMessage;
-import tda367.dominion.commons.messages.ConnectionMessage;
-import tda367.dominion.commons.messages.DoneMessage;
-import tda367.dominion.commons.messages.LocatedCardMessage;
-import tda367.dominion.commons.messages.RevealCardMessage;
-import tda367.dominion.commons.messages.RoomMessage;
+import tda367.dominion.commons.messages.*;
 
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryonet.EndPoint;
@@ -24,6 +19,7 @@ public class NetworkCommon {
 		kryo.register(ConnectionMessage.class);
 		kryo.register(RevealCardMessage.class);
 		kryo.register(RoomMessage.class);
+		kryo.register(CardMessage.class);
 		
 		kryo.register(String[][].class);
 		kryo.register(String[].class);

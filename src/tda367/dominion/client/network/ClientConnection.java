@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import tda367.dominion.client.controller.ClientController;
 import tda367.dominion.commons.messages.BoolMessage;
+import tda367.dominion.commons.messages.CardMessage;
 import tda367.dominion.commons.network.NetworkCommon;
 import tda367.dominion.server.cards.ICard;
 
@@ -61,6 +62,12 @@ public class ClientConnection {
 	public void cardMessage(ICard card) {
 //		CardMessage msg = new CardMessage();
 //		msg.setCard("" + card.getClass());
+	}
+	
+	public void playCard(String card) {
+		CardMessage msg = new CardMessage();
+		msg.setCard(card);
+		client.sendTCP(msg);
 	}
 
 	public void disconnected(Connection c) {

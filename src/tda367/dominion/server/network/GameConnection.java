@@ -21,7 +21,4 @@ public class GameConnection extends Connection{
 	public String getPlayerName() {
 		return playerName;
 	}
-	
-	
-
 }

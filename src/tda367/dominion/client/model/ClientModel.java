@@ -32,6 +32,10 @@ public class ClientModel {
 		
 	}
 	
+	public void playCard(String card) {
+		connection.playCard(card);
+	}
+	
 	/**
 	 * A boolean response from the view.
 	 */

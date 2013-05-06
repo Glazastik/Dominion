@@ -1,5 +1,6 @@
 package tda367.dominion.client.view;
 
+import java.util.ArrayList;
 import java.util.LinkedList;
 import java.util.List;
 
@@ -43,9 +44,6 @@ public class InGameState extends ControlledGameState {
 	private int gameContainerHeight;
 	private int amountOfPlayers;
 	private RoundedRectangle counterZone;
-	private String nmbOfActions;
-	private String nmbOfBuys;
-	private String nmbOfRiksdaler;
 	private Image riksdaler = null;
 	private Rectangle[] actionRectangles;
 	private Rectangle[] victoryRectangles;
@@ -63,6 +61,17 @@ public class InGameState extends ControlledGameState {
 	private Rectangle playAllRec;
 	private boolean enterShowCard;//Temporary
 	private Image cardToShow;//Temporary
+	
+	// Player stats
+	private String nmbOfActions;
+	private String nmbOfBuys;
+	private String nmbOfRiksdaler;
+	
+	// Cards
+	private ArrayList<String> hand = new ArrayList<String>();
+	private ArrayList<String> inPlay = new ArrayList<String>();
+	private String topOfPile = "";
+	private int deckSize = 0;
 	
 	public InGameState(int id, ClientController controller) {
 		super(id, controller);
@@ -221,7 +230,8 @@ public class InGameState extends ControlledGameState {
 		for(int i=0; i<handRectangles.length; i++) {
 			if(button == Input.MOUSE_LEFT_BUTTON && handRectangles[i].contains(x,y)) {
 				System.out.println("Hand card: " + player.revealHand().get(i));
-				crh.playCard(player, player.getHand().getCard(i));
+//				crh.playCard(player, player.getHand().getCard(i));
+				this.getController().playCard(hand.get(i));
 				resetHandRectangles();
 			} else if(button == Input.MOUSE_RIGHT_BUTTON && handRectangles[i].contains(x, y)){//Checking for detailed view
 				//enterShowCard = true;
