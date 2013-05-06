@@ -91,4 +91,23 @@ public class CardRulesHandler {
 			}
 		}
 	}
+	
+	/**
+	 * Plays all treasures from selected players hand
+	 * @param player
+	 */
+	public void playAllTreasures(Player player) {
+		CardInfoHandler cih = CardInfoHandler.getInstance(); 
+		for(int i = 0; i<player.getHandSize(); i++) {
+			if(cih.getCardType(player.getHand().getCard(i)).equals("Treasure")) {
+				switch(player.getHand().getCard(i)) {
+					case "Copper": player.increaseMoney(1); break;
+					case "Silver": player.increaseMoney(2); break;
+					case "Gold": player.increaseMoney(3); break;
+				}
+				player.play(i);
+				i--;
+			}
+		}
+	}
 }

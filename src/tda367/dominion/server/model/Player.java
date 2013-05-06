@@ -397,4 +397,17 @@ public class Player {
 		return deck.pop(cardName);
 	}
 	
+	/**
+	 * Plays all treasures from hand
+	 */
+	public void playAllTreasures() {
+		CardInfoHandler cih = CardInfoHandler.getInstance();
+		for(int i = 0;i<hand.getSize(); i++) {
+			if(cih.getCardType(hand.getCard(i)).equals("Treasure")) {
+				play(i);
+				i--;
+			}
+		}
+	}
+	
 }

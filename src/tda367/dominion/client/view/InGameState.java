@@ -55,10 +55,12 @@ public class InGameState extends ControlledGameState {
 	private Image chatButton;
 	private Image logButton;
 	private Image nextButton;
+	private Image playAllButton;
 	private Rectangle menuRec;
 	private Rectangle chatRec;
 	private Rectangle logRec;
 	private Rectangle nextRec;
+	private Rectangle playAllRec;
 	private boolean enterShowCard;//Temporary
 	private Image cardToShow;//Temporary
 	
@@ -100,6 +102,7 @@ public class InGameState extends ControlledGameState {
 		riksdaler = new Image("res/img/gui/ingame/Coin.png");
 		board = new Image("res/img/gui/ingame/BoardTemp.png");
 		nextButton = new Image("res/img/gui/ingame/NextButton.png");
+		playAllButton = new Image("res/img/gui/ingame/PlayAllTreasures.png");
 		
 		//Initiate all rectangles
 		actionRectangles = new Rectangle[10];
@@ -254,6 +257,12 @@ public class InGameState extends ControlledGameState {
 			} catch(SlickException s) {
 				
 			}
+		}
+		
+		//play all treasures button listener
+		if(button == Input.MOUSE_LEFT_BUTTON && playAllRec.contains(x, y)) {
+			System.out.println("Play all treasures");
+			crh.playAllTreasures(player);
 		}
 	}
 
@@ -590,10 +599,12 @@ public class InGameState extends ControlledGameState {
 		chatButton.draw(gameContainerWidth - xOffset, gameContainerHeight - (2*yOffset + buttonSpacing));
 		logButton.draw(gameContainerWidth - xOffset, gameContainerHeight - (3*yOffset + buttonSpacing));
 		nextButton.draw(gameContainerWidth - 2*xOffset, gameContainerHeight - (yOffset + buttonSpacing + 50));
+		playAllButton.draw(gameContainerWidth - xOffset, gameContainerHeight - (4*yOffset + buttonSpacing));
 		menuRec = new Rectangle(gameContainerWidth - xOffset, gameContainerHeight - (yOffset + buttonSpacing), buttonWidth, buttonHeight);
 		chatRec = new Rectangle(gameContainerWidth - xOffset, gameContainerHeight - (2*yOffset + buttonSpacing), buttonWidth, buttonHeight);
 		logRec = new Rectangle(gameContainerWidth - xOffset, gameContainerHeight - (3*yOffset + buttonSpacing), buttonWidth, buttonHeight);
 		nextRec = new Rectangle(gameContainerWidth - 2*xOffset, gameContainerHeight - (yOffset + buttonSpacing + 50), 100, 100);
+		playAllRec = new Rectangle(gameContainerWidth - xOffset, gameContainerHeight - (4*yOffset + buttonSpacing), buttonWidth, buttonHeight);
 	}
 	
 	/**
