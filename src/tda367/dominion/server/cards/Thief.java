@@ -8,59 +8,81 @@ import tda367.dominion.server.model.Player;
 
 public class Thief {
 	
-	public static void play(Player p, LinkedList<Player> players){
-		CardInfoHandler cif = CardInfoHandler.getInstance();
-		boolean hasTreasure  = false;
-		Pile trashedCards = new Pile();
-		for(Player player : players){
-			hasTreasure = false;
-			if(player!=p){
-				Pile tempList = new Pile();
-				for(String s : player.revealTopOfDeck(2)){
-					tempList.add(s);
-				}
-//				for(String s: tempList){
-//					if(cif.getCardType(s).equals("Treasure")){
-//						hasTreasure = true;
-//					}
-//				}
-				if(hasTreasure){
-					//p.sendMultipleCardMessage(tempList);
-					//boolean done = false;
-					//while(!done){
-					//	Message message = p.getNextMessage();
-					//	if(message instanceOf LocatedCardMessage){
-					//		LocatedCardMessage tempMessage = (LocatedCardMessage) message;
-					//		if(tempMessage.getLocation().equals(Revealed) && cif.getCardType(tempMessage.getCardName()).equals("Treasure")){
-					//			trashedCards.add(player.trashFromDeck(tempMessage.getCardName()));
-					//			player.discardTopOfDeck();
-					//			done = true;
-					//		}
-					//	}
-					//}
+	public static void play(Player player, LinkedList<Player> players){
+		for(Player p : players){
+			if(p!=player){
+				if(!p.getHand().contains("Moat")){
+					Steal(player, p);
 				} else {
-					//p.sendMultipleCardMessage(tempList);
-					//player.discardTopOfDeck();
-					//player.discardTopOfDeck();
-					//wait(1000);
+					/**
+					 * p.sendInformationMessage("Do you wish to reveal Moat?");
+					 * p.createBoolMessage();
+					 * boolean done = false;
+					 * while(!done){
+					 * 	Message message = p.getNextMessage();
+					 * 	if(message instanceOf BoolMessage){
+					 * 		done = true;
+					 * 		BoolMessage boolMessage = (BoolMessage) message;
+					 * 		if(!boolMessage.isTrue()){
+					 * 			Steal(player, p);
+					 * 		}
+					 * 	}
+					 * }
+					 * p.removeInformationMessage();
+					 * p.removeBoolMessage();
+					 */
 				}
-				//p.sendRemoveRevealedMessage();
 			}
 		}
+	}
+	private static void Steal(Player player, Player p){
+		CardInfoHandler cif = CardInfoHandler.getInstance();
+		Pile trashedCards = new Pile();
+		boolean hasTreasure  = false;
+		Pile tempList = new Pile();
+		for(String s : p.revealTopOfDeck(2)){
+			tempList.add(s);
+		}
+		//for(String s: tempList){
+		//	if(cif.getCardType(s).equals("Treasure")){
+		//		hasTreasure = true;
+		//	}
+		//}
+		if(hasTreasure){
+			//p.sendMultipleCardMessage(tempList);
+			//boolean done = false;
+			//while(!done){
+			//	Message message = p.getNextMessage();
+			//	if(message instanceOf LocatedCardMessage){
+			//		LocatedCardMessage tempMessage = (LocatedCardMessage) message;
+			//		if(tempMessage.getLocation().equals(Revealed) && cif.getCardType(tempMessage.getCardName()).equals("Treasure")){
+			//			trashedCards.add(player.trashFromDeck(tempMessage.getCardName()));
+			//			player.discardTopOfDeck();
+			//			done = true;
+			//		}
+			//	}
+			//}
+		} else {
+			//p.sendMultipleCardMessage(tempList);
+			//player.discardTopOfDeck();
+			//player.discardTopOfDeck();
+			//wait(1000);
+		}
+		//p.sendRemoveRevealedMessage();
 		if(trashedCards.getSize()>0){
 			//p.sendMultipleCardMessage(trashedCards);
 			//p.sendCreateDoneMessage("Done stealing");
 			//while(!Message message = p.getNextMessage() instanceOf DoneMessage && trashedCards.getSize()>0){
 				//p.sendMultipleCardMessage(trashedCards);
-				//if(message instanceOf LocatedCardsMessage){
-				//	LocatedCardMessage tempMessage = (LocatedCardMessage) message;
-				//	if(tempMessage.getLocation().equals("Revealed")){
-				//		p.gain(trashedCards.pop(tempMessage.getCardName()));
-				//	}
-				//}
+					//if(message instanceOf LocatedCardsMessage){
+						//LocatedCardMessage tempMessage = (LocatedCardMessage) message;
+							//if(tempMessage.getLocation().equals("Revealed")){
+								//p.gain(trashedCards.pop(tempMessage.getCardName()));
+							//}
+					//}
 			//}
-			//p.sendRemoveRevealedMessage;
-			//p.sendRemoveBoolMessage;
+		//p.sendRemoveRevealedMessage;
+		//p.sendRemoveBoolMessage;
 		}
 	}
 }

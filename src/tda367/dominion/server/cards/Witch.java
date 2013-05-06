@@ -28,7 +28,9 @@ public class Witch implements ICard {
 					 * 			gH.playerGainCard(p, "Curse");
 					 * 		}
 					 * 	}
-					 * } 
+					 * }
+					 * p.removeInformationMessage();
+					 * p.removeBoolMessage(); 
 					 */
 				}
 			}
