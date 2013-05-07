@@ -168,6 +168,12 @@ public class InGameState extends ControlledGameState {
 		
 	}
 	
+	public void updateNbrOfCards() {
+		nbrOfActionCards = getNbrOfCards(getActionCards(getSupply()));
+		nbrOfTreasureCards = getNbrOfCards(getTreasureCards(getSupply()));
+		nbrOfVictoryCards = getNbrOfCards(getVictoryCards(getSupply()));
+	}
+	
 	public void setActions(int actions) {
 		this.actions = actions;
 	}
@@ -695,6 +701,13 @@ public class InGameState extends ControlledGameState {
 		}
 	}
 	
+	/**
+	 * Resets the rectangles that are used as listeners in the players hand.
+	 * 
+	 * <p>If they are not reset and a formerly occupied place is clicked, a 
+	 * rectangle will remain and try to access the players hand outside bounds, 
+	 * and generate a crash.<p>
+	 */
 	private void resetHandRectangles() {
 		for(int i = 0; i < handRectangles.length; i++){
 			handRectangles[i] = new Rectangle();
@@ -735,7 +748,13 @@ public class InGameState extends ControlledGameState {
 	}
 	
 	/**
-	 * Paints the 
+	 * Paints numbers that show the amount of cards left in the supply.
+	 * 
+	 * <p>These numbers will appear in the top left corner with filled circle
+	 * behind to create contrast. It is important that the number arrays were 
+	 * generated using {@link #getNbrOfCards(String[]) getNbrOfCards} and that
+	 * the image array is the same that was used when generated.</p>
+	 * 
 	 * @param numbers an array with the numbers to be painted
 	 * @param cards the cards that are related to the numbers
 	 * @param g graphics that will be used when painting
@@ -769,7 +788,13 @@ public class InGameState extends ControlledGameState {
 	}
 	
 	/**
-	 * Paints the 
+	 * Paints numbers that show the amount of cards left in the supply.
+	 * 
+	 * <p>These numbers will appear in the top left corner with filled circle
+	 * behind to create contrast. It is important that the number arrays were 
+	 * generated using {@link #getNbrOfCards(String[]) getNbrOfCards} and that
+	 * the image array is the same that was used when generated.</p>
+	 * 
 	 * @param numbers an array with the numbers to be painted
 	 * @param cards the cards that are related to the numbers
 	 * @param g graphics that will be used when painting
@@ -796,7 +821,13 @@ public class InGameState extends ControlledGameState {
 	}
 	
 	/**
-	 * Paints the 
+	 * Paints numbers that show the amount of cards left in the supply.
+	 * 
+	 * <p>These numbers will appear in the top left corner with filled circle
+	 * behind to create contrast. It is important that the number arrays were 
+	 * generated using {@link #getNbrOfCards(String[]) getNbrOfCards} and that
+	 * the image array is the same that was used when generated.</p>
+	 * 
 	 * @param numbers an array with the numbers to be painted
 	 * @param cards the cards that are related to the numbers
 	 * @param g graphics that will be used when painting
