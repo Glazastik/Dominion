@@ -46,6 +46,7 @@ public class InGameState extends ControlledGameState {
 	private Image logButton;
 	private Image nextButton;
 	private Image playAllButton;
+	private Image messageBox;
 	private Rectangle menuRec;
 	private Rectangle chatRec;
 	private Rectangle logRec;
@@ -96,6 +97,7 @@ public class InGameState extends ControlledGameState {
 		board = new Image("res/img/gui/ingame/BoardTemp.png");
 		nextButton = new Image("res/img/gui/ingame/NextButton.png");
 		playAllButton = new Image("res/img/gui/ingame/PlayAllTreasures.png");
+		messageBox = new Image("res/img/gui/ingame/MessageBoxTemplate.png");
 		
 		//Initiate all rectangles
 		actionRectangles = new Rectangle[10];
@@ -130,6 +132,8 @@ public class InGameState extends ControlledGameState {
 		if(playedCards!=null) { 
 			paintPlayedCards(playedCards);
 		}
+		
+		paintMessageBox("Test Baws" ,g);
 	}
 
 	@Override
@@ -712,6 +716,19 @@ public class InGameState extends ControlledGameState {
 			nbrOfCards[i] = supply.getCardsInSupply().get(cards[i]);
 		}
 		return nbrOfCards;
+	}
+	
+	/**
+	 * A metod for painting messageboxes
+	 * TODO: add yes/no boxes and rectangles.  
+	 * @param message, the message to be written in the box
+	 * @param g
+	 */
+	private void paintMessageBox(String message, Graphics g) {
+		int x = gameContainerWidth - 270;
+		int y = gameContainerHeight - gameContainerHeight/3 - 230;
+		messageBox.draw(x, y, 250, 150);
+		g.drawString(message, x + 20, y + 20);
 	}
 
 }
