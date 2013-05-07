@@ -12,7 +12,6 @@ import com.esotericsoftware.kryonet.Listener;
 
 public class ClientController extends Listener {
 	private ClientModel model;
-	private Connection c;
 
 	public void setModel(ClientModel model) {
 		this.model = model;
@@ -25,14 +24,13 @@ public class ClientController extends Listener {
 	}
 
 	// TODO: remove connection object
-	public void received(Connection c, Object object) {
+	public void received(Object object) {
 		System.out.println("Received \"" + object.getClass().getName()
 				+ "\" from server.");
 
 		if (object instanceof RoomMessage) {
 			RoomMessage rmsg = (RoomMessage) object;
 			setRoomData(rmsg.getRooms());
-			this.c = c;
 		}
 
 		if (object instanceof CreateBoolMessage) {
@@ -56,10 +54,10 @@ public class ClientController extends Listener {
 
 	public void joinRoom(int id){
 		//TODO: Connection object?
-		ConnectionMessage cmsg = new ConnectionMessage();
-		cmsg.setName("Plebben");
-		cmsg.setRoomId("" + id);
-		c.sendTCP(cmsg);
+//		ConnectionMessage cmsg = new ConnectionMessage();
+//		cmsg.setName("Plebben");
+//		cmsg.setRoomId("" + id);
+//		c.sendTCP(cmsg);
 	}
 	
 	public void playCard(String card) {
