@@ -126,6 +126,9 @@ public class InGameState extends ControlledGameState {
 		paintActionCards(actionCards);
 		paintTreasureCards(treasureCards);
 		paintPlayerHand(actionCards);
+		paintNbrOfActionCards(nbrOfActionCards, actionCards, g);
+		paintNbrOfTreasureCards(nbrOfTreasureCards, treasureCards, g);
+		paintNbrOfVictoryCards(nbrOfVictoryCards, victoryCards, g);
 		paintButtons();
 		paintCounterZone(g);
 		
@@ -729,6 +732,79 @@ public class InGameState extends ControlledGameState {
 		int y = gameContainerHeight - gameContainerHeight/3 - 230;
 		messageBox.draw(x, y, 250, 150);
 		g.drawString(message, x + 20, y + 20);
+	}
+	
+	/**
+	 * Paints the 
+	 * @param numbers an array with the numbers to be painted
+	 * @param cards the cards that are related to the numbers
+	 * @param g graphics that will be used when painting
+	 */
+	private void paintNbrOfActionCards(int[] numbers, Image[] cards, Graphics g){
+		float cardHeight;
+		double scale;
+		float cardWidth;
+		int xOffset = 15 + gameContainerWidth/7;
+		int cardSpacing = 5;
+		int yOffset = 5;
+		
+		for(int i = 0; i < cards.length; i++){
+			cardWidth = (float) (gameContainerWidth/9);
+			scale = (double) cardWidth/cards[i].getWidth();
+			cardHeight = (float) (cards[i].getHeight()*scale);
+			
+			if(i < cards.length/2){		
+				g.drawString("" + numbers[i], xOffset + cardWidth*(i)+(i*cardSpacing), yOffset);
+			} else {
+				g.drawString("" + numbers[i], xOffset + cardWidth*(i-5)+((i-5)*cardSpacing), cardHeight + 2*yOffset);
+			}
+		}
+	}
+	
+	/**
+	 * Paints the 
+	 * @param numbers an array with the numbers to be painted
+	 * @param cards the cards that are related to the numbers
+	 * @param g graphics that will be used when painting
+	 */
+	private void paintNbrOfTreasureCards(int[] numbers, Image[] cards, Graphics g){
+		float cardHeight;
+		double scale;
+		float cardWidth;
+		int yOffset = 5;
+		int cardSpacing = 5;
+		
+		for(int i = 0; i < cards.length; i++){
+			cardWidth = (float) gameContainerWidth/14;
+			scale = (double) cardWidth/cards[i].getWidth();
+			cardHeight = (float) (cards[i].getHeight()*scale);
+			int xOffset = (int) (cardWidth+10);
+			
+			g.drawString("" + numbers[i], xOffset, yOffset+cardHeight*i+(i*cardSpacing));
+		}
+	}
+	
+	/**
+	 * Paints the 
+	 * @param numbers an array with the numbers to be painted
+	 * @param cards the cards that are related to the numbers
+	 * @param g graphics that will be used when painting
+	 */
+	private void paintNbrOfVictoryCards(int[] numbers, Image[] cards, Graphics g){
+		float cardHeight;
+		double scale;
+		float cardWidth;
+		int xOffset = 5;
+		int yOffset = 5;
+		int cardSpacing = 5;
+		
+		for(int i = 0; i < cards.length; i++){
+			cardWidth = (float) gameContainerWidth/14;
+			scale = (double) cardWidth/cards[i].getWidth();
+			cardHeight = (float) (cards[i].getHeight()*scale);
+			
+			g.drawString("" + numbers[i], xOffset, cardHeight*i+(i*cardSpacing)+yOffset);
+		}
 	}
 
 }
