@@ -12,7 +12,6 @@ import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
 
 public class ClientConnection {
-	private ClientController controller;
 	private final Client client;
 	
 	public ClientConnection(ClientController controller) {
@@ -36,15 +35,6 @@ public class ClientConnection {
 				}
 			}
 		}.start();
-	}
-	
-	public void connected(Connection c) {
-		controller.connected(c);
-	}
-
-	public void received(Connection c, Object object) {
-		System.out.println("response!");
-		controller.received(c, object);
 	}
 	
 	/**
@@ -72,7 +62,6 @@ public class ClientConnection {
 
 	public void disconnected(Connection c) {
 		System.out.println("Disconnected from server..");
-		controller.disconnected(c);
 	}
 	
 }
