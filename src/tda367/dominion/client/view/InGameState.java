@@ -752,10 +752,17 @@ public class InGameState extends ControlledGameState {
 			cardWidth = (float) (gameContainerWidth/9);
 			scale = (double) cardWidth/cards[i].getWidth();
 			cardHeight = (float) (cards[i].getHeight()*scale);
+			int orbOffset = 3;
 			
-			if(i < cards.length/2){		
+			if(i < cards.length/2){
+				g.setColor(Color.black);
+				g.fillOval(xOffset + cardWidth*(i)+(i*cardSpacing)-orbOffset, yOffset-orbOffset, 24, 24);
+				g.setColor(Color.white);
 				g.drawString("" + numbers[i], xOffset + cardWidth*(i)+(i*cardSpacing), yOffset);
 			} else {
+				g.setColor(Color.black);
+				g.fillOval(xOffset + cardWidth*(i-5)+((i-5)*cardSpacing)-orbOffset, cardHeight + 2*yOffset-orbOffset, 24, 24);
+				g.setColor(Color.white);
 				g.drawString("" + numbers[i], xOffset + cardWidth*(i-5)+((i-5)*cardSpacing), cardHeight + 2*yOffset);
 			}
 		}
@@ -773,6 +780,7 @@ public class InGameState extends ControlledGameState {
 		float cardWidth;
 		int yOffset = 5;
 		int cardSpacing = 5;
+		int orbOffset = 3;
 		
 		for(int i = 0; i < cards.length; i++){
 			cardWidth = (float) gameContainerWidth/14;
@@ -780,6 +788,9 @@ public class InGameState extends ControlledGameState {
 			cardHeight = (float) (cards[i].getHeight()*scale);
 			int xOffset = (int) (cardWidth+10);
 			
+			g.setColor(Color.black);
+			g.fillOval(xOffset-orbOffset, yOffset+cardHeight*i+(i*cardSpacing)-orbOffset, 24, 24);
+			g.setColor(Color.white);
 			g.drawString("" + numbers[i], xOffset, yOffset+cardHeight*i+(i*cardSpacing));
 		}
 	}
@@ -797,12 +808,16 @@ public class InGameState extends ControlledGameState {
 		int xOffset = 5;
 		int yOffset = 5;
 		int cardSpacing = 5;
+		int orbOffset = 3;
 		
 		for(int i = 0; i < cards.length; i++){
 			cardWidth = (float) gameContainerWidth/14;
 			scale = (double) cardWidth/cards[i].getWidth();
 			cardHeight = (float) (cards[i].getHeight()*scale);
 			
+			g.setColor(Color.black);
+			g.fillOval(xOffset-orbOffset, cardHeight*i+(i*cardSpacing)+yOffset-orbOffset, 24, 24);
+			g.setColor(Color.white);
 			g.drawString("" + numbers[i], xOffset, cardHeight*i+(i*cardSpacing)+yOffset);
 		}
 	}
