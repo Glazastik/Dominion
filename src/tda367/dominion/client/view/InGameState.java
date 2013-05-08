@@ -53,6 +53,10 @@ public class InGameState extends ControlledGameState {
 	private Rectangle logRec;
 	private Rectangle nextRec;
 	private Rectangle playAllRec;
+	
+	//Message to write in statusbar 
+	private String tipMessage;
+	
 	private boolean enterShowCard;//Temporary
 	private Image cardToShow;//Temporary
 	
@@ -101,6 +105,9 @@ public class InGameState extends ControlledGameState {
 		messageBox = new Image("res/img/gui/ingame/MessageBoxTemplate.png");
 		statusBar = new Image("res/img/gui/ingame/StatusBar.png");
 		
+		//temporary status tip init
+		tipMessage = "Where mah hand at??";		
+		
 		//Initiate all rectangles
 		actionRectangles = new Rectangle[10];
 		victoryRectangles = new Rectangle[4];
@@ -138,7 +145,7 @@ public class InGameState extends ControlledGameState {
 			paintPlayedCards(playedCards);
 		}
 		
-		paintMessageBox("Test Baws" ,g);
+		//paintMessageBox("Test Baws" ,g);
 	}
 
 	@Override
@@ -677,6 +684,7 @@ public class InGameState extends ControlledGameState {
 		g.drawString("Buys: " + buys, 170, gameContainerHeight - gameContainerHeight/3 - 45);
 		g.drawString("x"+money, 300, gameContainerHeight - gameContainerHeight/3 - 45);
 		riksdaler.draw((float)270, (float)gameContainerHeight - gameContainerHeight/3 - 45, (float)0.03);
+		g.drawString(tipMessage, 490, gameContainerHeight - gameContainerHeight/3 - 50);
 	}
 	
 	/**
