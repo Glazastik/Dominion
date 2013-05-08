@@ -13,7 +13,7 @@ public class ClientMain {
 	
 	public static void main(String[] args) {
 		controller = new ClientController();
-		connection = new ClientConnection(controller);
+		connection = new ClientConnection();
 		
 		view = new MainView(controller);
 		model = new ClientModel(connection, view);

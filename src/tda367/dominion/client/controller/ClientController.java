@@ -1,6 +1,7 @@
 package tda367.dominion.client.controller;
 
 import tda367.dominion.client.model.ClientModel;
+import tda367.dominion.client.view.MainView;
 import tda367.dominion.commons.messages.CardUpdateMessage;
 import tda367.dominion.commons.messages.ConnectionMessage;
 import tda367.dominion.commons.messages.CreateBoolMessage;
@@ -10,17 +11,12 @@ import tda367.dominion.commons.messages.RoomMessage;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 
-public class ClientController extends Listener {
+public class ClientController {
 	private ClientModel model;
+	private MainView view;
 
 	public void setModel(ClientModel model) {
 		this.model = model;
-	}
-
-	// TODO: remove connection object
-	public void connected(Connection c) {
-		System.out.println("Connected to the server on: "
-				+ c.getRemoteAddressTCP());
 	}
 
 	// TODO: remove connection object
@@ -68,11 +64,18 @@ public class ClientController extends Listener {
 		model.searchForGame();
 	}
 
-	public void disconnected(Connection c) {
-		model.disconnected();
-	}
-
 	private void setRoomData(String[][] data) {
 		model.setRoomData(data);
+	}
+	
+	// Listener classes
+	class NetworkListener extends Listener {
+		public void connected() {
+			System.out.println("Connected, it works");
+		}
+		
+		public void disconnected() {
+			System.out.println("Disconnected");
+		}
 	}
 }

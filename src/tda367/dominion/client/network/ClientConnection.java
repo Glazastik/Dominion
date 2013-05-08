@@ -2,7 +2,6 @@ package tda367.dominion.client.network;
 
 import java.io.IOException;
 
-import tda367.dominion.client.controller.ClientController;
 import tda367.dominion.commons.messages.BoolMessage;
 import tda367.dominion.commons.messages.CardMessage;
 import tda367.dominion.commons.network.NetworkCommon;
@@ -10,16 +9,15 @@ import tda367.dominion.server.cards.ICard;
 
 import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
+import com.esotericsoftware.kryonet.Listener;
 
 public class ClientConnection {
 	private final Client client;
 	
-	public ClientConnection(ClientController controller) {
+	public ClientConnection() {
 		client = new Client();
 		client.start();
 		
-		client.addListener(controller);
-
 		NetworkCommon.register(client);
 	}
 	
@@ -59,9 +57,8 @@ public class ClientConnection {
 		msg.setCard(card);
 		client.sendTCP(msg);
 	}
-
-	public void disconnected(Connection c) {
-		System.out.println("Disconnected from server..");
-	}
 	
+	public void addListener(Listener l) {
+		client.addListener(l);
+	}
 }

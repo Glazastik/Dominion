@@ -1,5 +1,7 @@
 package tda367.dominion.client.model;
 
+import com.esotericsoftware.kryonet.Listener;
+
 import tda367.dominion.client.network.ClientConnection;
 import tda367.dominion.client.view.MainView;
 import tda367.dominion.commons.messages.CardUpdateMessage;
@@ -13,6 +15,10 @@ public class ClientModel {
 	public ClientModel(ClientConnection connection, MainView view) {
 		this.connection = connection;
 		this.view = view;
+	}
+	
+	public void addListener(Listener l) {
+		connection.addListener(l);
 	}
 	
 	public void searchForGame() {
