@@ -1,9 +1,9 @@
 package tda367.dominion.client.controller;
 
+import tda367.dominion.client.listener.ViewEvent;
+import tda367.dominion.client.listener.ViewListener;
 import tda367.dominion.client.model.ClientModel;
-import tda367.dominion.client.model.ViewListener;
 import tda367.dominion.client.view.MainView;
-import tda367.dominion.client.view.ViewEvent;
 import tda367.dominion.commons.messages.CardUpdateMessage;
 import tda367.dominion.commons.messages.CreateBoolMessage;
 import tda367.dominion.commons.messages.PlayerUpdateMessage;

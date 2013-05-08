@@ -11,7 +11,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.GameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-import tda367.dominion.client.model.ViewListener;
+import tda367.dominion.client.listener.ViewListener;
 
 public class MainView extends StateBasedGame {
 	

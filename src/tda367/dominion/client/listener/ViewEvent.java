@@ -1,4 +1,4 @@
-package tda367.dominion.client.view;
+package tda367.dominion.client.listener;
 
 public class ViewEvent {
 	private String text;
