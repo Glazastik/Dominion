@@ -17,17 +17,19 @@ public class GameRoom {
 	private int slots;
 	private String name;
 	private int id;
+	
+	private Dominion game;
 
 	/**
 	 * Initiates a Game Room
 	 * 
 	 * @param gc
 	 */
-	public GameRoom() {
+	public GameRoom(int id, String gameName) {
 
 		slots = 4;
-		name = "test";
-		id = 0;
+		name = gameName;
+		this.id = id;
 
 		if (gcs != null) {
 			players = new LinkedList<Player>();
@@ -39,6 +41,11 @@ public class GameRoom {
 			players = new LinkedList<Player>();
 		}
 	}
+	
+	public void startGame(){
+		game = new Dominion(this.getPlayers());
+	}
+	
 
 	/**
 	 * Returns a list of the player objects in the room.
@@ -118,6 +125,11 @@ public class GameRoom {
 
 	}
 
+	/**
+	 * Checks if a connection exists within the game
+	 * @param c the connection to be checked
+	 * @return
+	 */
 	public boolean hasConnection(GameConnection c) {
 		for (GameConnection gc : gcs) {
 			if (gc.equals(c)) {
@@ -127,15 +139,26 @@ public class GameRoom {
 		return false;
 	}
 
+	/**
+	 * Adjusts the current number of available slots to the right number
+	 */
 	private void updateSlots() {
 		slots = MAXPLAYERS - players.size();
-
 	}
 
+	/**
+	 * If the room is full or not.
+	 * @return
+	 */
 	public boolean isFull() {
 		return slots <= 0;
 	}
 
+	/**
+	 * Removes a connection and player object from the game. 
+	 * The Player-object is so far a risky remove.
+	 * @param playerName
+	 */
 	public void kickPlayer(String playerName) {
 		for (Player p : players) {
 			if (p.getName().equals(playerName)) {

@@ -14,6 +14,7 @@ import tda367.dominion.server.network.GameConnection;
  */
 public class RoomHandler {
 	LinkedList<GameRoom> rooms;
+	private int id = -1;
 
 	public RoomHandler() {
 		rooms = new LinkedList<GameRoom>();
@@ -22,10 +23,16 @@ public class RoomHandler {
 	/**
 	 * Adds a GameRoom to the list.
 	 * 
-	 * @param gr
+	 * @param name
 	 */
-	public void createRoom(GameRoom gr) {
-		rooms.add(gr);
+	public void createRoom(String name) {
+		
+		rooms.add(new GameRoom(getNextID(), name));
+	}
+
+	private int getNextID() {
+		id ++;
+		return id;
 	}
 
 	/**

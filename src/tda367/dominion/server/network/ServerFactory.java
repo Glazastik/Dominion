@@ -34,7 +34,7 @@ public class ServerFactory {
 		}
 
 		roomHandler = new RoomHandler();
-		roomHandler.createRoom(new GameRoom());
+		roomHandler.createRoom("TestRoom");
 		server = new Server() {
 			public Connection newConnection() {
 				return new GameConnection();
