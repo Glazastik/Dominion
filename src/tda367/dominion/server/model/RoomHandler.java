@@ -26,12 +26,12 @@ public class RoomHandler {
 	 * @param name
 	 */
 	public void createRoom(String name) {
-		
+
 		rooms.add(new GameRoom(getNextID(), name));
 	}
 
 	private int getNextID() {
-		id ++;
+		id++;
 		return id;
 	}
 
@@ -72,7 +72,7 @@ public class RoomHandler {
 			gr.addPlayer(c);
 			return true;
 		}
-		
+
 		return false;
 	}
 
@@ -83,10 +83,9 @@ public class RoomHandler {
 	 *            the ID to search for.
 	 * @return GameRoom or null if no room was found.
 	 */
-	private GameRoom getRoomById(int id) {
+	public GameRoom getRoomById(int id) {
 		for (GameRoom gr : rooms) {
-			int tempID = gr.getID();
-			if (tempID == id) {
+			if (id == gr.getID()) {
 				return gr;
 			}
 		}
@@ -94,26 +93,40 @@ public class RoomHandler {
 	}
 
 	public void kickConnection(GameConnection c) {
-		
-		for(GameRoom gr: rooms){
+
+		for (GameRoom gr : rooms) {
 			gr.kickPlayer(c.getPlayerName());
-			
+
 		}
-		
+
 	}
 
 	public String[] getInfo(int id) {
-		for(GameRoom gr: rooms){
-			if(gr.getID() == id){
+		for (GameRoom gr : rooms) {
+			if (gr.getID() == id) {
 				String names = "";
-				for(Player p: gr.getPlayers()){
+				for (Player p : gr.getPlayers()) {
 					names += p.getName();
 				}
-				return new String[] {""+gr.getID(), gr.getName(), ""+gr.getSlots(), names};
+				return new String[] { "" + gr.getID(), gr.getName(),
+						"" + gr.getSlots(), names };
 			}
-			
+
 		}
 		return null;
-		
+	}
+
+	/**
+	 * Attempts to start a room, only if the room is full (slots == 0).
+	 * @param id the id of the room to be started.
+	 * @return
+	 */
+	public boolean start(int id) {
+		GameRoom gr = this.getRoomById(id);
+		if(gr.isFull()){
+			gr.startGame();
+			return true;
+		}
+		return false;
 	}
 }

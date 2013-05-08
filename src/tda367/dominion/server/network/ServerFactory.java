@@ -92,8 +92,12 @@ public class ServerFactory {
 		
 		if (!roomHandler.addPlayer(c, id)){
 			print("Couldn't add " + cmsg.getName() + " to room " + cmsg.getRoomId());
+			return;
 		}
 
+		if(roomHandler.start(id)){
+			//TODO: Notify everyone that the game has begun.
+		}
 	}
 
 	public static RoomHandler getRoomHandler() {
