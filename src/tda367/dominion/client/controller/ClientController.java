@@ -94,6 +94,7 @@ public class ClientController {
 	// Will be activated every time a card is chosen
 	class CardListener implements ViewListener {
 		public void run(ViewEvent e) {
+			System.out.println("Play " + e.getText());
 			model.playCard(e.getText());
 		}
 	}

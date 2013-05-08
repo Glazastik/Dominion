@@ -62,16 +62,6 @@ public class SplashScreen extends BasicGameState {
 	 */
 	private void initStates(GameContainer gc, StateBasedGame sbg) 
 			throws SlickException{
-		sbg.addState(new MainMenuState(MainView.MAINMENUSTATE));
-		sbg.getState(MainView.MAINMENUSTATE).init(gc, sbg);
-		sbg.addState(new InGameState(MainView.INGAMESTATE));
-		sbg.getState(MainView.INGAMESTATE).init(gc, sbg);
-		sbg.addState(new ServerListState(MainView.SERVERLISTSTATE));
-		sbg.getState(MainView.SERVERLISTSTATE).init(gc, sbg);
-		sbg.addState(new OptionsState(MainView.OPTIONSSTATE));
-		sbg.getState(MainView.OPTIONSSTATE).init(gc, sbg);
-		sbg.addState(new ShowCardState(MainView.SHOWCARDSTATE));
-		sbg.getState(MainView.SHOWCARDSTATE).init(gc, sbg);
 	}
 
 	@Override

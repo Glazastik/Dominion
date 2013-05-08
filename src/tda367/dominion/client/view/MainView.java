@@ -26,7 +26,6 @@ public class MainView extends StateBasedGame {
 	public static AppGameContainer theGame;
 	public static boolean fullS = false;
 	public static boolean fpsSet = false;
-	private ArrayList<ViewListener> listeners = new ArrayList<ViewListener>();
 	
 	/**
 	 * Constructs a new StateBasedGame which in turn creates a AppGameContainer, TODO read from file
@@ -43,10 +42,26 @@ public class MainView extends StateBasedGame {
 	public void initStatesList(GameContainer arg0) throws SlickException {
 		addState(new SplashScreen(SPLASHSTATE));
 		enterState(SPLASHSTATE);
+		addState(new MainMenuState(MainView.MAINMENUSTATE));
+		getState(MAINMENUSTATE).init(gc, sbg);
+		addState(new InGameState(MainView.INGAMESTATE));
+		getState(INGAMESTATE).init(gc, sbg);
+		addState(new ServerListState(MainView.SERVERLISTSTATE));
+		getState(SERVERLISTSTATE).init(gc, sbg);
+		addState(new OptionsState(MainView.OPTIONSSTATE));
+		getState(OPTIONSSTATE).init(gc, sbg);
+		addState(new ShowCardState(MainView.SHOWCARDSTATE));
+		getState(SHOWCARDSTATE).init(gc, sbg);
 	}
 	
 	public void addCardListener(ViewListener l) {
-		listeners.add(l);
+		InGameState s = (InGameState)getState(INGAMESTATE);
+		s.addCardListener(l);
+	}
+	
+	public void addSupplyListener(ViewListener l) {
+		InGameState s = (InGameState)getState(INGAMESTATE);
+		s.addSupplyListener(l);
 	}
     
     /**
