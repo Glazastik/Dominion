@@ -12,7 +12,12 @@ public class TurnHandler {
 	private void DoTurn(){
 		boolean actionphaseDone = false;
 		boolean buyphaseDone = false;
-		//activePlayer.sendInformation
+		while(!actionphaseDone){
+			//activePlayer.sendInformationMessage("Play Action Cards");
+			
+			actionphaseDone = activePlayer.hasActionCardsInHand() && activePlayer.getActions()>0 /**&& (!message instanceOf nextTurnMessage) */;
+			//activePlayer.removeInformationMessage();
+		}
 	}
 
 }

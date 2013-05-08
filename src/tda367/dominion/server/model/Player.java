@@ -409,5 +409,16 @@ public class Player {
 			}
 		}
 	}
+	public boolean hasActionCardsInHand(){
+		CardInfoHandler cih = CardInfoHandler.getInstance();
+		boolean hasActionCard = false;
+		for(String s: hand.getCards()){
+			if(cih.getCardType(s).equals("Action")){
+				hasActionCard = true;
+			}
+		}
+		return hasActionCard;
+		
+	}
 	
 }
