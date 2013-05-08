@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import tda367.dominion.commons.messages.BoolMessage;
 import tda367.dominion.commons.messages.CardMessage;
+import tda367.dominion.commons.messages.Message;
 import tda367.dominion.commons.network.NetworkCommon;
 import tda367.dominion.server.cards.ICard;
 
@@ -36,28 +37,19 @@ public class ClientConnection {
 	}
 	
 	/**
-	 * Send a response to the server in the form of a boolean message.
+	 * Sends a message via TCP.
+	 * 
+	 * @param msg the message that will be sent
 	 */
-	public void boolMessage(boolean bool) {
-		BoolMessage msg = new BoolMessage();
-		msg.setBool(bool);
+	public void sendMessage(Message msg) {
 		client.sendTCP(msg);
 	}
 	
 	/**
-	 * Send a response to the server in the form of a card.
+	 * Makes the controller listen to network traffic. 
+	 * 
+	 * @param l the listener object
 	 */
-	public void cardMessage(ICard card) {
-//		CardMessage msg = new CardMessage();
-//		msg.setCard("" + card.getClass());
-	}
-	
-	public void playCard(String card) {
-		CardMessage msg = new CardMessage();
-		msg.setCard(card);
-		client.sendTCP(msg);
-	}
-	
 	public void addListener(Listener l) {
 		client.addListener(l);
 	}

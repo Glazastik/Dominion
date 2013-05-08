@@ -3,6 +3,8 @@ package tda367.dominion.client.model;
 import com.esotericsoftware.kryonet.Listener;
 
 import tda367.dominion.client.network.ClientConnection;
+import tda367.dominion.commons.messages.BoolMessage;
+import tda367.dominion.commons.messages.LocatedCardMessage;
 
 public class ClientModel {
 	private ClientConnection connection;
@@ -31,8 +33,15 @@ public class ClientModel {
 		
 	}
 	
+	/**
+	 * Tell the server to play the card.
+	 * 
+	 * @param card to be played.
+	 */
 	public void playCard(String card) {
-		connection.playCard(card);
+		LocatedCardMessage msg = new LocatedCardMessage();
+		msg.setCardName(card);
+		connection.sendMessage(msg);
 	}
 	
 //	public void updateCards(CardUpdateMessage msg) {
@@ -47,7 +56,9 @@ public class ClientModel {
 	 * A boolean response from the view.
 	 */
 	public void boolMessage(boolean bool) {
-		connection.boolMessage(bool);
+		BoolMessage msg = new BoolMessage();
+		msg.setBool(bool);
+		connection.sendMessage(msg);
 	}
 	
 }

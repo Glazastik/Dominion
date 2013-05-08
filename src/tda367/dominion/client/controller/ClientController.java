@@ -19,7 +19,7 @@ public class ClientController {
 		this.view = new MainView();
 		this.model = new ClientModel();
 		model.addListener(new NetworkListener());
-		view.addListener(new RoomListener());
+		view.addCardListener(new RoomListener());
 	}
 	
 	public void boolMessage(boolean bool) {
@@ -85,7 +85,17 @@ public class ClientController {
 
 	}
 	
+	// TODO: Replace with lobby framework
 	class RoomListener implements ViewListener {
-		
+		public void run() {
+			
+		}
+	}
+	
+	// Will be activated every time a card is chosen
+	class CardListener implements ViewListener {
+		public void run() {
+			
+		}
 	}
 }

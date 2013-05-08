@@ -46,7 +46,7 @@ public class MainView extends StateBasedGame {
 		enterState(SPLASHSTATE);
 	}
 	
-	public void addListener(ViewListener l) {
+	public void addCardListener(ViewListener l) {
 		listeners.add(l);
 	}
     
