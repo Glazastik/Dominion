@@ -96,8 +96,17 @@ public class ServerFactory {
 		}
 
 		if(roomHandler.start(id)){
-			//TODO: Notify everyone that the game has begun.
+			setupGame(id);
 		}
+	}
+
+	/**
+	 * This method will hand notify all the players that the game has begun.
+	 * @param id
+	 */
+	private static void setupGame(int id) {
+		//TODO: Notify all players
+		
 	}
 
 	public static RoomHandler getRoomHandler() {

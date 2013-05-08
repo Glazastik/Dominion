@@ -175,4 +175,12 @@ public class GameRoom {
 		}
 		updateSlots();
 	}
+
+	/**
+	 * Checks if a game is on or not.
+	 * @return
+	 */
+	public boolean isPlaying() {
+		return game != null;
+	}
 }

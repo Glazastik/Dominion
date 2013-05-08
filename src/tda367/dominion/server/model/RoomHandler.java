@@ -123,7 +123,7 @@ public class RoomHandler {
 	 */
 	public boolean start(int id) {
 		GameRoom gr = this.getRoomById(id);
-		if(gr.isFull()){
+		if(gr.isFull() && gr.isPlaying()){
 			gr.startGame();
 			return true;
 		}
