@@ -26,6 +26,7 @@ public class MainView extends StateBasedGame {
 	public static AppGameContainer theGame;
 	public static boolean fullS = false;
 	public static boolean fpsSet = false;
+	private ArrayList<ViewListener> listeners = new ArrayList<ViewListener>();
 	
 	/**
 	 * Constructs a new StateBasedGame which in turn creates a AppGameContainer, TODO read from file
@@ -33,6 +34,7 @@ public class MainView extends StateBasedGame {
 	 */
 	public MainView() {
 		super("Dominion");
+		start();
 	}
 
 	/**
@@ -45,7 +47,7 @@ public class MainView extends StateBasedGame {
 	}
 	
 	public void addListener(ViewListener l) {
-		
+		listeners.add(l);
 	}
     
     /**
@@ -115,7 +117,7 @@ public class MainView extends StateBasedGame {
     	g.setDeckSize(deckSize);
     }
 
-	public void start() {
+	private void start() {
 		try {
 			theGame = new AppGameContainer(this);
 			theGame.setDisplayMode(screenHeight, screenWidth, false);
