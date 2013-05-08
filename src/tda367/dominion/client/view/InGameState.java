@@ -35,7 +35,6 @@ public class InGameState extends ControlledGameState {
 	private int gameContainerWidth;
 	private int gameContainerHeight;
 	private int amountOfPlayers;
-	private RoundedRectangle counterZone;
 	private Image riksdaler = null;
 	private Rectangle[] actionRectangles;
 	private Rectangle[] victoryRectangles;
@@ -89,7 +88,6 @@ public class InGameState extends ControlledGameState {
 		nbrOfActionCards = getNbrOfCards(getActionCards(getSupply()));
 		nbrOfTreasureCards = getNbrOfCards(getTreasureCards(getSupply()));
 		nbrOfVictoryCards = getNbrOfCards(getVictoryCards(getSupply()));
-		counterZone = new RoundedRectangle(0, gc.getHeight() - gc.getHeight()/3 - 50, gc.getWidth(), 40, 2);
 
 		gameContainerWidth = gc.getWidth();
 		gameContainerHeight = gc.getHeight();
@@ -683,6 +681,8 @@ public class InGameState extends ControlledGameState {
 		g.drawString("Actions: " + actions, 50, gameContainerHeight - gameContainerHeight/3 - 45);
 		g.drawString("Buys: " + buys, 170, gameContainerHeight - gameContainerHeight/3 - 45);
 		g.drawString("x"+money, 300, gameContainerHeight - gameContainerHeight/3 - 45);
+		g.drawString("Top discard: "+topOfPile, 850, gameContainerHeight - gameContainerHeight/3 - 45);
+		g.drawString("Cards in deck: "+deckSize, 1100, gameContainerHeight - gameContainerHeight/3 - 45);
 		riksdaler.draw((float)270, (float)gameContainerHeight - gameContainerHeight/3 - 45, (float)0.03);
 		g.drawString(tipMessage, 490, gameContainerHeight - gameContainerHeight/3 - 50);
 	}
