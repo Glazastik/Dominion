@@ -12,7 +12,6 @@ import org.newdawn.slick.state.StateBasedGame;
 import tda367.dominion.client.controller.ClientController;
 
 public class ServerListState extends ControlledGameState {
-	private ClientController controller;
 	private String[][] roomData = new String[0][0];
 	private Image board;
 	private Image room;
@@ -77,7 +76,7 @@ public class ServerListState extends ControlledGameState {
 	public void enter(GameContainer container, StateBasedGame game)
 			throws SlickException {
 		super.enter(container, game);
-		controller.searchForGame();
+//		controller.searchForGame();
 	}
 
 	/**
@@ -104,7 +103,7 @@ public class ServerListState extends ControlledGameState {
 	public void mouseClicked(int button, int x, int y, int clickCount) {
 		super.mouseClicked(button, x, y, clickCount);
 		if(join.contains(x, y)){
-			controller.joinRoom(0);
+//			controller.joinRoom(0);
 		}
 	}
 

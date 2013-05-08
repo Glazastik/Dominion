@@ -11,6 +11,8 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.GameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+import tda367.dominion.client.model.ViewListener;
+
 public class MainView extends StateBasedGame {
 	
 	public static final int INGAMESTATE = 0;
@@ -40,6 +42,10 @@ public class MainView extends StateBasedGame {
 	public void initStatesList(GameContainer arg0) throws SlickException {
 		addState(new SplashScreen(SPLASHSTATE));
 		enterState(SPLASHSTATE);
+	}
+	
+	public void addListener(ViewListener l) {
+		
 	}
     
     /**

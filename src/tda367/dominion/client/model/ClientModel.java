@@ -3,8 +3,6 @@ package tda367.dominion.client.model;
 import com.esotericsoftware.kryonet.Listener;
 
 import tda367.dominion.client.network.ClientConnection;
-import tda367.dominion.commons.messages.CardUpdateMessage;
-import tda367.dominion.commons.messages.PlayerUpdateMessage;
 
 public class ClientModel {
 	private ClientConnection connection;
@@ -15,7 +13,6 @@ public class ClientModel {
 	}
 	
 	public void addListener(Listener l) {
-		System.out.println("hej");
 		connection.addListener(l);
 	}
 	

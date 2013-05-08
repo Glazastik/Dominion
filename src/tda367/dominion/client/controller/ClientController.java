@@ -1,6 +1,7 @@
 package tda367.dominion.client.controller;
 
 import tda367.dominion.client.model.ClientModel;
+import tda367.dominion.client.model.ViewListener;
 import tda367.dominion.client.view.MainView;
 import tda367.dominion.commons.messages.CardUpdateMessage;
 import tda367.dominion.commons.messages.ConnectionMessage;
@@ -19,6 +20,7 @@ public class ClientController {
 		this.view = view;
 		this.model = model;
 		model.addListener(new NetworkListener());
+		view.addListener(new RoomListener());
 	}
 	
 	public void boolMessage(boolean bool) {
@@ -82,5 +84,9 @@ public class ClientController {
 			}
 		}
 
+	}
+	
+	class RoomListener implements ViewListener {
+		
 	}
 }
