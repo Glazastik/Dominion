@@ -1,10 +1,15 @@
 package tda367.dominion.client.view;
 
 public class ViewEvent {
-	private final String text;
+	private String text;
+	private boolean bool;
 	
 	public ViewEvent() {
-		this("");
+
+	}
+	
+	public ViewEvent(boolean bool) {
+		this.bool = bool;
 	}
 	
 	public ViewEvent(String text) {
@@ -13,5 +18,9 @@ public class ViewEvent {
 	
 	public String getText() {
 		return text;
+	}
+	
+	public boolean getBool() {
+		return bool;
 	}
 }

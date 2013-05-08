@@ -7,7 +7,6 @@ import tda367.dominion.commons.messages.*;
 
 public class ClientModel {
 	private ClientConnection connection;
-	private String[][] roomData;
 	
 	public ClientModel() {
 		this.connection = new ClientConnection();

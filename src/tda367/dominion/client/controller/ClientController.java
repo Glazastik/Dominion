@@ -100,7 +100,13 @@ public class ClientController {
 	
 	class SupplyListener implements ViewListener {
 		public void run(ViewEvent e) {
-			
+			model.supplyCard(e.getText());
+		}
+	}
+	
+	class BoolListener implements ViewListener {
+		public void run(ViewEvent e) {
+			model.boolMessage(e.getBool());
 		}
 	}
 }
