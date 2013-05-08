@@ -123,10 +123,19 @@ public class RoomHandler {
 	 */
 	public boolean start(int id) {
 		GameRoom gr = this.getRoomById(id);
-		if(gr.isFull() && gr.isPlaying()){
+		if(gr.isFull() && !gr.isPlaying()){
 			gr.startGame();
 			return true;
 		}
 		return false;
+	}
+
+	/**
+	 * Returns all players connected to the specified room.
+	 * @param id
+	 * @return 
+	 */
+	public LinkedList<GameConnection> getPlayers(int id) {
+		return this.getRoomById(id).getConnections();
 	}
 }

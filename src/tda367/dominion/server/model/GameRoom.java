@@ -183,4 +183,12 @@ public class GameRoom {
 	public boolean isPlaying() {
 		return game != null;
 	}
+
+	/**
+	 * Returns all players connected to this room
+	 * @return
+	 */
+	public LinkedList<GameConnection> getConnections() {
+		return gcs;
+	}
 }

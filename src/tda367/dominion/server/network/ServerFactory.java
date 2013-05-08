@@ -106,6 +106,8 @@ public class ServerFactory {
 	 */
 	private static void setupGame(int id) {
 		//TODO: Notify all players
+		LinkedList<GameConnection> gcs = roomHandler.getPlayers(id);
+		
 		
 	}
 
