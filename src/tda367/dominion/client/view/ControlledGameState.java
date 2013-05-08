@@ -2,16 +2,12 @@ package tda367.dominion.client.view;
 
 import org.newdawn.slick.state.BasicGameState;
 
-import tda367.dominion.client.controller.ClientController;
-
 public abstract class ControlledGameState extends BasicGameState {
 	
 	private int id;
-	private ClientController controller;
 	
-	public ControlledGameState(int id, ClientController controller) {
+	public ControlledGameState(int id) {
 		this.id = id;
-		this.controller = controller;
 	}
 	
 	/**
@@ -21,14 +17,5 @@ public abstract class ControlledGameState extends BasicGameState {
 	 */
 	public int getID() {
 		return id;
-	}
-	
-	/**
-	 * Returns the controller object.
-	 * 
-	 * @return controller
-	 */
-	public ClientController getController() {
-		return controller;
 	}
 }

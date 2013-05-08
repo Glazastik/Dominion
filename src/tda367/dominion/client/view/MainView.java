@@ -11,8 +11,6 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.GameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-import tda367.dominion.client.controller.ClientController;
-
 public class MainView extends StateBasedGame {
 	
 	public static final int INGAMESTATE = 0;
@@ -26,16 +24,13 @@ public class MainView extends StateBasedGame {
 	public static AppGameContainer theGame;
 	public static boolean fullS = false;
 	public static boolean fpsSet = false;
-	public static ClientController controller;
-	
 	
 	/**
 	 * Constructs a new StateBasedGame which in turn creates a AppGameContainer, TODO read from file
 	 * @param title of the window
 	 */
-	public MainView(ClientController controller) {
+	public MainView() {
 		super("Dominion");
-		this.controller = controller;
 	}
 
 	/**

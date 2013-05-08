@@ -9,15 +9,12 @@ public class ClientMain {
 	private static MainView view;
 	private static ClientModel model;
 	private static ClientController controller;
-	private static ClientConnection connection;
 	
 	public static void main(String[] args) {
-		controller = new ClientController();
-		connection = new ClientConnection();
-		
-		view = new MainView(controller);
-		model = new ClientModel(connection, view);
-		controller.setModel(model);
+		view = new MainView();
+		model = new ClientModel();
+
+		controller = new ClientController(view, model);
 		view.start();
 	}
 	

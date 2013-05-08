@@ -20,9 +20,8 @@ public class ServerListState extends ControlledGameState {
 	//TODO: Temporary rectangle
 	private Rectangle join;
 
-	public ServerListState(int id, ClientController controller) {
-		super(id, controller);
-		this.controller = controller;
+	public ServerListState(int id) {
+		super(id);
 	}
 
 	@Override
@@ -120,9 +119,5 @@ public class ServerListState extends ControlledGameState {
 			//TODO: Request new rooms.
 		}
 	}
-	
-	
-	
-	
 
 }

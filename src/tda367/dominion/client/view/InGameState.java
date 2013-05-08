@@ -66,8 +66,8 @@ public class InGameState extends ControlledGameState {
 	private String topOfPile = "";
 	private int deckSize = 0;
 	
-	public InGameState(int id, ClientController controller) {
-		super(id, controller);
+	public InGameState(int id) {
+		super(id);
 	}
 	
 	@Override
@@ -245,7 +245,7 @@ public class InGameState extends ControlledGameState {
 				// TODO: Send to server
 				System.out.println("Hand card: " + hand.get(i));
 //				crh.playCard(player, player.getHand().getCard(i));
-				this.getController().playCard(hand.get(i));
+//				this.getController().playCard(hand.get(i));
 				
 				// TODO: Remove the Rectangle reset
 				resetHandRectangles();

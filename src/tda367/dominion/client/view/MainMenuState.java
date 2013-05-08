@@ -32,8 +32,8 @@ public class MainMenuState extends ControlledGameState {
 	 * 
 	 * @param id the ID this state will be identified with
 	 */
-	public MainMenuState(int id, ClientController controller) {
-		super(id, controller);
+	public MainMenuState(int id) {
+		super(id);
 	}
 
 	/**

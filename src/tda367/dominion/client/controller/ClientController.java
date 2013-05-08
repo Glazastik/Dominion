@@ -15,11 +15,8 @@ public class ClientController {
 	private ClientModel model;
 	private MainView view;
 	
-	public ClientController(MainView view) {
+	public ClientController(MainView view, ClientModel model) {
 		this.view = view;
-	}
-
-	public void setModel(ClientModel model) {
 		this.model = model;
 		model.addListener(new NetworkListener());
 	}
@@ -45,7 +42,7 @@ public class ClientController {
 	}
 
 	private void setRoomData(String[][] data) {
-		model.setRoomData(data);
+//		model.setRoomData(data);
 	}
 	
 	// Listener classes
@@ -74,12 +71,14 @@ public class ClientController {
 			
 			if (object instanceof PlayerUpdateMessage) {
 				System.out.println("Update Stats");
-				model.updateStat((PlayerUpdateMessage) object);
+				PlayerUpdateMessage o = (PlayerUpdateMessage)object;
+				view.updatePlayer(o.getActions(), o.getBuys(), o.getMoney());
 			}
 			
 			if (object instanceof CardUpdateMessage) {
 				System.out.println("Update Cards");
-				model.updateCards((CardUpdateMessage) object);
+				CardUpdateMessage o = (CardUpdateMessage)object;
+				view.updateCards(o.getHand(), o.getInPlay(), o.getDiscard(), o.getDeckSize());
 			}
 		}
 
