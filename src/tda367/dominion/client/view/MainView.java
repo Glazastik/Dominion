@@ -108,7 +108,7 @@ public class MainView extends StateBasedGame {
     	g.setMoney(money);
     }
     
-    public void updateCards(ArrayList hand, ArrayList inPlay, String topOfPile, int deckSize) {
+    public void updateCards(ArrayList<String> hand, ArrayList<String> inPlay, String topOfPile, int deckSize) {
     	InGameState g = ((InGameState)this.getState(INGAMESTATE));
     	g.setHand(hand);
     	g.setInPlay(inPlay);
