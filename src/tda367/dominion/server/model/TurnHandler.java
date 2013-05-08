@@ -19,7 +19,7 @@ public class TurnHandler {
 		i = players.iterator();
 		this.activePlayer = i.next();
 	}
-	private void DoTurn(){
+	public void DoTurn(){
 		boolean actionphaseDone = false;
 		boolean buyphaseDone = false;
 		while(!actionphaseDone){
