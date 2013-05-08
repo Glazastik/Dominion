@@ -62,9 +62,13 @@ public class Supply {
 		for(Integer i : numbers){
 			tempCard = actionCards.get(i);
 			if(tempCard.equals("Gardens")){
-				cardsInSupply.put(tempCard, 12);
+				if(amountOfPlayers>2) {
+					cardsInSupply.put(tempCard, 12);
+				} else {
+					cardsInSupply.put(tempCard, 8);
+				}
 			} else {
-				cardsInSupply.put(tempCard, 12);
+				cardsInSupply.put(tempCard, 10);
 			}
 		}
 	}
