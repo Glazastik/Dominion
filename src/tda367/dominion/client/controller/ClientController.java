@@ -3,6 +3,7 @@ package tda367.dominion.client.controller;
 import tda367.dominion.client.model.ClientModel;
 import tda367.dominion.client.model.ViewListener;
 import tda367.dominion.client.view.MainView;
+import tda367.dominion.client.view.ViewEvent;
 import tda367.dominion.commons.messages.CardUpdateMessage;
 import tda367.dominion.commons.messages.CreateBoolMessage;
 import tda367.dominion.commons.messages.PlayerUpdateMessage;
@@ -20,6 +21,7 @@ public class ClientController {
 		this.model = new ClientModel();
 		model.addListener(new NetworkListener());
 		view.addCardListener(new RoomListener());
+		
 		view.start();
 	}
 	
@@ -84,15 +86,21 @@ public class ClientController {
 	
 	// TODO: Replace with lobby framework
 	class RoomListener implements ViewListener {
-		public void run() {
+		public void run(ViewEvent e) {
 			model.searchForGame();
 		}
 	}
 	
 	// Will be activated every time a card is chosen
 	class CardListener implements ViewListener {
-		public void run() {
-//			model.playCard(null);
+		public void run(ViewEvent e) {
+			model.playCard(e.getText());
+		}
+	}
+	
+	class SupplyListener implements ViewListener {
+		public void run(ViewEvent e) {
+			
 		}
 	}
 }

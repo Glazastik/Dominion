@@ -39,6 +39,10 @@ public class ClientModel {
 		connection.sendMessage(msg);
 	}
 	
+	public void supplyCard(String card) {
+		// TODO: Send a SupplyMessage?
+	}
+	
 //	public void updateCards(CardUpdateMessage msg) {
 //		view.updateCards(msg.getHand(), msg.getInPlay(), msg.getDiscard(), msg.getDeckSize());
 //	}
