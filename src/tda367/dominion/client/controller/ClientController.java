@@ -4,7 +4,6 @@ import tda367.dominion.client.model.ClientModel;
 import tda367.dominion.client.model.ViewListener;
 import tda367.dominion.client.view.MainView;
 import tda367.dominion.commons.messages.CardUpdateMessage;
-import tda367.dominion.commons.messages.ConnectionMessage;
 import tda367.dominion.commons.messages.CreateBoolMessage;
 import tda367.dominion.commons.messages.PlayerUpdateMessage;
 import tda367.dominion.commons.messages.RoomMessage;
@@ -16,9 +15,9 @@ public class ClientController {
 	private ClientModel model;
 	private MainView view;
 	
-	public ClientController(MainView view, ClientModel model) {
-		this.view = view;
-		this.model = model;
+	public ClientController() {
+		this.view = new MainView();
+		this.model = new ClientModel();
 		model.addListener(new NetworkListener());
 		view.addListener(new RoomListener());
 	}
