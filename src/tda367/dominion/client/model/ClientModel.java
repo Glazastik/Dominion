@@ -18,6 +18,7 @@ public class ClientModel {
 	}
 	
 	public void addListener(Listener l) {
+		System.out.println("hej");
 		connection.addListener(l);
 	}
 	

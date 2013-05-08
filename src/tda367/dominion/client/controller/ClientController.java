@@ -14,34 +14,14 @@ import com.esotericsoftware.kryonet.Listener;
 public class ClientController {
 	private ClientModel model;
 	private MainView view;
+	
+	public ClientController(MainView view) {
+		this.view = view;
+	}
 
 	public void setModel(ClientModel model) {
 		this.model = model;
-	}
-
-	// TODO: remove connection object
-	public void received(Object object) {
-		System.out.println("Received \"" + object.getClass().getName()
-				+ "\" from server.");
-
-		if (object instanceof RoomMessage) {
-			RoomMessage rmsg = (RoomMessage) object;
-			setRoomData(rmsg.getRooms());
-		}
-
-		if (object instanceof CreateBoolMessage) {
-
-		}
-		
-		if (object instanceof PlayerUpdateMessage) {
-			System.out.println("Update Stats");
-			model.updateStat((PlayerUpdateMessage) object);
-		}
-		
-		if (object instanceof CardUpdateMessage) {
-			System.out.println("Update Cards");
-			model.updateCards((CardUpdateMessage) object);
-		}
+		model.addListener(new NetworkListener());
 	}
 	
 	public void boolMessage(boolean bool) {
@@ -77,5 +57,31 @@ public class ClientController {
 		public void disconnected() {
 			System.out.println("Disconnected");
 		}
+		
+		public void received (Connection connection, Object object) {
+			System.out.println("Received \"" + object.getClass().getName()
+					+ "\" from server.");
+
+			if (object instanceof RoomMessage) {
+				System.out.println("Update room list");
+				RoomMessage rmsg = (RoomMessage) object;
+				setRoomData(rmsg.getRooms());
+			}
+
+			if (object instanceof CreateBoolMessage) {
+				
+			}
+			
+			if (object instanceof PlayerUpdateMessage) {
+				System.out.println("Update Stats");
+				model.updateStat((PlayerUpdateMessage) object);
+			}
+			
+			if (object instanceof CardUpdateMessage) {
+				System.out.println("Update Cards");
+				model.updateCards((CardUpdateMessage) object);
+			}
+		}
+
 	}
 }
