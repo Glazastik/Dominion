@@ -34,7 +34,6 @@ public class MainView extends StateBasedGame {
 	 */
 	public MainView() {
 		super("Dominion");
-		start();
 	}
 
 	/**
@@ -117,7 +116,7 @@ public class MainView extends StateBasedGame {
     	g.setDeckSize(deckSize);
     }
 
-	private void start() {
+	public void start() {
 		try {
 			theGame = new AppGameContainer(this);
 			theGame.setDisplayMode(screenHeight, screenWidth, false);

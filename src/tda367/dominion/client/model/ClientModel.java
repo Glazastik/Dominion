@@ -3,8 +3,7 @@ package tda367.dominion.client.model;
 import com.esotericsoftware.kryonet.Listener;
 
 import tda367.dominion.client.network.ClientConnection;
-import tda367.dominion.commons.messages.BoolMessage;
-import tda367.dominion.commons.messages.LocatedCardMessage;
+import tda367.dominion.commons.messages.*;
 
 public class ClientModel {
 	private ClientConnection connection;
@@ -28,11 +27,7 @@ public class ClientModel {
 //	public void setRoomData(String[][] roomData) {
 //		view.updateRoomData(roomData);
 //	}
-	
-	public void cardResponse() {
-		
-	}
-	
+
 	/**
 	 * Tell the server to play the card.
 	 * 
