@@ -175,37 +175,100 @@ public class InGameState extends ControlledGameState {
 		
 	}
 	
+	/**
+	 * Updates the arrays containing the amount of cards that are in play.
+	 * 
+	 * <p>This needs to be called EVERY time a card is purchased from the supply.
+	 * If not, the informations displayed will be faulty and no one will be happy.</p>
+	 */
 	public void updateNbrOfCards() {
 		nbrOfActionCards = getNbrOfCards(getActionCards(getSupply()));
 		nbrOfTreasureCards = getNbrOfCards(getTreasureCards(getSupply()));
 		nbrOfVictoryCards = getNbrOfCards(getVictoryCards(getSupply()));
 	}
 	
+	/**
+	 * Sets the amount of actions that are to be displayed.
+	 * 
+	 * <p>This does not affect the player in any way, it only affects
+	 * the number that is displayed. It is therefore crucial that this
+	 * the same as the amount of actions the player has access to, 
+	 * otherwise information displayed will be faulty.</p>
+	 * 
+	 * @param actions an int specifying the amount of actions a player has
+	 */
 	public void setActions(int actions) {
 		this.actions = actions;
 	}
 
+	/**
+	 * Sets the amount of buys that are to be displayed.
+	 * 
+	 * <p>This does not affect the player in any way, it only affects
+	 * the number that is displayed. It is therefore crucial that this
+	 * the same as the amount of buys the player has access to, 
+	 * otherwise information displayed will be faulty.</p>
+	 * 
+	 * @param buys an int specifying the amount of buys a player has
+	 */
 	public void setBuys(int buys) {
 		this.buys = buys;
 	}
 
+	/**
+	 * Sets the amount of money that are to be displayed.
+	 * 
+	 * <p>This does not affect the player in any way, it only affects
+	 * the number that is displayed. It is therefore crucial that this
+	 * the same as the amount of money the player has access to, 
+	 * otherwise information displayed will be faulty.</p>
+	 * 
+	 * @param money an int specifying the amount of money a player has
+	 */
 	public void setMoney(int money) {
 		this.money = money;
 	}
 
+	/**
+	 * Sets the player's hand and resets the rectangles which acts as listeners.
+	 * 
+	 * <p>This method should be called every time the hand is modified in any way,
+	 * such as drawing cards or playing one.</p>
+	 * 
+	 * @param hand an {@link ArrayList} containing the cards in the players hand
+	 */
 	public void setHand(ArrayList<String> hand) {
 		this.hand = hand;
 		resetHandRectangles();
 	}
 
+	/**
+	 * Sets what games are currently in play.
+	 * 
+	 * @param inPlay an {@link ArrayList} containing the cards that have been played
+	 */
 	public void setInPlay(ArrayList<String> inPlay) {
 		this.inPlay = inPlay;
 	}
 
+	/**
+	 * Sets the card that is on top of the discard pile.
+	 * 
+	 * <p>This is relevant since that card should always be shown.
+	 * This in turn means that this method should be called every time
+	 * a card is put in the discard pile, such as when discarding or gaining.</p>
+	 * 
+	 * @param topOfPile the card that is on top of the pile, represented in String format
+	 */
 	public void setTopOfPile(String topOfPile) {
 		this.topOfPile = topOfPile;
 	}
 	
+	/**
+	 * Sets the size of the players deck.
+	 * 
+	 * @param size and int specifying the deck's size
+	 */
 	public void setDeckSize(int size) {
 		deckSize = size;
 	}
