@@ -1,9 +1,18 @@
 package tda367.dominion.server.model;
 
-public class TurnHandler {
+import java.util.LinkedList;
 
-	public TurnHandler() {
-		// TODO Auto-generated constructor stub
+public class TurnHandler {
+	private LinkedList<Player> players;
+	private Player activePlayer;
+	public TurnHandler(LinkedList<Player> players) {
+		this.players = players;
+		this.activePlayer = players.getFirst();
+	}
+	private void DoTurn(){
+		boolean actionphaseDone = false;
+		boolean buyphaseDone = false;
+		//activePlayer.sendInformation
 	}
 
 }
