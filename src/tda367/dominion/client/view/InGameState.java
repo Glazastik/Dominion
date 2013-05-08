@@ -47,6 +47,7 @@ public class InGameState extends ControlledGameState {
 	private Image nextButton;
 	private Image playAllButton;
 	private Image messageBox;
+	private Image statusBar;
 	private Rectangle menuRec;
 	private Rectangle chatRec;
 	private Rectangle logRec;
@@ -98,6 +99,7 @@ public class InGameState extends ControlledGameState {
 		nextButton = new Image("res/img/gui/ingame/NextButton.png");
 		playAllButton = new Image("res/img/gui/ingame/PlayAllTreasures.png");
 		messageBox = new Image("res/img/gui/ingame/MessageBoxTemplate.png");
+		statusBar = new Image("res/img/gui/ingame/StatusBar.png");
 		
 		//Initiate all rectangles
 		actionRectangles = new Rectangle[10];
@@ -130,7 +132,7 @@ public class InGameState extends ControlledGameState {
 		paintNbrOfTreasureCards(nbrOfTreasureCards, treasureCards, g);
 		paintNbrOfVictoryCards(nbrOfVictoryCards, victoryCards, g);
 		paintButtons();
-		paintCounterZone(g);
+		paintStatusBar(g);
 		
 		if(playedCards!=null) { 
 			paintPlayedCards(playedCards);
@@ -667,17 +669,14 @@ public class InGameState extends ControlledGameState {
 	 * Paints the counterZone i.e the status bar
 	 * @throws slickException
 	 */
-	private void paintCounterZone(Graphics g) 
+	private void paintStatusBar(Graphics g) 
 			throws SlickException {
-		counterZone.setBounds((float)3, (float)gameContainerHeight - gameContainerHeight/3 - 60, gameContainerWidth - 5, 40);
-		g.setLineWidth(5);
-		g.setColor(Color.darkGray);
-		g.draw(counterZone);
+		statusBar.draw(0, (float)gameContainerHeight - gameContainerHeight/3 - 60, gameContainerWidth, 46);
 		g.setColor(Color.white);
-		g.drawString("Actions: " + actions, 50, gameContainerHeight - gameContainerHeight/3 - 50);
-		g.drawString("Buys: " + buys, 200, gameContainerHeight - gameContainerHeight/3 - 50);
-		g.drawString("x"+money, 380, gameContainerHeight - gameContainerHeight/3 - 50);
-		riksdaler.draw((float)350, (float)gameContainerHeight - gameContainerHeight/3 - 53, (float)0.035);
+		g.drawString("Actions: " + actions, 50, gameContainerHeight - gameContainerHeight/3 - 45);
+		g.drawString("Buys: " + buys, 170, gameContainerHeight - gameContainerHeight/3 - 45);
+		g.drawString("x"+money, 300, gameContainerHeight - gameContainerHeight/3 - 45);
+		riksdaler.draw((float)270, (float)gameContainerHeight - gameContainerHeight/3 - 45, (float)0.03);
 	}
 	
 	/**
