@@ -1,5 +1,6 @@
 package tda367.dominion.server.model;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 
 /**
@@ -50,5 +51,10 @@ public class Dominion {
 	 */
 	public CardRulesHandler getCardRulesHandler(){
 		return this.cardRulesHandler;
+	}
+
+	public HashMap<String, Integer> getSupplyInfo() {
+		return supply.getCardsInSupply();
+		
 	}
 }

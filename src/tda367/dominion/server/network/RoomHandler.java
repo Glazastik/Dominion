@@ -5,6 +5,7 @@ import java.util.LinkedList;
 import com.esotericsoftware.kryonet.Connection;
 
 import tda367.dominion.commons.messages.SetupMessage;
+import tda367.dominion.commons.messages.SupplyMessage;
 import tda367.dominion.server.model.Player;
 
 /**
@@ -140,8 +141,21 @@ public class RoomHandler {
 		return this.getRoomById(id).getConnections();
 	}
 
+	/**
+	 * Generates a SetupMessage containing players and supply.
+	 * @param id
+	 * @return
+	 */
 	public SetupMessage getSetupMessage(int id) {
 		SetupMessage msg = new SetupMessage();
+		GameRoom gr = this.getRoomById(id);
+		
+		SupplyMessage smsg = new SupplyMessage();
+		smsg.setSupply(gr.getModel().getSupplyInfo());
+		
+		msg.setSupply(smsg);
+		msg.setPlayers(gr.getPlayerNames());
+		
 		return null;
 	}
 }

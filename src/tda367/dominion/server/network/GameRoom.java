@@ -192,4 +192,14 @@ public class GameRoom {
 	public LinkedList<GameConnection> getConnections() {
 		return gcs;
 	}
+
+	public Dominion getModel() {
+		return game;
+		
+	}
+
+	public String[] getPlayerNames() {
+		
+		return null;
+	}
 }

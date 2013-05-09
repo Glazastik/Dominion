@@ -107,6 +107,8 @@ public class ServerFactory {
 		//TODO: Notify all players
 		LinkedList<GameConnection> gcs = roomHandler.getPlayers(id);
 		SetupMessage setupMsg = roomHandler.getSetupMessage(id);
+		
+		
 		for(GameConnection gc: gcs){
 			
 		}
