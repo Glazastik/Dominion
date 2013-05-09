@@ -1,11 +1,11 @@
-package tda367.dominion.server.model;
+package tda367.dominion.server.network;
 
 import java.util.LinkedList;
 
 import com.esotericsoftware.kryonet.Connection;
 
 import tda367.dominion.commons.messages.SetupMessage;
-import tda367.dominion.server.network.GameConnection;
+import tda367.dominion.server.model.Player;
 
 /**
  * Knows about the states of the game rooms.

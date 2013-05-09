@@ -12,7 +12,7 @@ import javax.swing.JScrollPane;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
 
-import tda367.dominion.server.model.RoomHandler;
+import tda367.dominion.server.network.RoomHandler;
 
 public class ServerFrame extends JFrame implements ActionListener {
 

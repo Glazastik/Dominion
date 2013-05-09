@@ -11,8 +11,6 @@ import tda367.dominion.commons.messages.PlayerUpdateMessage;
 import tda367.dominion.commons.messages.RoomMessage;
 import tda367.dominion.commons.messages.SetupMessage;
 import tda367.dominion.commons.network.NetworkCommon;
-import tda367.dominion.server.model.GameRoom;
-import tda367.dominion.server.model.RoomHandler;
 import tda367.dominion.server.view.ServerFrame;
 
 import com.esotericsoftware.kryonet.Connection;
