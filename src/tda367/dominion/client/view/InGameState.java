@@ -1,7 +1,6 @@
 package tda367.dominion.client.view;
 
 import java.util.ArrayList;
-import java.util.LinkedList;
 import java.util.List;
 
 import org.lwjgl.util.Rectangle;
@@ -13,8 +12,8 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
-import tda367.dominion.client.listener.ViewEvent;
-import tda367.dominion.client.listener.ViewListener;
+import tda367.dominion.commons.listener.ViewEvent;
+import tda367.dominion.commons.listener.ViewListener;
 import tda367.dominion.server.model.CardInfoHandler;
 import tda367.dominion.server.model.Supply;
 
