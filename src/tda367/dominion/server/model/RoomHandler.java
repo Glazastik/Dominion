@@ -141,7 +141,7 @@ public class RoomHandler {
 	}
 
 	public SetupMessage getSetupMessage(int id) {
-		
+		SetupMessage msg = new SetupMessage();
 		return null;
 	}
 }
