@@ -1,4 +1,4 @@
-package tda367.dominion.server.cardsTest;
+package tda367.dominion.test.server.cardsTest;
 
 import static org.junit.Assert.assertTrue;
 

@@ -1,4 +1,4 @@
-package tda367.dominion.server.modelTest;
+package tda367.dominion.test.server.modelTest;
 
 import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertTrue;
