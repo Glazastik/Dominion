@@ -5,7 +5,7 @@ import java.util.ArrayList;
 /**
  * A message to send info about the cards
  */
-public class CardUpdateMessage {
+public class CardUpdateMessage implements Message {
 	private ArrayList<String> hand;
 	private ArrayList<String> inPlay;
 	private String discard;

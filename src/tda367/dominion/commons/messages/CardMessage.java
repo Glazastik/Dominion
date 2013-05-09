@@ -1,6 +1,6 @@
 package tda367.dominion.commons.messages;
 
-public class CardMessage {
+public class CardMessage implements Message{
 	private String card;
 
 	public String getCard() {
