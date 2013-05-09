@@ -26,8 +26,8 @@ public class OptionsState extends ControlledGameState {
 	public boolean fullScreen = false;
 	public boolean fps = false;
 	
-	public OptionsState(int id, ClientController controller) {
-		super(id, controller);
+	public OptionsState(int id) {
+		super(id);
 	}
 	
 	@Override

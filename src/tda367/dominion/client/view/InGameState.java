@@ -13,7 +13,8 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
-import tda367.dominion.client.controller.ClientController;
+import tda367.dominion.client.listener.ViewEvent;
+import tda367.dominion.client.listener.ViewListener;
 import tda367.dominion.server.model.CardInfoHandler;
 import tda367.dominion.server.model.Supply;
 
@@ -69,8 +70,31 @@ public class InGameState extends ControlledGameState {
 	private String topOfPile = "";
 	private int deckSize = 0;
 	
-	public InGameState(int id, ClientController controller) {
-		super(id, controller);
+	// Listeners
+	private ViewListener cardListener;
+	private ViewListener supplyListener;
+	
+	
+	public InGameState(int id) {
+		super(id);
+	}
+	
+	public void addCardListener(ViewListener l) {
+		cardListener = l;
+	}
+	
+	public void addSupplyListener(ViewListener l) {
+		supplyListener = l;
+	}
+	
+	private void playCard(String card) {
+		ViewEvent e = new ViewEvent(card);
+		cardListener.run(e);
+	}
+	
+	private void supplyCard(String card) {
+		ViewEvent e = new ViewEvent(card);
+		supplyListener.run(e);
 	}
 	
 	@Override
@@ -317,13 +341,7 @@ public class InGameState extends ControlledGameState {
 		//Hand cards listener
 		for(int i=0; i<handRectangles.length; i++) {
 			if(button == Input.MOUSE_LEFT_BUTTON && handRectangles[i].contains(x,y)) {
-				// TODO: Send to server
-				System.out.println("Hand card: " + hand.get(i));
-//				crh.playCard(player, player.getHand().getCard(i));
-				this.getController().playCard(hand.get(i));
-				
-				// TODO: Remove the Rectangle reset
-				resetHandRectangles();
+				playCard(hand.get(i));
 			} else if(button == Input.MOUSE_RIGHT_BUTTON && handRectangles[i].contains(x, y)){//Checking for detailed view
 				//enterShowCard = true;
 				//cardToShow = handCards[i];

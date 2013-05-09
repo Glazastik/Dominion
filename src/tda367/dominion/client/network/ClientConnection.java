@@ -2,24 +2,23 @@ package tda367.dominion.client.network;
 
 import java.io.IOException;
 
-import tda367.dominion.client.controller.ClientController;
 import tda367.dominion.commons.messages.BoolMessage;
 import tda367.dominion.commons.messages.CardMessage;
+import tda367.dominion.commons.messages.Message;
 import tda367.dominion.commons.network.NetworkCommon;
 import tda367.dominion.server.cards.ICard;
 
 import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Connection;
+import com.esotericsoftware.kryonet.Listener;
 
 public class ClientConnection {
 	private final Client client;
 	
-	public ClientConnection(ClientController controller) {
+	public ClientConnection() {
 		client = new Client();
 		client.start();
 		
-		client.addListener(controller);
-
 		NetworkCommon.register(client);
 	}
 	
@@ -38,30 +37,20 @@ public class ClientConnection {
 	}
 	
 	/**
-	 * Send a response to the server in the form of a boolean message.
+	 * Sends a message via TCP.
+	 * 
+	 * @param msg the message that will be sent
 	 */
-	public void boolMessage(boolean bool) {
-		BoolMessage msg = new BoolMessage();
-		msg.setBool(bool);
+	public void sendMessage(Message msg) {
 		client.sendTCP(msg);
 	}
 	
 	/**
-	 * Send a response to the server in the form of a card.
+	 * Makes the controller listen to network traffic. 
+	 * 
+	 * @param l the listener object
 	 */
-	public void cardMessage(ICard card) {
-//		CardMessage msg = new CardMessage();
-//		msg.setCard("" + card.getClass());
+	public void addListener(Listener l) {
+		client.addListener(l);
 	}
-	
-	public void playCard(String card) {
-		CardMessage msg = new CardMessage();
-		msg.setCard(card);
-		client.sendTCP(msg);
-	}
-
-	public void disconnected(Connection c) {
-		System.out.println("Disconnected from server..");
-	}
-	
 }

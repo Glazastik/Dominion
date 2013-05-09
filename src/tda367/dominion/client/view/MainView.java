@@ -11,7 +11,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.GameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-import tda367.dominion.client.controller.ClientController;
+import tda367.dominion.client.listener.ViewListener;
 
 public class MainView extends StateBasedGame {
 	
@@ -26,25 +26,42 @@ public class MainView extends StateBasedGame {
 	public static AppGameContainer theGame;
 	public static boolean fullS = false;
 	public static boolean fpsSet = false;
-	public static ClientController controller;
-	
 	
 	/**
 	 * Constructs a new StateBasedGame which in turn creates a AppGameContainer, TODO read from file
 	 * @param title of the window
 	 */
-	public MainView(ClientController controller) {
+	public MainView() {
 		super("Dominion");
-		this.controller = controller;
 	}
 
 	/**
 	 * Initaites all the different states and enters main menu state
 	 */
 	@Override
-	public void initStatesList(GameContainer arg0) throws SlickException {
+	public void initStatesList(GameContainer gc) throws SlickException {
 		addState(new SplashScreen(SPLASHSTATE));
 		enterState(SPLASHSTATE);
+		addState(new MainMenuState(MainView.MAINMENUSTATE));
+		getState(MAINMENUSTATE).init(gc, this);
+		addState(new InGameState(MainView.INGAMESTATE));
+		getState(INGAMESTATE).init(gc, this);
+		addState(new ServerListState(MainView.SERVERLISTSTATE));
+		getState(SERVERLISTSTATE).init(gc, this);
+		addState(new OptionsState(MainView.OPTIONSSTATE));
+		getState(OPTIONSSTATE).init(gc, this);
+		addState(new ShowCardState(MainView.SHOWCARDSTATE));
+		getState(SHOWCARDSTATE).init(gc, this);
+	}
+	
+	public void addCardListener(ViewListener l) {
+		InGameState s = (InGameState)getState(INGAMESTATE);
+		s.addCardListener(l);
+	}
+	
+	public void addSupplyListener(ViewListener l) {
+		InGameState s = (InGameState)getState(INGAMESTATE);
+		s.addSupplyListener(l);
 	}
     
     /**
@@ -106,7 +123,7 @@ public class MainView extends StateBasedGame {
     	g.setMoney(money);
     }
     
-    public void updateCards(ArrayList hand, ArrayList inPlay, String topOfPile, int deckSize) {
+    public void updateCards(ArrayList<String> hand, ArrayList<String> inPlay, String topOfPile, int deckSize) {
     	InGameState g = ((InGameState)this.getState(INGAMESTATE));
     	g.setHand(hand);
     	g.setInPlay(inPlay);

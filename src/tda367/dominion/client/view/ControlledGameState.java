@@ -2,16 +2,16 @@ package tda367.dominion.client.view;
 
 import org.newdawn.slick.state.BasicGameState;
 
-import tda367.dominion.client.controller.ClientController;
+import tda367.dominion.client.listener.ViewEvent;
+import tda367.dominion.client.listener.ViewListener;
 
 public abstract class ControlledGameState extends BasicGameState {
 	
 	private int id;
-	private ClientController controller;
+	private ViewListener listener;
 	
-	public ControlledGameState(int id, ClientController controller) {
+	public ControlledGameState(int id) {
 		this.id = id;
-		this.controller = controller;
 	}
 	
 	/**
@@ -23,12 +23,11 @@ public abstract class ControlledGameState extends BasicGameState {
 		return id;
 	}
 	
-	/**
-	 * Returns the controller object.
-	 * 
-	 * @return controller
-	 */
-	public ClientController getController() {
-		return controller;
+	public void onEvent(ViewEvent e) {
+		listener.run(e);
+	}
+	
+	public void addListener(ViewListener l) {
+		listener = l;
 	}
 }
