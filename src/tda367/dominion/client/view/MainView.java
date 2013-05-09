@@ -39,19 +39,19 @@ public class MainView extends StateBasedGame {
 	 * Initaites all the different states and enters main menu state
 	 */
 	@Override
-	public void initStatesList(GameContainer arg0) throws SlickException {
+	public void initStatesList(GameContainer gc) throws SlickException {
 		addState(new SplashScreen(SPLASHSTATE));
 		enterState(SPLASHSTATE);
 		addState(new MainMenuState(MainView.MAINMENUSTATE));
-		getState(MAINMENUSTATE).init(gc, sbg);
+		getState(MAINMENUSTATE).init(gc, this);
 		addState(new InGameState(MainView.INGAMESTATE));
-		getState(INGAMESTATE).init(gc, sbg);
+		getState(INGAMESTATE).init(gc, this);
 		addState(new ServerListState(MainView.SERVERLISTSTATE));
-		getState(SERVERLISTSTATE).init(gc, sbg);
+		getState(SERVERLISTSTATE).init(gc, this);
 		addState(new OptionsState(MainView.OPTIONSSTATE));
-		getState(OPTIONSSTATE).init(gc, sbg);
+		getState(OPTIONSSTATE).init(gc, this);
 		addState(new ShowCardState(MainView.SHOWCARDSTATE));
-		getState(SHOWCARDSTATE).init(gc, sbg);
+		getState(SHOWCARDSTATE).init(gc, this);
 	}
 	
 	public void addCardListener(ViewListener l) {
