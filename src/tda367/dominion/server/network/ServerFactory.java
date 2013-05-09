@@ -9,6 +9,7 @@ import tda367.dominion.commons.messages.CardUpdateMessage;
 import tda367.dominion.commons.messages.ConnectionMessage;
 import tda367.dominion.commons.messages.PlayerUpdateMessage;
 import tda367.dominion.commons.messages.RoomMessage;
+import tda367.dominion.commons.messages.SetupMessage;
 import tda367.dominion.commons.network.NetworkCommon;
 import tda367.dominion.server.model.GameRoom;
 import tda367.dominion.server.model.RoomHandler;
@@ -107,7 +108,10 @@ public class ServerFactory {
 	private static void setupGame(int id) {
 		//TODO: Notify all players
 		LinkedList<GameConnection> gcs = roomHandler.getPlayers(id);
-		
+		SetupMessage setupMsg = roomHandler.getSetupMessage(id);
+		for(GameConnection gc: gcs){
+			
+		}
 		
 	}
 

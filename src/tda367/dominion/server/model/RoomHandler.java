@@ -4,6 +4,7 @@ import java.util.LinkedList;
 
 import com.esotericsoftware.kryonet.Connection;
 
+import tda367.dominion.commons.messages.SetupMessage;
 import tda367.dominion.server.network.GameConnection;
 
 /**
@@ -137,5 +138,10 @@ public class RoomHandler {
 	 */
 	public LinkedList<GameConnection> getPlayers(int id) {
 		return this.getRoomById(id).getConnections();
+	}
+
+	public SetupMessage getSetupMessage(int id) {
+		
+		return null;
 	}
 }
