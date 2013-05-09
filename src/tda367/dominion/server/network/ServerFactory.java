@@ -108,9 +108,8 @@ public class ServerFactory {
 		LinkedList<GameConnection> gcs = roomHandler.getPlayers(id);
 		SetupMessage setupMsg = roomHandler.getSetupMessage(id);
 		
-		
 		for(GameConnection gc: gcs){
-			
+			gc.sendTCP(setupMsg);
 		}
 		
 	}

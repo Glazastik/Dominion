@@ -199,7 +199,10 @@ public class GameRoom {
 	}
 
 	public String[] getPlayerNames() {
-		
-		return null;
+		String[] names = new String[players.size()];
+		for(int i = 0; i < players.size(); i++){
+			names[i] = players.get(i).getName();
+		}
+		return names;
 	}
 }
