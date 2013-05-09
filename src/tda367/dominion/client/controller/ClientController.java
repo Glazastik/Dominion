@@ -20,7 +20,7 @@ public class ClientController {
 		this.view = new MainView();
 		this.model = new ClientModel();
 		model.addListener(new NetworkListener());
-		view.addCardListener(new RoomListener());
+//		view.addCardListener(new RoomListener());
 		
 		view.start();
 	}
