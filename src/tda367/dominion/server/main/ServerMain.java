@@ -12,7 +12,7 @@ import com.esotericsoftware.kryonet.Server;
  * @author Group 28
  * 
  */
-public class Main {
+public class ServerMain {
 	private static ServerFrame window;
 
 	/**
@@ -21,8 +21,11 @@ public class Main {
 	 * @param args
 	 */
 	public static void main(String[] args) {
+//		TODO: We are seriously overusing the singelton pattern,
+//		should be using listeners instead?
 		Server server = ServerFactory.getInstance();
 
+//		TODO: Remove singleton pattern from ServerFrame?
 		window = ServerFrame.getInstance();
 		window.setRoomHandler(ServerFactory.getRoomHandler());
 		window.print("Window initiated.");
