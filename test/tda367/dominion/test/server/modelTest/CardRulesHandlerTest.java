@@ -7,7 +7,7 @@ import java.util.LinkedList;
 
 import org.junit.Test;
 
-import tda367.dominion.server.model.CardRulesHandler;
+import tda367.dominion.server.controller.CardRulesHandler;
 import tda367.dominion.server.model.Pile;
 import tda367.dominion.server.model.Player;
 import tda367.dominion.server.model.Supply;

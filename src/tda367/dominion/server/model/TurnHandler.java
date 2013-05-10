@@ -3,6 +3,8 @@ package tda367.dominion.server.model;
 import java.util.Iterator;
 import java.util.LinkedList;
 
+import tda367.dominion.server.controller.CardRulesHandler;
+
 public class TurnHandler {
 	private LinkedList<Player> players;
 	private Player activePlayer;

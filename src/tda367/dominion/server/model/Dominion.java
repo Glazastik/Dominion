@@ -3,6 +3,8 @@ package tda367.dominion.server.model;
 import java.util.HashMap;
 import java.util.LinkedList;
 
+import tda367.dominion.server.controller.CardRulesHandler;
+
 /**
  * @author Group 28
  * Master class for one instance of a game.
