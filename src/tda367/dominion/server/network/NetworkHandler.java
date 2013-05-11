@@ -18,7 +18,7 @@ import com.esotericsoftware.kryonet.FrameworkMessage.KeepAlive;
 import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Server;
 
-public class ServerFactory {
+public class NetworkHandler {
 	private static Server server;
 	private static RoomHandler roomHandler;
 
