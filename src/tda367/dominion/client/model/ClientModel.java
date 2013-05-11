@@ -1,9 +1,10 @@
 package tda367.dominion.client.model;
 
-import com.esotericsoftware.kryonet.Listener;
-
 import tda367.dominion.client.network.ClientConnection;
-import tda367.dominion.commons.messages.*;
+import tda367.dominion.commons.messages.BoolMessage;
+import tda367.dominion.commons.messages.LocatedCardMessage;
+
+import com.esotericsoftware.kryonet.Listener;
 
 public class ClientModel {
 	private ClientConnection connection;

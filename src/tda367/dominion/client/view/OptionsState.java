@@ -11,8 +11,6 @@ import org.newdawn.slick.geom.RoundedRectangle;
 import org.newdawn.slick.gui.TextField;
 import org.newdawn.slick.state.StateBasedGame;
 
-import tda367.dominion.client.controller.ClientController;
-
 public class OptionsState extends ControlledGameState {
 	
 	Image checker;

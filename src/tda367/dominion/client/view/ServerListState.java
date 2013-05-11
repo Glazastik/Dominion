@@ -9,8 +9,6 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.StateBasedGame;
 
-import tda367.dominion.client.controller.ClientController;
-
 public class ServerListState extends ControlledGameState {
 	private String[][] roomData = new String[0][0];
 	private Image board;

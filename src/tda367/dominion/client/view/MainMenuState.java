@@ -9,8 +9,6 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
-import tda367.dominion.client.controller.ClientController;
-
 public class MainMenuState extends ControlledGameState {
 
 	String mouse = "";
