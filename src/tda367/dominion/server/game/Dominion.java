@@ -1,9 +1,7 @@
-package tda367.dominion.server.model;
+package tda367.dominion.server.game;
 
 import java.util.HashMap;
 import java.util.LinkedList;
-
-import tda367.dominion.server.controller.CardRulesHandler;
 
 /**
  * @author Group 28

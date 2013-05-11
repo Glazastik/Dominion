@@ -1,4 +1,4 @@
-package tda367.dominion.server.model;
+package tda367.dominion.server.game;
 
 import java.io.BufferedReader;
 import java.io.DataInputStream;

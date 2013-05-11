@@ -1,4 +1,4 @@
-package tda367.dominion.server.controller;
+package tda367.dominion.server.main;
 
 import tda367.dominion.server.network.NetworkHandler;
 import tda367.dominion.server.view.ServerFrame;

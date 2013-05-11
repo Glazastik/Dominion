@@ -1,4 +1,4 @@
-package tda367.dominion.server.network;
+package tda367.dominion.server.main;
 
 import java.util.LinkedList;
 

@@ -1,4 +1,4 @@
-package tda367.dominion.server.controller;
+package tda367.dominion.server.game;
 
 import java.util.LinkedList;
 
@@ -26,10 +26,6 @@ import tda367.dominion.server.cards.Village;
 import tda367.dominion.server.cards.Witch;
 import tda367.dominion.server.cards.Woodcutter;
 import tda367.dominion.server.cards.Workshop;
-import tda367.dominion.server.model.CardInfoHandler;
-import tda367.dominion.server.model.GainingHandler;
-import tda367.dominion.server.model.Player;
-import tda367.dominion.server.model.Supply;
 
 /**
  * A class that handles how the cards that are played affect the game and players.
