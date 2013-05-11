@@ -1,5 +1,6 @@
 package tda367.dominion.server.main;
 
+import tda367.dominion.server.controller.ServerController;
 import tda367.dominion.server.network.ServerFactory;
 import tda367.dominion.server.view.ServerFrame;
 
@@ -23,7 +24,9 @@ public class ServerMain {
 	public static void main(String[] args) {
 //		TODO: We are seriously overusing the singelton pattern,
 //		should be using listeners instead?
-		Server server = ServerFactory.getInstance();
+//		Server server = ServerFactory.getInstance();
+		
+		new ServerController();
 
 //		TODO: Remove singleton pattern from ServerFrame?
 		window = ServerFrame.getInstance();
