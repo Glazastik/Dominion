@@ -302,16 +302,19 @@ public class InGameState extends ControlledGameState {
 	public void mouseClicked(int button, int x, int y, int clicks) {
 		super.mouseClicked(button, x, y, clicks);
 		//Victory cards listener
-		if(recCheck(button, x, y, victoryCards, victoryRectangles, "Victory card: ") != null){
+		if(recCheck(button, x, y, victoryCards, victoryRectangles) != null){
 			return;
 		}
-		System.out.println("test");
 		
 		//Treasure cards listener
-		recCheck(button, x, y, treasureCards, treasureRectangles, "Treasure card: ");
+		if(recCheck(button, x, y, treasureCards, treasureRectangles) != null){
+			return;
+		}
 		
 		//Action cards listener
-		recCheck(button, x, y, actionCards, actionRectangles, "Action cards: ");
+		if(recCheck(button, x, y, actionCards, actionRectangles) != null){
+			return;
+		}
 		
 		//Hand cards listener
 		for(int i=0; i<handRectangles.length; i++) {
@@ -388,10 +391,10 @@ public class InGameState extends ControlledGameState {
 	 * @param recs an array of rectangles
 	 * @param prefix prefix to be printed before card name
 	 */
-	private String recCheck(int button, int x, int y, Image[] cards, Rectangle[] recs, String prefix){
+	private String recCheck(int button, int x, int y, Image[] cards, Rectangle[] recs){
 		for(int i = 0; i < recs.length; i++){
 			if(recContainsLeftClick(recs[i], button, x, y)) {
-				return splitString(cards[i], prefix);
+				return splitString(cards[i]);
 			} else if(recContainsRightClick(recs[i], button, x, y)){//Checking for detailed view
 				setDetailed(cards[i]);
 			}
@@ -404,9 +407,8 @@ public class InGameState extends ControlledGameState {
 	 * Splits a cards image reference to get its name.
 	 * 
 	 * @param cards the card whose resource is to be split
-	 * @param prefix the prefix that will be printed on front of the card name
 	 */
-	private String splitString(Image card, String prefix){
+	private String splitString(Image card){
 		String temp = card.getResourceReference().split("card/")[1];
 		temp = temp.split("Supply.jpg")[0];
 		return temp;
