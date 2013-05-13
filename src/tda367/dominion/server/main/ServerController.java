@@ -6,6 +6,8 @@ import com.esotericsoftware.kryonet.FrameworkMessage.KeepAlive;
 
 import tda367.dominion.commons.messages.CardMessage;
 import tda367.dominion.commons.messages.ConnectionMessage;
+import tda367.dominion.commons.messages.RoomMessage;
+import tda367.dominion.commons.messages.RoomUpdateMessage;
 import tda367.dominion.server.network.GameConnection;
 import tda367.dominion.server.network.NetworkHandler;
 import tda367.dominion.server.view.ServerFrame;
@@ -33,19 +35,23 @@ public class ServerController {
 		@Override
 		public void received(Connection c, Object object) {
 			
-			print("Classname: " + object.getClass());
-			print(object.toString());
-			
 			if (object instanceof ConnectionMessage) {
 				print(c.getRemoteAddressTCP()
 						+ " wants to connect to a room.");
 //				ConnectionMessage cmsg = (ConnectionMessage) object;
 //				connectPlayer(gc, cmsg);
-			} else if (object instanceof KeepAlive) {
+			} else if (object instanceof RoomUpdateMessage) {
 				// TODO: To stop it from printing these.
+				print("Updating room list for client");
+				RoomMessage msg = new RoomMessage();
+				msg.setRooms(roomHandler.getRoomsAsString());
+				network.sendMessage(c.getID(), msg);
 			} else if (object instanceof CardMessage) {
 				// TODO: Play the card
 //				print("Player played: " + ((CardMessage) object).getCard());
+			} else {
+				print("Classname: " + object.getClass());
+				print(object.toString());
 			}
 		}
 

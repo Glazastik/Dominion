@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import tda367.dominion.commons.messages.CardUpdateMessage;
 import tda367.dominion.commons.messages.ConnectionMessage;
+import tda367.dominion.commons.messages.Message;
 import tda367.dominion.commons.messages.PlayerUpdateMessage;
 import tda367.dominion.commons.messages.RoomMessage;
 import tda367.dominion.commons.network.NetworkCommon;
@@ -47,6 +48,13 @@ public class NetworkHandler {
 //		if(roomHandler.start(id)){
 //			setupGame(id);
 //		}
+	}
+	
+	/**
+	 * Send a message to the specific client
+	 */
+	public void sendMessage(int id, Message msg) {
+		server.sendToTCP(id, msg);
 	}
 
 	/**
