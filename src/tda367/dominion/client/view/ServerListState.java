@@ -7,6 +7,7 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
+import org.newdawn.slick.gui.TextField;
 import org.newdawn.slick.state.StateBasedGame;
 
 import tda367.dominion.commons.listener.GameEvent;
@@ -19,6 +20,8 @@ public class ServerListState extends ControlledGameState {
 	
 	// Listeners
 	private GameListener roomUpdateListener;
+	
+	private TextField tf;
 
 	//TODO: Temporary rectangle
 	private Rectangle join;
@@ -33,6 +36,10 @@ public class ServerListState extends ControlledGameState {
 		board = new Image("res/img/gui/ingame/BoardTemp.png");
 		room = new Image("res/img/gui/menu/room.png");
 		join = new Rectangle(600, 120, 250, 100);
+		tf = new TextField(gc, gc.getDefaultFont(), 540, 700, 200, 50);
+		tf.setBackgroundColor(Color.white);
+		tf.setBorderColor(Color.black);
+		tf.setTextColor(Color.black);
 	}
 	
 	public void addUpdateRoomListener(GameListener l) {
@@ -52,10 +59,9 @@ public class ServerListState extends ControlledGameState {
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
-		g.setColor(Color.green);
-		g.fillRect(50, 50, gc.getWidth() - 100, gc.getHeight() - 100);
-		g.setColor(Color.black);
-
+		board.draw();
+		tf.render(gc, g);
+		
 		for (int i = 0; i < roomData.length; i++) {
 			room.draw(60, 40);
 			g.drawString("" + roomData[0][0], 110, 90);
@@ -75,6 +81,10 @@ public class ServerListState extends ControlledGameState {
 				|| input.isKeyPressed(Input.KEY_1)) {
 			sbg.enterState(1, null,
 					Transitions.createNewHorizontalSplitTransition());
+		}
+		
+		if (input.isKeyPressed(Input.KEY_L)) {
+			tf.setFocus(true);
 		}
 
 	}
