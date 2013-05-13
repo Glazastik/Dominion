@@ -302,7 +302,10 @@ public class InGameState extends ControlledGameState {
 	public void mouseClicked(int button, int x, int y, int clicks) {
 		super.mouseClicked(button, x, y, clicks);
 		//Victory cards listener
-		recCheck(button, x, y, victoryCards, victoryRectangles, "Victory card: ");
+		if(recCheck(button, x, y, victoryCards, victoryRectangles, "Victory card: ") != null){
+			return;
+		}
+		System.out.println("test");
 		
 		//Treasure cards listener
 		recCheck(button, x, y, treasureCards, treasureRectangles, "Treasure card: ");
@@ -373,14 +376,28 @@ public class InGameState extends ControlledGameState {
 		  gc.getInput().clearKeyPressedRecord();
 	}
 	
-	private void recCheck(int button, int x, int y, Image[] cards, Rectangle[] recs, String prefix){
+	/**
+	 * Iterates over an array of rectangles and checks if they have been clicked by user.
+	 * 
+	 * <p>If a rectangle has been clicked
+	 * 
+	 * @param button the button that was clicked
+	 * @param x x-position of mouse cursor
+	 * @param y y-position of mouse cursor
+	 * @param cards an array of card images
+	 * @param recs an array of rectangles
+	 * @param prefix prefix to be printed before card name
+	 */
+	private String recCheck(int button, int x, int y, Image[] cards, Rectangle[] recs, String prefix){
 		for(int i = 0; i < recs.length; i++){
 			if(recContainsLeftClick(recs[i], button, x, y)) {
-				splitString(cards[i], prefix);
+				return splitString(cards[i], prefix);
 			} else if(recContainsRightClick(recs[i], button, x, y)){//Checking for detailed view
 				setDetailed(cards[i]);
 			}
 		}
+		
+		return null;
 	}
 	
 	/**
@@ -389,10 +406,10 @@ public class InGameState extends ControlledGameState {
 	 * @param cards the card whose resource is to be split
 	 * @param prefix the prefix that will be printed on front of the card name
 	 */
-	private void splitString(Image card, String prefix){
+	private String splitString(Image card, String prefix){
 		String temp = card.getResourceReference().split("card/")[1];
 		temp = temp.split("Supply.jpg")[0];
-		System.out.println(prefix + temp);
+		return temp;
 	}
 	
 	/**
