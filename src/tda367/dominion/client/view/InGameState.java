@@ -302,19 +302,13 @@ public class InGameState extends ControlledGameState {
 	public void mouseClicked(int button, int x, int y, int clicks) {
 		super.mouseClicked(button, x, y, clicks);
 		//Victory cards listener
-		for(int i=0; i<4; i++) {
-			mouseCheck(button, x, y, victoryCards, victoryRectangles, "Victory card: ", i);
-		}
+		recCheck(button, x, y, victoryCards, victoryRectangles, "Victory card: ");
 		
 		//Treasure cards listener
-		for(int i=0; i<3; i++) {
-			mouseCheck(button, x, y, treasureCards, treasureRectangles, "Treasure card: ", i);
-		}
+		recCheck(button, x, y, treasureCards, treasureRectangles, "Treasure card: ");
 		
 		//Action cards listener
-		for(int i=0; i<10; i++) {
-			mouseCheck(button, x, y, actionCards, actionRectangles, "Action cards: ", i);
-		}
+		recCheck(button, x, y, actionCards, actionRectangles, "Action cards: ");
 		
 		//Hand cards listener
 		for(int i=0; i<handRectangles.length; i++) {
@@ -403,6 +397,16 @@ public class InGameState extends ControlledGameState {
 			splitString(cards[i], prefix);
 		} else if(recContainsRightClick(recs[i], button, x, y)){//Checking for detailed view
 			setDetailed(cards[i]);
+		}
+	}
+	
+	private void recCheck(int button, int x, int y, Image[] cards, Rectangle[] recs, String prefix){
+		for(int i = 0; i < recs.length; i++){
+			if(recContainsLeftClick(recs[i], button, x, y)) {
+				splitString(cards[i], prefix);
+			} else if(recContainsRightClick(recs[i], button, x, y)){//Checking for detailed view
+				setDetailed(cards[i]);
+			}
 		}
 	}
 	
