@@ -427,6 +427,14 @@ public class InGameState extends ControlledGameState {
 		enterShowCard = true;
 		this.cardToShow = cardToShow;
 	}
+	
+	private boolean recContainsLeftClick(Rectangle rec, int button, int x, int y){
+		return button == Input.MOUSE_LEFT_BUTTON && rec.contains(x, y);
+	}
+	
+	private boolean recContainsRightClick(Rectangle rec, int button, int x, int y){
+		return button == Input.MOUSE_RIGHT_BUTTON && rec.contains(x, y);
+	}
 
 	/**
 	 * Returns all the cardnames in the supply.
