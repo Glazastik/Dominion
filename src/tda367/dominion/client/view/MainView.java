@@ -11,7 +11,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.GameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-import tda367.dominion.commons.listener.ViewListener;
+import tda367.dominion.commons.listener.GameListener;
 
 public class MainView extends StateBasedGame implements Runnable {
 	
@@ -54,12 +54,12 @@ public class MainView extends StateBasedGame implements Runnable {
 		getState(SHOWCARDSTATE).init(gc, this);
 	}
 	
-	public void addCardListener(ViewListener l) {
+	public void addCardListener(GameListener l) {
 		InGameState s = (InGameState)getState(INGAMESTATE);
 		s.addCardListener(l);
 	}
 	
-	public void addSupplyListener(ViewListener l) {
+	public void addSupplyListener(GameListener l) {
 		InGameState s = (InGameState)getState(INGAMESTATE);
 		s.addSupplyListener(l);
 	}

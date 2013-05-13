@@ -1,18 +1,18 @@
 package tda367.dominion.commons.listener;
 
-public class ViewEvent {
+public class GameEvent {
 	private String text;
 	private boolean bool;
 	
-	public ViewEvent() {
+	public GameEvent() {
 
 	}
 	
-	public ViewEvent(boolean bool) {
+	public GameEvent(boolean bool) {
 		this.bool = bool;
 	}
 	
-	public ViewEvent(String text) {
+	public GameEvent(String text) {
 		this.text = text;
 	}
 	

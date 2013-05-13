@@ -12,8 +12,8 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
-import tda367.dominion.commons.listener.ViewEvent;
-import tda367.dominion.commons.listener.ViewListener;
+import tda367.dominion.commons.listener.GameEvent;
+import tda367.dominion.commons.listener.GameListener;
 import tda367.dominion.server.game.CardInfoHandler;
 import tda367.dominion.server.game.Supply;
 
@@ -70,29 +70,29 @@ public class InGameState extends ControlledGameState {
 	private int deckSize = 0;
 	
 	// Listeners
-	private ViewListener cardListener;
-	private ViewListener supplyListener;
+	private GameListener cardListener;
+	private GameListener supplyListener;
 	
 	
 	public InGameState(int id) {
 		super(id);
 	}
 	
-	public void addCardListener(ViewListener l) {
+	public void addCardListener(GameListener l) {
 		cardListener = l;
 	}
 	
-	public void addSupplyListener(ViewListener l) {
+	public void addSupplyListener(GameListener l) {
 		supplyListener = l;
 	}
 	
 	private void playCard(String card) {
-		ViewEvent e = new ViewEvent(card);
+		GameEvent e = new GameEvent(card);
 		cardListener.run(e);
 	}
 	
 	private void supplyCard(String card) {
-		ViewEvent e = new ViewEvent(card);
+		GameEvent e = new GameEvent(card);
 		supplyListener.run(e);
 	}
 	
