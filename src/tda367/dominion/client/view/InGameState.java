@@ -12,6 +12,7 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
+import tda367.dominion.client.model.Global;
 import tda367.dominion.commons.listener.GameEvent;
 import tda367.dominion.commons.listener.GameListener;
 import tda367.dominion.server.game.CardInfoHandler;
@@ -186,8 +187,8 @@ public class InGameState extends ControlledGameState {
 			enterShowCard = false;
 			String temp = cardToShow.getResourceReference();
 			cardToShow = new Image(temp.split("Supply")[0]+".jpg");
-			((ShowCardState)sbg.getState(MainView.SHOWCARDSTATE)).showCard(cardToShow);
-			sbg.enterState(MainView.SHOWCARDSTATE);
+			((ShowCardState)sbg.getState(Global.SHOWCARDSTATE)).showCard(cardToShow);
+			sbg.enterState(Global.SHOWCARDSTATE);
 		}
 		
 		//Return to menu

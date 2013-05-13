@@ -1,6 +1,7 @@
 package tda367.dominion.client.controller;
 
 import tda367.dominion.client.model.ClientModel;
+import tda367.dominion.client.model.Global;
 import tda367.dominion.client.view.MainView;
 import tda367.dominion.commons.listener.GameEvent;
 import tda367.dominion.commons.listener.GameListener;
@@ -23,7 +24,7 @@ public class ClientController {
 		this.model = new ClientModel();
 		model.addListener(new NetworkListener());
 		model.searchForGame();
-		while(view.getCurrentStateID() != MainView.MAINMENUSTATE){
+		while(view.getCurrentStateID() != Global.MAINMENUSTATE){
 			//Waiting for the game to be launched
 			try {
 				Thread.sleep(100);
