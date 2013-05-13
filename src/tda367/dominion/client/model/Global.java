@@ -16,4 +16,15 @@ public class Global {
 	
 	public static boolean FULLSCREEN = false;
 	public static boolean FPSSHOW = false;
+	private static String name = "Pleb";
+	
+	public static String  getName(){
+		
+		return name;
+	}
+	
+	public static void setName(String s){
+		name = s;
+	}
+
 }
