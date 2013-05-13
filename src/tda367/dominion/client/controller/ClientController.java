@@ -29,12 +29,10 @@ public class ClientController {
 			try {
 				Thread.sleep(100);
 			} catch (InterruptedException e) {
-				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
 		view.addCardListener(new RoomListener());
-		System.out.println("CardListener added");
 		
 	}
 	
