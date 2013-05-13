@@ -157,7 +157,7 @@ public class InGameState extends ControlledGameState {
 		paintVictoryCards(victoryCards);
 		paintActionCards(actionCards);
 		paintTreasureCards(treasureCards);
-		paintPlayerHand(actionCards);
+		paintPlayerHand();
 		paintNbrOfActionCards(nbrOfActionCards, actionCards, g);
 		paintNbrOfTreasureCards(nbrOfTreasureCards, treasureCards, g);
 		paintNbrOfVictoryCards(nbrOfVictoryCards, victoryCards, g);
@@ -327,7 +327,11 @@ public class InGameState extends ControlledGameState {
 		}
 		
 		//Hand cards listener
-		card = recCheck(button, x, y, actionCards, handRectangles);
+		try {
+			card = recCheck(button, x, y, StringArraytoImageArray(hand.toArray(new String[0])), handRectangles);
+		} catch (SlickException e) {
+			e.printStackTrace();
+		}
 		if(card != null) {
 			System.out.println(card);
 			return;
@@ -442,7 +446,7 @@ public class InGameState extends ControlledGameState {
 	 * @param rec the rectangle to be checked
 	 * @param button the clicked button
 	 * @param x x-position of the cursor
-	 * @param y y-position of the cursor
+	 * @param y y-position of the cursor0
 	 * @return true if the rectangle was clicked
 	 */
 	private boolean recContainsLeftClick(Rectangle rec, int button, int x, int y){
@@ -766,7 +770,7 @@ public class InGameState extends ControlledGameState {
 	 * 
 	 * @param cards
 	 */
-	private void paintPlayerHand(Image[] cards) 
+	private void paintPlayerHand() 
 			throws SlickException {
 		cih = CardInfoHandler.getInstance();
 		String[] stringCards = hand.toArray(new String[0]);
