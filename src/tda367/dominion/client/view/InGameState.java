@@ -400,18 +400,29 @@ public class InGameState extends ControlledGameState {
 	 */
 	private void mouseCheck(int button, int x, int y, Image[] cards, Rectangle[] recs, String prefix, int i){
 		if(button == Input.MOUSE_LEFT_BUTTON && recs[i].contains(x, y)) {
-			splitString(cards, i, prefix);
+			splitString(cards[i], prefix);
 		} else if(button == Input.MOUSE_RIGHT_BUTTON && recs[i].contains(x, y)){//Checking for detailed view
 			setDetailed(cards[i]);
 		}
 	}
 	
-	private void splitString(Image[] cards, int i, String prefix){
-		String temp = cards[i].getResourceReference().split("card/")[1];
+	/**
+	 * Splits a cards image reference to get its name.
+	 * 
+	 * @param cards the card whose resource is to be split
+	 * @param prefix the prefix that will be printed on front of the card name
+	 */
+	private void splitString(Image card, String prefix){
+		String temp = card.getResourceReference().split("card/")[1];
 		temp = temp.split("Supply.jpg")[0];
 		System.out.println(prefix + temp);
 	}
 	
+	/**
+	 * Sets what card to show in the detailed view, and tells the state to enter it.
+	 * 
+	 * @param cardToShow the card to show in the detailed views
+	 */
 	private void setDetailed(Image cardToShow){
 		enterShowCard = true;
 		this.cardToShow = cardToShow;
