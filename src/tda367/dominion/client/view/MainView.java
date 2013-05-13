@@ -11,7 +11,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.GameState;
 import org.newdawn.slick.state.StateBasedGame;
 
-import tda367.dominion.client.model.Global;
+import tda367.dominion.client.model.Settings;
 import tda367.dominion.commons.listener.GameListener;
 
 public class MainView extends StateBasedGame implements Runnable {
@@ -32,32 +32,32 @@ public class MainView extends StateBasedGame implements Runnable {
 	 */
 	@Override
 	public void initStatesList(GameContainer gc) throws SlickException {
-		addState(new SplashScreen(Global.SPLASHSTATE));
-		enterState(Global.SPLASHSTATE);
-		addState(new MainMenuState(Global.MAINMENUSTATE));
-		getState(Global.MAINMENUSTATE).init(gc, this);
-		addState(new InGameState(Global.INGAMESTATE));
-		getState(Global.INGAMESTATE).init(gc, this);
-		addState(new ServerListState(Global.SERVERLISTSTATE));
-		getState(Global.SERVERLISTSTATE).init(gc, this);
-		addState(new OptionsState(Global.OPTIONSSTATE));
-		getState(Global.OPTIONSSTATE).init(gc, this);
-		addState(new ShowCardState(Global.SHOWCARDSTATE));
-		getState(Global.SHOWCARDSTATE).init(gc, this);
+		addState(new SplashScreen(Settings.SPLASHSTATE));
+		enterState(Settings.SPLASHSTATE);
+		addState(new MainMenuState(Settings.MAINMENUSTATE));
+		getState(Settings.MAINMENUSTATE).init(gc, this);
+		addState(new InGameState(Settings.INGAMESTATE));
+		getState(Settings.INGAMESTATE).init(gc, this);
+		addState(new ServerListState(Settings.SERVERLISTSTATE));
+		getState(Settings.SERVERLISTSTATE).init(gc, this);
+		addState(new OptionsState(Settings.OPTIONSSTATE));
+		getState(Settings.OPTIONSSTATE).init(gc, this);
+		addState(new ShowCardState(Settings.SHOWCARDSTATE));
+		getState(Settings.SHOWCARDSTATE).init(gc, this);
 	}
 	
 	public void addCardListener(GameListener l) {
-		InGameState s = (InGameState)getState(Global.INGAMESTATE);
+		InGameState s = (InGameState)getState(Settings.INGAMESTATE);
 		s.addCardListener(l);
 	}
 	
 	public void addSupplyListener(GameListener l) {
-		InGameState s = (InGameState)getState(Global.INGAMESTATE);
+		InGameState s = (InGameState)getState(Settings.INGAMESTATE);
 		s.addSupplyListener(l);
 	}
 	
 	public void addUpdateRoomListener(GameListener l) {
-		ServerListState s = (ServerListState)this.getState(Global.SERVERLISTSTATE);
+		ServerListState s = (ServerListState)this.getState(Settings.SERVERLISTSTATE);
 		s.addUpdateRoomListener(l);
 	}
     
@@ -68,9 +68,9 @@ public class MainView extends StateBasedGame implements Runnable {
      * @throws SlickException
      */
 	public static void setResolution(int width, int height) throws SlickException {
-    	Global.SCREENHEIGHT = height;
-    	Global.SCREENWIDTH = width;
-    	theGame.setDisplayMode(Global.SCREENHEIGHT, Global.SCREENWIDTH, Global.FPSSHOW);
+    	Settings.SCREENHEIGHT = height;
+    	Settings.SCREENWIDTH = width;
+    	theGame.setDisplayMode(Settings.SCREENHEIGHT, Settings.SCREENWIDTH, Settings.FPSSHOW);
     }
     
 	/**
@@ -79,17 +79,17 @@ public class MainView extends StateBasedGame implements Runnable {
 	 * @throws SlickException
 	 */
     public static void setFullscreen(boolean fullScreen) throws SlickException {
-    	Global.FPSSHOW = fullScreen;
-    	theGame.setDisplayMode(Global.SCREENHEIGHT, Global.SCREENWIDTH, fullScreen);
+    	Settings.FPSSHOW = fullScreen;
+    	theGame.setDisplayMode(Settings.SCREENHEIGHT, Settings.SCREENWIDTH, fullScreen);
     }
     
     public static void showFps(boolean fps) throws SlickException {
-    	Global.FPSSHOW = fps;
-    	theGame.setShowFPS(Global.FPSSHOW);
+    	Settings.FPSSHOW = fps;
+    	theGame.setShowFPS(Settings.FPSSHOW);
     }
     
     public void updateRoomData(String[][] s) {
-    	GameState g = this.getState(Global.SERVERLISTSTATE);
+    	GameState g = this.getState(Settings.SERVERLISTSTATE);
     	((ServerListState) g).updateRoomData(s);
     	System.out.println("Updating game rooms");
     }
@@ -101,9 +101,9 @@ public class MainView extends StateBasedGame implements Runnable {
     	PrintWriter writer;
 		try {
 			writer = new PrintWriter("options.txt", "UTF-8");
-	    	writer.println(Global.SCREENHEIGHT);
-	    	writer.println(Global.SCREENWIDTH);
-	    	writer.println(Global.FULLSCREEN);
+	    	writer.println(Settings.SCREENHEIGHT);
+	    	writer.println(Settings.SCREENWIDTH);
+	    	writer.println(Settings.FULLSCREEN);
 	    	writer.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -114,14 +114,14 @@ public class MainView extends StateBasedGame implements Runnable {
     }
     
     public void updatePlayer(int actions, int buys, int money) {
-    	InGameState g = ((InGameState)this.getState(Global.INGAMESTATE));
+    	InGameState g = ((InGameState)this.getState(Settings.INGAMESTATE));
     	g.setActions(actions);
     	g.setBuys(buys);
     	g.setMoney(money);
     }
     
     public void updateCards(ArrayList<String> hand, ArrayList<String> inPlay, String topOfPile, int deckSize) {
-    	InGameState g = ((InGameState)this.getState(Global.INGAMESTATE));
+    	InGameState g = ((InGameState)this.getState(Settings.INGAMESTATE));
     	g.setHand(hand);
     	g.setInPlay(inPlay);
     	g.setTopOfPile(topOfPile);
@@ -131,10 +131,10 @@ public class MainView extends StateBasedGame implements Runnable {
 	private void startView() {
 		try {
 			theGame = new AppGameContainer(this);
-			theGame.setDisplayMode(Global.SCREENHEIGHT, Global.SCREENWIDTH, false);
+			theGame.setDisplayMode(Settings.SCREENHEIGHT, Settings.SCREENWIDTH, false);
 	        theGame.setAlwaysRender(true);
 	        theGame.setVSync(true);
-	        theGame.setShowFPS(Global.FPSSHOW);
+	        theGame.setShowFPS(Settings.FPSSHOW);
 	        theGame.start();
 		} catch (SlickException e) {
 			e.printStackTrace();

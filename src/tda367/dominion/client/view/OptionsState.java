@@ -11,7 +11,7 @@ import org.newdawn.slick.geom.RoundedRectangle;
 import org.newdawn.slick.gui.TextField;
 import org.newdawn.slick.state.StateBasedGame;
 
-import tda367.dominion.client.model.Global;
+import tda367.dominion.client.model.Settings;
 
 public class OptionsState extends ControlledGameState {
 	
@@ -45,7 +45,7 @@ public class OptionsState extends ControlledGameState {
 		
 		String name = "Pleb" + (int) (Math.random()*1000);
 		resolutionField.setText(name);
-		Global.setName(name);
+		Settings.setName(name);
 		
 		checker = new Image("res/img/gui/menu/checker.png");
 		checker2 = new Image("res/img/gui/menu/checker.png");

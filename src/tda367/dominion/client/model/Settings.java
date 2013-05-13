@@ -4,7 +4,7 @@ package tda367.dominion.client.model;
  * @author Glazastik
  *
  */
-public class Global {
+public class Settings {
 	public static final int INGAMESTATE = 0;
 	public static final int MAINMENUSTATE = 1;
 	public static final int OPTIONSSTATE = 2;
