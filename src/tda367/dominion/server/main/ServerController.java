@@ -51,7 +51,7 @@ public class ServerController {
 
 		@Override
 		public void disconnected(Connection c) {
-			System.out.println("Player " + c.getID() + " disconnected");
+			print("Player " + c.getID() + " disconnected");
 //			GameConnection gc = (GameConnection) c;
 //			roomHandler.kickConnection(gc);
 //			print(c.getID() + " disconnected and kicked");
