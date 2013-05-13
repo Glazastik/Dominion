@@ -2,7 +2,7 @@ package tda367.dominion.server.game;
 
 import java.util.LinkedList;
 
-import tda367.dominion.server.cards.*;
+import tda367.dominion.server.game.cards.*;
 
 /**
  * A class that handles how the cards that are played affect the game and players.

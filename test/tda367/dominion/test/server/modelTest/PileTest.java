@@ -8,7 +8,7 @@ import java.util.LinkedList;
 
 import org.junit.Test;
 
-import tda367.dominion.server.model.Pile;
+import tda367.dominion.server.game.Pile;
 
 public class PileTest {
 

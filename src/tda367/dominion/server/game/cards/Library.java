@@ -1,4 +1,4 @@
-package tda367.dominion.server.cards;
+package tda367.dominion.server.game.cards;
 
 import tda367.dominion.server.game.CardInfoHandler;
 import tda367.dominion.server.game.Player;

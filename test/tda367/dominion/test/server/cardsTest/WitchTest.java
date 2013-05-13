@@ -6,9 +6,9 @@ import java.util.LinkedList;
 
 import org.junit.Test;
 
-import tda367.dominion.server.cards.Witch;
-import tda367.dominion.server.model.Player;
-import tda367.dominion.server.model.Supply;
+import tda367.dominion.server.game.Player;
+import tda367.dominion.server.game.Supply;
+import tda367.dominion.server.game.cards.Witch;
 
 public class WitchTest {
 

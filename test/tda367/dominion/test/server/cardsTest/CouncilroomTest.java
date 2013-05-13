@@ -6,8 +6,8 @@ import java.util.LinkedList;
 
 import org.junit.Test;
 
-import tda367.dominion.server.cards.Councilroom;
-import tda367.dominion.server.model.Player;
+import tda367.dominion.server.game.Player;
+import tda367.dominion.server.game.cards.Councilroom;
 
 public class CouncilroomTest {
 

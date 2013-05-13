@@ -10,7 +10,7 @@ import java.util.Set;
 
 import org.junit.Test;
 
-import tda367.dominion.server.model.Supply;
+import tda367.dominion.server.game.Supply;
 
 public class SupplyTest {
 

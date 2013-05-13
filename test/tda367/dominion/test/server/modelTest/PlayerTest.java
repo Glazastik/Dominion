@@ -5,7 +5,7 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import tda367.dominion.server.model.Player;
+import tda367.dominion.server.game.Player;
 
 public class PlayerTest {
 

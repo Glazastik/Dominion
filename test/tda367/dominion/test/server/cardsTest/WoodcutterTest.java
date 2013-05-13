@@ -4,8 +4,8 @@ import static org.junit.Assert.assertTrue;
 
 import org.junit.Test;
 
-import tda367.dominion.server.cards.Woodcutter;
-import tda367.dominion.server.model.Player;
+import tda367.dominion.server.game.Player;
+import tda367.dominion.server.game.cards.Woodcutter;
 
 public class WoodcutterTest {
 
