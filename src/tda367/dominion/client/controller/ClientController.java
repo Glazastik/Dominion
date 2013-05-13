@@ -32,28 +32,8 @@ public class ClientController {
 				e.printStackTrace();
 			}
 		}
-		view.addCardListener(new RoomListener());
+		view.addCardListener(new CardListener());
 		
-	}
-	
-	public void boolMessage(boolean bool) {
-		model.boolMessage(bool);
-	}
-
-	public void joinRoom(int id){
-		//TODO: Connection object?
-//		ConnectionMessage cmsg = new ConnectionMessage();
-//		cmsg.setName("Plebben");
-//		cmsg.setRoomId("" + id);
-//		c.sendTCP(cmsg);
-	}
-	
-	public void playCard(String card) {
-		model.playCard(card);
-	}
-
-	private void setRoomData(String[][] data) {
-//		model.setRoomData(data);
 	}
 	
 	// Listener classes
@@ -77,7 +57,7 @@ public class ClientController {
 			if (object instanceof RoomMessage) {
 				System.out.println("Update room list");
 				RoomMessage rmsg = (RoomMessage) object;
-				setRoomData(rmsg.getRooms());
+//				setRoomData(rmsg.getRooms());
 			}
 
 			if (object instanceof CreateBoolMessage) {
@@ -100,7 +80,10 @@ public class ClientController {
 	}
 	
 	// TODO: Replace with lobby framework
-	class RoomListener implements GameListener {
+	/**
+	 * A Listener that requests a new list of rooms from the server.
+	 */
+	class UpdateRoomListener implements GameListener {
 		public void run(GameEvent e) {
 			model.searchForGame();
 		}
