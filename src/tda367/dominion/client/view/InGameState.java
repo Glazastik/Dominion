@@ -14,8 +14,8 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import tda367.dominion.commons.listener.ViewEvent;
 import tda367.dominion.commons.listener.ViewListener;
-import tda367.dominion.server.model.CardInfoHandler;
-import tda367.dominion.server.model.Supply;
+import tda367.dominion.server.game.CardInfoHandler;
+import tda367.dominion.server.game.Supply;
 
 public class InGameState extends ControlledGameState {
 
