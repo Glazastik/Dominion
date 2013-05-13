@@ -58,14 +58,18 @@ public class ClientController {
 	
 	// Listener classes
 	class NetworkListener extends Listener {
-		public void connected() {
+		
+		@Override
+		public void connected(Connection c) {
 			System.out.println("Connected, it works");
 		}
 		
-		public void disconnected() {
+		@Override
+		public void disconnected(Connection c) {
 			System.out.println("Disconnected");
 		}
 		
+		@Override
 		public void received (Connection connection, Object object) {
 			System.out.println("Received \"" + object.getClass().getName()
 					+ "\" from server.");

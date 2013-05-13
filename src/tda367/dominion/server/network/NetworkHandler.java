@@ -2,18 +2,14 @@ package tda367.dominion.server.network;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.LinkedList;
 
-import tda367.dominion.commons.messages.CardMessage;
 import tda367.dominion.commons.messages.CardUpdateMessage;
 import tda367.dominion.commons.messages.ConnectionMessage;
 import tda367.dominion.commons.messages.PlayerUpdateMessage;
 import tda367.dominion.commons.messages.RoomMessage;
-import tda367.dominion.commons.messages.SetupMessage;
 import tda367.dominion.commons.network.NetworkCommon;
 
 import com.esotericsoftware.kryonet.Connection;
-import com.esotericsoftware.kryonet.FrameworkMessage.KeepAlive;
 import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Server;
 
@@ -32,44 +28,15 @@ public class NetworkHandler {
 		server.start();
 		NetworkCommon.register(server);
 
-		server.addListener(new Listener() {
-			public void connected(Connection c) {
-//				print("Received connection from " + c.getRemoteAddressTCP());
-				sendRoomList(c);
-
-			}
-
-			public void received(Connection c, Object object) {
-				GameConnection gc = (GameConnection) c;
-
-				if (object instanceof ConnectionMessage) {
-//					print(c.getRemoteAddressTCP()
-//							+ " wants to connect to a room.");
-					ConnectionMessage cmsg = (ConnectionMessage) object;
-					connectPlayer(gc, cmsg);
-				} else if (object instanceof KeepAlive) {
-					// TODO: To stop it from printing these.
-				} else if (object instanceof CardMessage) {
-					// TODO: Play the card
-//					print("Player played: " + ((CardMessage) object).getCard());
-				} else {
-//					print("Classname: " + object.getClass());
-//					print(object.toString());
-				}
-			}
-
-			public void disconnected(Connection c) {
-				GameConnection gc = (GameConnection) c;
-//				roomHandler.kickConnection(gc);
-//				print(c.getID() + " disconnected and kicked");
-			}
-		});
-
 		try {
 			server.bind(NetworkCommon.TCPPORT);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	public void addListener(Listener l) {
+		server.addListener(l);
 	}
 
 	protected static void connectPlayer(GameConnection c, ConnectionMessage cmsg) {
