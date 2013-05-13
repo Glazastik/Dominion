@@ -428,10 +428,28 @@ public class InGameState extends ControlledGameState {
 		this.cardToShow = cardToShow;
 	}
 	
+	/**
+	 * Checks if a rectangle has been clicked by the left mouse button.
+	 * 
+	 * @param rec the rectangle to be checked
+	 * @param button the clicked button
+	 * @param x x-position of the cursor
+	 * @param y y-position of the cursor
+	 * @return true if the rectangle was clicked
+	 */
 	private boolean recContainsLeftClick(Rectangle rec, int button, int x, int y){
 		return button == Input.MOUSE_LEFT_BUTTON && rec.contains(x, y);
 	}
 	
+	/**
+	 * Checks if a rectangle has been clicked by the right mouse button.
+	 * 
+	 * @param rec the rectangle to be checked
+	 * @param button the clicked button
+	 * @param x x-position of the cursor
+	 * @param y y-position of the cursor
+	 * @return true if the rectangle was clicked
+	 */
 	private boolean recContainsRightClick(Rectangle rec, int button, int x, int y){
 		return button == Input.MOUSE_RIGHT_BUTTON && rec.contains(x, y);
 	}
