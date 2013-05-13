@@ -303,38 +303,17 @@ public class InGameState extends ControlledGameState {
 		super.mouseClicked(button, x, y, clicks);
 		//Victory cards listener
 		for(int i=0; i<4; i++) {
-			if(button == Input.MOUSE_LEFT_BUTTON && victoryRectangles[i].contains(x, y)) {
-				String temp = victoryCards[i].getResourceReference().split("card/")[1];
-				temp = temp.split("Supply.jpg")[0];
-				System.out.println("Victory Card: " + temp);
-			} else if(button == Input.MOUSE_RIGHT_BUTTON && victoryRectangles[i].contains(x, y)){//Checking for detailed view
-				enterShowCard = true;
-				cardToShow = victoryCards[i];
-			}
+			mouseCheck(button, x, y, victoryCards, victoryRectangles, "Victory card: ", i);
 		}
 		
 		//Treasure cards listener
 		for(int i=0; i<3; i++) {
-			if(button == Input.MOUSE_LEFT_BUTTON && treasureRectangles[i].contains(x,y)) {
-				String temp = treasureCards[i].getResourceReference().split("card/")[1];
-				temp = temp.split("Supply.jpg")[0];
-				System.out.println("Treasure card: " + temp);
-			} else if(button == Input.MOUSE_RIGHT_BUTTON && treasureRectangles[i].contains(x, y)){//Checking for detailed view
-				enterShowCard = true;
-				cardToShow = treasureCards[i];
-			}
+			mouseCheck(button, x, y, treasureCards, treasureRectangles, "Treasure card: ", i);
 		}
 		
 		//Action cards listener
 		for(int i=0; i<10; i++) {
-			if(button == Input.MOUSE_LEFT_BUTTON && actionRectangles[i].contains(x,y)) {
-				String temp = actionCards[i].getResourceReference().split("card/")[1];
-				temp = temp.split("Supply.jpg")[0];
-				System.out.println("Action card: " + temp);
-			} else if(button == Input.MOUSE_RIGHT_BUTTON && actionRectangles[i].contains(x, y)){//Checking for detailed view
-				enterShowCard = true;
-				cardToShow = actionCards[i];
-			}
+			mouseCheck(button, x, y, actionCards, actionRectangles, "Action cards: ", i);
 		}
 		
 		//Hand cards listener
@@ -398,6 +377,25 @@ public class InGameState extends ControlledGameState {
 	@Override
 	public void leave(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		  gc.getInput().clearKeyPressedRecord();
+	}
+	
+	private void mouseCheck(int button, int x, int y, Image[] cards, Rectangle[] recs, String prefix, int i){
+		if(button == Input.MOUSE_LEFT_BUTTON && recs[i].contains(x, y)) {
+			splitString(cards, i, prefix);
+		} else if(button == Input.MOUSE_RIGHT_BUTTON && recs[i].contains(x, y)){//Checking for detailed view
+			setDetailed(cards[i]);
+		}
+	}
+	
+	private void splitString(Image[] cards, int i, String prefix){
+		String temp = cards[i].getResourceReference().split("card/")[1];
+		temp = temp.split("Supply.jpg")[0];
+		System.out.println(prefix + temp);
+	}
+	
+	private void setDetailed(Image cardToShow){
+		enterShowCard = true;
+		this.cardToShow = cardToShow;
 	}
 
 	/**
