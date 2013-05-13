@@ -13,6 +13,7 @@ public class ShowCardState extends BasicGameState {
 	private final int ID;
 	private Image bigCard;
 	private Image backdrop;
+	private boolean leave = false;
 	
 	public ShowCardState(int id) {
 		ID = id;
@@ -36,13 +37,22 @@ public class ShowCardState extends BasicGameState {
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 			throws SlickException {
-		Input input = gc.getInput();
-		if(input.isKeyPressed(Input.KEY_SPACE)) {
+		if(leave == true) {
+			leave = false;
 			sbg.enterState(0);
-		} else if(input.isMousePressed(Input.MOUSE_RIGHT_BUTTON)) {
-			sbg.enterState(0);
-		} else if(input.isMousePressed(Input.MOUSE_LEFT_BUTTON)) {
-			sbg.enterState(0);
+		}
+	}
+	
+	/**
+	 * Takes care of all actions that calls mouseClicked
+	 */
+	@Override
+	public void mouseClicked(int button, int x, int y, int clicks) {
+		super.mouseClicked(button, x, y, clicks);
+		if(button == Input.MOUSE_RIGHT_BUTTON) {
+			leave = true;
+		} else if(button == Input.MOUSE_LEFT_BUTTON) {
+			leave = true;
 		}
 	}
 	
