@@ -398,6 +398,7 @@ public class InGameState extends ControlledGameState {
 				return splitString(cards[i]);
 			} else if(recContainsRightClick(recs[i], button, x, y)){//Checking for detailed view
 				setDetailed(cards[i]);
+				return null;
 			}
 		}
 		
