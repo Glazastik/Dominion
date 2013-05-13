@@ -373,33 +373,6 @@ public class InGameState extends ControlledGameState {
 		  gc.getInput().clearKeyPressedRecord();
 	}
 	
-	/**
-	 * An overly complicated method for a relatively easy task.
-	 * 
-	 * <p>This method checks whether the mouse cursors position is within
-	 * the given rectangles when a button is clicked.</p>
-	 * 
-	 * <p>After this, the method has two behaviours. One is if the left
-	 * mouse button is clicked, and one if the right button is clicked.
-	 * Left button prints the card type and name of the card to console,
-	 * and right click enters the detailed view.</p>
-	 * 
-	 * @param button the button that was clicked
-	 * @param x x-position of cursor
-	 * @param y y-position of cursor
-	 * @param cards the array of card images that correspond with the rectangles
-	 * @param recs an array of rectangles
-	 * @param prefix the prefix that will be printed on front of the card name
-	 * @param i the index in the array that is to be checked
-	 */
-	private void mouseCheck(int button, int x, int y, Image[] cards, Rectangle[] recs, String prefix, int i){
-		if(recContainsLeftClick(recs[i], button, x, y)) {
-			splitString(cards[i], prefix);
-		} else if(recContainsRightClick(recs[i], button, x, y)){//Checking for detailed view
-			setDetailed(cards[i]);
-		}
-	}
-	
 	private void recCheck(int button, int x, int y, Image[] cards, Rectangle[] recs, String prefix){
 		for(int i = 0; i < recs.length; i++){
 			if(recContainsLeftClick(recs[i], button, x, y)) {
