@@ -13,7 +13,7 @@ import org.newdawn.slick.state.StateBasedGame;
 
 import tda367.dominion.commons.listener.ViewListener;
 
-public class MainView extends StateBasedGame {
+public class MainView extends StateBasedGame implements Runnable {
 	
 	public static final int INGAMESTATE = 0;
 	public static final int MAINMENUSTATE = 1;
@@ -131,7 +131,7 @@ public class MainView extends StateBasedGame {
     	g.setDeckSize(deckSize);
     }
 
-	public void start() {
+	private void startView() {
 		try {
 			theGame = new AppGameContainer(this);
 			theGame.setDisplayMode(screenHeight, screenWidth, false);
@@ -142,5 +142,11 @@ public class MainView extends StateBasedGame {
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
+	}
+
+	@Override
+	public void run() {
+		startView();
+		
 	}
 }

@@ -18,11 +18,22 @@ public class ClientController {
 	
 	public ClientController() {
 		this.view = new MainView();
+		//Start view in new thread
+		(new Thread(view)).start();
 		this.model = new ClientModel();
 		model.addListener(new NetworkListener());
-//		view.addCardListener(new RoomListener());
+		while(view.getCurrentStateID() != MainView.MAINMENUSTATE){
+			//Waiting for the game to be launched
+			try {
+				Thread.sleep(100);
+			} catch (InterruptedException e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
+		}
+		view.addCardListener(new RoomListener());
+		System.out.println("CardListener added");
 		
-		view.start();
 	}
 	
 	public void boolMessage(boolean bool) {
