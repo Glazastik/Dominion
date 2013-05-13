@@ -399,9 +399,9 @@ public class InGameState extends ControlledGameState {
 	 * @param i the index in the array that is to be checked
 	 */
 	private void mouseCheck(int button, int x, int y, Image[] cards, Rectangle[] recs, String prefix, int i){
-		if(button == Input.MOUSE_LEFT_BUTTON && recs[i].contains(x, y)) {
+		if(recContainsLeftClick(recs[i], button, x, y)) {
 			splitString(cards[i], prefix);
-		} else if(button == Input.MOUSE_RIGHT_BUTTON && recs[i].contains(x, y)){//Checking for detailed view
+		} else if(recContainsRightClick(recs[i], button, x, y)){//Checking for detailed view
 			setDetailed(cards[i]);
 		}
 	}
