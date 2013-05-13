@@ -382,14 +382,15 @@ public class InGameState extends ControlledGameState {
 	/**
 	 * Iterates over an array of rectangles and checks if they have been clicked by user.
 	 * 
-	 * <p>If a rectangle has been clicked
+	 * <p>If a rectangle has been clicked, the name of the underlying card is returned.</p>
 	 * 
 	 * @param button the button that was clicked
 	 * @param x x-position of mouse cursor
 	 * @param y y-position of mouse cursor
 	 * @param cards an array of card images
 	 * @param recs an array of rectangles
-	 * @param prefix prefix to be printed before card name
+	 * 
+	 * @return the name of the clicked card, or null if no card was clicked
 	 */
 	private String recCheck(int button, int x, int y, Image[] cards, Rectangle[] recs){
 		for(int i = 0; i < recs.length; i++){
@@ -407,6 +408,8 @@ public class InGameState extends ControlledGameState {
 	 * Splits a cards image reference to get its name.
 	 * 
 	 * @param cards the card whose resource is to be split
+	 * 
+	 * @return the name of the card derived from the image resource
 	 */
 	private String splitString(Image card){
 		String temp = card.getResourceReference().split("card/")[1];
