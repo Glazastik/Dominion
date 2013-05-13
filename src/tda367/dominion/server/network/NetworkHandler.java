@@ -20,11 +20,7 @@ public class NetworkHandler {
 	 * Creates and returns a fresh instance of the server.
 	 */
 	public NetworkHandler() {
-		server = new Server() {
-			public Connection newConnection() {
-				return new GameConnection();
-			}
-		};
+		server = new Server();
 		server.start();
 		NetworkCommon.register(server);
 

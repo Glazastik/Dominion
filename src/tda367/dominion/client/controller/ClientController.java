@@ -22,6 +22,7 @@ public class ClientController {
 		(new Thread(view)).start();
 		this.model = new ClientModel();
 		model.addListener(new NetworkListener());
+		model.searchForGame();
 		while(view.getCurrentStateID() != MainView.MAINMENUSTATE){
 			//Waiting for the game to be launched
 			try {

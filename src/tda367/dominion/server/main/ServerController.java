@@ -19,7 +19,7 @@ public class ServerController {
 		network = new NetworkHandler();
 		view = ServerFrame.getInstance();
 		roomHandler = new RoomHandler();
-		network.addListener(new Listener());
+		network.addListener(new NetworkListener());
 	}
 	
 	class NetworkListener extends Listener {
@@ -32,7 +32,6 @@ public class ServerController {
 
 		@Override
 		public void received(Connection c, Object object) {
-			GameConnection gc = (GameConnection) c;
 
 			if (object instanceof ConnectionMessage) {
 				System.out.println(c.getRemoteAddressTCP()
@@ -45,7 +44,7 @@ public class ServerController {
 				// TODO: Play the card
 //				print("Player played: " + ((CardMessage) object).getCard());
 			} else {
-//				print("Classname: " + object.getClass());
+				System.out.println("Classname: " + object.getClass());
 //				print(object.toString());
 			}
 		}
