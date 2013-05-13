@@ -146,6 +146,8 @@ public class InGameState extends ControlledGameState {
 		for(int i = 0; i<40; i++) {
 			handRectangles[i] = new Rectangle();
 		}
+		
+		hand.add(0, "Plebian");
 	}
 
 	@Override
@@ -301,30 +303,34 @@ public class InGameState extends ControlledGameState {
 	 */
 	@Override
 	public void mouseClicked(int button, int x, int y, int clicks) {
-		super.mouseClicked(button, x, y, clicks);
+		String card;
+		
 		//Victory cards listener
-		if(recCheck(button, x, y, victoryCards, victoryRectangles) != null){
+		card = recCheck(button, x, y, victoryCards, victoryRectangles);
+		if(card != null) {
+			System.out.println(card);
 			return;
 		}
 		
 		//Treasure cards listener
-		if(recCheck(button, x, y, treasureCards, treasureRectangles) != null){
+		card = recCheck(button, x, y, treasureCards, treasureRectangles);
+		if(card != null)  {
+			System.out.println(card);
 			return;
 		}
 		
 		//Action cards listener
-		if(recCheck(button, x, y, actionCards, actionRectangles) != null){
+		card = recCheck(button, x, y, actionCards, actionRectangles);
+		if(card != null) {
+			System.out.println(card);
 			return;
 		}
 		
 		//Hand cards listener
-		for(int i=0; i<handRectangles.length; i++) {
-			if(button == Input.MOUSE_LEFT_BUTTON && handRectangles[i].contains(x,y)) {
-				playCard(hand.get(i));
-			} else if(button == Input.MOUSE_RIGHT_BUTTON && handRectangles[i].contains(x, y)){//Checking for detailed view
-				//enterShowCard = true;
-				//cardToShow = handCards[i];
-			}
+		card = recCheck(button, x, y, actionCards, handRectangles);
+		if(card != null) {
+			System.out.println(card);
+			return;
 		}
 		
 		//Menu button listener
@@ -416,6 +422,7 @@ public class InGameState extends ControlledGameState {
 	private String splitString(Image card){
 		String temp = card.getResourceReference().split("card/")[1];
 		temp = temp.split("Supply.jpg")[0];
+		temp = temp.split(".jpg")[0];
 		return temp;
 	}
 	
