@@ -2,7 +2,7 @@ package tda367.dominion.server.cards;
 
 import java.util.LinkedList;
 
-import tda367.dominion.server.model.Player;
+import tda367.dominion.server.game.Player;
 
 public class Councilroom implements ICard {
 	public static void play(Player player, LinkedList<Player> players){

@@ -1,7 +1,7 @@
 package tda367.dominion.server.cards;
 
-import tda367.dominion.server.model.CardInfoHandler;
-import tda367.dominion.server.model.Player;
+import tda367.dominion.server.game.CardInfoHandler;
+import tda367.dominion.server.game.Player;
 
 public class Adventurer implements ICard {
 	public static void play(Player player){

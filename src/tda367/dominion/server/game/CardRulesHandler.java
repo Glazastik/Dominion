@@ -2,30 +2,7 @@ package tda367.dominion.server.game;
 
 import java.util.LinkedList;
 
-import tda367.dominion.server.cards.Adventurer;
-import tda367.dominion.server.cards.Bureaucrat;
-import tda367.dominion.server.cards.Cellar;
-import tda367.dominion.server.cards.Chancellor;
-import tda367.dominion.server.cards.Chapel;
-import tda367.dominion.server.cards.Councilroom;
-import tda367.dominion.server.cards.Feast;
-import tda367.dominion.server.cards.Festival;
-import tda367.dominion.server.cards.Laboratory;
-import tda367.dominion.server.cards.Library;
-import tda367.dominion.server.cards.Market;
-import tda367.dominion.server.cards.Militia;
-import tda367.dominion.server.cards.Mine;
-import tda367.dominion.server.cards.Moat;
-import tda367.dominion.server.cards.Moneylender;
-import tda367.dominion.server.cards.Remodel;
-import tda367.dominion.server.cards.Smithy;
-import tda367.dominion.server.cards.Spy;
-import tda367.dominion.server.cards.Thief;
-import tda367.dominion.server.cards.Throneroom;
-import tda367.dominion.server.cards.Village;
-import tda367.dominion.server.cards.Witch;
-import tda367.dominion.server.cards.Woodcutter;
-import tda367.dominion.server.cards.Workshop;
+import tda367.dominion.server.cards.*;
 
 /**
  * A class that handles how the cards that are played affect the game and players.

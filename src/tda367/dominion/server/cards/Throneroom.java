@@ -2,9 +2,9 @@ package tda367.dominion.server.cards;
 
 import java.util.LinkedList;
 
-import tda367.dominion.server.model.CardInfoHandler;
-import tda367.dominion.server.model.Player;
-import tda367.dominion.server.model.Supply;
+import tda367.dominion.server.game.CardInfoHandler;
+import tda367.dominion.server.game.Player;
+import tda367.dominion.server.game.Supply;
 
 public class Throneroom {
 	public static void play(Player p, LinkedList<Player> players, Supply supply){

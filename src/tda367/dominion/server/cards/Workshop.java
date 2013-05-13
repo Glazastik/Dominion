@@ -1,8 +1,8 @@
 package tda367.dominion.server.cards;
 
-import tda367.dominion.server.model.GainingHandler;
-import tda367.dominion.server.model.Player;
-import tda367.dominion.server.model.Supply;
+import tda367.dominion.server.game.GainingHandler;
+import tda367.dominion.server.game.Player;
+import tda367.dominion.server.game.Supply;
 
 public class Workshop {
 	public static void play(Player p, Supply supply){

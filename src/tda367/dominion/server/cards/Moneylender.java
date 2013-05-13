@@ -1,6 +1,6 @@
 package tda367.dominion.server.cards;
 
-import tda367.dominion.server.model.Player;
+import tda367.dominion.server.game.Player;
 /**
  * A class used to represent the card Moneylender
  * @author christoffer
