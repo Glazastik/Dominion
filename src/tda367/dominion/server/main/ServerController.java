@@ -26,7 +26,7 @@ public class ServerController {
 		
 		@Override
 		public void connected(Connection c) {
-			System.out.println("Received connection from " + c.getRemoteAddressTCP());
+			print("Received connection from " + c.getRemoteAddressTCP());
 //			sendRoomList(c);
 		}
 
@@ -34,7 +34,7 @@ public class ServerController {
 		public void received(Connection c, Object object) {
 
 			if (object instanceof ConnectionMessage) {
-				System.out.println(c.getRemoteAddressTCP()
+				print(c.getRemoteAddressTCP()
 						+ " wants to connect to a room.");
 //				ConnectionMessage cmsg = (ConnectionMessage) object;
 //				connectPlayer(gc, cmsg);
@@ -44,7 +44,7 @@ public class ServerController {
 				// TODO: Play the card
 //				print("Player played: " + ((CardMessage) object).getCard());
 			} else {
-				System.out.println("Classname: " + object.getClass());
+				print("Classname: " + object.getClass());
 //				print(object.toString());
 			}
 		}
@@ -56,5 +56,9 @@ public class ServerController {
 //			roomHandler.kickConnection(gc);
 //			print(c.getID() + " disconnected and kicked");
 		}
+	}
+	
+	private void print(String s) {
+		view.print(s);
 	}
 }
