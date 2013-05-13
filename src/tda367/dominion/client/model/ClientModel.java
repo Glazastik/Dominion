@@ -3,6 +3,7 @@ package tda367.dominion.client.model;
 import tda367.dominion.client.network.ClientConnection;
 import tda367.dominion.commons.messages.BoolMessage;
 import tda367.dominion.commons.messages.LocatedCardMessage;
+import tda367.dominion.commons.messages.RoomUpdateMessage;
 
 import com.esotericsoftware.kryonet.Listener;
 
@@ -18,7 +19,8 @@ public class ClientModel {
 	}
 	
 	public void searchForGame() {
-		connection.connect();
+		RoomUpdateMessage msg = new RoomUpdateMessage();
+		connection.sendMessage(msg);
 	}
 
 	/**

@@ -11,6 +11,7 @@ import tda367.dominion.commons.messages.LocatedCardMessage;
 import tda367.dominion.commons.messages.PlayerUpdateMessage;
 import tda367.dominion.commons.messages.RevealCardMessage;
 import tda367.dominion.commons.messages.RoomMessage;
+import tda367.dominion.commons.messages.RoomUpdateMessage;
 
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryonet.EndPoint;
@@ -31,6 +32,7 @@ public class NetworkCommon {
 		kryo.register(RoomMessage.class);
 		kryo.register(CardMessage.class);
 		
+		kryo.register(RoomUpdateMessage.class);
 		kryo.register(CardUpdateMessage.class);
 		kryo.register(PlayerUpdateMessage.class);
 		

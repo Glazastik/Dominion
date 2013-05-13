@@ -9,10 +9,16 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.geom.Rectangle;
 import org.newdawn.slick.state.StateBasedGame;
 
+import tda367.dominion.commons.listener.GameEvent;
+import tda367.dominion.commons.listener.GameListener;
+
 public class ServerListState extends ControlledGameState {
 	private String[][] roomData = new String[0][0];
 	private Image board;
 	private Image room;
+	
+	// Listeners
+	private GameListener roomUpdateListener;
 
 	//TODO: Temporary rectangle
 	private Rectangle join;
@@ -28,11 +34,19 @@ public class ServerListState extends ControlledGameState {
 		room = new Image("res/img/gui/menu/room.png");
 		join = new Rectangle(600, 120, 250, 100);
 	}
+	
+	public void addUpdateRoomListener(GameListener l) {
+		roomUpdateListener = l;
+	}
 
 	public void updateRoomData(String[][] s) {
 		if (s != null) {
 			roomData = s;
 		}
+	}
+	
+	private void updateRoomList() {
+		roomUpdateListener.run(new GameEvent());
 	}
 
 	@Override
@@ -74,6 +88,8 @@ public class ServerListState extends ControlledGameState {
 	public void enter(GameContainer container, StateBasedGame game)
 			throws SlickException {
 		super.enter(container, game);
+		System.out.println("Entered roomListState");
+		updateRoomList();
 //		controller.searchForGame();
 	}
 

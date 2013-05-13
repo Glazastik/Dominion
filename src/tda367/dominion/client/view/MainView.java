@@ -55,6 +55,11 @@ public class MainView extends StateBasedGame implements Runnable {
 		InGameState s = (InGameState)getState(Global.INGAMESTATE);
 		s.addSupplyListener(l);
 	}
+	
+	public void addUpdateRoomListener(GameListener l) {
+		ServerListState s = (ServerListState)this.getState(Global.SERVERLISTSTATE);
+		s.addUpdateRoomListener(l);
+	}
     
     /**
      * Sets the resolution of the game to width and height

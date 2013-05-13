@@ -33,7 +33,7 @@ public class ClientController {
 			}
 		}
 		view.addCardListener(new CardListener());
-		
+		view.addUpdateRoomListener(new UpdateRoomListener());
 	}
 	
 	// Listener classes

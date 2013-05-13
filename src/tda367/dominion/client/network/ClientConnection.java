@@ -18,7 +18,10 @@ public class ClientConnection {
 		NetworkCommon.register(client);
 	}
 	
-	public void connect() {
+	/**
+	 * Connects to the server
+	 */
+	private void connect() {
 		new Thread("Connect") {
 			public void run() {
 				try {
@@ -48,5 +51,6 @@ public class ClientConnection {
 	 */
 	public void addListener(Listener l) {
 		client.addListener(l);
+		connect();
 	}
 }

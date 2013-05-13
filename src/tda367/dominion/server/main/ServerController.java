@@ -32,7 +32,10 @@ public class ServerController {
 
 		@Override
 		public void received(Connection c, Object object) {
-
+			
+			print("Classname: " + object.getClass());
+			print(object.toString());
+			
 			if (object instanceof ConnectionMessage) {
 				print(c.getRemoteAddressTCP()
 						+ " wants to connect to a room.");
@@ -43,9 +46,6 @@ public class ServerController {
 			} else if (object instanceof CardMessage) {
 				// TODO: Play the card
 //				print("Player played: " + ((CardMessage) object).getCard());
-			} else {
-				print("Classname: " + object.getClass());
-//				print(object.toString());
 			}
 		}
 
