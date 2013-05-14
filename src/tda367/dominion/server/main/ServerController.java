@@ -31,7 +31,7 @@ public class ServerController {
 		@Override
 		public void connected(Connection c) {
 			print("Received connection from " + c.getRemoteAddressTCP());
-			// sendRoomList(c);
+			 sendRoomList(c);
 		}
 
 		@Override
@@ -94,6 +94,13 @@ public class ServerController {
 				gc.sendTCP(setupMsg);
 			}
 
+		}
+		
+		protected void sendRoomList(Connection c) {
+			RoomMessage rmsg = new RoomMessage();
+			// rmsg.setRooms(roomHandler.getRoomsAsString());
+			// print(roomHandler.getRoomsAsString()[0][1]);
+			c.sendTCP(rmsg);
 		}
 	}
 
