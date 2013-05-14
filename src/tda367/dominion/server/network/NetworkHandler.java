@@ -47,12 +47,7 @@ public class NetworkHandler {
 		server.sendToTCP(id, msg);
 	}
 
-	protected static void sendRoomList(Connection c) {
-		RoomMessage rmsg = new RoomMessage();
-		// rmsg.setRooms(roomHandler.getRoomsAsString());
-		// print(roomHandler.getRoomsAsString()[0][1]);
-		c.sendTCP(rmsg);
-	}
+	
 
 	// PlayerUpdateMessage pm = new PlayerUpdateMessage();
 	// pm.setActions(2);
