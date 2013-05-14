@@ -55,9 +55,8 @@ public class ClientController {
 					+ "\" from server.");
 
 			if (object instanceof RoomMessage) {
-				System.out.println("Update room list");
 				RoomMessage rmsg = (RoomMessage) object;
-//				setRoomData(rmsg.getRooms());
+				view.updateRoomData(rmsg.getRooms());
 			}
 
 			if (object instanceof CreateBoolMessage) {
