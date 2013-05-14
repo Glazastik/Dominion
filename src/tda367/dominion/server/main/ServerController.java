@@ -40,7 +40,7 @@ public class ServerController {
 			if (object instanceof ConnectionMessage) {
 				print(c.getRemoteAddressTCP() + " wants to connect to a room.");
 				ConnectionMessage cmsg = (ConnectionMessage) object;
-				connectPlayer(gc, cmsg);
+				connectPlayer(gc, cmsg.getRoomId(), cmsg.getName());
 			} else if (object instanceof RoomUpdateMessage) {
 				// TODO: To stop it from printing these.
 				print("Updating room list for client");
@@ -65,18 +65,17 @@ public class ServerController {
 			 print(c.getID() + " disconnected and kicked");
 		}
 
-		protected void connectPlayer(GameConnection c, ConnectionMessage cmsg) {
-			int id = cmsg.getRoomId();
-			c.setPlayerName(cmsg.getName());
+		private void connectPlayer(GameConnection gc, int roomId, String name) {
+			gc.setPlayerName(name);
 
-			if (!roomHandler.addPlayer(c, id)) {
-				print("Couldn't add " + cmsg.getName() + " to room "
-						+ cmsg.getRoomId());
+			if (!roomHandler.addPlayer(gc, roomId)) {
+				print("Couldn't add " + name + " to room "
+						+ roomId);
 				return;
 			}
 
-			if (roomHandler.start(id)) {
-				setupGame(id);
+			if (roomHandler.start(roomId)) {
+				setupGame(roomId);
 			}
 		}
 
