@@ -196,7 +196,7 @@ public class ServerListState extends ControlledGameState {
 	private void paintButtons() 
 			throws SlickException {
 		int xOffset = 480;
-		int yOffset = 700;
+		int yOffset = 50;
 		int buttonHeight = joinButton.getHeight();
 		int buttonWidth = joinButton.getWidth();
 		int buttonSpacing = 10;
