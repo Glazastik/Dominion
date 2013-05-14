@@ -10,6 +10,7 @@ import tda367.dominion.commons.messages.DoneMessage;
 import tda367.dominion.commons.messages.LocatedCardMessage;
 import tda367.dominion.commons.messages.PlayerUpdateMessage;
 import tda367.dominion.commons.messages.RevealCardMessage;
+import tda367.dominion.commons.messages.RoomHostMessage;
 import tda367.dominion.commons.messages.RoomMessage;
 import tda367.dominion.commons.messages.RoomUpdateMessage;
 
@@ -22,7 +23,7 @@ public class NetworkCommon {
 	
 	public static void register(EndPoint ep){
 		Kryo kryo = ep.getKryo();
-		//TODO Viktigt att registrera alla klasser här.
+		//TODO Viktigt att registrera alla klasser her.
 		kryo.register(BasicMessage.class);
 		kryo.register(LocatedCardMessage.class);
 		kryo.register(BoolMessage.class);
@@ -35,6 +36,7 @@ public class NetworkCommon {
 		kryo.register(RoomUpdateMessage.class);
 		kryo.register(CardUpdateMessage.class);
 		kryo.register(PlayerUpdateMessage.class);
+		kryo.register(RoomHostMessage.class);
 		
 		kryo.register(ArrayList.class);
 		kryo.register(String[][].class);

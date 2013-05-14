@@ -31,6 +31,7 @@ public class ServerListState extends ControlledGameState {
 	// Listeners
 	private GameListener roomUpdateListener;
 	private GameListener joinListener;
+	private GameListener hostListener;
 
 	//TODO: Temporary rectangle
 	private Rectangle join;
@@ -161,6 +162,10 @@ public class ServerListState extends ControlledGameState {
 		
 		if(refreshRec.contains(x, y)) {
 			updateRoomList();
+		}
+		
+		if(hostRec.contains(x, y)){
+			
 		}
 	}
 

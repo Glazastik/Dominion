@@ -4,6 +4,7 @@ import java.util.LinkedList;
 
 import tda367.dominion.commons.messages.CardMessage;
 import tda367.dominion.commons.messages.ConnectionMessage;
+import tda367.dominion.commons.messages.RoomHostMessage;
 import tda367.dominion.commons.messages.RoomMessage;
 import tda367.dominion.commons.messages.RoomUpdateMessage;
 import tda367.dominion.commons.messages.SetupMessage;
@@ -42,6 +43,10 @@ public class ServerController {
 				connectPlayer(gc, cmsg.getRoomId(), cmsg.getName());
 			} else if (object instanceof RoomUpdateMessage) {
 				sendRoomList(c);
+
+			} else if (object instanceof RoomHostMessage) {
+				hostRoom(((RoomHostMessage) object).getName());
+
 			} else if (object instanceof CardMessage) {
 				// TODO: Play the card
 				// print("Player played: " + ((CardMessage) object).getCard());
@@ -51,21 +56,25 @@ public class ServerController {
 			}
 		}
 
+		private void hostRoom(String name) {
+			roomHandler.createRoom(name);
+
+		}
+
 		@Override
 		public void disconnected(Connection c) {
 			GameConnection gc = (GameConnection) c;
 			print("Player " + gc.getID() + " disconnected");
-			 
-			 roomHandler.kickConnection(gc);
-			 print(c.getID() + " disconnected and kicked");
+
+			roomHandler.kickConnection(gc);
+			print(c.getID() + " disconnected and kicked");
 		}
 
 		private void connectPlayer(GameConnection gc, int roomId, String name) {
 			gc.setPlayerName(name);
 
 			if (!roomHandler.addPlayer(gc, roomId)) {
-				print("Couldn't add " + name + " to room "
-						+ roomId);
+				print("Couldn't add " + name + " to room " + roomId);
 				return;
 			}
 
@@ -89,7 +98,7 @@ public class ServerController {
 			}
 
 		}
-		
+
 		private void sendRoomList(Connection c) {
 			print("Updating room list for client");
 			RoomMessage msg = new RoomMessage();
