@@ -3,6 +3,8 @@ package tda367.dominion.server.game;
 import java.util.HashMap;
 import java.util.LinkedList;
 
+import tda367.dominion.server.network.NetworkHandler;
+
 /**
  * @author Group 28
  * Master class for one instance of a game.
@@ -13,6 +15,8 @@ public class Dominion {
 	//TODO: hashmap that pairs a player to a controller/ networklistener : private final HashMap<,Player>
 	private final Supply supply;
 	private final CardRulesHandler cardRulesHandler;
+	private NetworkHandler network;
+	
 	/**
 	 * Constructs a fine game of Dominion!
 	 * @param players list of players playing the game
