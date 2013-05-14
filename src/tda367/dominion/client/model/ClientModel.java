@@ -2,6 +2,7 @@ package tda367.dominion.client.model;
 
 import tda367.dominion.client.network.ClientConnection;
 import tda367.dominion.commons.messages.BoolMessage;
+import tda367.dominion.commons.messages.ConnectionMessage;
 import tda367.dominion.commons.messages.LocatedCardMessage;
 import tda367.dominion.commons.messages.RoomUpdateMessage;
 
@@ -20,6 +21,12 @@ public class ClientModel {
 	
 	public void searchForGame() {
 		RoomUpdateMessage msg = new RoomUpdateMessage();
+		connection.sendMessage(msg);
+	}
+	
+	public void joinRoom(int roomId) {
+		ConnectionMessage msg = new ConnectionMessage();
+		msg.setRoomId(roomId);
 		connection.sendMessage(msg);
 	}
 

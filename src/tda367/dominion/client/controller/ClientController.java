@@ -89,6 +89,12 @@ public class ClientController {
 		}
 	}
 	
+	class JoinRoomListener implements GameListener {
+		public void run(GameEvent e) {
+			model.joinRoom(e.getInt());
+		}
+	}
+	
 	// Will be activated every time a card is chosen
 	class CardListener implements GameListener {
 		public void run(GameEvent e) {

@@ -17,11 +17,11 @@ public class ServerListState extends ControlledGameState {
 	private String[][] roomData = new String[0][0];
 	private Image board;
 	private Image room;
+	private TextField tf;
 	
 	// Listeners
 	private GameListener roomUpdateListener;
-	
-	private TextField tf;
+	private GameListener joinListener;
 
 	//TODO: Temporary rectangle
 	private Rectangle join;
@@ -45,6 +45,10 @@ public class ServerListState extends ControlledGameState {
 	public void addUpdateRoomListener(GameListener l) {
 		roomUpdateListener = l;
 	}
+	
+	public void addJoinListener(GameListener l) {
+		joinListener = l;
+	}
 
 	public void updateRoomData(String[][] s) {
 		if (s != null) {
@@ -54,6 +58,11 @@ public class ServerListState extends ControlledGameState {
 	
 	private void updateRoomList() {
 		roomUpdateListener.run(new GameEvent());
+	}
+	
+	private void joinRoom(int roomId) {
+		GameEvent e = new GameEvent(roomId);
+		joinListener.run(e);
 	}
 
 	@Override
