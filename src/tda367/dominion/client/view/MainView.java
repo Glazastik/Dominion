@@ -35,15 +35,10 @@ public class MainView extends StateBasedGame implements Runnable {
 		addState(new SplashScreen(Settings.SPLASHSTATE));
 		enterState(Settings.SPLASHSTATE);
 		addState(new MainMenuState(Settings.MAINMENUSTATE));
-		getState(Settings.MAINMENUSTATE).init(gc, this);
 		addState(new InGameState(Settings.INGAMESTATE));
-		getState(Settings.INGAMESTATE).init(gc, this);
 		addState(new ServerListState(Settings.SERVERLISTSTATE));
-		getState(Settings.SERVERLISTSTATE).init(gc, this);
 		addState(new OptionsState(Settings.OPTIONSSTATE));
-		getState(Settings.OPTIONSSTATE).init(gc, this);
 		addState(new ShowCardState(Settings.SHOWCARDSTATE));
-		getState(Settings.SHOWCARDSTATE).init(gc, this);
 	}
 	
 	public void addCardListener(GameListener l) {
