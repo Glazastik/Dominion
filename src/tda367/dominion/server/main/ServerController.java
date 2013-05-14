@@ -21,7 +21,7 @@ public class ServerController {
 	private RoomHandler roomHandler;
 
 	public ServerController() {
-		network = new NetworkHandler();
+		network = NetworkHandler.getInstance();
 		view = ServerFrame.getInstance();
 		roomHandler = new RoomHandler();
 		network.addListener(new NetworkListener());

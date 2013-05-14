@@ -1,13 +1,7 @@
 package tda367.dominion.server.network;
 
 import java.io.IOException;
-import java.util.ArrayList;
-
-import tda367.dominion.commons.messages.CardUpdateMessage;
-import tda367.dominion.commons.messages.ConnectionMessage;
 import tda367.dominion.commons.messages.Message;
-import tda367.dominion.commons.messages.PlayerUpdateMessage;
-import tda367.dominion.commons.messages.RoomMessage;
 import tda367.dominion.commons.network.NetworkCommon;
 
 import com.esotericsoftware.kryonet.Connection;
@@ -15,12 +9,21 @@ import com.esotericsoftware.kryonet.Listener;
 import com.esotericsoftware.kryonet.Server;
 
 public class NetworkHandler {
+	private static NetworkHandler network;
 	private static Server server;
+	
+	private NetworkHandler() {
+		
+	}
 
 	/**
-	 * Creates and returns a fresh instance of the server.
+	 * Returns an instance of the network.
 	 */
-	public NetworkHandler() {
+	public static NetworkHandler getInstance() {
+		if(network != null) {
+			return network;
+		}
+		
 		server = new Server() {
 			protected Connection newConnection() {
 				return new GameConnection();
@@ -34,6 +37,8 @@ public class NetworkHandler {
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		
+		return network;
 	}
 
 	public void addListener(Listener l) {
@@ -46,23 +51,5 @@ public class NetworkHandler {
 	public void sendMessage(int id, Message msg) {
 		server.sendToTCP(id, msg);
 	}
-
-	
-
-	// PlayerUpdateMessage pm = new PlayerUpdateMessage();
-	// pm.setActions(2);
-	// pm.setBuys(1);
-	// pm.setMoney(5);
-	// c.sendTCP(pm);
-	//
-	// CardUpdateMessage cm = new CardUpdateMessage();
-	// ArrayList<String> l = new ArrayList<String>();
-	// l.add("Village");
-	// l.add("Gold");
-	// cm.setHand(l);
-	// cm.setInPlay(l);
-	// cm.setDiscard(null);
-	// cm.setDeckSize(10);
-	// c.sendTCP(cm);
 
 }

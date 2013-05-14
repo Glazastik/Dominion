@@ -26,6 +26,7 @@ public class Dominion {
 		this.players = players;
 		this.supply = new Supply(players.size());
 		cardRulesHandler = new CardRulesHandler(players, supply);
+		network = NetworkHandler.getInstance();
 	}
 	
 	/**
