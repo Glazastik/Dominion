@@ -38,6 +38,8 @@ public class NetworkHandler {
 			e.printStackTrace();
 		}
 		
+		network = new NetworkHandler();
+		
 		return network;
 	}
 
