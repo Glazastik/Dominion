@@ -60,7 +60,12 @@ public class MainView extends StateBasedGame implements Runnable {
 		ServerListState s = (ServerListState)this.getState(Settings.SERVERLISTSTATE);
 		s.addUpdateRoomListener(l);
 	}
-    
+	
+	public void addHostListener(GameListener l){
+		ServerListState s = (ServerListState)this.getState(Settings.SERVERLISTSTATE);
+		s.addHostListener(l);
+	}
+	    
     /**
      * Sets the resolution of the game to width and height
      * @param width

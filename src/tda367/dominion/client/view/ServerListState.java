@@ -70,6 +70,10 @@ public class ServerListState extends ControlledGameState {
 	public void addJoinListener(GameListener l) {
 		joinListener = l;
 	}
+	
+	public void addHostListener(GameListener l){
+		hostListener = l;
+	}
 
 	public void updateRoomData(String[][] s) {
 		if (s != null) {
