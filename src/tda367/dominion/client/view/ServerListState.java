@@ -89,6 +89,10 @@ public class ServerListState extends ControlledGameState {
 		GameEvent e = new GameEvent(roomId);
 		joinListener.run(e);
 	}
+	
+	private void hostRoom(){
+		hostListener.run(new GameEvent());
+	}
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
@@ -169,7 +173,7 @@ public class ServerListState extends ControlledGameState {
 		}
 		
 		if(hostRec.contains(x, y)){
-			
+			hostRoom();
 		}
 	}
 
