@@ -17,6 +17,9 @@ public class ServerListState extends ControlledGameState {
 	private String[][] roomData = new String[0][0];
 	private Image board;
 	private Image room;
+	private Image joinButton;
+	private Image hostButton;
+	private Image refreshButton;
 	private TextField tf;
 	
 	// Listeners
@@ -35,8 +38,11 @@ public class ServerListState extends ControlledGameState {
 			throws SlickException {
 		board = new Image("res/img/gui/ingame/BoardTemp.png");
 		room = new Image("res/img/gui/menu/room.png");
+		joinButton = new Image("res/img/gui/serverList/joinButton.png");
+		hostButton = new Image("res/img/gui/serverList/hostButton.png");
+		refreshButton = new Image("res/img/gui/serverList/refreshButton.png");
 		join = new Rectangle(600, 120, 250, 100);
-		tf = new TextField(gc, gc.getDefaultFont(), 540, 700, 200, 50);
+		tf = new TextField(gc, gc.getDefaultFont(), 1000, 50, 100, 35);
 		tf.setBackgroundColor(Color.white);
 		tf.setBorderColor(Color.black);
 		tf.setTextColor(Color.black);
@@ -69,7 +75,11 @@ public class ServerListState extends ControlledGameState {
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
 		board.draw();
+		g.drawString("Name:", 950, 50);
 		tf.render(gc, g);
+		joinButton.draw(590, 700);
+		hostButton.draw(700, 700);
+		refreshButton.draw(480, 700);
 		
 		for (int i = 0; i < roomData.length; i++) {
 			room.draw(60, 40);
