@@ -89,14 +89,15 @@ public class RoomHandler {
 		return null;
 	}
 
-	// public void kickConnection(GameConnection c) {
-	//
-	// for (GameRoom gr : rooms) {
-	// gr.kickPlayer(c.getPlayerName());
-	//
-	// }
-	//
-	// }
+	/**
+	 * Removes a player from the game
+	 * @param c
+	 */
+	public void kickConnection(GameConnection c) {
+		for (GameRoom gr : rooms) {
+			gr.kickPlayer(c.getPlayerName());
+		}
+	}
 
 	public String[] getInfo(int id) {
 		for (GameRoom gr : rooms) {
@@ -108,7 +109,6 @@ public class RoomHandler {
 				return new String[] { "" + gr.getID(), gr.getName(),
 						"" + gr.getSlots(), names };
 			}
-
 		}
 		return null;
 	}
