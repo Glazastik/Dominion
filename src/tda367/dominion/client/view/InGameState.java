@@ -121,6 +121,13 @@ public class InGameState extends ControlledGameState {
 		
 		amountOfPlayers = 2; //Should probably be supplied from network later
 		supply = new Supply(amountOfPlayers);
+		playerNames = new String[amountOfPlayers];
+		cardsOnHand = new int[amountOfPlayers];
+		
+		playerNames[0] = "Pleb";
+		playerNames[1] = "Player 2";
+		cardsOnHand[0] = 5;
+		cardsOnHand[1] = 9001;
 		
 		actionCards = StringArraytoImageArray(getActionCards(getSupply()));
 		victoryCards = StringArraytoImageArray(getVictoryCards(getSupply()));
@@ -1020,6 +1027,17 @@ public class InGameState extends ControlledGameState {
 			g.setColor(Color.white);
 			g.drawString("" + numbers[i], xOffset, cardHeight*i+(i*cardSpacing)+yOffset);
 		}
+	}
+	
+	/**
+	 * Paints the relevant info of the opposing players.
+	 * 
+	 * <p>Maybe this method should take parameters in the 
+	 * future. I just don't know. It's so dark here. I'm afraid.</p>
+	 * 
+	 */
+	private void paintOpposingPlayers(){
+		
 	}
 
 }
