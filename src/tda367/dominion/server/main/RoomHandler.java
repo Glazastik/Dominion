@@ -38,8 +38,7 @@ public class RoomHandler {
 	 * @return
 	 */
 	public String[][] getRoomsAsString() {
-
-		System.out.println("Rooms " + rooms.size());
+		//TODO: Needs to be made prettier
 		String[][] roomString = new String[rooms.size()][];
 		for (int i = 0; i < rooms.size(); i++) {
 			GameRoom gr = rooms.get(i);
@@ -155,6 +154,6 @@ public class RoomHandler {
 		msg.setSupply(smsg);
 		msg.setPlayers(gr.getPlayerNames());
 
-		return null;
+		return msg;
 	}
 }
