@@ -5,19 +5,19 @@ package tda367.dominion.commons.messages;
  */
 public class ConnectionMessage implements Message{
 	private String name;
-	private String roomId;
+	private int roomId;
 	
 	/**
 	 * @return the roomId
 	 */
-	public String getRoomId() {
+	public int getRoomId() {
 		return roomId;
 	}
 
 	/**
 	 * @param roomId the roomId to set
 	 */
-	public void setRoomId(String roomId) {
+	public void setRoomId(int roomId) {
 		this.roomId = roomId;
 	}
 
