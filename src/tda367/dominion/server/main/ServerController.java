@@ -2,13 +2,11 @@ package tda367.dominion.server.main;
 
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
-import com.esotericsoftware.kryonet.FrameworkMessage.KeepAlive;
 
 import tda367.dominion.commons.messages.CardMessage;
 import tda367.dominion.commons.messages.ConnectionMessage;
 import tda367.dominion.commons.messages.RoomMessage;
 import tda367.dominion.commons.messages.RoomUpdateMessage;
-import tda367.dominion.server.network.GameConnection;
 import tda367.dominion.server.network.NetworkHandler;
 import tda367.dominion.server.view.ServerFrame;
 
