@@ -27,6 +27,23 @@ public class InGameState extends ControlledGameState {
 	private int[] nbrOfTreasureCards;
 	private int[] nbrOfVictoryCards;
 
+	/**
+	 * Contains all the player's names. This includes the player 
+	 * using the client, not just opponents
+	 */
+	private String[] playerNames; 
+	
+	/**
+	 * Stores the amount of cards a player has on hand.
+	 * cardsOnHand[0] refers to playerNames[0].
+	 */
+	private int[] cardsOnHand;
+	
+	/**
+	 * Stores which players turn it is. turn == 1 means
+	 * that it is playerNames[1]'s turn.
+	 */
+	private int turn;
 	private Image[] actionCards;
 	private Image[] victoryCards;
 	private Image[] treasureCards;
