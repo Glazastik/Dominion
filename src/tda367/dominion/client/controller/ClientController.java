@@ -52,8 +52,6 @@ public class ClientController {
 		
 		@Override
 		public void received (Connection connection, Object object) {
-			System.out.println("Received \"" + object.getClass().getName()
-					+ "\" from server.");
 
 			if (object instanceof RoomMessage) {
 				RoomMessage rmsg = (RoomMessage) object;
