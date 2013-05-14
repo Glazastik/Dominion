@@ -20,11 +20,13 @@ public class ServerListState extends ControlledGameState {
 	private Image joinButton;
 	private Image hostButton;
 	private Image refreshButton;
+	private Image backButton;
 	private TextField tf;
 	
 	private Rectangle joinRec;
 	private Rectangle hostRec;
 	private Rectangle refreshRec;
+	private Rectangle backRec;
 	
 	// Listeners
 	private GameListener roomUpdateListener;
@@ -32,6 +34,8 @@ public class ServerListState extends ControlledGameState {
 
 	//TODO: Temporary rectangle
 	private Rectangle join;
+	
+	private boolean leave = false;
 
 	public ServerListState(int id) {
 		super(id);
@@ -45,9 +49,11 @@ public class ServerListState extends ControlledGameState {
 		joinButton = new Image("res/img/gui/serverList/joinButton.png");
 		hostButton = new Image("res/img/gui/serverList/hostButton.png");
 		refreshButton = new Image("res/img/gui/serverList/refreshButton.png");
+		backButton = new Image("res/img/gui/serverList/backButton.png");
 		joinRec = new Rectangle();
 		hostRec = new Rectangle();
 		refreshRec = new Rectangle();
+		backRec = new Rectangle();
 		
 		join = new Rectangle(600, 120, 250, 100);
 		tf = new TextField(gc, gc.getDefaultFont(), 1000, 50, 100, 35);
@@ -102,8 +108,8 @@ public class ServerListState extends ControlledGameState {
 		Input input = gc.getInput();
 
 		// Enter menu
-		if (input.isKeyPressed(Input.KEY_SPACE)
-				|| input.isKeyPressed(Input.KEY_1)) {
+		if (leave == true) {
+			leave = false;
 			sbg.enterState(1, null,
 					Transitions.createNewHorizontalSplitTransition());
 		}
@@ -149,6 +155,10 @@ public class ServerListState extends ControlledGameState {
 //			controller.joinRoom(0);
 		}
 		
+		if(backRec.contains(x, y)) {
+			leave = true;
+		}
+		
 		if(refreshRec.contains(x, y)) {
 			updateRoomList();
 		}
@@ -161,8 +171,12 @@ public class ServerListState extends ControlledGameState {
 	public void keyPressed(int key, char c) {
 		
 		super.keyPressed(key, c);
-		if(key == Input.KEY_U){
-			//TODO: Request new rooms.
+		if(key == Input.KEY_F5){
+			updateRoomList();
+		}
+		
+		if(key == Input.KEY_1) {
+			leave = true;
 		}
 	}
 	
@@ -176,9 +190,11 @@ public class ServerListState extends ControlledGameState {
 		refreshButton.draw(xOffset, yOffset);
 		joinButton.draw(xOffset+buttonSpacing+buttonWidth, yOffset);
 		hostButton.draw(xOffset+2*buttonSpacing+2*buttonWidth, yOffset);
+		backButton.draw(50,50);
 		refreshRec.setBounds(xOffset, yOffset, buttonWidth, buttonHeight);
 		joinRec.setBounds(xOffset+buttonSpacing+buttonWidth, yOffset, buttonWidth, buttonHeight);
 		hostRec.setBounds(xOffset+2*buttonSpacing+2*buttonWidth, yOffset, buttonWidth, buttonHeight);
+		backRec.setBounds(50,50,buttonWidth,buttonHeight);
 	}
 
 }
