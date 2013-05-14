@@ -176,6 +176,19 @@ public class ServerListState extends ControlledGameState {
 	 */
 	@Override
 	public void mouseClicked(int button, int x, int y, int clickCount) {
+		
+		for(int i = 0; i < roomList.length; i++) {
+			if(roomRecs[i].contains(x, y)) {
+				try {
+					resetRoomListImages();
+					roomList[i] =  new Image("res/img/gui/serverList/selectedRoomItem.png");
+					//TODO: set join ID 
+				} catch (SlickException e) {
+					e.printStackTrace();
+				}
+			}
+		}
+		
 		if(join.contains(x, y)){
 //			controller.joinRoom(0);
 		}
@@ -206,6 +219,12 @@ public class ServerListState extends ControlledGameState {
 		
 		if(key == Input.KEY_1) {
 			leave = true;
+		}
+	}
+	
+	private void resetRoomListImages() throws SlickException {
+		for(int i = 0; i < roomList.length; i++) {
+			roomList[i] = new Image("res/img/gui/serverList/roomItem.png");
 		}
 	}
 	
