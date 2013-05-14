@@ -6,7 +6,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
-import org.newdawn.slick.geom.Rectangle;
+import org.lwjgl.util.Rectangle;
 import org.newdawn.slick.gui.TextField;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -21,6 +21,11 @@ public class ServerListState extends ControlledGameState {
 	private Image hostButton;
 	private Image refreshButton;
 	private TextField tf;
+	
+	private Rectangle joinRec;
+	private Rectangle hostRec;
+	private Rectangle refreshRec;
+	private Rectangle textRec;
 	
 	// Listeners
 	private GameListener roomUpdateListener;
@@ -41,6 +46,13 @@ public class ServerListState extends ControlledGameState {
 		joinButton = new Image("res/img/gui/serverList/joinButton.png");
 		hostButton = new Image("res/img/gui/serverList/hostButton.png");
 		refreshButton = new Image("res/img/gui/serverList/refreshButton.png");
+		textRec = new Rectangle();
+		joinRec = new Rectangle();
+		hostRec = new Rectangle();
+		refreshRec = new Rectangle();
+		
+
+		textRec.setBounds(1000, 50, 100, 35);
 		join = new Rectangle(600, 120, 250, 100);
 		tf = new TextField(gc, gc.getDefaultFont(), 1000, 50, 100, 35);
 		tf.setBackgroundColor(Color.white);
@@ -77,9 +89,7 @@ public class ServerListState extends ControlledGameState {
 		board.draw();
 		g.drawString("Name:", 950, 50);
 		tf.render(gc, g);
-		joinButton.draw(590, 700);
-		hostButton.draw(700, 700);
-		refreshButton.draw(480, 700);
+		paintButtons();
 		
 		for (int i = 0; i < roomData.length; i++) {
 			room.draw(60, 40);
@@ -101,11 +111,6 @@ public class ServerListState extends ControlledGameState {
 			sbg.enterState(1, null,
 					Transitions.createNewHorizontalSplitTransition());
 		}
-		
-		if (input.isKeyPressed(Input.KEY_L)) {
-			tf.setFocus(true);
-		}
-
 	}
 
 	/**
@@ -148,6 +153,10 @@ public class ServerListState extends ControlledGameState {
 		if(join.contains(x, y)){
 //			controller.joinRoom(0);
 		}
+		
+		if(button == Input.MOUSE_LEFT_BUTTON && textRec.contains(x, y)) {
+			tf.setFocus(true);
+		}
 	}
 
 	/**
@@ -160,6 +169,21 @@ public class ServerListState extends ControlledGameState {
 		if(key == Input.KEY_U){
 			//TODO: Request new rooms.
 		}
+	}
+	
+	private void paintButtons() 
+			throws SlickException {
+		int xOffset = 480;
+		int yOffset = 700;
+		int buttonHeight = joinButton.getHeight();
+		int buttonWidth = joinButton.getWidth();
+		int buttonSpacing = 10;
+		refreshButton.draw(xOffset, yOffset);
+		joinButton.draw(xOffset+buttonSpacing+buttonWidth, yOffset);
+		hostButton.draw(xOffset+2*buttonSpacing+2*buttonWidth, yOffset);
+		refreshRec.setBounds(xOffset, yOffset, buttonWidth, buttonHeight);
+		joinRec.setBounds(xOffset+buttonSpacing+buttonWidth, yOffset, buttonWidth, buttonHeight);
+		hostRec.setBounds(xOffset+2*buttonSpacing+2*buttonWidth, yOffset, buttonWidth, buttonHeight);
 	}
 
 }
