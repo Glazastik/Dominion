@@ -40,42 +40,11 @@ public class NetworkHandler {
 		server.addListener(l);
 	}
 
-	protected static void connectPlayer(GameConnection c, ConnectionMessage cmsg) {
-		int id = Integer.parseInt(cmsg.getRoomId());
-		c.setPlayerName(cmsg.getName());
-
-		// if (!roomHandler.addPlayer(c, id)){
-		// print("Couldn't add " + cmsg.getName() + " to room " +
-		// cmsg.getRoomId());
-		// return;
-		// }
-		//
-		// if(roomHandler.start(id)){
-		// setupGame(id);
-		// }
-	}
-
 	/**
 	 * Send a message to the specific client
 	 */
 	public void sendMessage(int id, Message msg) {
 		server.sendToTCP(id, msg);
-	}
-
-	/**
-	 * This method will hand notify all the players that the game has begun.
-	 * 
-	 * @param id
-	 */
-	private static void setupGame(int id) {
-		// TODO: Notify all players
-		// LinkedList<GameConnection> gcs = roomHandler.getPlayers(id);
-		// SetupMessage setupMsg = roomHandler.getSetupMessage(id);
-
-		// for(GameConnection gc: gcs){
-		// gc.sendTCP(setupMsg);
-		// }
-
 	}
 
 	protected static void sendRoomList(Connection c) {

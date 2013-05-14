@@ -2,6 +2,11 @@ package tda367.dominion.server.main;
 
 import java.util.LinkedList;
 
+import tda367.dominion.commons.messages.SetupMessage;
+import tda367.dominion.commons.messages.SupplyMessage;
+import tda367.dominion.server.game.Player;
+import tda367.dominion.server.network.GameConnection;
+
 /**
  * Knows about the states of the game rooms.
  */
@@ -56,17 +61,17 @@ public class RoomHandler {
 	 * @param id
 	 *            The id of the room to add the player to.
 	 */
-	// public boolean addPlayer(GameConnection c, int id) {
-	// System.out.println("Trying to add player " + c.getPlayerName() + " to "
-	// + id);
-	// GameRoom gr = this.getRoomById(id);
-	// if (!gr.isFull() && !gr.hasConnection(c)) {
-	// gr.addPlayer(c);
-	// return true;
-	// }
-	//
-	// return false;
-	// }
+	public boolean addPlayer(GameConnection c, int id) {
+		System.out.println("Trying to add player " + c.getPlayerName() + " to "
+				+ id);
+		GameRoom gr = this.getRoomById(id);
+		if (!gr.isFull() && !gr.hasConnection(c)) {
+			gr.addPlayer(c);
+			return true;
+		}
+
+		return false;
+	}
 
 	/**
 	 * Returns a room with corresponding ID.
@@ -93,20 +98,20 @@ public class RoomHandler {
 	//
 	// }
 
-	// public String[] getInfo(int id) {
-	// for (GameRoom gr : rooms) {
-	// if (gr.getID() == id) {
-	// String names = "";
-	// for (Player p : gr.getPlayers()) {
-	// names += p.getName();
-	// }
-	// return new String[] { "" + gr.getID(), gr.getName(),
-	// "" + gr.getSlots(), names };
-	// }
-	//
-	// }
-	// return null;
-	// }
+	public String[] getInfo(int id) {
+		for (GameRoom gr : rooms) {
+			if (gr.getID() == id) {
+				String names = "";
+				for (Player p : gr.getPlayers()) {
+					names += p.getName();
+				}
+				return new String[] { "" + gr.getID(), gr.getName(),
+						"" + gr.getSlots(), names };
+			}
+
+		}
+		return null;
+	}
 
 	/**
 	 * Attempts to start a room, only if the room is full (slots == 0).
@@ -130,25 +135,26 @@ public class RoomHandler {
 	 * @param id
 	 * @return
 	 */
-//	 public LinkedList<GameConnection> getPlayers(int id) {
-//		 return this.getRoomById(id).getConnections();
-//	 }
-	
-	 /**
+	public LinkedList<GameConnection> getPlayers(int id) {
+		return this.getRoomById(id).getConnections();
+	}
+
+	/**
 	 * Generates a SetupMessage containing players and supply.
+	 * 
 	 * @param id
 	 * @return
 	 */
-//	 public SetupMessage getSetupMessage(int id) {
-//	 SetupMessage msg = new SetupMessage();
-//	 GameRoom gr = this.getRoomById(id);
-//	
-//	 SupplyMessage smsg = new SupplyMessage();
-//	 smsg.setSupply(gr.getModel().getSupplyInfo());
-//	
-//	 msg.setSupply(smsg);
-//	 msg.setPlayers(gr.getPlayerNames());
-//	
-//	 return null;
-//	 }
+	public SetupMessage getSetupMessage(int id) {
+		SetupMessage msg = new SetupMessage();
+		GameRoom gr = this.getRoomById(id);
+
+		SupplyMessage smsg = new SupplyMessage();
+		smsg.setSupply(gr.getModel().getSupplyInfo());
+
+		msg.setSupply(smsg);
+		msg.setPlayers(gr.getPlayerNames());
+
+		return null;
+	}
 }
