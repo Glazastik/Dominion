@@ -25,7 +25,6 @@ public class ServerListState extends ControlledGameState {
 	private Rectangle joinRec;
 	private Rectangle hostRec;
 	private Rectangle refreshRec;
-	private Rectangle textRec;
 	
 	// Listeners
 	private GameListener roomUpdateListener;
@@ -46,13 +45,10 @@ public class ServerListState extends ControlledGameState {
 		joinButton = new Image("res/img/gui/serverList/joinButton.png");
 		hostButton = new Image("res/img/gui/serverList/hostButton.png");
 		refreshButton = new Image("res/img/gui/serverList/refreshButton.png");
-		textRec = new Rectangle();
 		joinRec = new Rectangle();
 		hostRec = new Rectangle();
 		refreshRec = new Rectangle();
 		
-
-		textRec.setBounds(1000, 50, 100, 35);
 		join = new Rectangle(600, 120, 250, 100);
 		tf = new TextField(gc, gc.getDefaultFont(), 1000, 50, 100, 35);
 		tf.setBackgroundColor(Color.white);
