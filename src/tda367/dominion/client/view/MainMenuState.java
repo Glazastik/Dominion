@@ -57,7 +57,7 @@ public class MainMenuState extends ControlledGameState {
 		exitRec = new Rectangle(100, exitY - 50, 200, 50);
 		optionsRec = new Rectangle(100, optionsY - 50, 200, 50);
 		
-		gc.setMouseCursor("res/img/gui/menu/wow2.gif", 0, 0);
+		gc.setMouseCursor("res/img/gui/menu/wow3.png", 0, 0);
 
 	}
 
