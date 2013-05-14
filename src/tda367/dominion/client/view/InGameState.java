@@ -124,10 +124,11 @@ public class InGameState extends ControlledGameState {
 		playerNames = new String[amountOfPlayers];
 		cardsOnHand = new int[amountOfPlayers];
 		
-		playerNames[0] = "Pleb";
+		playerNames[0] = Settings.getName();
 		playerNames[1] = "Player 2";
 		cardsOnHand[0] = 5;
 		cardsOnHand[1] = 9001;
+		turn = 1;
 		
 		actionCards = StringArraytoImageArray(getActionCards(getSupply()));
 		victoryCards = StringArraytoImageArray(getVictoryCards(getSupply()));
@@ -185,6 +186,7 @@ public class InGameState extends ControlledGameState {
 		paintNbrOfActionCards(nbrOfActionCards, actionCards, g);
 		paintNbrOfTreasureCards(nbrOfTreasureCards, treasureCards, g);
 		paintNbrOfVictoryCards(nbrOfVictoryCards, victoryCards, g);
+		paintOpposingPlayers(g);
 		paintButtons();
 		paintStatusBar(g);
 		
@@ -1036,8 +1038,24 @@ public class InGameState extends ControlledGameState {
 	 * future. I just don't know. It's so dark here. I'm afraid.</p>
 	 * 
 	 */
-	private void paintOpposingPlayers(){
+	private void paintOpposingPlayers(Graphics g){
+		int xOffset = 1050;
+		int yOffsetName = 15;
+		int yOffsetHand = 30;
+		int space = 50;
+		int numberPainted = 0;
 		
+		for(int i = 0; i < playerNames.length; i++){
+			if(!playerNames[i].equals(Settings.getName())){
+				if(i == turn){
+					g.setColor(Color.red);
+				}
+				g.drawString("Player: " + playerNames[i], xOffset, yOffsetName + space*numberPainted);
+				g.setColor(Color.white);
+				g.drawString("Cards on hand: " + cardsOnHand[i], xOffset, yOffsetHand + space*numberPainted);
+				numberPainted++;
+			}
+		}
 	}
 
 }
