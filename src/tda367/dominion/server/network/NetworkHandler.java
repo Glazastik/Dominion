@@ -21,7 +21,11 @@ public class NetworkHandler {
 	 * Creates and returns a fresh instance of the server.
 	 */
 	public NetworkHandler() {
-		server = new Server();
+		server = new Server() {
+			protected Connection newConnection() {
+				return new GameConnection();
+			}
+		};
 		server.start();
 		NetworkCommon.register(server);
 
@@ -31,7 +35,7 @@ public class NetworkHandler {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public void addListener(Listener l) {
 		server.addListener(l);
 	}
@@ -39,17 +43,18 @@ public class NetworkHandler {
 	protected static void connectPlayer(GameConnection c, ConnectionMessage cmsg) {
 		int id = Integer.parseInt(cmsg.getRoomId());
 		c.setPlayerName(cmsg.getName());
-		
-//		if (!roomHandler.addPlayer(c, id)){
-//			print("Couldn't add " + cmsg.getName() + " to room " + cmsg.getRoomId());
-//			return;
-//		}
-//
-//		if(roomHandler.start(id)){
-//			setupGame(id);
-//		}
+
+		// if (!roomHandler.addPlayer(c, id)){
+		// print("Couldn't add " + cmsg.getName() + " to room " +
+		// cmsg.getRoomId());
+		// return;
+		// }
+		//
+		// if(roomHandler.start(id)){
+		// setupGame(id);
+		// }
 	}
-	
+
 	/**
 	 * Send a message to the specific client
 	 */
@@ -59,40 +64,41 @@ public class NetworkHandler {
 
 	/**
 	 * This method will hand notify all the players that the game has begun.
+	 * 
 	 * @param id
 	 */
 	private static void setupGame(int id) {
-		//TODO: Notify all players
-//		LinkedList<GameConnection> gcs = roomHandler.getPlayers(id);
-//		SetupMessage setupMsg = roomHandler.getSetupMessage(id);
-		
-//		for(GameConnection gc: gcs){
-//			gc.sendTCP(setupMsg);
-//		}
-		
+		// TODO: Notify all players
+		// LinkedList<GameConnection> gcs = roomHandler.getPlayers(id);
+		// SetupMessage setupMsg = roomHandler.getSetupMessage(id);
+
+		// for(GameConnection gc: gcs){
+		// gc.sendTCP(setupMsg);
+		// }
+
 	}
 
 	protected static void sendRoomList(Connection c) {
 		RoomMessage rmsg = new RoomMessage();
-//		rmsg.setRooms(roomHandler.getRoomsAsString());
-//		print(roomHandler.getRoomsAsString()[0][1]);
+		// rmsg.setRooms(roomHandler.getRoomsAsString());
+		// print(roomHandler.getRoomsAsString()[0][1]);
 		c.sendTCP(rmsg);
-		
-		PlayerUpdateMessage pm = new PlayerUpdateMessage();
-		pm.setActions(2);
-		pm.setBuys(1);
-		pm.setMoney(5);
-		c.sendTCP(pm);
-		
-		CardUpdateMessage cm = new CardUpdateMessage();
-		ArrayList<String> l = new ArrayList<String>();
-		l.add("Village");
-		l.add("Gold");
-		cm.setHand(l);
-		cm.setInPlay(l);
-		cm.setDiscard(null);
-		cm.setDeckSize(10);
-		c.sendTCP(cm);
 	}
+
+	PlayerUpdateMessage pm = new PlayerUpdateMessage();
+	// pm.setActions(2);
+	// pm.setBuys(1);
+	// pm.setMoney(5);
+	// c.sendTCP(pm);
+	//
+	// CardUpdateMessage cm = new CardUpdateMessage();
+	// ArrayList<String> l = new ArrayList<String>();
+	// l.add("Village");
+	// l.add("Gold");
+	// cm.setHand(l);
+	// cm.setInPlay(l);
+	// cm.setDiscard(null);
+	// cm.setDeckSize(10);
+	// c.sendTCP(cm);
 
 }
