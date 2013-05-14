@@ -21,12 +21,15 @@ public class ServerListState extends ControlledGameState {
 	private Image hostButton;
 	private Image refreshButton;
 	private Image backButton;
+	private Image headerBar;
+	private Image roomList[];
 	private TextField tf;
 	
 	private Rectangle joinRec;
 	private Rectangle hostRec;
 	private Rectangle refreshRec;
 	private Rectangle backRec;
+	private Rectangle roomRecs[];
 	
 	// Listeners
 	private GameListener roomUpdateListener;
@@ -51,10 +54,22 @@ public class ServerListState extends ControlledGameState {
 		hostButton = new Image("res/img/gui/serverList/hostButton.png");
 		refreshButton = new Image("res/img/gui/serverList/refreshButton.png");
 		backButton = new Image("res/img/gui/serverList/backButton.png");
+		headerBar = new Image("res/img/gui/serverList/headerBar.png");
 		joinRec = new Rectangle();
 		hostRec = new Rectangle();
 		refreshRec = new Rectangle();
 		backRec = new Rectangle();
+		
+		roomRecs = new Rectangle[10];
+		for(int i = 0; i < 10; i++) {
+			roomRecs[i] = new Rectangle();
+		}
+		
+		roomList = new Image[10];
+		for(int i = 0; i < 10; i++) {
+			roomList[i] = new Image("res/img/gui/serverList/roomItem.png");
+		}
+		
 		
 		join = new Rectangle(600, 120, 250, 100);
 		tf = new TextField(gc, gc.getDefaultFont(), 1000, 50, 100, 35);
@@ -101,6 +116,7 @@ public class ServerListState extends ControlledGameState {
 		g.drawString("Name:", 950, 50);
 		tf.render(gc, g);
 		paintButtons();
+		paintRoomList();
 		
 		for (int i = 0; i < roomData.length; i++) {
 			room.draw(60, 40);
@@ -190,6 +206,20 @@ public class ServerListState extends ControlledGameState {
 		
 		if(key == Input.KEY_1) {
 			leave = true;
+		}
+	}
+	
+	private void paintRoomList() 
+			throws SlickException {
+		int yOffset = 125;
+		int xOffset = 100;
+		int itemHeight = 48;
+		int itemWidth = 500;
+		int spacing = 5;
+		headerBar.draw(xOffset, yOffset);
+		for(int i = 0; i < roomList.length; i++) {
+			roomList[i].draw(xOffset , yOffset + (i+1)*itemHeight + (1+i)*spacing);
+			roomRecs[i].setBounds(xOffset, yOffset + (i+1)*itemHeight + (1+i)*spacing, itemWidth, itemHeight);
 		}
 	}
 	
