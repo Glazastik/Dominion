@@ -149,13 +149,16 @@ public class ServerListState extends ControlledGameState {
 	 */
 	@Override
 	public void mouseClicked(int button, int x, int y, int clickCount) {
-		super.mouseClicked(button, x, y, clickCount);
 		if(join.contains(x, y)){
 //			controller.joinRoom(0);
 		}
 		
-		if(button == Input.MOUSE_LEFT_BUTTON && textRec.contains(x, y)) {
+		if(textRec.contains(x, y)) {
 			tf.setFocus(true);
+		}
+		
+		if(refreshRec.contains(x, y)) {
+			updateRoomList();
 		}
 	}
 
