@@ -153,10 +153,6 @@ public class ServerListState extends ControlledGameState {
 //			controller.joinRoom(0);
 		}
 		
-		if(textRec.contains(x, y)) {
-			tf.setFocus(true);
-		}
-		
 		if(refreshRec.contains(x, y)) {
 			updateRoomList();
 		}
