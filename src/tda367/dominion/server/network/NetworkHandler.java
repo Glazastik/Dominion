@@ -85,7 +85,7 @@ public class NetworkHandler {
 		c.sendTCP(rmsg);
 	}
 
-	PlayerUpdateMessage pm = new PlayerUpdateMessage();
+	// PlayerUpdateMessage pm = new PlayerUpdateMessage();
 	// pm.setActions(2);
 	// pm.setBuys(1);
 	// pm.setMoney(5);
