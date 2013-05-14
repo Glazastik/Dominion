@@ -31,7 +31,6 @@ public class ServerController {
 		@Override
 		public void connected(Connection c) {
 			print("Received connection from " + c.getRemoteAddressTCP());
-			 sendRoomList(c);
 		}
 
 		@Override
@@ -42,11 +41,7 @@ public class ServerController {
 				ConnectionMessage cmsg = (ConnectionMessage) object;
 				connectPlayer(gc, cmsg.getRoomId(), cmsg.getName());
 			} else if (object instanceof RoomUpdateMessage) {
-				// TODO: To stop it from printing these.
-				print("Updating room list for client");
-				RoomMessage msg = new RoomMessage();
-				msg.setRooms(roomHandler.getRoomsAsString());
-				network.sendMessage(c.getID(), msg);
+				sendRoomList(c);
 			} else if (object instanceof CardMessage) {
 				// TODO: Play the card
 				// print("Player played: " + ((CardMessage) object).getCard());
@@ -95,11 +90,11 @@ public class ServerController {
 
 		}
 		
-		protected void sendRoomList(Connection c) {
-			RoomMessage rmsg = new RoomMessage();
-			// rmsg.setRooms(roomHandler.getRoomsAsString());
-			// print(roomHandler.getRoomsAsString()[0][1]);
-			c.sendTCP(rmsg);
+		private void sendRoomList(Connection c) {
+			print("Updating room list for client");
+			RoomMessage msg = new RoomMessage();
+			msg.setRooms(roomHandler.getRoomsAsString());
+			network.sendMessage(c.getID(), msg);
 		}
 	}
 
