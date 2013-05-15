@@ -1,6 +1,6 @@
 package tda367.dominion.commons.messages;
 
-public class SetupMessage {
+public class SetupMessage implements Message {
 	String[] players;
 	SupplyMessage supply;
 
