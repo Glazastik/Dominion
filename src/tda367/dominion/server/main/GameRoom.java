@@ -13,7 +13,7 @@ import tda367.dominion.server.network.GameConnection;
  * 
  */
 public class GameRoom {
-	private static final int MAXPLAYERS = 4;
+	private static final int MAXPLAYERS = 2;
 	private LinkedList<Player> players;
 	private LinkedList<GameConnection> gcs;
 	private int slots;
@@ -153,7 +153,7 @@ public class GameRoom {
 	 * @return
 	 */
 	public boolean isFull() {
-		return slots == 4;
+		return slots >= MAXPLAYERS;
 	}
 
 	/**
