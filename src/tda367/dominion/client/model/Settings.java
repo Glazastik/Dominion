@@ -26,5 +26,18 @@ public class Settings {
 	public static void setName(String s){
 		name = s;
 	}
+	
+	public static void setFullscreen(boolean b) {
+		FULLSCREEN = b;
+	}
+	
+	public static void showFps(boolean b) {
+		FPSSHOW = b;
+	}
+	
+	public static void setResolution(int height, int width) {
+		SCREENHEIGHT = height;
+		SCREENWIDTH = width;
+	}
 
 }

@@ -94,24 +94,24 @@ public class OptionsState extends ControlledGameState {
 		
 		//Checks if mouse cursor is within lowResolution rectangle
 		if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON) && lowResCheckbox.contains(xPos, yPos)) {
-			MainView.setResolution(600, 800);
+			Settings.setResolution(600, 800);
 		}
 		
 		//Checks if mouse cursor is within  hiResolution rectangle
 		if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON) && hiResCheckbox.contains(xPos, yPos)) {
-			MainView.setResolution(800, 1280);
+			Settings.setResolution(800, 1280);
 		}
 		
 		//Checks if mouse cursor is within fullscreen rectangle
 		if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON) && fullScreenCheckbox.contains(xPos, yPos)) {
 			fullScreen = !fullScreen;
-			MainView.setFullscreen(fullScreen);
+			Settings.setFullscreen(fullScreen);
 		}
 		
 		//Checks if mouse cursor is within fps rectangle
 		if(input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON) && fpsCheckbox.contains(xPos, yPos)) {
 			fps = !fps;
-			MainView.showFps(fps);
+			Settings.showFps(fps);
 		}
 		
 		//Enter menu
@@ -122,7 +122,7 @@ public class OptionsState extends ControlledGameState {
 		//Exit fullScreen
 		if (input.isKeyPressed(Input.KEY_F)) {
 			fullScreen = !fullScreen;
-			MainView.setFullscreen(fullScreen);
+			Settings.setFullscreen(fullScreen);
 		}
 	}
 	
