@@ -13,6 +13,7 @@ import tda367.dominion.server.network.NetworkHandler;
 import tda367.dominion.server.view.ServerFrame;
 
 import com.esotericsoftware.kryonet.Connection;
+import com.esotericsoftware.kryonet.FrameworkMessage.KeepAlive;
 import com.esotericsoftware.kryonet.Listener;
 
 public class ServerController {
@@ -50,6 +51,8 @@ public class ServerController {
 			} else if (object instanceof CardMessage) {
 				// TODO: Play the card
 				// print("Player played: " + ((CardMessage) object).getCard());
+			} else if (object instanceof KeepAlive) {
+				// Don't say anything you stupid server
 			} else {
 				print("Classname: " + object.getClass());
 				print(object.toString());
