@@ -14,8 +14,8 @@ public class Settings {
 	public static int SCREENHEIGHT = 1280;
 	public static int SCREENWIDTH = 800;
 	
-	public static boolean FULLSCREEN = false;
-	public static boolean FPSSHOW = false;
+	public static boolean fullscreen = false;
+	public static boolean fpsshow = false;
 	private static String name = "Pleb";
 	
 	public static String  getName(){
@@ -28,11 +28,11 @@ public class Settings {
 	}
 	
 	public static void setFullscreen(boolean b) {
-		FULLSCREEN = b;
+		fullscreen = b;
 	}
 	
 	public static void showFps(boolean b) {
-		FPSSHOW = b;
+		fpsshow = b;
 	}
 	
 	public static void setResolution(int height, int width) {

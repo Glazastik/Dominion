@@ -75,7 +75,7 @@ public class MainView extends StateBasedGame implements Runnable {
 	public static void setResolution(int width, int height) throws SlickException {
     	Settings.SCREENHEIGHT = height;
     	Settings.SCREENWIDTH = width;
-    	theGame.setDisplayMode(Settings.SCREENHEIGHT, Settings.SCREENWIDTH, Settings.FPSSHOW);
+    	theGame.setDisplayMode(Settings.SCREENHEIGHT, Settings.SCREENWIDTH, Settings.fpsshow);
     }
     
 	/**
@@ -84,13 +84,13 @@ public class MainView extends StateBasedGame implements Runnable {
 	 * @throws SlickException
 	 */
     public static void setFullscreen(boolean fullScreen) throws SlickException {
-    	Settings.FPSSHOW = fullScreen;
+    	Settings.fpsshow = fullScreen;
     	theGame.setDisplayMode(Settings.SCREENHEIGHT, Settings.SCREENWIDTH, fullScreen);
     }
     
     public static void showFps(boolean fps) throws SlickException {
-    	Settings.FPSSHOW = fps;
-    	theGame.setShowFPS(Settings.FPSSHOW);
+    	Settings.fpsshow = fps;
+    	theGame.setShowFPS(Settings.fpsshow);
     }
     
     public void updateRoomData(String[][] s) {
@@ -108,7 +108,7 @@ public class MainView extends StateBasedGame implements Runnable {
 			writer = new PrintWriter("options.txt", "UTF-8");
 	    	writer.println(Settings.SCREENHEIGHT);
 	    	writer.println(Settings.SCREENWIDTH);
-	    	writer.println(Settings.FULLSCREEN);
+	    	writer.println(Settings.fullscreen);
 	    	writer.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -139,7 +139,7 @@ public class MainView extends StateBasedGame implements Runnable {
 			theGame.setDisplayMode(Settings.SCREENHEIGHT, Settings.SCREENWIDTH, false);
 	        theGame.setAlwaysRender(true);
 	        theGame.setVSync(true);
-	        theGame.setShowFPS(Settings.FPSSHOW);
+	        theGame.setShowFPS(Settings.fpsshow);
 	        theGame.start();
 		} catch (SlickException e) {
 			e.printStackTrace();
