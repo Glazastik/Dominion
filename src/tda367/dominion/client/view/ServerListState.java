@@ -76,7 +76,7 @@ public class ServerListState extends ControlledGameState {
 		tf.setBorderColor(Color.black);
 		tf.setTextColor(Color.black);
 		tf.setMaxLength(10);
-		tf.setText(Settings.getName());
+		
 		tf.addListener(new ComponentListener(){
 
 			@Override
@@ -85,6 +85,9 @@ public class ServerListState extends ControlledGameState {
 			}
 			
 		});
+		String randomName = "Pleb"+((int) Math.random() * 1000);
+		tf.setText(randomName);
+		Settings.setName(randomName);
 		
 	}
 
