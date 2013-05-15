@@ -25,7 +25,9 @@ public class RoomHandler {
 	 * @param name
 	 */
 	public void createRoom(String name) {
-		rooms.add(new GameRoom(getNextID(), name));
+		if(rooms.size() < 10){
+			rooms.add(new GameRoom(getNextID(), name));
+		}
 	}
 
 	private int getNextID() {

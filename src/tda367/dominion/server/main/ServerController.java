@@ -48,6 +48,7 @@ public class ServerController {
 			} else if (object instanceof RoomHostMessage) {
 				hostRoom(((RoomHostMessage) object).getName());
 				sendRoomList(c);
+				
 			} else if (object instanceof CardMessage) {
 				// TODO: Play the card
 				// print("Player played: " + ((CardMessage) object).getCard());
@@ -60,6 +61,7 @@ public class ServerController {
 		}
 
 		private void hostRoom(String name) {
+			
 			roomHandler.createRoom(name);
 			
 		}
