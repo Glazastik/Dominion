@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 
+import tda367.dominion.commons.messages.*;
 import tda367.dominion.server.network.NetworkHandler;
 
 /**
@@ -77,8 +78,17 @@ public class Dominion {
 		
 		@Override
 		public void received(Connection c, Object object) {
-			System.out.println("The game listener is also working!" +
-					"Report to Malm so he can become a happy child");
+			if (object instanceof LocatedCardMessage) {
+				
+			}
+			
+			if (object instanceof BoolMessage) {
+				
+			}
+			
+			if (object instanceof DoneMessage) {
+				
+			}
 		}
 	}
 }
