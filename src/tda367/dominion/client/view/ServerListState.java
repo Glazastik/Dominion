@@ -85,7 +85,7 @@ public class ServerListState extends ControlledGameState {
 			}
 			
 		});
-		String randomName = "Pleb"+((int) Math.random() * 1000);
+		String randomName = "Pleb" + (int) (Math.random() * 1000);
 		tf.setText(randomName);
 		Settings.setName(randomName);
 		
