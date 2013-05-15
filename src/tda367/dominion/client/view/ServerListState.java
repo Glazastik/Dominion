@@ -1,15 +1,18 @@
 package tda367.dominion.client.view;
 
+import org.lwjgl.util.Rectangle;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
-import org.lwjgl.util.Rectangle;
+import org.newdawn.slick.gui.AbstractComponent;
+import org.newdawn.slick.gui.ComponentListener;
 import org.newdawn.slick.gui.TextField;
 import org.newdawn.slick.state.StateBasedGame;
 
+import tda367.dominion.client.model.Settings;
 import tda367.dominion.commons.listener.GameEvent;
 import tda367.dominion.commons.listener.GameListener;
 
@@ -72,6 +75,17 @@ public class ServerListState extends ControlledGameState {
 		tf.setBackgroundColor(Color.white);
 		tf.setBorderColor(Color.black);
 		tf.setTextColor(Color.black);
+		tf.setMaxLength(10);
+		tf.setText(Settings.getName());
+		tf.addListener(new ComponentListener(){
+
+			@Override
+			public void componentActivated(AbstractComponent arg0) {
+				Settings.setName(tf.getText().trim());
+			}
+			
+		});
+		
 	}
 
 	public void addUpdateRoomListener(GameListener l) {
