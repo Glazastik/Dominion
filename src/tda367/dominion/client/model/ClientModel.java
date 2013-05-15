@@ -35,7 +35,7 @@ public class ClientModel {
 
 	public void hostRoom(int i) {
 		RoomHostMessage msg = new RoomHostMessage();
-		msg.setName("Host: " + Settings.getName());
+		msg.setName(Settings.getName());
 		connection.sendMessage(msg);
 	}
 

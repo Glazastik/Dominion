@@ -25,7 +25,7 @@ public class RoomHandler {
 	 * @param name
 	 */
 	public void createRoom(String name) {
-		if(rooms.size() < 10){
+		if (rooms.size() < 10 && getRoomByName(name) == null) {
 			rooms.add(new GameRoom(getNextID(), name));
 		}
 	}
@@ -41,7 +41,7 @@ public class RoomHandler {
 	 * @return
 	 */
 	public String[][] getRoomsAsString() {
-		//TODO: Needs to be made prettier
+		// TODO: Needs to be made prettier
 		String[][] roomString = new String[rooms.size()][];
 		for (int i = 0; i < rooms.size(); i++) {
 			GameRoom gr = rooms.get(i);
@@ -55,6 +55,8 @@ public class RoomHandler {
 		return roomString;
 	}
 
+	
+
 	/**
 	 * Adds a player to the given room (id).
 	 * 
@@ -67,10 +69,12 @@ public class RoomHandler {
 		System.out.println("Trying to add player " + c.getPlayerName() + " to "
 				+ id);
 		GameRoom gr = this.getRoomById(id);
-		if(gr.hasConnection(c)){
-			ServerFrame.getInstance().print(c.getPlayerName() + " already has a connection to this game.");
+		if (gr.hasConnection(c)) {
+			ServerFrame.getInstance().print(
+					c.getPlayerName()
+							+ " already has a connection to this game.");
 		}
-		
+
 		if (!gr.isFull() && !gr.hasConnection(c)) {
 			gr.addPlayer(c);
 			return true;
@@ -96,7 +100,23 @@ public class RoomHandler {
 	}
 
 	/**
+	 * Returns a room with corresponding host's name.
+	 * @param name 
+	 * 
+	 * @return GameRoom or null if no room was found.
+	 */
+	public GameRoom getRoomByName(String name) {
+		for (GameRoom gr : rooms) {
+			if (gr.getName().equals(name)) {
+				return gr;
+			}
+		}
+		return null;
+	}
+	
+	/**
 	 * Removes a player from the game
+	 * 
 	 * @param c
 	 */
 	public void kickConnection(GameConnection c) {
@@ -163,4 +183,5 @@ public class RoomHandler {
 
 		return msg;
 	}
+
 }

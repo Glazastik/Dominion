@@ -46,7 +46,7 @@ public class ServerController {
 				sendRoomList(c);
 
 			} else if (object instanceof RoomHostMessage) {
-				hostRoom(((RoomHostMessage) object).getName());
+				hostRoom(gc, ((RoomHostMessage) object).getName());
 				sendRoomList(c);
 				
 			} else if (object instanceof CardMessage) {
@@ -55,15 +55,17 @@ public class ServerController {
 			} else if (object instanceof KeepAlive) {
 				// Don't say anything you stupid server
 			} else {
+				//If object is unknown/unhandled
 				print("Classname: " + object.getClass());
 				print(object.toString());
 			}
 		}
 
-		private void hostRoom(String name) {
+		private void hostRoom(GameConnection gc, String name) {
 			
 			roomHandler.createRoom(name);
-			
+			int id = roomHandler.getRoomByName(name).getID();
+			connectPlayer(gc, id, name);
 		}
 
 		@Override
