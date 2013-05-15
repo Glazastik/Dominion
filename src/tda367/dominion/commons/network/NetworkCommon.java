@@ -1,6 +1,7 @@
 package tda367.dominion.commons.network;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 
 import tda367.dominion.commons.messages.BoolMessage;
 import tda367.dominion.commons.messages.CardMessage;
@@ -28,6 +29,7 @@ public class NetworkCommon {
 		//TODO Viktigt att registrera alla klasser her.
 		kryo.register(SetupMessage.class);
 		kryo.register(SupplyMessage.class);
+		kryo.register(HashMap.class);
 		
 		kryo.register(BasicMessage.class);
 		kryo.register(LocatedCardMessage.class);
