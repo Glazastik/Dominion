@@ -14,7 +14,10 @@ import tda367.dominion.server.network.NetworkHandler;
  * 
  */
 public class Dominion {
+	// Player related
 	private final LinkedList<Player> players;
+	private int activePlayer;
+	
 	//TODO: hashmap that pairs a player to a controller/ networklistener : private final HashMap<,Player>
 	private final Supply supply;
 	private final CardRulesHandler cardRulesHandler;
