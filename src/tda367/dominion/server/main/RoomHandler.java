@@ -6,6 +6,7 @@ import tda367.dominion.commons.messages.SetupMessage;
 import tda367.dominion.commons.messages.SupplyMessage;
 import tda367.dominion.server.game.Player;
 import tda367.dominion.server.network.GameConnection;
+import tda367.dominion.server.view.ServerFrame;
 
 /**
  * Knows about the states of the game rooms.
@@ -64,6 +65,10 @@ public class RoomHandler {
 		System.out.println("Trying to add player " + c.getPlayerName() + " to "
 				+ id);
 		GameRoom gr = this.getRoomById(id);
+		if(gr.hasConnection(c)){
+			ServerFrame.getInstance().print(c.getPlayerName() + " already has a connection to this game.");
+		}
+		
 		if (!gr.isFull() && !gr.hasConnection(c)) {
 			gr.addPlayer(c);
 			return true;
