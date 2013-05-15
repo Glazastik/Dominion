@@ -13,6 +13,8 @@ import tda367.dominion.commons.messages.RevealCardMessage;
 import tda367.dominion.commons.messages.RoomHostMessage;
 import tda367.dominion.commons.messages.RoomMessage;
 import tda367.dominion.commons.messages.RoomUpdateMessage;
+import tda367.dominion.commons.messages.SetupMessage;
+import tda367.dominion.commons.messages.SupplyMessage;
 
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryonet.EndPoint;
@@ -24,6 +26,9 @@ public class NetworkCommon {
 	public static void register(EndPoint ep){
 		Kryo kryo = ep.getKryo();
 		//TODO Viktigt att registrera alla klasser her.
+		kryo.register(SetupMessage.class);
+		kryo.register(SupplyMessage.class);
+		
 		kryo.register(BasicMessage.class);
 		kryo.register(LocatedCardMessage.class);
 		kryo.register(BoolMessage.class);
