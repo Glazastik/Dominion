@@ -9,6 +9,7 @@ import tda367.dominion.commons.messages.CardUpdateMessage;
 import tda367.dominion.commons.messages.CreateBoolMessage;
 import tda367.dominion.commons.messages.PlayerUpdateMessage;
 import tda367.dominion.commons.messages.RoomMessage;
+import tda367.dominion.commons.messages.SetupMessage;
 
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
@@ -73,6 +74,10 @@ public class ClientController {
 				System.out.println("Update Cards");
 				CardUpdateMessage o = (CardUpdateMessage)object;
 				view.updateCards(o.getHand(), o.getInPlay(), o.getDiscard(), o.getDeckSize());
+			}
+			
+			if(object instanceof SetupMessage){
+				view.enterState(Settings.INGAMESTATE);
 			}
 		}
 
