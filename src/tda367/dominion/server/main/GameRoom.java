@@ -165,14 +165,14 @@ public class GameRoom {
 		for (Player p : players) {
 			if (p.getName().equals(playerName)) {
 				players.remove(p);
-				return;
+				break;
 			}
 		}
 
 		for (GameConnection gc : gcs) {
 			if (gc.getPlayerName().equals(playerName)) {
 				gcs.remove(gc);
-				return;
+				break;
 			}
 		}
 		updateSlots();
