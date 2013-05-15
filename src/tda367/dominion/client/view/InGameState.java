@@ -126,8 +126,8 @@ public class InGameState extends ControlledGameState {
 		
 		playerNames[0] = Settings.getName();
 		playerNames[1] = "Player 2";
-		cardsOnHand[0] = 5;
-		cardsOnHand[1] = 9001;
+		cardsOnHand[0] = 5; //Integer.parseInt(hand.get(0));
+		cardsOnHand[1] = 80085; //Integer.parseInt(hand.get(1));
 		turn = 1;
 		
 		actionCards = StringArraytoImageArray(getActionCards(getSupply()));
@@ -171,8 +171,6 @@ public class InGameState extends ControlledGameState {
 		for(int i = 0; i<40; i++) {
 			handRectangles[i] = new Rectangle();
 		}
-		
-		hand.add(0, "Plebian");
 	}
 
 	@Override

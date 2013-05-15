@@ -22,7 +22,6 @@ public class OptionsState extends ControlledGameState {
 	public RoundedRectangle hiResCheckbox;
 	public RoundedRectangle lowResCheckbox;
 	public RoundedRectangle fpsCheckbox;
-	public TextField resolutionField;
 	public boolean fullScreen = false;
 	public boolean fps = false;
 	
@@ -37,15 +36,6 @@ public class OptionsState extends ControlledGameState {
 		hiResCheckbox = new RoundedRectangle(180, 335, 25, 25, 1);
 		lowResCheckbox = new RoundedRectangle(100, 335, 25, 25, 1);
 		fpsCheckbox = new RoundedRectangle(100, 520, 25, 25, 1);
-		resolutionField = new TextField(gc, gc.getDefaultFont(), 100, 215, 100, 30);
-		resolutionField.setBackgroundColor(Color.white);
-		resolutionField.setTextColor(Color.black);
-		resolutionField.setBorderColor(Color.black);
-		resolutionField.setMaxLength(10);
-		
-		String name = "Pleb" + (int) (Math.random()*1000);
-		resolutionField.setText(name);
-		Settings.setName(name);
 		
 		checker = new Image("res/img/gui/menu/checker.png");
 		checker2 = new Image("res/img/gui/menu/checker.png");
@@ -56,7 +46,6 @@ public class OptionsState extends ControlledGameState {
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
 		g.setColor(Color.white);
-		g.drawString("Username:", 100, 200);
 		g.drawString("Options Menu", 0, 0);
 		g.drawString("Resolution:", 100, 300);
 		g.drawString("800x600", 100, 317);
@@ -67,7 +56,6 @@ public class OptionsState extends ControlledGameState {
 	    g.draw(hiResCheckbox);
 	    g.draw(lowResCheckbox);
 	    g.draw(fpsCheckbox);
-	    resolutionField.render(gc, g);
 	    
 	    if (fullScreen == true) {
 	    	checker.draw(fullScreenCheckbox.getMinX(), fullScreenCheckbox.getMinY());
