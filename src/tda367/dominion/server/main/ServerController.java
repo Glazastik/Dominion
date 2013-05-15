@@ -68,7 +68,7 @@ public class ServerController {
 		public void disconnected(Connection c) {
 			GameConnection gc = (GameConnection) c;
 			roomHandler.kickConnection(gc);
-			print(c.getID() + " disconnected and kicked");
+			print(gc.getPlayerName() + " disconnected and kicked");
 		}
 
 		private void connectPlayer(GameConnection gc, int roomId, String name) {
