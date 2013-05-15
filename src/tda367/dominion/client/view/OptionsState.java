@@ -15,6 +15,7 @@ import tda367.dominion.client.model.Settings;
 
 public class OptionsState extends ControlledGameState {
 	
+	Image background;
 	Image checker;
 	Image checker2;
 	Image checker3;
@@ -37,6 +38,7 @@ public class OptionsState extends ControlledGameState {
 		lowResCheckbox = new RoundedRectangle(100, 335, 25, 25, 1);
 		fpsCheckbox = new RoundedRectangle(100, 520, 25, 25, 1);
 		
+		background = new Image("res/img/gui/ingame/BoardTemp.png");
 		checker = new Image("res/img/gui/menu/checker.png");
 		checker2 = new Image("res/img/gui/menu/checker.png");
 		checker3 = new Image("res/img/gui/menu/checker.png");
@@ -45,6 +47,7 @@ public class OptionsState extends ControlledGameState {
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
+		background.draw();
 		g.setColor(Color.white);
 		g.drawString("Options Menu", 0, 0);
 		g.drawString("Resolution:", 100, 300);
