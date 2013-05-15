@@ -3,6 +3,9 @@ package tda367.dominion.server.game;
 import java.util.HashMap;
 import java.util.LinkedList;
 
+import com.esotericsoftware.kryonet.Connection;
+import com.esotericsoftware.kryonet.Listener;
+
 import tda367.dominion.server.network.NetworkHandler;
 
 /**
@@ -27,6 +30,7 @@ public class Dominion {
 		this.supply = new Supply(players.size());
 		cardRulesHandler = new CardRulesHandler(players, supply);
 		network = NetworkHandler.getInstance();
+		network.addListener(new NetworkListener());
 	}
 	
 	/**
@@ -61,5 +65,17 @@ public class Dominion {
 	public HashMap<String, Integer> getSupplyInfo() {
 		return supply.getCardsInSupply();
 		
+	}
+	
+	/**
+	 * A class that listens for game specific requests. 
+	 */
+	class NetworkListener extends Listener {
+		
+		@Override
+		public void received(Connection c, Object object) {
+			System.out.println("The game listener is also working!" +
+					"Report to Malm so he can become a happy child");
+		}
 	}
 }
