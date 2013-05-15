@@ -28,6 +28,7 @@ public class ClientModel {
 	public void joinRoom(int roomId) {
 		ConnectionMessage msg = new ConnectionMessage();
 		msg.setRoomId(roomId);
+		msg.setName(Settings.getName());
 		connection.sendMessage(msg);
 		System.out.println("Connectionmessage sent");
 	}
