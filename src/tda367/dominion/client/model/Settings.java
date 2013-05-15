@@ -16,6 +16,7 @@ public class Settings {
 	
 	public static boolean fullscreen = false;
 	public static boolean fpsshow = false;
+	public static boolean inGame = false;
 	private static String name = "Pleb";
 	
 	public static String  getName(){

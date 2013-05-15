@@ -9,6 +9,8 @@ import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
+import tda367.dominion.client.model.Settings;
+
 public class MainMenuState extends ControlledGameState {
 
 	String mouse = "";
@@ -92,12 +94,14 @@ public class MainMenuState extends ControlledGameState {
 		exitRec.setY(exitY);
 
 		// Checks if mouse cursor is within playgame image
-		if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)
-				&& playRec.contains(xPos, yPos)) {
-			sbg.enterState(3, null, Transitions.createNewHorizontalSplitTransition());
-		} else if(input.isKeyPressed(Input.KEY_1)) {
-			sbg.enterState(3, null, Transitions.createNewHorizontalSplitTransition());
-		}
+		if ((input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)
+				&& playRec.contains(xPos, yPos)) || input.isKeyPressed(Input.KEY_1)) {
+			if(Settings.inGame){
+				sbg.enterState(Settings.INGAMESTATE, null, Transitions.createNewHorizontalSplitTransition());
+			} else {
+				sbg.enterState(Settings.SERVERLISTSTATE, null, Transitions.createNewHorizontalSplitTransition());
+			}
+		} 
 
 		// Checks if mouse cursor is within exitgame image
 		if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)

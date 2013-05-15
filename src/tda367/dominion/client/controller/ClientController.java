@@ -77,6 +77,7 @@ public class ClientController {
 			}
 			
 			if(object instanceof SetupMessage){
+				Settings.inGame = true;
 				view.enterState(Settings.INGAMESTATE);
 			}
 		}
