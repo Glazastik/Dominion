@@ -29,11 +29,12 @@ public class ClientModel {
 		ConnectionMessage msg = new ConnectionMessage();
 		msg.setRoomId(roomId);
 		connection.sendMessage(msg);
+		System.out.println("Connectionmessage sent");
 	}
 
 	public void hostRoom(int i) {
 		RoomHostMessage msg = new RoomHostMessage();
-		msg.setName("Korv" + System.currentTimeMillis() );
+		msg.setName("Host: " + Settings.getName());
 		connection.sendMessage(msg);
 	}
 

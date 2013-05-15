@@ -29,7 +29,7 @@ public class GameRoom {
 	 */
 	public GameRoom(int id, String gameName) {
 
-		slots = 4;
+		slots = 0;
 		name = gameName;
 		this.id = id;
 
@@ -145,7 +145,7 @@ public class GameRoom {
 	 * Adjusts the current number of available slots to the right number
 	 */
 	private void updateSlots() {
-		slots = MAXPLAYERS - players.size();
+		slots = players.size();
 	}
 
 	/**
@@ -153,7 +153,7 @@ public class GameRoom {
 	 * @return
 	 */
 	public boolean isFull() {
-		return slots <= 0;
+		return slots == 4;
 	}
 
 	/**

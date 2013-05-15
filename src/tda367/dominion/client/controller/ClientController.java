@@ -34,6 +34,7 @@ public class ClientController {
 		}
 		view.addCardListener(new CardListener());
 		view.addUpdateRoomListener(new UpdateRoomListener());
+		view.addJoinListener(new JoinRoomListener());
 		view.addHostListener(new HostRoomListener());
 	}
 	

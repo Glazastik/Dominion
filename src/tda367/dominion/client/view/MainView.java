@@ -58,7 +58,7 @@ public class MainView extends StateBasedGame implements Runnable {
 	
 	public void addJoinListener(GameListener l) {
 		ServerListState s = (ServerListState)this.getState(Settings.SERVERLISTSTATE);
-		s.addUpdateRoomListener(l);
+		s.addJoinListener(l);
 	}
 	
 	public void addHostListener(GameListener l){

@@ -36,10 +36,8 @@ public class ServerListState extends ControlledGameState {
 	private GameListener joinListener;
 	private GameListener hostListener;
 
-	// TODO: Temporary rectangle
-	private Rectangle join;
-
 	private boolean leave = false;
+	private int selectedRoom;
 
 	public ServerListState(int id) {
 		super(id);
@@ -70,7 +68,6 @@ public class ServerListState extends ControlledGameState {
 			roomList[i] = new Image("res/img/gui/serverList/roomItem.png");
 		}
 
-		join = new Rectangle(600, 120, 250, 100);
 		tf = new TextField(gc, gc.getDefaultFont(), 1000, 50, 100, 35);
 		tf.setBackgroundColor(Color.white);
 		tf.setBorderColor(Color.black);
@@ -170,9 +167,32 @@ public class ServerListState extends ControlledGameState {
 	@Override
 	public void mouseClicked(int button, int x, int y, int clickCount) {
 
+		if (joinRec.contains(x, y)) {
+			this.joinRoom(selectedRoom);
+		}
+
+		if (backRec.contains(x, y)) {
+			leave = true;
+		}
+
+		if (refreshRec.contains(x, y) || joinRec.contains(x, y)) {
+			updateRoomList();
+
+		}
+
+		if (hostRec.contains(x, y)) {
+			hostRoom();
+			try {
+				resetRoomListImages();
+			} catch (SlickException e) {
+				e.printStackTrace();
+			}
+		}
+
 		for (int i = 0; i < roomList.length; i++) {
 			if (roomRecs[i].contains(x, y)) {
 				try {
+					selectedRoom = Integer.parseInt(roomData[i][0]);
 					resetRoomListImages();
 					roomList[i] = new Image(
 							"res/img/gui/serverList/selectedRoomItem.png");
@@ -181,27 +201,6 @@ public class ServerListState extends ControlledGameState {
 					e.printStackTrace();
 				}
 			}
-		}
-
-		if (join.contains(x, y)) {
-			// controller.joinRoom(0);
-		}
-
-		if (backRec.contains(x, y)) {
-			leave = true;
-		}
-
-		if (refreshRec.contains(x, y)) {
-			updateRoomList();
-			try {
-				resetRoomListImages();
-			} catch (SlickException e) {
-				e.printStackTrace();
-			}
-		}
-
-		if (hostRec.contains(x, y)) {
-			hostRoom();
 		}
 	}
 
@@ -239,10 +238,10 @@ public class ServerListState extends ControlledGameState {
 					* spacing);
 			roomRecs[i].setBounds(xOffset, yOffset + (i + 1) * itemHeight
 					+ (1 + i) * spacing, itemWidth, itemHeight);
-			g.drawString(roomData[i][0], xOffset + 15, yOffset + (i + 1)
+			g.drawString(roomData[i][1], xOffset + 15, yOffset + (i + 1)
 					* itemHeight + (1 + i) * spacing + 15);
-			g.drawString(roomData[i][1], xOffset + 45, yOffset + (i + 1)
-					* itemHeight + (1 + i) * spacing + 15);
+			g.drawString(roomData[i][2] + "/4", xOffset + 220, yOffset
+					+ (i + 1) * itemHeight + (1 + i) * spacing + 15);
 		}
 	}
 

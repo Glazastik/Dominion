@@ -43,9 +43,9 @@ public class RoomHandler {
 		for (int i = 0; i < rooms.size(); i++) {
 			GameRoom gr = rooms.get(i);
 			String[] tempRoom = new String[3];
-			tempRoom[0] = gr.getName();
-			tempRoom[1] = "" + gr.getSlots();
-			tempRoom[2] = "" + gr.getID();
+			tempRoom[0] = "" + gr.getID();
+			tempRoom[1] = gr.getName();
+			tempRoom[2] = "" + gr.getSlots();
 			roomString[i] = tempRoom;
 		}
 
