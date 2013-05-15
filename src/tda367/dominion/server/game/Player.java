@@ -8,6 +8,7 @@ import java.util.List;
  *
  */
 public class Player {
+	private final int id;
 	private final String name;
 	
 	private final Pile hand;
@@ -31,7 +32,8 @@ public class Player {
 	 * 
 	 * @param name the name with which to identify the player
 	 */
-	public Player(String name) {
+	public Player(int id, String name) {
+		this.id = id;
 		this.name = name;
 		
 		hand = new Pile();
@@ -140,6 +142,13 @@ public class Player {
 	 */
 	public String getName() {
 		return name;
+	}
+	
+	/**
+	 * @return the id
+	 */
+	public int getID() {
+		return id;
 	}
 
 	/**

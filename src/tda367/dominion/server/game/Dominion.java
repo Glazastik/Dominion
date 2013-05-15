@@ -35,6 +35,32 @@ public class Dominion {
 		cardRulesHandler = new CardRulesHandler(players, supply);
 		network = NetworkHandler.getInstance();
 		network.addListener(new NetworkListener());
+		
+		init();
+	}
+	
+	private void init() {
+		SetupMessage msg = new SetupMessage();
+		SupplyMessage smsg = new SupplyMessage();
+		
+		smsg.setSupply(supply.getCardsInSupply());
+		
+		String[] s = new String[players.size()];
+		
+		for(int i = 0; i < players.size(); i++) {
+			s[i] = players.get(i).getName();
+		}
+		
+		msg.setPlayers(s);
+		msg.setSupply(smsg);
+		
+		sendToAll(msg);
+	}
+	
+	private void sendToAll(Message msg) {
+		for(Player p : players) {
+			network.sendMessage(p.getID(), msg);
+		}
 	}
 	
 	/**
