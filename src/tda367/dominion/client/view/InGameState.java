@@ -149,6 +149,11 @@ public class InGameState extends ControlledGameState {
 		initRectangles();
 	}
 	
+	/**
+	 * Initiates every image that is used in the game.
+	 * 
+	 * @throws SlickException
+	 */
 	private void initImages() throws SlickException{
 		menuButton = new Image("res/img/gui/ingame/MenuButton.png");
 		chatButton = new Image("res/img/gui/ingame/ChatButton.png");
@@ -163,6 +168,7 @@ public class InGameState extends ControlledGameState {
 	
 	/**
 	 * Initiates every rectangle field that is used in the game.
+	 * 
 	 */
 	private void initRectangles() {
 		actionRectangles = initRectangleArray(10);
