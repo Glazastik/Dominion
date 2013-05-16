@@ -73,7 +73,10 @@ public class InGameState extends ControlledGameState {
 	private Rectangle logRec;
 	private Rectangle nextRec;
 	private Rectangle playAllRec;
+	
+	//Log variables
 	private boolean logDisplay;
+	private LinkedList<String> logText;
 
 	// Message to write in statusbar
 	private String tipMessage;
@@ -142,8 +145,13 @@ public class InGameState extends ControlledGameState {
 		// Initiate all rectangles
 		initRectangles();
 		
-		//Boolean init
+		//Log init
 		logDisplay = false;
+		logText = new LinkedList<String>();
+		
+		for (int i = 0; i<10; i++) {
+			logText.addFirst("Test " + i);
+		}
 	}
 
 	/**
@@ -1289,10 +1297,20 @@ public class InGameState extends ControlledGameState {
 	private void paintLog(Graphics g) {
 		int xOffset = 930;
 		int yOffset = 120;
+		int textOffset = 55;
+		int textSpacing = -15;
+		int numberOfTexts = 0;
 		float scale = (float)0.85;
 		
 		if (logDisplay) {
 			log.draw(xOffset, yOffset, scale);
+			for (String str : logText) {
+				if (str != null && numberOfTexts < 15) {
+					g.drawString(str, xOffset + 20, (textSpacing * numberOfTexts)
+							+ yOffset - textOffset + (int)(log.getHeight()*0.85));
+					numberOfTexts++;
+				}
+			}
 		}
 	}
 
