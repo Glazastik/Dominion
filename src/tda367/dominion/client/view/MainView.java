@@ -5,6 +5,7 @@ import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 
 import org.newdawn.slick.AppGameContainer;
 import org.newdawn.slick.GameContainer;
@@ -138,7 +139,7 @@ public class MainView extends StateBasedGame implements Runnable {
 		g.setMoney(money);
 	}
 
-	public void updateCards(ArrayList<String> hand, ArrayList<String> inPlay,
+	public void updateCards(LinkedList<String> hand, LinkedList<String> inPlay,
 			String topOfPile, int deckSize) {
 		InGameState g = ((InGameState) this.getState(Settings.INGAMESTATE));
 		g.setHand(hand);

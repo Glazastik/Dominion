@@ -2,6 +2,9 @@ package tda367.dominion.server.game;
 
 import java.util.List;
 
+import tda367.dominion.commons.messages.CardUpdateMessage;
+import tda367.dominion.commons.messages.Message;
+import tda367.dominion.commons.messages.PlayerUpdateMessage;
 import tda367.dominion.server.network.GameConnection;
 
 /**
@@ -427,6 +430,27 @@ public class Player {
 		}
 		return hasActionCard;
 		
+	}
+	
+	public void send(Message msg) {
+		gameConnection.sendTCP(msg);
+	}
+	
+	public void updateCards() {
+		CardUpdateMessage msg = new CardUpdateMessage();
+		msg.setDeckSize(deck.getSize());
+		msg.setDiscard(deck.getTop());
+		msg.setHand(hand.getCards());
+		msg.setInPlay(playingArea.getCards());
+		gameConnection.sendTCP(msg);
+	}
+	
+	public void updateStats() {
+		PlayerUpdateMessage msg = new PlayerUpdateMessage();
+		msg.setActions(actions);
+		msg.setBuys(buys);
+		msg.setMoney(money);
+		gameConnection.sendTCP(msg);
 	}
 	
 }

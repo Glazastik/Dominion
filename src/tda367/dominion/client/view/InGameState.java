@@ -85,8 +85,8 @@ public class InGameState extends ControlledGameState {
 	private int money;
 
 	// Cards
-	private ArrayList<String> hand = new ArrayList<String>();
-	private ArrayList<String> inPlay = new ArrayList<String>();
+	private LinkedList<String> hand = new LinkedList<String>();
+	private LinkedList<String> inPlay = new LinkedList<String>();
 	private String topOfPile = "";
 	private int deckSize = 0;
 
@@ -341,23 +341,23 @@ public class InGameState extends ControlledGameState {
 	 * such as drawing cards or playing one.
 	 * </p>
 	 * 
-	 * @param hand
+	 * @param hand2
 	 *            an {@link ArrayList} containing the cards in the players hand
 	 */
-	public void setHand(ArrayList<String> hand) {
-		this.hand = hand;
+	public void setHand(LinkedList<String> hand2) {
+		this.hand = hand2;
 		resetHandRectangles();
 	}
 
 	/**
 	 * Sets what games are currently in play.
 	 * 
-	 * @param inPlay
+	 * @param inPlay2
 	 *            an {@link ArrayList} containing the cards that have been
 	 *            played
 	 */
-	public void setInPlay(ArrayList<String> inPlay) {
-		this.inPlay = inPlay;
+	public void setInPlay(LinkedList<String> inPlay2) {
+		this.inPlay = inPlay2;
 	}
 
 	/**
@@ -754,16 +754,16 @@ public class InGameState extends ControlledGameState {
 	 * heap of crap.
 	 * </p>
 	 * 
-	 * @param cards
+	 * @param inPlay2
 	 * @return
 	 */
-	private Image[] StringListToImageArray(ArrayList<String> cards)
+	private Image[] StringListToImageArray(LinkedList<String> inPlay2)
 			throws SlickException {
-		Image[] imageArray = new Image[cards.size()];
+		Image[] imageArray = new Image[inPlay2.size()];
 		cih = CardInfoHandler.getInstance();
 
-		for (int i = 0; i < cards.size(); i++) {
-			imageArray[i] = new Image(cih.getCroppedImageLink(cards.get(i)));
+		for (int i = 0; i < inPlay2.size(); i++) {
+			imageArray[i] = new Image(cih.getCroppedImageLink(inPlay2.get(i)));
 		}
 
 		return imageArray;
