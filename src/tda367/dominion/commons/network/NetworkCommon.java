@@ -8,7 +8,6 @@ import tda367.dominion.commons.messages.CardMessage;
 import tda367.dominion.commons.messages.CardUpdateMessage;
 import tda367.dominion.commons.messages.ConnectionMessage;
 import tda367.dominion.commons.messages.DoneMessage;
-import tda367.dominion.commons.messages.LocatedCardMessage;
 import tda367.dominion.commons.messages.PlayerUpdateMessage;
 import tda367.dominion.commons.messages.RevealCardMessage;
 import tda367.dominion.commons.messages.RoomHostMessage;
@@ -32,7 +31,6 @@ public class NetworkCommon {
 		kryo.register(HashMap.class);
 		
 		kryo.register(BasicMessage.class);
-		kryo.register(LocatedCardMessage.class);
 		kryo.register(BoolMessage.class);
 		kryo.register(DoneMessage.class);
 		kryo.register(ConnectionMessage.class);

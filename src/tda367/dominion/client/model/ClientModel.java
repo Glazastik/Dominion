@@ -2,8 +2,8 @@ package tda367.dominion.client.model;
 
 import tda367.dominion.client.network.ClientConnection;
 import tda367.dominion.commons.messages.BoolMessage;
+import tda367.dominion.commons.messages.CardMessage;
 import tda367.dominion.commons.messages.ConnectionMessage;
-import tda367.dominion.commons.messages.LocatedCardMessage;
 import tda367.dominion.commons.messages.RoomHostMessage;
 import tda367.dominion.commons.messages.RoomUpdateMessage;
 
@@ -54,8 +54,8 @@ public class ClientModel {
 	 *            to be played.
 	 */
 	public void playCard(String card) {
-		LocatedCardMessage msg = new LocatedCardMessage();
-		msg.setCardName(card);
+		CardMessage msg = new CardMessage();
+		msg.setCard(card);
 		connection.sendMessage(msg);
 	}
 

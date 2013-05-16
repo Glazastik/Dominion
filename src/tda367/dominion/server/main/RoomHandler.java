@@ -7,7 +7,7 @@ import com.esotericsoftware.kryonet.Listener;
 
 import tda367.dominion.commons.messages.BoolMessage;
 import tda367.dominion.commons.messages.DoneMessage;
-import tda367.dominion.commons.messages.LocatedCardMessage;
+import tda367.dominion.commons.messages.CardMessage;
 import tda367.dominion.commons.messages.Message;
 import tda367.dominion.commons.messages.SetupMessage;
 import tda367.dominion.commons.messages.SupplyMessage;
@@ -186,7 +186,7 @@ public class RoomHandler {
 				
 			}
 			
-			if (object instanceof LocatedCardMessage) {
+			if (object instanceof CardMessage) {
 				
 			}
 			
