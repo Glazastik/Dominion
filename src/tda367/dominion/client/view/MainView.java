@@ -149,12 +149,7 @@ public class MainView extends StateBasedGame implements Runnable {
 
 	public void updateSupply(HashMap<String, Integer> supply) {
 		InGameState g = ((InGameState) this.getState(Settings.INGAMESTATE));
-		if(g.getSupply() == null){
-			g.setSupply(supply);
-			g.initBoard();
-		} else {
-			g.setSupply(supply);
-		}
+		g.setSupply(supply);
 	}
 
 	private void startView() {

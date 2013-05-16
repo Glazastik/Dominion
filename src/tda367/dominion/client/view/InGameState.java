@@ -118,8 +118,58 @@ public class InGameState extends ControlledGameState {
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
 		enterShowCard = false;
+
+		amountOfPlayers = 2; // Should probably be supplied from network later
+		playerNames = new String[amountOfPlayers];
+		cardsOnHand = new int[amountOfPlayers];
+
+		playerNames[0] = Settings.getName();
+		playerNames[1] = "Player 2";
+		cardsOnHand[0] = 5; // Integer.parseInt(hand.get(0));
+		cardsOnHand[1] = 80085; // Integer.parseInt(hand.get(1));
+		turn = 1;
+
+		actionCards = StringArraytoImageArray(getActionCards(getSupply()));
+		victoryCards = StringArraytoImageArray(getVictoryCards(getSupply()));
+		treasureCards = StringArraytoImageArray(getTreasureCards(getSupply()));
+		nbrOfActionCards = getNbrOfCards(getActionCards(getSupply()));
+		nbrOfTreasureCards = getNbrOfCards(getTreasureCards(getSupply()));
+		nbrOfVictoryCards = getNbrOfCards(getVictoryCards(getSupply()));
+
 		gameContainerWidth = gc.getWidth();
 		gameContainerHeight = gc.getHeight();
+
+		// Initiate all images
+		menuButton = new Image("res/img/gui/ingame/MenuButton.png");
+		chatButton = new Image("res/img/gui/ingame/ChatButton.png");
+		logButton = new Image("res/img/gui/ingame/LogButton.png");
+		riksdaler = new Image("res/img/gui/ingame/Coin.png");
+		board = new Image("res/img/gui/ingame/BoardTemp.png");
+		nextButton = new Image("res/img/gui/ingame/NextButton.png");
+		playAllButton = new Image("res/img/gui/ingame/PlayAllTreasures.png");
+		messageBox = new Image("res/img/gui/ingame/MessageBoxTemplate.png");
+		statusBar = new Image("res/img/gui/ingame/StatusBar.png");
+
+		// temporary status tip init
+		tipMessage = "Where mah hand at??";
+
+		// Initiate all rectangles
+		actionRectangles = new Rectangle[10];
+		victoryRectangles = new Rectangle[4];
+		treasureRectangles = new Rectangle[3];
+		handRectangles = new Rectangle[40];
+		for (int i = 0; i < 10; i++) {
+			actionRectangles[i] = new Rectangle();
+		}
+		for (int i = 0; i < 4; i++) {
+			victoryRectangles[i] = new Rectangle();
+		}
+		for (int i = 0; i < 3; i++) {
+			treasureRectangles[i] = new Rectangle();
+		}
+		for (int i = 0; i < 40; i++) {
+			handRectangles[i] = new Rectangle();
+		}
 	}
 
 	@Override
@@ -1170,74 +1220,15 @@ public class InGameState extends ControlledGameState {
 	}
 
 	/**
-	 * @param supply
-	 *            the supply to set
+	 * @param supply the supply to set
 	 */
 	public void setSupply(HashMap<String, Integer> supply) {
 		this.supply = supply;
 	}
 
 	public void initBoard() {
-		amountOfPlayers = 2; // Should probably be supplied from network later
-		playerNames = new String[amountOfPlayers];
-		cardsOnHand = new int[amountOfPlayers];
-
-		playerNames[0] = Settings.getName();
-		playerNames[1] = "Player 2";
-		cardsOnHand[0] = 5; // Integer.parseInt(hand.get(0));
-		cardsOnHand[1] = 80085; // Integer.parseInt(hand.get(1));
-		turn = 1;
-
-		try {
-			actionCards = StringArraytoImageArray(getActionCards(getSupply()));
-			victoryCards = StringArraytoImageArray(getVictoryCards(getSupply()));
-			treasureCards = StringArraytoImageArray(getTreasureCards(getSupply()));
-		} catch (SlickException e1) {
-			// TODO Auto-generated catch block
-			e1.printStackTrace();
-		}
-		nbrOfActionCards = getNbrOfCards(getActionCards(getSupply()));
-		nbrOfTreasureCards = getNbrOfCards(getTreasureCards(getSupply()));
-		nbrOfVictoryCards = getNbrOfCards(getVictoryCards(getSupply()));
-
-		// Initiate all images
-
-		try {
-			chatButton = new Image("res/img/gui/ingame/ChatButton.png");
-			menuButton = new Image("res/img/gui/ingame/MenuButton.png");
-			logButton = new Image("res/img/gui/ingame/LogButton.png");
-			riksdaler = new Image("res/img/gui/ingame/Coin.png");
-			board = new Image("res/img/gui/ingame/BoardTemp.png");
-			nextButton = new Image("res/img/gui/ingame/NextButton.png");
-			playAllButton = new Image("res/img/gui/ingame/PlayAllTreasures.png");
-			messageBox = new Image("res/img/gui/ingame/MessageBoxTemplate.png");
-			statusBar = new Image("res/img/gui/ingame/StatusBar.png");
-		} catch (SlickException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-
-		// temporary status tip init
-		tipMessage = "Where mah hand at??";
-
-		// Initiate all rectangles
-		actionRectangles = new Rectangle[10];
-		victoryRectangles = new Rectangle[4];
-		treasureRectangles = new Rectangle[3];
-		handRectangles = new Rectangle[40];
-		for (int i = 0; i < 10; i++) {
-			actionRectangles[i] = new Rectangle();
-		}
-		for (int i = 0; i < 4; i++) {
-			victoryRectangles[i] = new Rectangle();
-		}
-		for (int i = 0; i < 3; i++) {
-			treasureRectangles[i] = new Rectangle();
-		}
-		for (int i = 0; i < 40; i++) {
-			handRectangles[i] = new Rectangle();
-		}
-
+		
+		
 	}
 
 }
