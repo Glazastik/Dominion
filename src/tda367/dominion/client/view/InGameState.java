@@ -2,6 +2,7 @@ package tda367.dominion.client.view;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 import java.util.List;
 
 import org.lwjgl.util.Rectangle;
@@ -132,7 +133,7 @@ public class InGameState extends ControlledGameState {
 		turn = 1;
 
 		initCards();
-		initAmounts();
+		
 		String[] actions = cih.getActionCards().toArray(new String[0]);
 		actionCardsAll = StringArraytoImageArray(actions);
 		
@@ -153,8 +154,8 @@ public class InGameState extends ControlledGameState {
 	 * Initiates the arrays holding cards.
 	 */
 	private void initCards() throws SlickException {
-		victoryCards = StringArraytoImageArray(getVictoryCards(cih.getVictoryCards().toArray(new String[0])));
 		treasureCards = StringArraytoImageArray(getTreasureCards(cih.getTreasureCards().toArray(new String[0])));
+		victoryCards = StringArraytoImageArray(getVictoryCards(cih.getCardList().toArray(new String[0])));
 	}
 	
 	/**
@@ -784,7 +785,6 @@ public class InGameState extends ControlledGameState {
 	private String[] sortStringArray(String[] cards) {
 		cih = CardInfoHandler.getInstance();
 		String[] sortedArray = cards.clone();
-
 		for (int threshold = sortedArray.length - 1; threshold > 0; threshold--) {
 			for (int i = 0; i < threshold; i++) {
 				if (cih.getCardValue(sortedArray[(i + 1)]) > cih
@@ -1263,20 +1263,32 @@ public class InGameState extends ControlledGameState {
 
 	/**
 	 * @param supply the supply to set
+	 * @throws SlickException 
 	 */
 	public void setSupply(HashMap<String, Integer> supply) {
 		this.supply = supply;
-		nbrOfActionCards = getNbrOfCards(getActionCards(getSupply()));
+		
 		
 		moveSupplyImages();
+		try {
+			initAmounts();
+		} catch (SlickException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private void moveSupplyImages() {
+		LinkedList<Image> moved = new LinkedList<Image>();
 		for(String key: supply.keySet()){
-			System.out.println(key);
+			for(int i = 0; i < actionCardsAll.length; i++){
+				String name = splitString(actionCardsAll[i]);
+				if(name.equals(key)){
+					moved.add(actionCardsAll[i]);
+				}
+			}
 			
 		}
-		
+		actionCards = moved.toArray(new Image[0]);
 	}
 
 }

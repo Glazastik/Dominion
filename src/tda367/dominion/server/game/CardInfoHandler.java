@@ -104,6 +104,7 @@ public class CardInfoHandler {
 				temp2.add(tempString);
 			}
 		}
+		
 		return temp2;
 	}
 	/**
