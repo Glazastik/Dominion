@@ -50,21 +50,18 @@ public class MainMenuState extends ControlledGameState {
 			throws SlickException {
 		gap = 10;
 		
-		exitButton = new Image("res/img/gui/menu/newexitame.png");
+		exitButton = new Image("res/img/gui/menu/newexitgame.png");
 		playButton = new Image("res/img/gui/menu/newplaygame.png");
 		options = new Image("res/img/gui/menu/newoptionsmenu.png");
-		background = new Image("res/img/gui/menu/boardtemp.jpg");
+		background = new Image("res/img/gui/menu/boardtemp.png");
 		logo = new Image("res/img/gui/menu/logo.png");
 		
-//		playY = (gc.getHeight()/4);
-//		optionsY = playY + gc.getHeight()/5;
-//		exitY = optionsY + gc.getHeight()/5;
-
-//		playRec = new Rectangle(100, playY - 50, 200, 50);
-//		exitRec = new Rectangle(100, exitY - 50, 200, 50);
-//		optionsRec = new Rectangle(100, optionsY - 50, 200, 50);
-		
 		setOffsets(gc);
+
+		playRec = new Rectangle(0, 0, playButton.getWidth(), playButton.getHeight());
+		exitRec = new Rectangle(0, 0, exitButton.getWidth(), exitButton.getHeight());
+		optionsRec = new Rectangle(0, 0, options.getWidth(), options.getHeight());	
+		
 		setRecs();
 		
 		gc.setMouseCursor("res/img/gui/menu/wow3.png", 0, 0);
@@ -77,9 +74,6 @@ public class MainMenuState extends ControlledGameState {
 		background.draw();
 		g.drawString("Main Menu " + mouse, 0, 0);	
 		
-//		exitButton.draw(100, exitY);
-//		playButton.draw(100, playY);
-//		options.draw(100, optionsY);
 		drawMenuItems();
 		
 		logo.draw(20 ,20);
@@ -93,15 +87,6 @@ public class MainMenuState extends ControlledGameState {
 		int xPos = Mouse.getX();
 		int yPos = gc.getHeight()-Mouse.getY();
 		mouse = "X: " + xPos + " Y: " + yPos;
-		
-		//Update yPos location of buttons and rectangles
-//		playY = (gc.getHeight()/4);
-//		optionsY = playY + gc.getHeight()/5;
-//		exitY = optionsY + gc.getHeight()/5;
-		
-//		playRec.setY(playY);
-//		optionsRec.setY(optionsY);
-//		exitRec.setY(exitY);
 		
 		setOffsets(gc);
 		setRecs();
