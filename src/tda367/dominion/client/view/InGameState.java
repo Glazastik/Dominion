@@ -45,6 +45,7 @@ public class InGameState extends ControlledGameState {
 	 * playerNames[1]'s turn.
 	 */
 	private int turn;
+	private Image[] actionCardsAll;
 	private Image[] actionCards;
 	private Image[] victoryCards;
 	private Image[] treasureCards;
@@ -131,6 +132,13 @@ public class InGameState extends ControlledGameState {
 
 		initCards();
 		initAmounts();
+		CardInfoHandler cih = CardInfoHandler.getInstance();
+		String[] actions = cih.getActionCards().toArray(new String[0]);
+		actionCardsAll = StringArraytoImageArray(actions);
+		
+//		actionCards = StringArraytoImageArray(getActionCards(getSupply()));
+		victoryCards = StringArraytoImageArray(getVictoryCards(cih.getVictoryCards().toArray(new String[0])));
+		treasureCards = StringArraytoImageArray(getTreasureCards(cih.getTreasureCards().toArray(new String[0])));
 
 		gameContainerWidth = gc.getWidth();
 		gameContainerHeight = gc.getHeight();
@@ -1263,10 +1271,16 @@ public class InGameState extends ControlledGameState {
 	 */
 	public void setSupply(HashMap<String, Integer> supply) {
 		this.supply = supply;
+		nbrOfActionCards = getNbrOfCards(getActionCards(getSupply()));
+		
+		moveSupplyImages();
 	}
 
-	public void initBoard() {
-		
+	private void moveSupplyImages() {
+		for(String key: supply.keySet()){
+			System.out.println(key);
+			
+		}
 		
 	}
 

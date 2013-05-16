@@ -1,5 +1,7 @@
 package tda367.dominion.client.controller;
 
+import org.newdawn.slick.SlickException;
+
 import tda367.dominion.client.model.ClientModel;
 import tda367.dominion.client.model.Settings;
 import tda367.dominion.client.view.MainView;
@@ -18,43 +20,43 @@ import com.esotericsoftware.kryonet.Listener;
 public class ClientController {
 	private ClientModel model;
 	private MainView view;
-	
+
 	public ClientController() {
 		this.view = new MainView();
-		//Start view in new thread
+		// Start view in new thread
 		(new Thread(view)).start();
 		this.model = new ClientModel();
 		model.addListener(new NetworkListener());
 		model.searchForGame();
-		while(view.getCurrentStateID() != Settings.MAINMENUSTATE){
-			//Waiting for the game to be launched
+		while (view.getCurrentStateID() != Settings.MAINMENUSTATE) {
+			// Waiting for the game to be launched
 			try {
 				Thread.sleep(100);
 			} catch (InterruptedException e) {
 				e.printStackTrace();
 			}
 		}
-		view.addCardListener(new CardListener());
+
 		view.addUpdateRoomListener(new UpdateRoomListener());
 		view.addJoinListener(new JoinRoomListener());
 		view.addHostListener(new HostRoomListener());
 	}
-	
+
 	// Listener classes
 	class NetworkListener extends Listener {
-		
+
 		@Override
 		public void connected(Connection c) {
 			System.out.println("Connected, it works");
 		}
-		
+
 		@Override
 		public void disconnected(Connection c) {
 			System.out.println("Disconnected");
 		}
-		
+
 		@Override
-		public void received (Connection connection, Object object) {
+		public void received(Connection connection, Object object) {
 
 			if (object instanceof RoomMessage) {
 				RoomMessage rmsg = (RoomMessage) object;
@@ -62,32 +64,36 @@ public class ClientController {
 			}
 
 			if (object instanceof CreateBoolMessage) {
-				
+
 			}
-			
+
 			if (object instanceof PlayerUpdateMessage) {
 				System.out.println("Update Stats");
-				PlayerUpdateMessage o = (PlayerUpdateMessage)object;
+				PlayerUpdateMessage o = (PlayerUpdateMessage) object;
 				view.updatePlayer(o.getActions(), o.getBuys(), o.getMoney());
 			}
-			
+
 			if (object instanceof CardUpdateMessage) {
 				System.out.println("Update Cards");
-				CardUpdateMessage o = (CardUpdateMessage)object;
-				view.updateCards(o.getHand(), o.getInPlay(), o.getDiscard(), o.getDeckSize());
+				CardUpdateMessage o = (CardUpdateMessage) object;
+				view.updateCards(o.getHand(), o.getInPlay(), o.getDiscard(),
+						o.getDeckSize());
 			}
-			
-			if(object instanceof SetupMessage){
+
+			if (object instanceof SetupMessage) {
 				SetupMessage setup = (SetupMessage) object;
 				SupplyMessage supply = setup.getSupply();
 				Settings.inGame = true;
 				view.updateSupply(supply.getSupply());
+				
+				view.addCardListener(new CardListener());
+				
 				view.enterState(Settings.INGAMESTATE);
 			}
 		}
 
 	}
-	
+
 	// TODO: Replace with lobby framework
 	/**
 	 * A Listener that requests a new list of rooms from the server.
@@ -97,19 +103,19 @@ public class ClientController {
 			model.searchForGame();
 		}
 	}
-	
+
 	class JoinRoomListener implements GameListener {
 		public void run(GameEvent e) {
 			model.joinRoom(e.getInt());
 		}
 	}
-	
+
 	class HostRoomListener implements GameListener {
 		public void run(GameEvent e) {
 			model.hostRoom(e.getInt());
 		}
 	}
-	
+
 	// Will be activated every time a card is chosen
 	class CardListener implements GameListener {
 		public void run(GameEvent e) {
@@ -117,13 +123,13 @@ public class ClientController {
 			model.playCard(e.getText());
 		}
 	}
-	
+
 	class SupplyListener implements GameListener {
 		public void run(GameEvent e) {
 			model.supplyCard(e.getText());
 		}
 	}
-	
+
 	class BoolListener implements GameListener {
 		public void run(GameEvent e) {
 			model.boolMessage(e.getBool());

@@ -41,11 +41,7 @@ public class MainView extends StateBasedGame implements Runnable {
 		addState(new ServerListState(Settings.SERVERLISTSTATE));
 		addState(new OptionsState(Settings.OPTIONSSTATE));
 		addState(new ShowCardState(Settings.SHOWCARDSTATE));
-	}
-	
-	public void initInGameState() throws SlickException{
 		addState(new InGameState(Settings.INGAMESTATE));
-		getState(Settings.INGAMESTATE).init(this.getContainer(), this);
 	}
 
 	public void addCardListener(GameListener l) {
