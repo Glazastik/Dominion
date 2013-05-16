@@ -119,6 +119,7 @@ public class InGameState extends ControlledGameState {
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
 		enterShowCard = false;
+		cih = CardInfoHandler.getInstance();
 
 		amountOfPlayers = 2; // Should probably be supplied from network later
 		playerNames = new String[amountOfPlayers];
@@ -132,14 +133,9 @@ public class InGameState extends ControlledGameState {
 
 		initCards();
 		initAmounts();
-		CardInfoHandler cih = CardInfoHandler.getInstance();
 		String[] actions = cih.getActionCards().toArray(new String[0]);
 		actionCardsAll = StringArraytoImageArray(actions);
 		
-//		actionCards = StringArraytoImageArray(getActionCards(getSupply()));
-		victoryCards = StringArraytoImageArray(getVictoryCards(cih.getVictoryCards().toArray(new String[0])));
-		treasureCards = StringArraytoImageArray(getTreasureCards(cih.getTreasureCards().toArray(new String[0])));
-
 		gameContainerWidth = gc.getWidth();
 		gameContainerHeight = gc.getHeight();
 
@@ -157,9 +153,8 @@ public class InGameState extends ControlledGameState {
 	 * Initiates the arrays holding cards.
 	 */
 	private void initCards() throws SlickException {
-		actionCards = StringArraytoImageArray(getActionCards(getSupply()));
-		victoryCards = StringArraytoImageArray(getVictoryCards(getSupply()));
-		treasureCards = StringArraytoImageArray(getTreasureCards(getSupply()));
+		victoryCards = StringArraytoImageArray(getVictoryCards(cih.getVictoryCards().toArray(new String[0])));
+		treasureCards = StringArraytoImageArray(getTreasureCards(cih.getTreasureCards().toArray(new String[0])));
 	}
 	
 	/**
