@@ -112,14 +112,12 @@ public class GameRoom {
 		} else {
 			System.out.println("Player already existed...");
 		}
-		
-		System.out.println(isFull());
-		System.out.println(isPlaying());
 
+		updateSlots();
+		
 		if (isFull() && !isPlaying()) {
 			startGame();
 		}
-		updateSlots();
 	}
 
 	public boolean hasPlayer(String playerName) {
