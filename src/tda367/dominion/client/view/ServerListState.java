@@ -19,7 +19,6 @@ import tda367.dominion.commons.listener.GameListener;
 public class ServerListState extends ControlledGameState {
 	private String[][] roomData = new String[0][0];
 	private Image board;
-	private Image room;
 	private Image joinButton;
 	private Image hostButton;
 	private Image refreshButton;
@@ -50,7 +49,6 @@ public class ServerListState extends ControlledGameState {
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
 		board = new Image("res/img/gui/ingame/BoardTemp.png");
-		room = new Image("res/img/gui/menu/room.png");
 		joinButton = new Image("res/img/gui/serverList/joinButton.png");
 		hostButton = new Image("res/img/gui/serverList/hostButton.png");
 		refreshButton = new Image("res/img/gui/serverList/refreshButton.png");
@@ -136,7 +134,6 @@ public class ServerListState extends ControlledGameState {
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 			throws SlickException {
-		Input input = gc.getInput();
 
 		// Enter menu
 		if (leave == true) {
@@ -213,7 +210,6 @@ public class ServerListState extends ControlledGameState {
 					resetRoomListImages();
 					roomList[i] = new Image(
 							"res/img/gui/serverList/selectedRoomItem.png");
-					// TODO: set join ID
 				} catch (SlickException e) {
 					e.printStackTrace();
 				}
