@@ -36,7 +36,7 @@ public class GameRoom {
 		if (gcs != null) {
 			players = new LinkedList<Player>();
 			for (GameConnection gc : gcs) {
-				players.add(new Player(gc.getID(), gc.getPlayerName()));
+				players.add(new Player(gc));
 			}
 		} else {
 			gcs = new LinkedList<GameConnection>();
@@ -107,7 +107,7 @@ public class GameRoom {
 
 		if (!hasPlayer(c.getPlayerName())) {
 			gcs.add(c);
-			players.add(new Player(c.getID(), c.getPlayerName()));
+			players.add(new Player(c));
 			System.out.println("Added " + c.getPlayerName() + " to gameroom.");
 		} else {
 			System.out.println("Player already existed...");

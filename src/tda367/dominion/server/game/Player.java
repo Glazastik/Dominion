@@ -2,15 +2,15 @@ package tda367.dominion.server.game;
 
 import java.util.List;
 
+import tda367.dominion.server.network.GameConnection;
+
 /**
  * The class that represents the player, holding the personal cards and the values.
  * @author Group 28
  *
  */
 public class Player {
-	private final int id;
-	private final String name;
-	
+	private final GameConnection gameConnection;
 	private final Pile hand;
 	private final Pile deck;
 	private final Pile discard;
@@ -32,9 +32,8 @@ public class Player {
 	 * 
 	 * @param name the name with which to identify the player
 	 */
-	public Player(int id, String name) {
-		this.id = id;
-		this.name = name;
+	public Player(GameConnection gc) {
+		this.gameConnection = gc;
 		
 		hand = new Pile();
 		deck = new Pile();
@@ -141,14 +140,14 @@ public class Player {
 	 * @return the name
 	 */
 	public String getName() {
-		return name;
+		return gameConnection.getPlayerName();
 	}
 	
 	/**
 	 * @return the id
 	 */
 	public int getID() {
-		return id;
+		return gameConnection.getID();
 	}
 
 	/**
@@ -281,7 +280,7 @@ public class Player {
 	 * @return
 	 */
 	public boolean equals(Player p) {
-		if(p.name == this.name) {
+		if(p.getID() == this.getID()) {
 			return true;
 		} else {
 			return false;
