@@ -80,22 +80,6 @@ public class ServerController {
 			roomHandler.addPlayer(gc, roomId);
 		}
 
-		/**
-		 * This method will hand notify all the players that the game has begun.
-		 * 
-		 * @param id
-		 */
-		private void setupGame(int id) {
-			// TODO: Notify all players
-			LinkedList<GameConnection> gcs = roomHandler.getPlayers(id);
-			SetupMessage setupMsg = roomHandler.getSetupMessage(id);
-
-			for (GameConnection gc : gcs) {
-				gc.sendTCP(setupMsg);
-			}
-
-		}
-
 		private void sendRoomList(Connection c) {
 			print("Updating room list for client");
 			RoomMessage msg = new RoomMessage();
