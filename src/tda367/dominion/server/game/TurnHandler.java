@@ -73,7 +73,6 @@ public class TurnHandler {
 	}
 
 	public boolean isGameOver() {
-		
 		return isGameOver ;
 	}
 

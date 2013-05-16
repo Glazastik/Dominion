@@ -17,7 +17,6 @@ import tda367.dominion.server.network.NetworkHandler;
 public class Dominion {
 	// Player related
 	private final LinkedList<Player> players;
-	private int activePlayer;
 	private TurnHandler turnHandler;
 
 	private final Supply supply;
