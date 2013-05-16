@@ -51,7 +51,7 @@ public class MainMenuState extends ControlledGameState {
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
-		gap = 10;
+		gap = 15;
 		
 		exitButton = new Image("res/img/gui/menu/newexitgame.png");
 		playButton = new Image("res/img/gui/menu/newplaygame.png");
@@ -91,6 +91,7 @@ public class MainMenuState extends ControlledGameState {
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int time)
 			throws SlickException {
+		gap = 40;
 		Input input = gc.getInput();
 		int xPos = Mouse.getX();
 		int yPos = gc.getHeight()-Mouse.getY();
@@ -153,11 +154,11 @@ public class MainMenuState extends ControlledGameState {
 	
 	private void drawMenuItems() {
 		if(playRec.contains(Mouse.getX(),Mouse.getY())){
-			hover.draw(xOffset-15, yOffset-10);
+			hover.draw(xOffset-4, yOffset-3);
 		} else if(optionsRec.contains(Mouse.getX(),Mouse.getY())){
-			hover.draw(xOffset + playButton.getWidth() + gap -15, yOffset - 10);
+			hover.draw(xOffset + playButton.getWidth() + gap -4, yOffset - 3);
 		} else if(exitRec.contains(Mouse.getX(),Mouse.getY())){
-			hover.draw(xOffset + playButton.getWidth() + gap + options.getWidth() + gap - 15, yOffset - 10);
+			hover.draw(xOffset + playButton.getWidth() + gap + options.getWidth() + gap - 4, yOffset - 3);
 		}
 		playButton.draw(xOffset, yOffset);
 		options.draw(xOffset + playButton.getWidth() + gap, yOffset);
