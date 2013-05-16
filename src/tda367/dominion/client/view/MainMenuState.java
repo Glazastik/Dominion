@@ -173,7 +173,7 @@ public class MainMenuState extends ControlledGameState {
 
 	private void setOffsets(GameContainer gc) {
 		xOffset = (gc.getWidth() - (exitButton.getWidth()
-				+ playButton.getWidth() + options.getWidth())) / 2;
+				+ playButton.getWidth() + options.getWidth() + 2*gap)) / 2;
 		yOffset = (gc.getHeight() - playButton.getHeight()) / 2;
 	}
 
