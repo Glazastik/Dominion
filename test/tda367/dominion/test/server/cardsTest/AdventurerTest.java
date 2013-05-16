@@ -12,7 +12,7 @@ public class AdventurerTest {
 
 	@Test
 	public void testPlay() {
-		Player p = new Player("Wrath");
+		Player p = new Player(0, "Wrath");
 		int random = (int)Math.random() * 100;
 		for(int i=random;i>0;i--) {
 			p.gain("Curse");

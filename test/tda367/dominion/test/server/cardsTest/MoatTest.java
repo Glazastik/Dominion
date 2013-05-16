@@ -11,7 +11,7 @@ public class MoatTest {
 
 	@Test
 	public void testPlay() {
-		Player p = new Player("Mr.Boat");
+		Player p = new Player(0, "Mr.Boat");
 		int cards = p.getHandSize();
 		Moat.play(p);
 		assertTrue(p.getHandSize() - cards == 2);

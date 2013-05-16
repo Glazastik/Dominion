@@ -11,7 +11,7 @@ public class VillageTest {
 
 	@Test
 	public void testPlay() {
-		Player p = new Player("HNNNG");
+		Player p = new Player(0, "HNNNG");
 		int actions = p.getActions();
 		int handsize = p.getHandSize();
 		Village.play(p);

@@ -13,9 +13,9 @@ public class CouncilroomTest {
 
 	@Test
 	public void testPlay() {
-		Player p1 = new Player("Markolio");
-		Player p2 = new Player("Knugen");
-		Player p3 = new Player("Bacchus");
+		Player p1 = new Player(0, "Markolio");
+		Player p2 = new Player(1, "Knugen");
+		Player p3 = new Player(2, "Bacchus");
 		LinkedList<Player> players = new LinkedList<Player>();
 		players.add(p1);
 		players.add(p2);

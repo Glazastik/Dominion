@@ -11,7 +11,7 @@ public class MarketTest {
 
 	@Test
 	public void testPlay() {
-		Player p = new Player("Goko");
+		Player p = new Player(0, "Goko");
 		int buys = p.getBuys();
 		int actions = p.getActions();
 		int money = p.getMoney();

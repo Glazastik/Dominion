@@ -11,7 +11,7 @@ public class LaboratoryTest {
 
 	@Test
 	public void testPlay() {
-		Player p = new Player("King Rex");
+		Player p = new Player(0, "King Rex");
 		int handsize = p.getHandSize();
 		int actions = p.getActions();
 		Laboratory.play(p);

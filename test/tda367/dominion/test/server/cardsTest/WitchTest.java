@@ -14,9 +14,9 @@ public class WitchTest {
 
 	@Test
 	public void testPlay() {
-		Player p1 = new Player("Yoda");
-		Player p2 = new Player("Vader");
-		Player p3 = new Player("Luke");
+		Player p1 = new Player(0, "Yoda");
+		Player p2 = new Player(1, "Vader");
+		Player p3 = new Player(2, "Luke");
 		Supply supply = new Supply(3);
 		LinkedList<Player> players = new LinkedList<Player>();
 		players.add(p1);

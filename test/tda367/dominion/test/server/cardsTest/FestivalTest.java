@@ -11,7 +11,7 @@ public class FestivalTest {
 
 	@Test
 	public void testPlay() {
-		Player p = new Player("Ragnar");
+		Player p = new Player(0, "Ragnar");
 		int buys = p.getBuys();
 		int actions = p.getActions();
 		int money = p.getMoney();

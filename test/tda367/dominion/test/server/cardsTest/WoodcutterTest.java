@@ -11,7 +11,7 @@ public class WoodcutterTest {
 
 	@Test
 	public void testPlay() {
-		Player p = new Player("Chuck");
+		Player p = new Player(0, "Chuck");
 		Woodcutter.play(p);
 		assertTrue(p.getBuys() == 2 && p.getMoney() == 2);
 	}

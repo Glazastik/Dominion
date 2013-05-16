@@ -11,7 +11,7 @@ public class SmithyTest {
 
 	@Test
 	public void testPlay() {
-		Player p = new Player("Mr.Smith");
+		Player p = new Player(0, "Mr.Smith");
 		int cards = p.getHandSize();
 		Smithy.play(p);
 		assertTrue(p.getHandSize() - cards == 3);
