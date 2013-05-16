@@ -60,9 +60,12 @@ public class MainMenuState extends ControlledGameState {
 //		optionsY = playY + gc.getHeight()/5;
 //		exitY = optionsY + gc.getHeight()/5;
 
-		playRec = new Rectangle(100, playY - 50, 200, 50);
-		exitRec = new Rectangle(100, exitY - 50, 200, 50);
-		optionsRec = new Rectangle(100, optionsY - 50, 200, 50);
+//		playRec = new Rectangle(100, playY - 50, 200, 50);
+//		exitRec = new Rectangle(100, exitY - 50, 200, 50);
+//		optionsRec = new Rectangle(100, optionsY - 50, 200, 50);
+		
+		setOffsets(gc);
+		setRecs();
 		
 		gc.setMouseCursor("res/img/gui/menu/wow3.png", 0, 0);
 
@@ -74,9 +77,11 @@ public class MainMenuState extends ControlledGameState {
 		background.draw();
 		g.drawString("Main Menu " + mouse, 0, 0);	
 		
-		exitButton.draw(100, exitY);
-		playButton.draw(100, playY);
-		options.draw(100, optionsY);
+//		exitButton.draw(100, exitY);
+//		playButton.draw(100, playY);
+//		options.draw(100, optionsY);
+		drawMenuItems();
+		
 		logo.draw(20 ,20);
 
 	}
@@ -94,9 +99,12 @@ public class MainMenuState extends ControlledGameState {
 //		optionsY = playY + gc.getHeight()/5;
 //		exitY = optionsY + gc.getHeight()/5;
 		
-		playRec.setY(playY);
-		optionsRec.setY(optionsY);
-		exitRec.setY(exitY);
+//		playRec.setY(playY);
+//		optionsRec.setY(optionsY);
+//		exitRec.setY(exitY);
+		
+		setOffsets(gc);
+		setRecs();
 
 		// Checks if mouse cursor is within playgame image
 		if ((input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)
@@ -147,7 +155,20 @@ public class MainMenuState extends ControlledGameState {
 	
 	private void setOffsets(GameContainer gc){
 		xOffset = (gc.getWidth() - (exitButton.getWidth() + playButton.getWidth() + options.getWidth()))/2;
-		yOffset = (gc.getHeight() - playButton.getHeight());
+		yOffset = (gc.getHeight() - playButton.getHeight())/2;
+	}
+	
+	private void drawMenuItems() {
+		playButton.draw(xOffset, yOffset);
+		options.draw(xOffset + playButton.getWidth() + gap, yOffset);
+		exitButton.draw(xOffset + playButton.getWidth() + gap + options.getWidth() + gap, yOffset);
+		
+	}
+	
+	private void setRecs(){
+		playRec.setLocation(xOffset, yOffset);
+		optionsRec.setLocation(xOffset + playButton.getWidth() + gap, yOffset);
+		exitRec.setLocation(xOffset + playButton.getWidth() + gap + options.getWidth() + gap, yOffset);
 	}
 
 }
