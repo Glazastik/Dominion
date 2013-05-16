@@ -4,6 +4,7 @@ import tda367.dominion.client.network.ClientConnection;
 import tda367.dominion.commons.messages.BoolMessage;
 import tda367.dominion.commons.messages.CardMessage;
 import tda367.dominion.commons.messages.ConnectionMessage;
+import tda367.dominion.commons.messages.GainMessage;
 import tda367.dominion.commons.messages.RoomHostMessage;
 import tda367.dominion.commons.messages.RoomUpdateMessage;
 
@@ -60,7 +61,9 @@ public class ClientModel {
 	}
 
 	public void supplyCard(String card) {
-		// TODO: Send a SupplyMessage?
+		GainMessage msg = new GainMessage();
+		msg.setCard(card);
+		connection.sendMessage(msg);
 	}
 
 	// public void updateCards(CardUpdateMessage msg) {
