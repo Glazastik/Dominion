@@ -51,7 +51,7 @@ public class MainMenuState extends ControlledGameState {
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
-		gap = 15;
+		gap = 40;
 		
 		exitButton = new Image("res/img/gui/menu/newexitgame.png");
 		playButton = new Image("res/img/gui/menu/newplaygame.png");
@@ -90,7 +90,6 @@ public class MainMenuState extends ControlledGameState {
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int time)
 			throws SlickException {
-		gap = 40;
 		Input input = gc.getInput();
 		int xPos = Mouse.getX();
 		int yPos = gc.getHeight()-Mouse.getY();
