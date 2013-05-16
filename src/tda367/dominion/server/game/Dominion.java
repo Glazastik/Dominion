@@ -3,10 +3,9 @@ package tda367.dominion.server.game;
 import java.util.HashMap;
 import java.util.LinkedList;
 
-import com.esotericsoftware.kryonet.Connection;
-import com.esotericsoftware.kryonet.Listener;
-
-import tda367.dominion.commons.messages.*;
+import tda367.dominion.commons.messages.Message;
+import tda367.dominion.commons.messages.SetupMessage;
+import tda367.dominion.commons.messages.SupplyMessage;
 import tda367.dominion.server.network.NetworkHandler;
 
 /**
@@ -19,7 +18,6 @@ public class Dominion {
 	private final LinkedList<Player> players;
 	private int activePlayer;
 	
-	//TODO: hashmap that pairs a player to a controller/ networklistener : private final HashMap<,Player>
 	private final Supply supply;
 	private final CardRulesHandler cardRulesHandler;
 	private NetworkHandler network;
