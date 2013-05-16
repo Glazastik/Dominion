@@ -1,29 +1,29 @@
 package tda367.dominion.commons.messages;
 
-import java.util.ArrayList;
+import java.util.LinkedList;
 
 /**
  * A message to send info about the cards
  */
 public class CardUpdateMessage implements Message {
-	private ArrayList<String> hand;
-	private ArrayList<String> inPlay;
+	private LinkedList<String> hand;
+	private LinkedList<String> inPlay;
 	private String discard;
 	private int deckSize;
 	
-	public ArrayList<String> getHand() {
+	public LinkedList<String> getHand() {
 		return hand;
 	}
 	
-	public void setHand(ArrayList<String> hand) {
+	public void setHand(LinkedList<String> hand) {
 		this.hand = hand;
 	}
 	
-	public ArrayList<String> getInPlay() {
+	public LinkedList<String> getInPlay() {
 		return inPlay;
 	}
 	
-	public void setInPlay(ArrayList<String> inPlay) {
+	public void setInPlay(LinkedList<String> inPlay) {
 		this.inPlay = inPlay;
 	}
 	
