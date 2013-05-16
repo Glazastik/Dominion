@@ -154,22 +154,37 @@ public class InGameState extends ControlledGameState {
 		tipMessage = "Where mah hand at??";
 
 		// Initiate all rectangles
-		actionRectangles = new Rectangle[10];
-		victoryRectangles = new Rectangle[4];
-		treasureRectangles = new Rectangle[3];
-		handRectangles = new Rectangle[40];
-		for (int i = 0; i < 10; i++) {
-			actionRectangles[i] = new Rectangle();
+		initRectangles();
+	}
+	
+	/**
+	 * Initiates every rectangle field that is used in the game.
+	 */
+	public void initRectangles() {
+		actionRectangles = initRectangleArray(10);
+		victoryRectangles = initRectangleArray(4);
+		treasureRectangles = initRectangleArray(3);
+		handRectangles = initRectangleArray(40);
+	}
+	
+	/**
+	 * Returns an array filled with normal rectangles.
+	 * 
+	 * <p>This is needed since the default value of the rectangles
+	 * is null, so initilizing a field is not enough, every rectangle
+	 * has to be initilized as well.</p>
+	 * 
+	 * @param size the size of the returned array
+	 * @return an array filled with rectangles
+	 */
+	public Rectangle[] initRectangleArray(int size) {
+		Rectangle[] recs = new Rectangle[size];
+		
+		for(int i = 0; i < size; i++){
+			recs[i] = new Rectangle();
 		}
-		for (int i = 0; i < 4; i++) {
-			victoryRectangles[i] = new Rectangle();
-		}
-		for (int i = 0; i < 3; i++) {
-			treasureRectangles[i] = new Rectangle();
-		}
-		for (int i = 0; i < 40; i++) {
-			handRectangles[i] = new Rectangle();
-		}
+		
+		return recs;
 	}
 
 	@Override
