@@ -67,11 +67,13 @@ public class InGameState extends ControlledGameState {
 	private Image playAllButton;
 	private Image messageBox;
 	private Image statusBar;
+	private Image log;
 	private Rectangle menuRec;
 	private Rectangle chatRec;
 	private Rectangle logRec;
 	private Rectangle nextRec;
 	private Rectangle playAllRec;
+	private boolean logDisplay;
 
 	// Message to write in statusbar
 	private String tipMessage;
@@ -139,6 +141,9 @@ public class InGameState extends ControlledGameState {
 
 		// Initiate all rectangles
 		initRectangles();
+		
+		//Boolean init
+		logDisplay = false;
 	}
 
 	/**
@@ -190,6 +195,7 @@ public class InGameState extends ControlledGameState {
 		playAllButton = new Image("res/img/gui/ingame/PlayAllTreasures.png");
 		messageBox = new Image("res/img/gui/ingame/MessageBoxTemplate.png");
 		statusBar = new Image("res/img/gui/ingame/StatusBar.png");
+		log = new Image("res/img/gui/ingame/Log.png");
 	}
 
 	/**
@@ -240,6 +246,7 @@ public class InGameState extends ControlledGameState {
 		paintOpposingPlayers(g);
 		paintButtons();
 		paintStatusBar(g);
+		paintLog(g);
 
 		if (playedCards != null) {
 			paintPlayedCards(playedCards);
@@ -456,6 +463,7 @@ public class InGameState extends ControlledGameState {
 		// Log button listener
 		if (button == Input.MOUSE_LEFT_BUTTON && logRec.contains(x, y)) {
 			System.out.println("Log Button");
+			logDisplay = !logDisplay;
 		}
 
 		// Next/End button listener
@@ -1275,6 +1283,16 @@ public class InGameState extends ControlledGameState {
 						yOffsetHand + space * numberPainted);
 				numberPainted++;
 			}
+		}
+	}
+	
+	private void paintLog(Graphics g) {
+		int xOffset = 930;
+		int yOffset = 120;
+		float scale = (float)0.85;
+		
+		if (logDisplay) {
+			log.draw(xOffset, yOffset, scale);
 		}
 	}
 
