@@ -52,6 +52,15 @@ public class Player {
 		init();
 	}
 
+	/**
+	 * Unborking for tests.
+	 * @param i
+	 * @param string
+	 */
+	public Player(int i, String string) {
+		this(new GameConnection());
+	}
+
 	private void init() {
 		for(int i = 0; i < 7; i++) {
 			deck.add("Copper");

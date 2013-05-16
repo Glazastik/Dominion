@@ -124,10 +124,10 @@ public class InGameState extends ControlledGameState {
 
 		initPlayerInfo();
 		initCards();
-		
+
 		String[] actions = cih.getActionCards().toArray(new String[0]);
 		actionCardsAll = StringArraytoImageArray(actions);
-		
+
 		gameContainerWidth = gc.getWidth();
 		gameContainerHeight = gc.getHeight();
 
@@ -140,7 +140,7 @@ public class InGameState extends ControlledGameState {
 		// Initiate all rectangles
 		initRectangles();
 	}
-	
+
 	/**
 	 * Initiates the player info.
 	 */
@@ -160,10 +160,12 @@ public class InGameState extends ControlledGameState {
 	 * Initiates the arrays holding cards.
 	 */
 	private void initCards() throws SlickException {
-		treasureCards = StringArraytoImageArray(getTreasureCards(cih.getTreasureCards().toArray(new String[0])));
-		victoryCards = StringArraytoImageArray(getVictoryCards(cih.getCardList().toArray(new String[0])));
+		treasureCards = StringArraytoImageArray(getTreasureCards(cih
+				.getTreasureCards().toArray(new String[0])));
+		victoryCards = StringArraytoImageArray(getVictoryCards(cih
+				.getCardList().toArray(new String[0])));
 	}
-	
+
 	/**
 	 * Initiates the arrays holding the amount of cards.
 	 */
@@ -172,13 +174,13 @@ public class InGameState extends ControlledGameState {
 		nbrOfTreasureCards = getNbrOfCards(getTreasureCards(getSupply()));
 		nbrOfVictoryCards = getNbrOfCards(getVictoryCards(getSupply()));
 	}
-	
+
 	/**
 	 * Initiates every image that is used in the game.
 	 * 
 	 * @throws SlickException
 	 */
-	private void initImages() throws SlickException{
+	private void initImages() throws SlickException {
 		menuButton = new Image("res/img/gui/ingame/MenuButton.png");
 		chatButton = new Image("res/img/gui/ingame/ChatButton.png");
 		logButton = new Image("res/img/gui/ingame/LogButton.png");
@@ -189,7 +191,7 @@ public class InGameState extends ControlledGameState {
 		messageBox = new Image("res/img/gui/ingame/MessageBoxTemplate.png");
 		statusBar = new Image("res/img/gui/ingame/StatusBar.png");
 	}
-	
+
 	/**
 	 * Initiates every rectangle field that is used in the game.
 	 * 
@@ -200,24 +202,27 @@ public class InGameState extends ControlledGameState {
 		treasureRectangles = initRectangleArray(3);
 		handRectangles = initRectangleArray(40);
 	}
-	
+
 	/**
 	 * Returns an array filled with normal rectangles.
 	 * 
-	 * <p>This is needed since the default value of the rectangles
-	 * is null, so initializing a field is not enough, every rectangle
-	 * has to be initialized as well.</p>
+	 * <p>
+	 * This is needed since the default value of the rectangles is null, so
+	 * initializing a field is not enough, every rectangle has to be initialized
+	 * as well.
+	 * </p>
 	 * 
-	 * @param size the size of the returned array
+	 * @param size
+	 *            the size of the returned array
 	 * @return an array filled with rectangles
 	 */
 	private Rectangle[] initRectangleArray(int size) {
 		Rectangle[] recs = new Rectangle[size];
-		
-		for(int i = 0; i < size; i++){
+
+		for (int i = 0; i < size; i++) {
 			recs[i] = new Rectangle();
 		}
-		
+
 		return recs;
 	}
 
@@ -1270,13 +1275,13 @@ public class InGameState extends ControlledGameState {
 	}
 
 	/**
-	 * @param supply the supply to set
-	 * @throws SlickException 
+	 * @param supply
+	 *            the supply to set
+	 * @throws SlickException
 	 */
 	public void setSupply(HashMap<String, Integer> supply) {
 		this.supply = supply;
-		
-		
+
 		moveSupplyImages();
 		try {
 			initAmounts();
@@ -1284,24 +1289,28 @@ public class InGameState extends ControlledGameState {
 			e.printStackTrace();
 		}
 	}
-	
+
 	/**
 	 * Sets all players' names.
 	 */
-	public void setPlayerNames(String[] names){
+	public void setPlayerNames(String[] names) {
 		playerNames = names;
 	}
 
+	/**
+	 * Since we have to pre-load all images we move them here seperately when we
+	 * know what cards that will be used.
+	 */
 	private void moveSupplyImages() {
 		LinkedList<Image> moved = new LinkedList<Image>();
-		for(String key: supply.keySet()){
-			for(int i = 0; i < actionCardsAll.length; i++){
+		for (String key : supply.keySet()) {
+			for (int i = 0; i < actionCardsAll.length; i++) {
 				String name = splitString(actionCardsAll[i]);
-				if(name.equals(key)){
+				if (name.equals(key)) {
 					moved.add(actionCardsAll[i]);
 				}
 			}
-			
+
 		}
 		actionCards = moved.toArray(new Image[0]);
 	}

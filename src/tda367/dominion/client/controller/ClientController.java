@@ -85,11 +85,11 @@ public class ClientController {
 				SupplyMessage supply = setup.getSupply();
 				Settings.inGame = true;
 				view.updateSupply(supply.getSupply());
-				view.updatePlayersInfo(setup.getPlayers());
 				
 				view.addCardListener(new CardListener());
 				
 				view.enterState(Settings.INGAMESTATE);
+				view.updatePlayersInfo(setup.getPlayers());
 			}
 		}
 
