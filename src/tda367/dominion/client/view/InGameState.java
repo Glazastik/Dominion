@@ -412,6 +412,15 @@ public class InGameState extends ControlledGameState {
 	public void setDeckSize(int size) {
 		deckSize = size;
 	}
+	
+	/**
+	 * Adds a string to the log, so it appears at the bottom.
+	 * Adds it to the first position because the paint method draws the first text first.
+	 * @param str
+	 */
+	public void addLogMessage(String str) {
+		logText.addFirst(str);
+	}
 
 	/**
 	 * Takes care of all actions that calls mouseClicked
@@ -1294,6 +1303,12 @@ public class InGameState extends ControlledGameState {
 		}
 	}
 	
+	/**
+	 * A method for painting the log and it's messages.
+	 * It currently draws one string on each line disregarding its length.
+	 * TODO: Implement scrolling and text wrapping.
+	 * @param g
+	 */
 	private void paintLog(Graphics g) {
 		int xOffset = 930;
 		int yOffset = 120;
