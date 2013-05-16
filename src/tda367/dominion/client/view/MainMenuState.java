@@ -15,9 +15,12 @@ public class MainMenuState extends ControlledGameState {
 
 	String mouse = "";
 	Image exitButton = null;
-	int exitY = 400;
-	int playY = 200;
-	int optionsY = 300;
+	int xOffset;
+	int yOffset;
+	int gap;
+	int exitY;
+	int playY;
+	int optionsY;
 	Image playButton = null;
 	Image options = null;
 	Image background = null;
@@ -45,15 +48,17 @@ public class MainMenuState extends ControlledGameState {
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
-		exitButton = new Image("res/img/gui/menu/exitGame.png");
-		playButton = new Image("res/img/gui/menu/playGame.png");
-		options = new Image("res/img/gui/menu/options.png");
-		background = new Image("res/img/gui/menu/background.jpg");
+		gap = 10;
+		
+		exitButton = new Image("res/img/gui/menu/newexitame.png");
+		playButton = new Image("res/img/gui/menu/newplaygame.png");
+		options = new Image("res/img/gui/menu/newoptionsmenu.png");
+		background = new Image("res/img/gui/menu/boardtemp.jpg");
 		logo = new Image("res/img/gui/menu/logo.png");
 		
-		playY = (gc.getHeight()/4);
-		optionsY = playY + gc.getHeight()/5;
-		exitY = optionsY + gc.getHeight()/5;
+//		playY = (gc.getHeight()/4);
+//		optionsY = playY + gc.getHeight()/5;
+//		exitY = optionsY + gc.getHeight()/5;
 
 		playRec = new Rectangle(100, playY - 50, 200, 50);
 		exitRec = new Rectangle(100, exitY - 50, 200, 50);
@@ -85,9 +90,9 @@ public class MainMenuState extends ControlledGameState {
 		mouse = "X: " + xPos + " Y: " + yPos;
 		
 		//Update yPos location of buttons and rectangles
-		playY = (gc.getHeight()/4);
-		optionsY = playY + gc.getHeight()/5;
-		exitY = optionsY + gc.getHeight()/5;
+//		playY = (gc.getHeight()/4);
+//		optionsY = playY + gc.getHeight()/5;
+//		exitY = optionsY + gc.getHeight()/5;
 		
 		playRec.setY(playY);
 		optionsRec.setY(optionsY);
@@ -138,6 +143,11 @@ public class MainMenuState extends ControlledGameState {
 	@Override
 	public void leave(GameContainer gc, StateBasedGame sbg) throws SlickException {
 		  gc.getInput().clearKeyPressedRecord();
+	}
+	
+	private void setOffsets(GameContainer gc){
+		xOffset = (gc.getWidth() - (exitButton.getWidth() + playButton.getWidth() + options.getWidth()))/2;
+		yOffset = (gc.getHeight() - playButton.getHeight());
 	}
 
 }
