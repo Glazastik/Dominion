@@ -129,12 +129,8 @@ public class InGameState extends ControlledGameState {
 		cardsOnHand[1] = 80085; // Integer.parseInt(hand.get(1));
 		turn = 1;
 
-		actionCards = StringArraytoImageArray(getActionCards(getSupply()));
-		victoryCards = StringArraytoImageArray(getVictoryCards(getSupply()));
-		treasureCards = StringArraytoImageArray(getTreasureCards(getSupply()));
-		nbrOfActionCards = getNbrOfCards(getActionCards(getSupply()));
-		nbrOfTreasureCards = getNbrOfCards(getTreasureCards(getSupply()));
-		nbrOfVictoryCards = getNbrOfCards(getVictoryCards(getSupply()));
+		initCards();
+		initAmounts();
 
 		gameContainerWidth = gc.getWidth();
 		gameContainerHeight = gc.getHeight();
@@ -147,6 +143,24 @@ public class InGameState extends ControlledGameState {
 
 		// Initiate all rectangles
 		initRectangles();
+	}
+	
+	/**
+	 * Initiates the arrays holding cards.
+	 */
+	private void initCards() throws SlickException {
+		actionCards = StringArraytoImageArray(getActionCards(getSupply()));
+		victoryCards = StringArraytoImageArray(getVictoryCards(getSupply()));
+		treasureCards = StringArraytoImageArray(getTreasureCards(getSupply()));
+	}
+	
+	/**
+	 * Initiates the arrays holding the amount of cards.
+	 */
+	private void initAmounts() throws SlickException {
+		nbrOfActionCards = getNbrOfCards(getActionCards(getSupply()));
+		nbrOfTreasureCards = getNbrOfCards(getTreasureCards(getSupply()));
+		nbrOfVictoryCards = getNbrOfCards(getVictoryCards(getSupply()));
 	}
 	
 	/**
