@@ -2,10 +2,18 @@ package tda367.dominion.server.main;
 
 import java.util.LinkedList;
 
+import com.esotericsoftware.kryonet.Connection;
+import com.esotericsoftware.kryonet.Listener;
+
+import tda367.dominion.commons.messages.BoolMessage;
+import tda367.dominion.commons.messages.DoneMessage;
+import tda367.dominion.commons.messages.LocatedCardMessage;
+import tda367.dominion.commons.messages.Message;
 import tda367.dominion.commons.messages.SetupMessage;
 import tda367.dominion.commons.messages.SupplyMessage;
 import tda367.dominion.server.game.Player;
 import tda367.dominion.server.network.GameConnection;
+import tda367.dominion.server.network.NetworkHandler;
 import tda367.dominion.server.view.ServerFrame;
 
 /**
@@ -13,10 +21,13 @@ import tda367.dominion.server.view.ServerFrame;
  */
 public class RoomHandler {
 	LinkedList<GameRoom> rooms;
+	private NetworkHandler network;
 	private int id = -1;
 
 	public RoomHandler() {
 		rooms = new LinkedList<GameRoom>();
+		network = NetworkHandler.getInstance();
+		network.addListener(new NetworkListener());
 	}
 
 	/**
@@ -182,6 +193,37 @@ public class RoomHandler {
 		msg.setPlayers(gr.getPlayerNames());
 
 		return msg;
+	}
+	
+	/**
+	 * A class that listens for game specific requests. 
+	 */
+	class NetworkListener extends Listener {
+		
+		@Override
+		public void received(Connection c, Object object) {
+			
+			if (object instanceof Message) {
+				
+			}
+			
+			if (object instanceof LocatedCardMessage) {
+				
+			}
+			
+			if (object instanceof BoolMessage) {
+				
+			}
+			
+			if (object instanceof DoneMessage) {
+				
+			}
+		}
+		
+		@Override
+		public void disconnected(Connection c) {
+			kickConnection((GameConnection) c);
+		}
 	}
 
 }

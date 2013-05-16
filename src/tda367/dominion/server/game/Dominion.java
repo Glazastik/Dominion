@@ -34,7 +34,6 @@ public class Dominion {
 		this.supply = new Supply(players.size());
 		cardRulesHandler = new CardRulesHandler(players, supply);
 		network = NetworkHandler.getInstance();
-		network.addListener(new NetworkListener());
 		
 		init();
 	}
@@ -95,26 +94,5 @@ public class Dominion {
 	public HashMap<String, Integer> getSupplyInfo() {
 		return supply.getCardsInSupply();
 		
-	}
-	
-	/**
-	 * A class that listens for game specific requests. 
-	 */
-	class NetworkListener extends Listener {
-		
-		@Override
-		public void received(Connection c, Object object) {
-			if (object instanceof LocatedCardMessage) {
-				
-			}
-			
-			if (object instanceof BoolMessage) {
-				
-			}
-			
-			if (object instanceof DoneMessage) {
-				
-			}
-		}
-	}
+	}	
 }
