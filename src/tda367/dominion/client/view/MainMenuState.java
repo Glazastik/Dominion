@@ -70,8 +70,8 @@ public class MainMenuState extends ControlledGameState {
 		
 		gc.setMouseCursor("res/img/gui/menu/wow3.png", 0, 0);
 		
-		Music openingMenuMusic = new Music("res/sfx/music2.wav");
-	    openingMenuMusic.loop();
+//		Music openingMenuMusic = new Music("res/sfx/music2.wav");
+//	    openingMenuMusic.loop();
 
 	}
 
