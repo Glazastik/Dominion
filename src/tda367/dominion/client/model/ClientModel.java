@@ -41,14 +41,6 @@ public class ClientModel {
 	}
 
 	/**
-	 * @param roomData
-	 *            the roomData to set
-	 */
-	// public void setRoomData(String[][] roomData) {
-	// view.updateRoomData(roomData);
-	// }
-
-	/**
 	 * Tell the server to play the card.
 	 * 
 	 * @param card
@@ -65,15 +57,6 @@ public class ClientModel {
 		msg.setCard(card);
 		connection.sendMessage(msg);
 	}
-
-	// public void updateCards(CardUpdateMessage msg) {
-	// view.updateCards(msg.getHand(), msg.getInPlay(), msg.getDiscard(),
-	// msg.getDeckSize());
-	// }
-	//
-	// public void updateStat(PlayerUpdateMessage msg) {
-	// view.updatePlayer(msg.getActions(), msg.getBuys(), msg.getMoney());
-	// }
 
 	/**
 	 * A boolean response from the view.
