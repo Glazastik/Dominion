@@ -25,10 +25,12 @@ public class MainMenuState extends ControlledGameState {
 	Image options = null;
 	Image background = null;
 	Image logo = null;
+	Image hover = null;
 
 	Rectangle playRec = null;
 	Rectangle exitRec = null;
 	Rectangle optionsRec = null;
+	
 
 	/**
 	 * Creates a new instance of this state with the supplied ID and controller.
@@ -54,6 +56,7 @@ public class MainMenuState extends ControlledGameState {
 		playButton = new Image("res/img/gui/menu/newplaygame.png");
 		options = new Image("res/img/gui/menu/newoptionsmenu.png");
 		background = new Image("res/img/gui/menu/background.jpg");
+		hover = new Image("res/img/gui/menu/hover.png");
 		logo = new Image("res/img/gui/menu/logo.png");
 		
 		setOffsets(gc);
@@ -144,6 +147,13 @@ public class MainMenuState extends ControlledGameState {
 	}
 	
 	private void drawMenuItems() {
+		if(playRec.contains(Mouse.getX(),Mouse.getY())){
+			hover.draw(xOffset-15, yOffset-10);
+		} else if(optionsRec.contains(Mouse.getX(),Mouse.getY())){
+			hover.draw(xOffset + playButton.getWidth() + gap -15, yOffset - 10);
+		} else if(exitRec.contains(Mouse.getX(),Mouse.getY())){
+			hover.draw(xOffset + playButton.getWidth() + gap + options.getWidth() + gap - 15, yOffset - 10);
+		}
 		playButton.draw(xOffset, yOffset);
 		options.draw(xOffset + playButton.getWidth() + gap, yOffset);
 		exitButton.draw(xOffset + playButton.getWidth() + gap + options.getWidth() + gap, yOffset);
