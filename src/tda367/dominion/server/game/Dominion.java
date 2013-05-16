@@ -34,7 +34,7 @@ public class Dominion {
 		this.supply = new Supply(players.size());
 		cardRulesHandler = new CardRulesHandler(players, supply);
 		network = NetworkHandler.getInstance();
-		
+		System.out.println("Game started");
 		init();
 	}
 	

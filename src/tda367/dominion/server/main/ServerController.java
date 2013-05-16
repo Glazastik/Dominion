@@ -77,15 +77,7 @@ public class ServerController {
 
 		private void connectPlayer(GameConnection gc, int roomId, String name) {
 			gc.setPlayerName(name);
-
-			if (!roomHandler.addPlayer(gc, roomId)) {
-				print("Couldn't add " + name + " to room " + roomId);
-				return;
-			}
-
-			if (roomHandler.start(roomId)) {
-				setupGame(roomId);
-			}
+			roomHandler.addPlayer(gc, roomId);
 		}
 
 		/**

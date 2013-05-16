@@ -44,7 +44,7 @@ public class GameRoom {
 		}
 	}
 	
-	public void startGame(){
+	private void startGame(){
 		game = new Dominion(this.getPlayers());
 	}
 	
@@ -112,9 +112,14 @@ public class GameRoom {
 		} else {
 			System.out.println("Player already existed...");
 		}
+		
+		System.out.println(isFull());
+		System.out.println(isPlaying());
 
+		if (isFull() && !isPlaying()) {
+			startGame();
+		}
 		updateSlots();
-
 	}
 
 	public boolean hasPlayer(String playerName) {

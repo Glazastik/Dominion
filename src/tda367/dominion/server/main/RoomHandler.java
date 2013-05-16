@@ -76,7 +76,7 @@ public class RoomHandler {
 	 * @param id
 	 *            The id of the room to add the player to.
 	 */
-	public boolean addPlayer(GameConnection c, int id) {
+	public void addPlayer(GameConnection c, int id) {
 		System.out.println("Trying to add player " + c.getPlayerName() + " to "
 				+ id);
 		GameRoom gr = this.getRoomById(id);
@@ -86,12 +86,7 @@ public class RoomHandler {
 							+ " already has a connection to this game.");
 		}
 
-		if (!gr.isFull() && !gr.hasConnection(c)) {
-			gr.addPlayer(c);
-			return true;
-		}
-
-		return false;
+		gr.addPlayer(c);
 	}
 
 	/**
@@ -148,22 +143,6 @@ public class RoomHandler {
 			}
 		}
 		return null;
-	}
-
-	/**
-	 * Attempts to start a room, only if the room is full (slots == 0).
-	 * 
-	 * @param id
-	 *            the id of the room to be started.
-	 * @return
-	 */
-	public boolean start(int id) {
-		GameRoom gr = this.getRoomById(id);
-		if (gr.isFull() && !gr.isPlaying()) {
-			gr.startGame();
-			return true;
-		}
-		return false;
 	}
 
 	/**
