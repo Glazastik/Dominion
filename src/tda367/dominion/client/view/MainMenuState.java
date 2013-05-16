@@ -53,7 +53,7 @@ public class MainMenuState extends ControlledGameState {
 		exitButton = new Image("res/img/gui/menu/newexitgame.png");
 		playButton = new Image("res/img/gui/menu/newplaygame.png");
 		options = new Image("res/img/gui/menu/newoptionsmenu.png");
-		background = new Image("res/img/gui/menu/boardtemp.png");
+		background = new Image("res/img/gui/menu/background.jpg");
 		logo = new Image("res/img/gui/menu/logo.png");
 		
 		setOffsets(gc);
