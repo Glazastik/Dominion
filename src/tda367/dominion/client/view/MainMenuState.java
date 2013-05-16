@@ -6,6 +6,7 @@ import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
+import org.newdawn.slick.Music;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
@@ -68,6 +69,10 @@ public class MainMenuState extends ControlledGameState {
 		setRecs();
 		
 		gc.setMouseCursor("res/img/gui/menu/wow3.png", 0, 0);
+		
+		Music openingMenuMusic = new Music("res/sfx/music.wav");
+
+	    openingMenuMusic.loop();
 
 	}
 
