@@ -33,6 +33,7 @@ public class MainMenuState extends ControlledGameState {
 	Rectangle playRec = null;
 	Rectangle exitRec = null;
 	Rectangle optionsRec = null;
+	Rectangle audioRec = null;
 
 	Music openingMenuMusic;
 	float position;
@@ -79,6 +80,7 @@ public class MainMenuState extends ControlledGameState {
 				exitButton.getHeight());
 		optionsRec = new Rectangle(0, 0, options.getWidth(),
 				options.getHeight());
+		audioRec = new Rectangle();
 
 		setRecs();
 
@@ -152,7 +154,26 @@ public class MainMenuState extends ControlledGameState {
 		openingMenuMusic.setVolume(volume);
 
 	}
+	
+	/**
+	 * Takes care of all actions that calls mouseClicked
+	 */
+	@Override
+	public void mouseClicked(int button, int x, int y, int clicks) {
+		
+		// Checks if the mouse cursor is within the audio image
+		if (button == Input.MOUSE_LEFT_BUTTON && audioRec.contains(x, y)) {
+			if (openingMenuMusic.playing()) {
+				openingMenuMusic.pause();
+			} else {
+				openingMenuMusic.loop((float)1.5, volume);
+			}
+		}
+	}
 
+	/**
+	 * Handles all keyPressed actions
+	 */
 	@Override
 	public void keyPressed(int key, char c) {
 		if (key == Input.KEY_M) {
@@ -209,9 +230,13 @@ public class MainMenuState extends ControlledGameState {
 
 	}
 
+	/**
+	 * A method for drawing the audio icon in the bottom right corner.
+	 */
 	private void drawAudioIcons() {
 		if (openingMenuMusic.playing()) {
 			audio.draw(1210, 710);
+			audioRec.setBounds(1210, 710, 64, 64);
 		} else {
 			muted.draw(1210, 710);
 		}
