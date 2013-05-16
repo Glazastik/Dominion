@@ -140,6 +140,16 @@ public class InGameState extends ControlledGameState {
 		gameContainerHeight = gc.getHeight();
 
 		// Initiate all images
+		initImages();
+
+		// temporary status tip init
+		tipMessage = "Where mah hand at??";
+
+		// Initiate all rectangles
+		initRectangles();
+	}
+	
+	private void initImages() throws SlickException{
 		menuButton = new Image("res/img/gui/ingame/MenuButton.png");
 		chatButton = new Image("res/img/gui/ingame/ChatButton.png");
 		logButton = new Image("res/img/gui/ingame/LogButton.png");
@@ -149,18 +159,12 @@ public class InGameState extends ControlledGameState {
 		playAllButton = new Image("res/img/gui/ingame/PlayAllTreasures.png");
 		messageBox = new Image("res/img/gui/ingame/MessageBoxTemplate.png");
 		statusBar = new Image("res/img/gui/ingame/StatusBar.png");
-
-		// temporary status tip init
-		tipMessage = "Where mah hand at??";
-
-		// Initiate all rectangles
-		initRectangles();
 	}
 	
 	/**
 	 * Initiates every rectangle field that is used in the game.
 	 */
-	public void initRectangles() {
+	private void initRectangles() {
 		actionRectangles = initRectangleArray(10);
 		victoryRectangles = initRectangleArray(4);
 		treasureRectangles = initRectangleArray(3);
@@ -171,13 +175,13 @@ public class InGameState extends ControlledGameState {
 	 * Returns an array filled with normal rectangles.
 	 * 
 	 * <p>This is needed since the default value of the rectangles
-	 * is null, so initilizing a field is not enough, every rectangle
-	 * has to be initilized as well.</p>
+	 * is null, so initializing a field is not enough, every rectangle
+	 * has to be initialized as well.</p>
 	 * 
 	 * @param size the size of the returned array
 	 * @return an array filled with rectangles
 	 */
-	public Rectangle[] initRectangleArray(int size) {
+	private Rectangle[] initRectangleArray(int size) {
 		Rectangle[] recs = new Rectangle[size];
 		
 		for(int i = 0; i < size; i++){
