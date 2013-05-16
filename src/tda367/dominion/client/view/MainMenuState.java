@@ -27,6 +27,8 @@ public class MainMenuState extends ControlledGameState {
 	Image background = null;
 	Image logo = null;
 	Image hover = null;
+	Image audio = null;
+	Image muted = null;
 
 	Rectangle playRec = null;
 	Rectangle exitRec = null;
@@ -34,6 +36,8 @@ public class MainMenuState extends ControlledGameState {
 
 	Music openingMenuMusic;
 	float position;
+	int volume;
+	int pitch;
 
 	/**
 	 * Creates a new instance of this state with the supplied ID and controller.
@@ -64,6 +68,8 @@ public class MainMenuState extends ControlledGameState {
 		background = new Image("res/img/gui/menu/background.jpg");
 		hover = new Image("res/img/gui/menu/hover.png");
 		logo = new Image("res/img/gui/menu/logo.png");
+		audio = new Image("res/img/gui/menu/audio.png");
+		muted = new Image("res/img/gui/menu/muted.png");
 
 		setOffsets(gc);
 
@@ -78,6 +84,7 @@ public class MainMenuState extends ControlledGameState {
 
 		gc.setMouseCursor("res/img/gui/menu/wow3.png", 0, 0);
 
+		volume = 100;
 		openingMenuMusic = new Music("res/sfx/music3.wav");
 		// openingMenuMusic.loop();
 
@@ -90,6 +97,7 @@ public class MainMenuState extends ControlledGameState {
 		g.drawString("Main Menu " + mouse, 0, 0);
 
 		drawMenuItems();
+		drawAudioIcons();
 
 		logo.draw(20, 20);
 
@@ -141,6 +149,8 @@ public class MainMenuState extends ControlledGameState {
 					Transitions.createNewHorizontalSplitTransition());
 		}
 
+		openingMenuMusic.setVolume(volume);
+
 	}
 
 	@Override
@@ -149,8 +159,12 @@ public class MainMenuState extends ControlledGameState {
 			if (openingMenuMusic.playing()) {
 				openingMenuMusic.pause();
 			} else {
-				openingMenuMusic.loop((float) 2, 100);
+				openingMenuMusic.play((float) 1.5, 100);
 			}
+		} else if (key == Input.KEY_DOWN) {
+			volume -= 10;
+		} else if (key == Input.KEY_UP) {
+			volume += 10;
 		}
 	}
 
@@ -173,7 +187,7 @@ public class MainMenuState extends ControlledGameState {
 
 	private void setOffsets(GameContainer gc) {
 		xOffset = (gc.getWidth() - (exitButton.getWidth()
-				+ playButton.getWidth() + options.getWidth() + 2*gap)) / 2;
+				+ playButton.getWidth() + options.getWidth() + 2 * gap)) / 2;
 		yOffset = (gc.getHeight() - playButton.getHeight()) / 2;
 	}
 
@@ -193,6 +207,14 @@ public class MainMenuState extends ControlledGameState {
 				xOffset + playButton.getWidth() + gap + options.getWidth()
 						+ gap, yOffset);
 
+	}
+
+	private void drawAudioIcons() {
+		if (openingMenuMusic.playing()) {
+			audio.draw(1210, 710);
+		} else {
+			muted.draw(1210, 710);
+		}
 	}
 
 	private void setRecs() {
