@@ -10,6 +10,7 @@ import tda367.dominion.commons.messages.CreateBoolMessage;
 import tda367.dominion.commons.messages.PlayerUpdateMessage;
 import tda367.dominion.commons.messages.RoomMessage;
 import tda367.dominion.commons.messages.SetupMessage;
+import tda367.dominion.commons.messages.SupplyMessage;
 
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
@@ -77,7 +78,10 @@ public class ClientController {
 			}
 			
 			if(object instanceof SetupMessage){
+				SetupMessage setup = (SetupMessage) object;
+				SupplyMessage supply = setup.getSupply();
 				Settings.inGame = true;
+				view.updateSupply(supply.getSupply());
 				view.enterState(Settings.INGAMESTATE);
 			}
 		}
