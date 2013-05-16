@@ -1,7 +1,7 @@
 package tda367.dominion.commons.network;
 
-import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedList;
 
 import tda367.dominion.commons.messages.BoolMessage;
 import tda367.dominion.commons.messages.CardMessage;
@@ -45,7 +45,7 @@ public class NetworkCommon {
 		kryo.register(PlayerUpdateMessage.class);
 		kryo.register(RoomHostMessage.class);
 		
-		kryo.register(ArrayList.class);
+		kryo.register(LinkedList.class);
 		kryo.register(String[][].class);
 		kryo.register(String[].class);
 	}

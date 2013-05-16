@@ -54,6 +54,11 @@ public class Dominion {
 		msg.setSupply(smsg);
 		
 		sendToAll(msg);
+		
+		for(Player p : players) {
+			p.updateCards();
+			p.updateStats();
+		}
 	}
 	
 	private void sendToAll(Message msg) {
