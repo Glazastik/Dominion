@@ -122,16 +122,7 @@ public class InGameState extends ControlledGameState {
 		enterShowCard = false;
 		cih = CardInfoHandler.getInstance();
 
-		amountOfPlayers = 2; // Should probably be supplied from network later
-		playerNames = new String[amountOfPlayers];
-		cardsOnHand = new int[amountOfPlayers];
-
-		playerNames[0] = Settings.getName();
-		playerNames[1] = "Player 2";
-		cardsOnHand[0] = 5; // Integer.parseInt(hand.get(0));
-		cardsOnHand[1] = 80085; // Integer.parseInt(hand.get(1));
-		turn = 1;
-
+		initPlayerInfo();
 		initCards();
 		
 		String[] actions = cih.getActionCards().toArray(new String[0]);
@@ -144,12 +135,27 @@ public class InGameState extends ControlledGameState {
 		initImages();
 
 		// temporary status tip init
-		tipMessage = "Where mah hand at??";
+		tipMessage = "Juicy beatles";
 
 		// Initiate all rectangles
 		initRectangles();
 	}
 	
+	/**
+	 * Initiates the player info.
+	 */
+	private void initPlayerInfo() {
+		amountOfPlayers = 2; // Should probably be supplied from network later
+		playerNames = new String[amountOfPlayers];
+		cardsOnHand = new int[amountOfPlayers];
+
+		playerNames[0] = Settings.getName();
+		playerNames[1] = "Player 2";
+		cardsOnHand[0] = 5; // Integer.parseInt(hand.get(0));
+		cardsOnHand[1] = 5; // Integer.parseInt(hand.get(1));
+		turn = 1;
+	}
+
 	/**
 	 * Initiates the arrays holding cards.
 	 */
@@ -1250,6 +1256,8 @@ public class InGameState extends ControlledGameState {
 			if (!playerNames[i].equals(Settings.getName())) {
 				if (i == turn) {
 					g.setColor(Color.red);
+				} else {
+					g.setColor(Color.white);
 				}
 				g.drawString("Player: " + playerNames[i], xOffset, yOffsetName
 						+ space * numberPainted);
@@ -1275,6 +1283,13 @@ public class InGameState extends ControlledGameState {
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
+	}
+	
+	/**
+	 * Sets all players' names.
+	 */
+	public void setPlayerNames(String[] names){
+		playerNames = names;
 	}
 
 	private void moveSupplyImages() {

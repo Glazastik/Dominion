@@ -152,6 +152,11 @@ public class MainView extends StateBasedGame implements Runnable {
 		InGameState g = ((InGameState) this.getState(Settings.INGAMESTATE));
 		g.setSupply(supply);
 	}
+	
+	public void updatePlayersInfo(String[] names){
+		InGameState g = ((InGameState) this.getState(Settings.INGAMESTATE));
+		g.setPlayerNames(names);
+	}
 
 	private void startView() {
 		try {
