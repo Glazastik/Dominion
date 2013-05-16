@@ -6,6 +6,8 @@ import java.util.LinkedList;
 import tda367.dominion.commons.messages.Message;
 import tda367.dominion.commons.messages.SetupMessage;
 import tda367.dominion.commons.messages.SupplyMessage;
+import tda367.dominion.commons.messages.TurnMessage;
+import tda367.dominion.commons.messages.TurnMessage.Phase;
 import tda367.dominion.server.network.NetworkHandler;
 
 /**
@@ -16,6 +18,7 @@ public class Dominion {
 	// Player related
 	private final LinkedList<Player> players;
 	private int activePlayer;
+	private TurnHandler turnHandler;
 
 	private final Supply supply;
 	private final CardRulesHandler cardRulesHandler;
@@ -34,7 +37,16 @@ public class Dominion {
 		this.supply = new Supply(players.size());
 		cardRulesHandler = new CardRulesHandler(players, supply);
 		network = NetworkHandler.getInstance();
+		turnHandler = new TurnHandler(getPlayerIDs());
 		init();
+		startGame();
+	}
+
+	private void startGame() {
+		turnHandler.startGame();
+		while(!turnHandler.isGameOver()){
+			//TODO: Main code goes here
+		}
 	}
 
 	/**
@@ -61,6 +73,33 @@ public class Dominion {
 			p.updateCards();
 			p.updateStats();
 		}
+		
+		
+	}
+	
+	private int[] getPlayerIDs() {
+		int[] ids = new int[players.size()]; 
+		for(int i = 0; i < ids.length; i++){
+			ids[i] = players.get(i).getID();
+		}
+		return ids;
+	}
+
+	private void requestActiveActions() {
+		TurnMessage msg = new TurnMessage();
+		msg.setPhase(Phase.ACTION);
+		getActivePlayer().send(msg);
+		
+	}
+
+	private Player getActivePlayer() {
+		int id = turnHandler.getActivePlayer();
+		for(Player p: players){
+			if(p.getID() == id){
+				return p;
+			}
+		}
+		return null;
 	}
 
 	/**
