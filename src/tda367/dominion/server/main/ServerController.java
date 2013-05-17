@@ -33,6 +33,9 @@ public class ServerController {
 		@Override
 		public void connected(Connection c) {
 			print("Received connection from " + c.getRemoteAddressTCP());
+			//Settings for idleness
+			c.setKeepAliveTCP(60000);
+			c.setTimeout(0);
 		}
 
 		@Override
