@@ -975,7 +975,7 @@ public class InGameState extends ControlledGameState {
 	 * <p>
 	 * Although any sort of image array may be passed to thus method, it is
 	 * tailored for images of dominion cards, and giving it anything else may
-	 * result in unwanted behaviour.
+	 * result in unwanted behavior.
 	 * </p>
 	 * 
 	 * @param cards
