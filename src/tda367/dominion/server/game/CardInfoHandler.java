@@ -139,4 +139,16 @@ public class CardInfoHandler {
 	public String getCroppedImageLink(String cardName){
 		return croppedImages.get(cardName);
 	}
+	
+	public static boolean isActionCard(String card) {
+		return cardTypes.get(card) == "Action";
+	}
+	
+	public static boolean isTreasureCard(String card) {
+		return cardTypes.get(card) == "Treasure";
+	}
+	
+	public static boolean isVictoryCard(String card) {
+		return cardTypes.get(card) == "Victory";
+	}
 }
