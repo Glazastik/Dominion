@@ -2,7 +2,18 @@ package tda367.dominion.server.game;
 
 public class TurnHandler {
 	public enum Phase {
-		ACTION, BUY, CLEANUP;
+		ACTION("action"),
+		BUY("buy"),
+		CLEANUP("cleanup");
+		private final String s;
+
+		Phase(String s) {
+			this.s = s;
+		}
+		
+		public String toString(){
+			return s;
+		}
 	}
 
 	private Phase phase;
@@ -88,8 +99,8 @@ public class TurnHandler {
 	public int getActivePlayer() {
 		return this.activePlayer;
 	}
-	
-	public Phase getPhase(){
+
+	public Phase getPhase() {
 		return phase;
 	}
 

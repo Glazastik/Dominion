@@ -6,6 +6,7 @@ import java.util.LinkedList;
 import tda367.dominion.commons.messages.Message;
 import tda367.dominion.commons.messages.SetupMessage;
 import tda367.dominion.commons.messages.SupplyMessage;
+import tda367.dominion.commons.messages.TurnMessage;
 import tda367.dominion.server.game.TurnHandler.Phase;
 import tda367.dominion.server.network.NetworkHandler;
 
@@ -53,6 +54,15 @@ public class Dominion {
 		active = this.getActivePlayer();
 		phase = turnHandler.getPhase();
 		
+		//TODO: tell thing receiving objects about it?
+		
+		sendTurnMessage(active, phase);
+	}
+
+	private void sendTurnMessage(Player player, Phase phase) {
+		TurnMessage msg = new TurnMessage();
+		msg.setPhase(phase.toString());
+		player.send(msg);
 	}
 
 	/**

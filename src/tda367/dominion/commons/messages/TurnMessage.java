@@ -1,16 +1,19 @@
 package tda367.dominion.commons.messages;
 
 public class TurnMessage implements Message {
-	private Phase phase;
-	public enum Phase{
-		ACTION, BUY;
+	private String phase;
+
+	/**
+	 * @return the phase
+	 */
+	public String getPhase() {
+		return phase;
 	}
 
-	public void setPhase(Phase p){
-		phase = p;
-	}
-	
-	public Phase getPhase(){
-		return phase;
+	/**
+	 * @param phase the phase to set
+	 */
+	public void setPhase(String phase) {
+		this.phase = phase;
 	}
 }
