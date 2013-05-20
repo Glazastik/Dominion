@@ -80,21 +80,7 @@ public class RoomHandler {
 	public void received(GameConnection c, Object object) {
 		for(GameRoom r : rooms) {
 			if(r.hasConnection(c)) {
-				if (object instanceof CardMessage) {
-//					TODO: Play the card
-					CardMessage message = ((CardMessage) object);
-					print("Player played: " + message.getCard());
-				} else if (object instanceof BoolMessage) {
-					BoolMessage message = ((BoolMessage) object);
-					print("Bool: " + message.getBool());
-				} else if (object instanceof GainMessage) {
-					GainMessage message = ((GainMessage) object);
-					print("Bought/gained: " + message.getCard());
-				} else {
-					print("Classname: " + object.getClass());
-					print(object.toString());
-				}
-				return;
+				r.received(c, object);
 			}
 		}
 	}
@@ -182,9 +168,5 @@ public class RoomHandler {
 		msg.setPlayers(gr.getPlayerNames());
 
 		return msg;
-	}
-	
-	private void print(String s) {
-		System.out.println(s);
 	}
 }

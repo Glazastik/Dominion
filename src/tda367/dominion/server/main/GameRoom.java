@@ -2,6 +2,9 @@ package tda367.dominion.server.main;
 
 import java.util.LinkedList;
 
+import tda367.dominion.commons.messages.BoolMessage;
+import tda367.dominion.commons.messages.CardMessage;
+import tda367.dominion.commons.messages.GainMessage;
 import tda367.dominion.server.game.Dominion;
 import tda367.dominion.server.game.Player;
 import tda367.dominion.server.network.GameConnection;
@@ -48,6 +51,20 @@ public class GameRoom {
 		game = new Dominion(this.getPlayers());
 	}
 	
+	public void received(GameConnection c, Object object) {
+		if (object instanceof CardMessage) {
+			CardMessage message = ((CardMessage) object);
+			print("Player played: " + message.getCard());
+		} else if (object instanceof BoolMessage) {
+			BoolMessage message = ((BoolMessage) object);
+			print("Bool: " + message.getBool());
+		} else if (object instanceof GainMessage) {
+			GainMessage message = ((GainMessage) object);
+			print("Bought/gained: " + message.getCard());
+		} else {
+			print("Classname: " + object.getClass());
+		}
+	}
 
 	/**
 	 * Returns a list of the player objects in the room.
@@ -208,5 +225,9 @@ public class GameRoom {
 			names[i] = players.get(i).getName();
 		}
 		return names;
+	}
+	
+	private void print(String s) {
+		System.out.println(s);
 	}
 }
