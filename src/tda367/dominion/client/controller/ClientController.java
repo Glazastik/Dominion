@@ -1,7 +1,5 @@
 package tda367.dominion.client.controller;
 
-import org.newdawn.slick.SlickException;
-
 import tda367.dominion.client.model.ClientModel;
 import tda367.dominion.client.model.Settings;
 import tda367.dominion.client.view.MainView;
@@ -13,6 +11,7 @@ import tda367.dominion.commons.messages.PlayerUpdateMessage;
 import tda367.dominion.commons.messages.RoomMessage;
 import tda367.dominion.commons.messages.SetupMessage;
 import tda367.dominion.commons.messages.SupplyMessage;
+import tda367.dominion.commons.messages.TurnMessage;
 
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
@@ -90,6 +89,15 @@ public class ClientController {
 				
 				view.enterState(Settings.INGAMESTATE);
 				view.updatePlayersInfo(setup.getPlayers());
+			}
+			
+			if(object instanceof TurnMessage){
+				TurnMessage turn = (TurnMessage) object;
+				String phase = turn.getPhase();
+				if(phase.equals("action")){
+					view.updatePhase("action");
+					model.setPhase("action");
+				}
 			}
 		}
 

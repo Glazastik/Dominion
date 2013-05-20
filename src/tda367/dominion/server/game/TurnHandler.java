@@ -88,7 +88,6 @@ public class TurnHandler {
 	private void nextTurn() {
 		activePlayer = getNextPlayer();
 		phase = Phase.ACTION;
-
 	}
 
 	private int getNextPlayer() {

@@ -12,6 +12,7 @@ import com.esotericsoftware.kryonet.Listener;
 
 public class ClientModel {
 	private ClientConnection connection;
+	private String phase;
 
 	public ClientModel() {
 		this.connection = new ClientConnection();
@@ -47,9 +48,11 @@ public class ClientModel {
 	 *            to be played.
 	 */
 	public void playCard(String card) {
-		CardMessage msg = new CardMessage();
-		msg.setCard(card);
-		connection.sendMessage(msg);
+		if (getPhase() != null && getPhase().equals("action")) {
+			CardMessage msg = new CardMessage();
+			msg.setCard(card);
+			connection.sendMessage(msg);
+		}
 	}
 
 	public void supplyCard(String card) {
@@ -65,6 +68,15 @@ public class ClientModel {
 		BoolMessage msg = new BoolMessage();
 		msg.setBool(bool);
 		connection.sendMessage(msg);
+	}
+
+	public void setPhase(String phase) {
+		this.phase = phase;
+
+	}
+
+	public String getPhase() {
+		return phase;
 	}
 
 }

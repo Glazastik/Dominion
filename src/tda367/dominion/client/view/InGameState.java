@@ -73,8 +73,8 @@ public class InGameState extends ControlledGameState {
 	private Rectangle logRec;
 	private Rectangle nextRec;
 	private Rectangle playAllRec;
-	
-	//Log variables
+
+	// Log variables
 	private boolean logDisplay;
 	private LinkedList<String> logText;
 
@@ -98,6 +98,7 @@ public class InGameState extends ControlledGameState {
 	// Listeners
 	private GameListener cardListener;
 	private GameListener supplyListener;
+	private String phase;
 
 	public InGameState(int id) {
 		super(id);
@@ -144,12 +145,12 @@ public class InGameState extends ControlledGameState {
 
 		// Initiate all rectangles
 		initRectangles();
-		
-		//Log init
+
+		// Log init
 		logDisplay = false;
 		logText = new LinkedList<String>();
-		
-		for (int i = 0; i<10; i++) {
+
+		for (int i = 0; i < 10; i++) {
 			logText.addFirst("Test " + i);
 		}
 	}
@@ -255,6 +256,7 @@ public class InGameState extends ControlledGameState {
 		paintButtons();
 		paintStatusBar(g);
 		paintLog(g);
+		paintPhase(g);
 
 		if (playedCards != null) {
 			paintPlayedCards(playedCards);
@@ -292,6 +294,8 @@ public class InGameState extends ControlledGameState {
 		}
 
 	}
+
+	
 
 	/**
 	 * Updates the arrays containing the amount of cards that are in play.
@@ -412,10 +416,11 @@ public class InGameState extends ControlledGameState {
 	public void setDeckSize(int size) {
 		deckSize = size;
 	}
-	
+
 	/**
-	 * Adds a string to the log, so it appears at the bottom.
-	 * Adds it to the first position because the paint method draws the first text first.
+	 * Adds a string to the log, so it appears at the bottom. Adds it to the
+	 * first position because the paint method draws the first text first.
+	 * 
 	 * @param str
 	 */
 	public void addLogMessage(String str) {
@@ -968,6 +973,10 @@ public class InGameState extends ControlledGameState {
 			treasureRectangles[i].setSize((int) cardWidth, (int) cardHeight);
 		}
 	}
+	
+	private void paintPhase(Graphics g) {
+		
+	}
 
 	/**
 	 * Paints the cards in the players hand.
@@ -990,24 +999,26 @@ public class InGameState extends ControlledGameState {
 		}
 
 		for (int i = 0; i < imageCards.length; i++) {
-			float cardHeight = (float)gameContainerHeight * (float)(1.0/3);
+			float cardHeight = (float) gameContainerHeight * (float) (1.0 / 3);
 			double scale = (double) cardHeight / imageCards[i].getHeight();
 			float cardWidth = (float) (imageCards[i].getWidth() * scale);
 			float cardOverlap;
 			if (imageCards.length > 6) {
-				cardOverlap = (float) imageCards.length / (float)5.5;
+				cardOverlap = (float) imageCards.length / (float) 5.5;
 			} else {
 				cardOverlap = 1;
 			}
 
-			int xOffset = (int) (5 + cardWidth/cardOverlap * i);
+			int xOffset = (int) (5 + cardWidth / cardOverlap * i);
 			int yOffset = (int) (gameContainerHeight - cardHeight - 10);
-			
-			imageCards[i].draw(xOffset, yOffset, cardWidth,	cardHeight);
-			if(i < imageCards.length - 1) {
-				handRectangles[i].setBounds(xOffset, yOffset, (int)(cardWidth/cardOverlap), (int)cardHeight);
+
+			imageCards[i].draw(xOffset, yOffset, cardWidth, cardHeight);
+			if (i < imageCards.length - 1) {
+				handRectangles[i].setBounds(xOffset, yOffset,
+						(int) (cardWidth / cardOverlap), (int) cardHeight);
 			} else {
-				handRectangles[i].setBounds(xOffset, yOffset, (int)cardWidth, (int)cardHeight);
+				handRectangles[i].setBounds(xOffset, yOffset, (int) cardWidth,
+						(int) cardHeight);
 			}
 		}
 
@@ -1310,11 +1321,12 @@ public class InGameState extends ControlledGameState {
 			}
 		}
 	}
-	
+
 	/**
-	 * A method for painting the log and it's messages.
-	 * It currently draws one string on each line disregarding its length.
-	 * TODO: Implement scrolling and text wrapping.
+	 * A method for painting the log and it's messages. It currently draws one
+	 * string on each line disregarding its length. TODO: Implement scrolling
+	 * and text wrapping.
+	 * 
 	 * @param g
 	 */
 	private void paintLog(Graphics g) {
@@ -1323,14 +1335,16 @@ public class InGameState extends ControlledGameState {
 		int textOffset = 55;
 		int textSpacing = -15;
 		int numberOfTexts = 0;
-		float scale = (float)0.85;
-		
+		float scale = (float) 0.85;
+
 		if (logDisplay) {
 			log.draw(xOffset, yOffset, scale);
 			for (String str : logText) {
 				if (str != null && numberOfTexts < 15) {
-					g.drawString(str, xOffset + 20, (textSpacing * numberOfTexts)
-							+ yOffset - textOffset + (int)(log.getHeight()*0.85));
+					g.drawString(str, xOffset + 20,
+							(textSpacing * numberOfTexts) + yOffset
+									- textOffset
+									+ (int) (log.getHeight() * 0.85));
 					numberOfTexts++;
 				}
 			}
@@ -1376,6 +1390,11 @@ public class InGameState extends ControlledGameState {
 
 		}
 		actionCards = moved.toArray(new Image[0]);
+	}
+
+	public void setPhase(String phase) {
+		this.phase = phase;
+		this.addLogMessage(phase + " phase entered.");
 	}
 
 }

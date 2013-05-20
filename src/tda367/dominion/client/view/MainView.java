@@ -19,6 +19,7 @@ import tda367.dominion.commons.listener.GameListener;
 public class MainView extends StateBasedGame implements Runnable {
 
 	public static AppGameContainer theGame;
+	private String phase;
 
 	/**
 	 * Constructs a new StateBasedGame which in turn creates a AppGameContainer,
@@ -157,6 +158,11 @@ public class MainView extends StateBasedGame implements Runnable {
 		InGameState g = ((InGameState) this.getState(Settings.INGAMESTATE));
 		g.setPlayerNames(names);
 	}
+	
+	public void updatePhase(String phase) {
+		InGameState g = ((InGameState) this.getState(Settings.INGAMESTATE));
+		g.setPhase(phase);
+	}
 
 	private void startView() {
 		try {
@@ -177,5 +183,7 @@ public class MainView extends StateBasedGame implements Runnable {
 		startView();
 
 	}
+
+	
 
 }
