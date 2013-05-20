@@ -23,8 +23,6 @@ public class Dominion {
 	private final Supply supply;
 	private final CardRulesHandler cardRulesHandler;
 	private NetworkHandler network;
-	private Player active;
-	private Phase phase;
 
 	/**
 	 * Constructs a fine game of Dominion!
@@ -85,12 +83,8 @@ public class Dominion {
 	}
 
 	private void notifyPhase() {
-		active = this.getActivePlayer();
-		phase = turnHandler.getPhase();
-		
-		//TODO: tell thing receiving objects about it?
-		
-		sendTurnMessage(active, phase);
+		//TODO: Fix
+		sendTurnMessage(this.getActivePlayer(), turnHandler.getPhase());
 	}
 
 	private void sendTurnMessage(Player player, Phase phase) {
