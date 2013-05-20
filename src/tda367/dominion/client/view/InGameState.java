@@ -214,7 +214,7 @@ public class InGameState extends ControlledGameState {
 		actionRectangles = initRectangleArray(10);
 		victoryRectangles = initRectangleArray(4);
 		treasureRectangles = initRectangleArray(3);
-		handRectangles = initRectangleArray(40);
+		handRectangles = initRectangleArray(100);
 	}
 
 	/**
@@ -482,6 +482,7 @@ public class InGameState extends ControlledGameState {
 
 		// Next/End button listener
 		if (button == Input.MOUSE_LEFT_BUTTON && nextRec.contains(x, y)) {
+			hand.add("Copper");
 			try {
 				if (nextButton.getResourceReference() == "res/img/gui/ingame/NextButton.png") {
 					nextButton = new Image(
@@ -988,15 +989,25 @@ public class InGameState extends ControlledGameState {
 		}
 
 		for (int i = 0; i < imageCards.length; i++) {
-			int cardHeight = gameContainerHeight * ( 1 / 3);
+			float cardHeight = (float)gameContainerHeight * (float)(1.0/3);
 			double scale = (double) cardHeight / imageCards[i].getHeight();
-			int cardWidth = (int) (imageCards[i].getWidth() * scale);
+			float cardWidth = (float) (imageCards[i].getWidth() * scale);
+			float cardOverlap;
+			if (imageCards.length>5) {
+				cardOverlap = (float) imageCards.length / 5;
+			} else {
+				cardOverlap = 1;
+			}
 
-			int xOffset = (int) (cardWidth/imageCards.length * i);
+			int xOffset = (int) (5 + cardWidth/cardOverlap * i);
 			int yOffset = (int) (gameContainerHeight - cardHeight - 10);
 			
 			imageCards[i].draw(xOffset, yOffset, cardWidth,	cardHeight);
-			handRectangles[i].setBounds(xOffset, yOffset, cardWidth, cardHeight);
+			if(i < imageCards.length - 1) {
+				handRectangles[i].setBounds(xOffset, yOffset, (int)(cardWidth/cardOverlap), (int)cardHeight);
+			} else {
+				handRectangles[i].setBounds(xOffset, yOffset, (int)cardWidth, (int)cardHeight);
+			}
 		}
 
 	}
