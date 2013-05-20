@@ -6,8 +6,7 @@ import java.util.LinkedList;
 import tda367.dominion.commons.messages.Message;
 import tda367.dominion.commons.messages.SetupMessage;
 import tda367.dominion.commons.messages.SupplyMessage;
-import tda367.dominion.commons.messages.TurnMessage;
-import tda367.dominion.commons.messages.TurnMessage.Phase;
+import tda367.dominion.server.game.TurnHandler.Phase;
 import tda367.dominion.server.network.NetworkHandler;
 
 /**
@@ -22,6 +21,8 @@ public class Dominion {
 	private final Supply supply;
 	private final CardRulesHandler cardRulesHandler;
 	private NetworkHandler network;
+	private Player active;
+	private Phase phase;
 
 	/**
 	 * Constructs a fine game of Dominion!
@@ -36,16 +37,22 @@ public class Dominion {
 		this.supply = new Supply(players.size());
 		cardRulesHandler = new CardRulesHandler(players, supply);
 		network = NetworkHandler.getInstance();
-		turnHandler = new TurnHandler(getPlayerIDs());
+		
 		init();
-//		startGame();
+		startGame();
 	}
 
 	private void startGame() {
+		turnHandler = new TurnHandler(players.size());
 		turnHandler.startGame();
-		while(!turnHandler.isGameOver()){
-			//TODO: Main code goes here
-		}
+		this.notifyPhase();
+		
+	}
+
+	private void notifyPhase() {
+		active = this.getActivePlayer();
+		phase = turnHandler.getPhase();
+		
 	}
 
 	/**
@@ -84,21 +91,10 @@ public class Dominion {
 		return ids;
 	}
 
-	private void requestActiveActions() {
-		TurnMessage msg = new TurnMessage();
-		msg.setPhase(Phase.ACTION);
-		getActivePlayer().send(msg);
-		
-	}
 
 	private Player getActivePlayer() {
-		int id = turnHandler.getActivePlayer();
-		for(Player p: players){
-			if(p.getID() == id){
-				return p;
-			}
-		}
-		return null;
+		int i = turnHandler.getActivePlayer();
+		return players.get(i);
 	}
 
 	/**
