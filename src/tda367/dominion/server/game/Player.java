@@ -85,6 +85,7 @@ public class Player {
 		} else if(deck.getSize() > 0) {
 			hand.add(deck.pop());
 		}
+		updateCards();
 	}
 	
 	private void discardPileToDeck() {
@@ -177,6 +178,7 @@ public class Player {
 		if(hand.contains(card)) {
 			discard.add(hand.pop(card));
 		}
+		updateCards();
 	}
 	
 	/**
@@ -185,6 +187,7 @@ public class Player {
 	 */
 	public void gain(String card) {
 		discard.add(card);
+		updateCards();
 	}
 	
 	/**
@@ -193,6 +196,7 @@ public class Player {
 	 */
 	public void addToHand(String card) {
 		hand.add(card);
+		updateCards();
 	}
 	
 	/**
@@ -228,6 +232,7 @@ public class Player {
 	 */
 	public void discardDeck() {
 		discard.add(deck);
+		updateCards();
 	}
 	
 	/**
@@ -244,6 +249,7 @@ public class Player {
 	 */
 	public void increaseActions(int amount) {
 		this.actions += amount;
+		updateStats();
 	}
 	
 	/**
@@ -252,6 +258,7 @@ public class Player {
 	 */
 	public void decreaseActions(int amount) {
 		this.actions -= amount;
+		updateStats();
 	}
 	
 	/**
@@ -260,6 +267,7 @@ public class Player {
 	 */
 	public void increaseMoney(int amount) {
 		this.money+=amount;
+		updateStats();
 	}
 	
 	/**
@@ -268,6 +276,7 @@ public class Player {
 	 */
 	public void decreaseMoney(int amount) {
 		this.money-=amount;
+		updateStats();
 	}
 	
 	/**
@@ -276,6 +285,7 @@ public class Player {
 	 */
 	public void increaseBuy(int amount) {
 		this.buys+=amount;
+		updateStats();
 	}
 	
 	/**
@@ -284,6 +294,7 @@ public class Player {
 	 */
 	public void decreaseBuy(int amount) {
 		this.buys -= amount;
+		updateStats();
 	}
 	
 	/**
@@ -312,6 +323,7 @@ public class Player {
 				playingArea.add(hand.pop(card));
 			}
 		}
+		updateCards();
 	}
 	
 	/**
@@ -331,6 +343,7 @@ public class Player {
 				playingArea.add(hand.pop(card));
 			}
 		}
+		updateCards();
 	}
 	
 	/**
@@ -344,6 +357,8 @@ public class Player {
 		this.actions = 1;
 		this.money = 0;
 		this.buys = 1;
+		updateCards();
+		updateStats();
 	}
 	/**
 	 * Returns the number of cards in the players hand

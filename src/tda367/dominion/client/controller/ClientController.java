@@ -39,6 +39,8 @@ public class ClientController {
 		view.addUpdateRoomListener(new UpdateRoomListener());
 		view.addJoinListener(new JoinRoomListener());
 		view.addHostListener(new HostRoomListener());
+		view.addSupplyListener(new SupplyListener());
+		view.addCardListener(new CardListener());
 	}
 
 	// Listener classes
@@ -84,9 +86,6 @@ public class ClientController {
 				SupplyMessage supply = setup.getSupply();
 				Settings.inGame = true;
 				view.updateSupply(supply.getSupply());
-				
-				view.addCardListener(new CardListener());
-				
 				view.enterState(Settings.INGAMESTATE);
 				view.updatePlayersInfo(setup.getPlayers());
 			}
