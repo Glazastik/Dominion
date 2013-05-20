@@ -38,7 +38,7 @@ public class Dominion {
 		network = NetworkHandler.getInstance();
 		turnHandler = new TurnHandler(getPlayerIDs());
 		init();
-		startGame();
+//		startGame();
 	}
 
 	private void startGame() {

@@ -27,7 +27,7 @@ public class RoomHandler {
 	public RoomHandler() {
 		rooms = new LinkedList<GameRoom>();
 		network = NetworkHandler.getInstance();
-		network.addListener(new NetworkListener());
+//		network.addListener(new NetworkListener());
 	}
 
 	/**
@@ -181,7 +181,6 @@ public class RoomHandler {
 		
 		@Override
 		public void received(Connection c, Object object) {
-			
 			if (object instanceof Message) {
 				
 			}

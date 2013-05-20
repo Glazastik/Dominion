@@ -34,12 +34,12 @@ public class ServerController {
 		public void connected(Connection c) {
 			print("Received connection from " + c.getRemoteAddressTCP());
 			//Settings for idleness
-			c.setKeepAliveTCP(60000);
 			c.setTimeout(0);
 		}
 
 		@Override
 		public void received(Connection c, Object object) {
+			System.out.println("Ett meddelande togs emot");
 			GameConnection gc = (GameConnection) c;
 			if (object instanceof ConnectionMessage) {
 				print(c.getRemoteAddressTCP() + " wants to connect to a room.");
@@ -53,8 +53,8 @@ public class ServerController {
 				sendRoomList(c);
 				
 			} else if (object instanceof CardMessage) {
-				// TODO: Play the card
-				// print("Player played: " + ((CardMessage) object).getCard());
+//				 TODO: Play the card
+				 print("Player played: " + ((CardMessage) object).getCard());
 			} else if (object instanceof KeepAlive) {
 				// Don't say anything you stupid server
 			} else {
