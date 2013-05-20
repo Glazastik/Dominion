@@ -48,7 +48,7 @@ public class ClientModel {
 	 *            to be played.
 	 */
 	public void playCard(String card) {
-		if (getPhase() != null && getPhase().equals("action")) {
+		if (phase != null && getPhase().equals("action")) {
 			CardMessage msg = new CardMessage();
 			msg.setCard(card);
 			connection.sendMessage(msg);
