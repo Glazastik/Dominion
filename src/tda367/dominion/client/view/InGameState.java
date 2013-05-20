@@ -988,16 +988,15 @@ public class InGameState extends ControlledGameState {
 		}
 
 		for (int i = 0; i < imageCards.length; i++) {
-			float cardHeight = (float) gameContainerHeight * ((float) 1 / 3);
+			int cardHeight = gameContainerHeight * ( 1 / 3);
 			double scale = (double) cardHeight / imageCards[i].getHeight();
-			float cardWidth = (float) (imageCards[i].getWidth() * scale);
+			int cardWidth = (int) (imageCards[i].getWidth() * scale);
 
-			imageCards[i].draw(cardWidth * i + (10 * (i + 1)),
-					gameContainerHeight - cardHeight - 10, cardWidth,
-					cardHeight);
-			handRectangles[i].setLocation((int) cardWidth * i + (10 * (i + 1)),
-					(int) (gameContainerHeight - cardHeight - 10));
-			handRectangles[i].setSize((int) cardWidth, (int) cardHeight);
+			int xOffset = (int) (cardWidth/imageCards.length * i);
+			int yOffset = (int) (gameContainerHeight - cardHeight - 10);
+			
+			imageCards[i].draw(xOffset, yOffset, cardWidth,	cardHeight);
+			handRectangles[i].setBounds(xOffset, yOffset, cardWidth, cardHeight);
 		}
 
 	}
