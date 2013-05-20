@@ -1,13 +1,9 @@
 package tda367.dominion.server.main;
 
-import java.util.LinkedList;
-
-import tda367.dominion.commons.messages.CardMessage;
 import tda367.dominion.commons.messages.ConnectionMessage;
 import tda367.dominion.commons.messages.RoomHostMessage;
 import tda367.dominion.commons.messages.RoomMessage;
 import tda367.dominion.commons.messages.RoomUpdateMessage;
-import tda367.dominion.commons.messages.SetupMessage;
 import tda367.dominion.server.network.GameConnection;
 import tda367.dominion.server.network.NetworkHandler;
 import tda367.dominion.server.view.ServerFrame;
@@ -45,21 +41,16 @@ public class ServerController {
 				ConnectionMessage cmsg = (ConnectionMessage) object;
 				connectPlayer(gc, cmsg.getRoomId(), cmsg.getName());
 			} else if (object instanceof RoomUpdateMessage) {
-				sendRoomList(c);
+				sendRoomList(gc);
 
 			} else if (object instanceof RoomHostMessage) {
 				hostRoom(gc, ((RoomHostMessage) object).getName());
-				sendRoomList(c);
-				
-			} else if (object instanceof CardMessage) {
-//				 TODO: Play the card
-				 print("Player played: " + ((CardMessage) object).getCard());
+				sendRoomList(gc);
 			} else if (object instanceof KeepAlive) {
 				// Don't say anything you stupid server
 			} else {
-				//If object is unknown/unhandled
-				print("Classname: " + object.getClass());
-				print(object.toString());
+				// The player makes a choice
+				roomHandler.received(gc, object);
 			}
 		}
 

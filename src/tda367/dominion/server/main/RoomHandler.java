@@ -3,17 +3,10 @@ package tda367.dominion.server.main;
 import java.util.LinkedList;
 
 import com.esotericsoftware.kryonet.Connection;
-import com.esotericsoftware.kryonet.Listener;
 
-import tda367.dominion.commons.messages.BoolMessage;
-import tda367.dominion.commons.messages.DoneMessage;
-import tda367.dominion.commons.messages.CardMessage;
-import tda367.dominion.commons.messages.Message;
-import tda367.dominion.commons.messages.SetupMessage;
-import tda367.dominion.commons.messages.SupplyMessage;
+import tda367.dominion.commons.messages.*;
 import tda367.dominion.server.game.Player;
 import tda367.dominion.server.network.GameConnection;
-import tda367.dominion.server.network.NetworkHandler;
 import tda367.dominion.server.view.ServerFrame;
 
 /**
@@ -21,13 +14,10 @@ import tda367.dominion.server.view.ServerFrame;
  */
 public class RoomHandler {
 	LinkedList<GameRoom> rooms;
-	private NetworkHandler network;
 	private int id = -1;
 
 	public RoomHandler() {
 		rooms = new LinkedList<GameRoom>();
-		network = NetworkHandler.getInstance();
-//		network.addListener(new NetworkListener());
 	}
 
 	/**
@@ -66,8 +56,6 @@ public class RoomHandler {
 		return roomString;
 	}
 
-	
-
 	/**
 	 * Adds a player to the given room (id).
 	 * 
@@ -87,6 +75,28 @@ public class RoomHandler {
 		}
 
 		gr.addPlayer(c);
+	}
+	
+	public void received(GameConnection c, Object object) {
+		for(GameRoom r : rooms) {
+			if(r.hasConnection(c)) {
+				if (object instanceof CardMessage) {
+//					TODO: Play the card
+					CardMessage message = ((CardMessage) object);
+					print("Player played: " + message.getCard());
+				} else if (object instanceof BoolMessage) {
+					BoolMessage message = ((BoolMessage) object);
+					print("Bool: " + message.getBool());
+				} else if (object instanceof GainMessage) {
+					GainMessage message = ((GainMessage) object);
+					print("Bought/gained: " + message.getCard());
+				} else {
+					print("Classname: " + object.getClass());
+					print(object.toString());
+				}
+				return;
+			}
+		}
 	}
 
 	/**
@@ -174,34 +184,7 @@ public class RoomHandler {
 		return msg;
 	}
 	
-	/**
-	 * A class that listens for game specific requests. 
-	 */
-	class NetworkListener extends Listener {
-		
-		@Override
-		public void received(Connection c, Object object) {
-			if (object instanceof Message) {
-				
-			}
-			
-			if (object instanceof CardMessage) {
-				
-			}
-			
-			if (object instanceof BoolMessage) {
-				
-			}
-			
-			if (object instanceof DoneMessage) {
-				
-			}
-		}
-		
-		@Override
-		public void disconnected(Connection c) {
-			kickConnection((GameConnection) c);
-		}
+	private void print(String s) {
+		System.out.println(s);
 	}
-
 }

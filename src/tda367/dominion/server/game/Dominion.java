@@ -89,8 +89,6 @@ public class Dominion {
 			p.updateCards();
 			p.updateStats();
 		}
-		
-		
 	}
 	
 	private int[] getPlayerIDs() {
