@@ -51,16 +51,19 @@ public class GameRoom {
 		game = new Dominion(this.getPlayers());
 	}
 	
-	public void received(GameConnection c, Object object) {
+	public void received(GameConnection gc, Object object) {
 		if (object instanceof CardMessage) {
 			CardMessage message = ((CardMessage) object);
 			print("Player played: " + message.getCard());
+			game.playCard(gc, message.getCard());
 		} else if (object instanceof BoolMessage) {
 			BoolMessage message = ((BoolMessage) object);
 			print("Bool: " + message.getBool());
+			game.playBool(gc, message.getBool());
 		} else if (object instanceof GainMessage) {
 			GainMessage message = ((GainMessage) object);
 			print("Bought/gained: " + message.getCard());
+			game.playGain(gc, message.getCard());
 		} else {
 			print("Classname: " + object.getClass());
 		}

@@ -8,6 +8,7 @@ import tda367.dominion.commons.messages.SetupMessage;
 import tda367.dominion.commons.messages.SupplyMessage;
 import tda367.dominion.commons.messages.TurnMessage;
 import tda367.dominion.server.game.TurnHandler.Phase;
+import tda367.dominion.server.network.GameConnection;
 import tda367.dominion.server.network.NetworkHandler;
 
 /**
@@ -47,7 +48,40 @@ public class Dominion {
 		turnHandler = new TurnHandler(players.size());
 		turnHandler.startGame();
 		this.notifyPhase();
+	}
+	
+	public void playCard(GameConnection gc, String card) {
+		if(turnHandler.getActivePlayer() == gc.getID()) {
+			
+		}
+	}
+	
+	public void playBool(GameConnection gc, boolean bool) {
+		if(turnHandler.getActivePlayer() == gc.getID()) {
+			
+		}
+	}
+	
+	public void playGain(GameConnection gc, String card) {
+		if(turnHandler.getActivePlayer() != gc.getID()) {
+			return;
+		}
+		if(!supply.isAvailable(card)) {
+			return;
+		}
 		
+		for(Player p : players) {
+			if(p.getID() == turnHandler.getActivePlayer()) {
+				p.gain(card);
+				return;
+			}
+		}
+	}
+	
+	public void done(GameConnection gc) {
+		if(turnHandler.getActivePlayer() == gc.getID()) {
+			turnHandler.advance();
+		}
 	}
 
 	private void notifyPhase() {
