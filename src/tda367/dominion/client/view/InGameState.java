@@ -500,6 +500,7 @@ public class InGameState extends ControlledGameState {
 		// play all treasures button listener
 		if (button == Input.MOUSE_LEFT_BUTTON && playAllRec.contains(x, y)) {
 			System.out.println("Play all treasures");
+			hand.removeLast();
 			// TODO: Replace with network stuff
 			// crh.playAllTreasures(player);
 		}
@@ -993,8 +994,8 @@ public class InGameState extends ControlledGameState {
 			double scale = (double) cardHeight / imageCards[i].getHeight();
 			float cardWidth = (float) (imageCards[i].getWidth() * scale);
 			float cardOverlap;
-			if (imageCards.length>5) {
-				cardOverlap = (float) imageCards.length / 5;
+			if (imageCards.length > 6) {
+				cardOverlap = (float) imageCards.length / (float)5.5;
 			} else {
 				cardOverlap = 1;
 			}
