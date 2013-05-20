@@ -49,8 +49,20 @@ public class Dominion {
 	}
 	
 	public void playCard(GameConnection gc, String card) {
-		if(turnHandler.getActivePlayer() == gc.getID()) {
-			
+		System.out.println("1: " + turnHandler.getActivePlayer());
+		System.out.println("2: " + gc.getID());
+		if(turnHandler.getActivePlayer() != gc.getID()) {
+//			TODO: Inte alltid retur pŒ den!
+			return;
+		} else {
+			if(CardInfoHandler.isActionCard(card)) {
+				if(getActivePlayer().getActions() > 0) {
+					getActivePlayer().decreaseActions(1);
+				} else {
+					return;
+				}
+			}
+			getActivePlayer().play(card);
 		}
 	}
 	
