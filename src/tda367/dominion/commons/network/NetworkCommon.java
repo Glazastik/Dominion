@@ -3,6 +3,7 @@ package tda367.dominion.commons.network;
 import java.util.HashMap;
 import java.util.LinkedList;
 
+import tda367.dominion.commons.messages.AdvanceMessage;
 import tda367.dominion.commons.messages.BoolMessage;
 import tda367.dominion.commons.messages.CardMessage;
 import tda367.dominion.commons.messages.CardUpdateMessage;
@@ -15,6 +16,7 @@ import tda367.dominion.commons.messages.RoomMessage;
 import tda367.dominion.commons.messages.RoomUpdateMessage;
 import tda367.dominion.commons.messages.SetupMessage;
 import tda367.dominion.commons.messages.SupplyMessage;
+import tda367.dominion.commons.messages.TurnMessage;
 
 import com.esotericsoftware.kryo.Kryo;
 import com.esotericsoftware.kryonet.EndPoint;
@@ -46,6 +48,9 @@ public class NetworkCommon {
 		kryo.register(LinkedList.class);
 		kryo.register(String[][].class);
 		kryo.register(String[].class);
+		
+		kryo.register(TurnMessage.class);
+		kryo.register(AdvanceMessage.class);
 	}
 	
 	public static class BasicMessage{
