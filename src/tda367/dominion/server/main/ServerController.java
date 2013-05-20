@@ -39,7 +39,6 @@ public class ServerController {
 
 		@Override
 		public void received(Connection c, Object object) {
-			System.out.println("Ett meddelande togs emot");
 			GameConnection gc = (GameConnection) c;
 			if (object instanceof ConnectionMessage) {
 				print(c.getRemoteAddressTCP() + " wants to connect to a room.");
