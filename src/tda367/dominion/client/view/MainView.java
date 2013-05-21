@@ -54,6 +54,11 @@ public class MainView extends StateBasedGame implements Runnable {
 		InGameState s = (InGameState) getState(Settings.INGAMESTATE);
 		s.addCardListener(l);
 	}
+	
+	public void addPlayAllListener(GameListener l){
+		InGameState s = (InGameState) getState(Settings.INGAMESTATE);
+		s.addPlayAllListener(l);
+	}
 
 	public void addSupplyListener(GameListener l) {
 		InGameState s = (InGameState) getState(Settings.INGAMESTATE);

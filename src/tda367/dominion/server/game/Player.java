@@ -388,6 +388,7 @@ public class Player {
 			}
 		}
 		updateCards();
+		updateStats();
 	}
 
 	/**

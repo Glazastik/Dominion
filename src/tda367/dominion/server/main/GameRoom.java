@@ -2,10 +2,7 @@ package tda367.dominion.server.main;
 
 import java.util.LinkedList;
 
-import tda367.dominion.commons.messages.AdvanceMessage;
-import tda367.dominion.commons.messages.BoolMessage;
-import tda367.dominion.commons.messages.CardMessage;
-import tda367.dominion.commons.messages.GainMessage;
+import tda367.dominion.commons.messages.*;
 import tda367.dominion.server.game.Dominion;
 import tda367.dominion.server.game.Player;
 import tda367.dominion.server.network.GameConnection;
@@ -68,6 +65,9 @@ public class GameRoom {
 			print("Bought/gained: " + message.getCard());
 			game.playGain(gc, message.getCard());
 
+		} else if(object instanceof PlayAllMessage){
+			print("Received PlayAll");
+			game.playAll(gc);
 		} else if(object instanceof AdvanceMessage){
 			print("Received Done");
 			game.done(gc);

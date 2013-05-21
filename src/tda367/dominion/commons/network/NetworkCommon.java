@@ -27,6 +27,7 @@ public class NetworkCommon {
 		kryo.register(RoomMessage.class);
 		kryo.register(CardMessage.class);
 		kryo.register(GainMessage.class);
+		kryo.register(PlayAllMessage.class);
 		
 		kryo.register(RoomUpdateMessage.class);
 		kryo.register(CardUpdateMessage.class);

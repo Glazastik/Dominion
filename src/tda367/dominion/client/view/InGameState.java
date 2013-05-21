@@ -86,6 +86,7 @@ public class InGameState extends ControlledGameState {
 	private Image cardToShow;// Temporary
 
 	// Player stats
+	private String active;
 	private int actions;
 	private int buys;
 	private int money;
@@ -100,7 +101,8 @@ public class InGameState extends ControlledGameState {
 	private GameListener cardListener;
 	private GameListener supplyListener;
 	private GameListener doneListener;
-	private String active;
+	private GameListener playAllListener;
+	
 
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
@@ -278,6 +280,10 @@ public class InGameState extends ControlledGameState {
 	public InGameState(int id) {
 		super(id);
 	}
+	
+	public void addPlayAllListener(GameListener l){
+		playAllListener = l;
+	}
 
 	public void addCardListener(GameListener l) {
 		cardListener = l;
@@ -294,6 +300,10 @@ public class InGameState extends ControlledGameState {
 	private void playCard(String card) {
 		GameEvent e = new GameEvent(card);
 		cardListener.run(e);
+	}
+	
+	private void playAll() {
+		playAllListener.run(new GameEvent());
 	}
 
 	private void supplyCard(String card) {
@@ -500,11 +510,11 @@ public class InGameState extends ControlledGameState {
 		// play all treasures button listener
 		if (button == Input.MOUSE_LEFT_BUTTON && playAllRec.contains(x, y)) {
 			System.out.println("Play all treasures");
-			hand.removeLast();
+			this.playAll();
 			// TODO: Replace with network stuff
-			// crh.playAllTreasures(player);
 		}
 	}
+	
 
 	/**
 	 * This method is called every time this state is left.

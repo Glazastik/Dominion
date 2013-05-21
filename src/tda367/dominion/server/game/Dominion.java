@@ -83,6 +83,21 @@ public class Dominion {
 
 	}
 
+	/**
+	 * Play all the treasure cards the player has in hand.
+	 * 
+	 * @param gc
+	 *            the requesting connection
+	 */
+	public void playAll(GameConnection gc) {
+		if (this.getActiveID() != gc.getID() || turnHandler.getPhase() != Phase.BUY) {
+			return;
+		}
+		
+		getActivePlayer().playAllTreasures();
+		
+	}
+
 	public void done(GameConnection gc) {
 		if (this.getActivePlayer().getID() == gc.getID()) {
 			Phase next = turnHandler.advance();
@@ -175,6 +190,23 @@ public class Dominion {
 	}
 
 	/**
+	 * Returns the Player having the specified connection
+	 * 
+	 * @param gc
+	 *            the connection to check
+	 * @return the player
+	 */
+	public Player getPlayer(GameConnection gc) {
+		for (Player p : players) {
+			if (p.getID() == gc.getID()) {
+				return p;
+			}
+		}
+
+		return null;
+	}
+
+	/**
 	 * Returns the {@link Supply} used in the game.
 	 * 
 	 * @return the {@link Supply}
@@ -201,4 +233,5 @@ public class Dominion {
 		return supply.getCardsInSupply();
 
 	}
+
 }

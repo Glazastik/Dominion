@@ -42,6 +42,7 @@ public class ClientController {
 		view.addSupplyListener(new SupplyListener());
 		view.addCardListener(new CardListener());
 		view.addDoneListener(new DoneListener());
+		view.addPlayAllListener(new PlayAllListener());
 	}
 
 	// Listener classes
@@ -162,7 +163,13 @@ public class ClientController {
 			model.supplyCard(e.getText());
 		}
 	}
-
+	
+	class PlayAllListener implements GameListener {
+		public void run(GameEvent e) {
+			model.playAll();
+		}
+	}
+	
 	class BoolListener implements GameListener {
 		public void run(GameEvent e) {
 			model.boolMessage(e.getBool());

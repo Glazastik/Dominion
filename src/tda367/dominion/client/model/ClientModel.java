@@ -6,6 +6,7 @@ import tda367.dominion.commons.messages.BoolMessage;
 import tda367.dominion.commons.messages.CardMessage;
 import tda367.dominion.commons.messages.ConnectionMessage;
 import tda367.dominion.commons.messages.GainMessage;
+import tda367.dominion.commons.messages.PlayAllMessage;
 import tda367.dominion.commons.messages.RoomHostMessage;
 import tda367.dominion.commons.messages.RoomUpdateMessage;
 
@@ -62,6 +63,11 @@ public class ClientModel {
 		msg.setCard(card);
 		connection.sendMessage(msg);
 		System.out.println("Sent gainstuff");
+	}
+	
+	public void playAll(){
+		connection.sendMessage(new PlayAllMessage());
+		System.out.println("Played all treasure!");
 	}
 
 	/**
