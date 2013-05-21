@@ -1,6 +1,10 @@
 package tda367.dominion.client.view;
 
+import java.io.BufferedReader;
+import java.io.DataInputStream;
+import java.io.FileInputStream;
 import java.io.FileNotFoundException;
+import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.util.ArrayList;
@@ -129,6 +133,7 @@ public class MainView extends StateBasedGame implements Runnable {
 			writer.println(Settings.SCREENHEIGHT);
 			writer.println(Settings.SCREENWIDTH);
 			writer.println(Settings.fullscreen);
+			writer.println(Settings.fpsshow);
 			writer.close();
 		} catch (FileNotFoundException e) {
 			e.printStackTrace();
@@ -169,7 +174,47 @@ public class MainView extends StateBasedGame implements Runnable {
 		g.setPhase(phase);
 	}
 
+	/**
+	 * A method for starting and initiating the view, also reads settings from an options file.                                                            
+	 */
 	private void startView() {
+		try {
+			//Reads the file containing all the info about the options
+			FileInputStream fstream = new FileInputStream("options.txt");
+			DataInputStream in = new DataInputStream(fstream);
+			  BufferedReader br = new BufferedReader(new InputStreamReader(in));
+			  String strLine;
+			  int line = 0;
+			  String height = null;
+			  String width = null;
+			  while ((strLine = br.readLine()) != null)   {
+				  if (line == 0) {
+					  height = strLine;
+				  } else if (line == 1) {
+					  width = strLine;
+				  } else if (line == 2) {
+					  if (strLine.equals("true")) {
+						  Settings.fullscreen = true;
+					  } else {
+						  Settings.fullscreen = false;
+					  }
+				  } else if (line == 3) {
+					  if (strLine.equals("true")) {
+						  Settings.fpsshow = true;
+					  } else {
+						  Settings.fpsshow = false;
+					  }
+				  }
+				  line++;
+			  }
+			  if (height != null && width != null) {
+				  Settings.setResolution(Integer.parseInt(height), Integer.parseInt(width));
+			  }
+			  br.close();
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
 		try {
 			theGame = new AppGameContainer(this);
 			theGame.setDisplayMode(Settings.SCREENHEIGHT, Settings.SCREENWIDTH,
