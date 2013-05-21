@@ -55,6 +55,11 @@ public class MainView extends StateBasedGame implements Runnable {
 		InGameState s = (InGameState) getState(Settings.INGAMESTATE);
 		s.addSupplyListener(l);
 	}
+	
+	public void addDoneListener(GameListener l){
+		InGameState s = (InGameState) getState(Settings.INGAMESTATE);
+		s.addDoneListener(l);
+	}
 
 	public void addUpdateRoomListener(GameListener l) {
 		ServerListState s = (ServerListState) this

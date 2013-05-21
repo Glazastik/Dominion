@@ -1,6 +1,7 @@
 package tda367.dominion.client.model;
 
 import tda367.dominion.client.network.ClientConnection;
+import tda367.dominion.commons.messages.AdvanceMessage;
 import tda367.dominion.commons.messages.BoolMessage;
 import tda367.dominion.commons.messages.CardMessage;
 import tda367.dominion.commons.messages.ConnectionMessage;
@@ -77,6 +78,11 @@ public class ClientModel {
 
 	public String getPhase() {
 		return phase;
+	}
+
+	public void nextPhase() {
+		AdvanceMessage msg = new AdvanceMessage();
+		connection.sendMessage(msg);
 	}
 
 }

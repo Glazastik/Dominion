@@ -41,6 +41,7 @@ public class ClientController {
 		view.addHostListener(new HostRoomListener());
 		view.addSupplyListener(new SupplyListener());
 		view.addCardListener(new CardListener());
+		view.addDoneListener(new DoneListener());
 	}
 
 	// Listener classes
@@ -129,6 +130,13 @@ public class ClientController {
 		public void run(GameEvent e) {
 			System.out.println("Play " + e.getText());
 			model.playCard(e.getText());
+		}
+	}
+	
+	class DoneListener implements GameListener {
+		public void run(GameEvent e) {
+			
+			model.nextPhase();
 		}
 	}
 

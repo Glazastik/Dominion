@@ -99,6 +99,7 @@ public class InGameState extends ControlledGameState {
 	private GameListener cardListener;
 	private GameListener supplyListener;
 	private String phase;
+	private GameListener doneListener;
 
 	public InGameState(int id) {
 		super(id);
@@ -110,6 +111,10 @@ public class InGameState extends ControlledGameState {
 
 	public void addSupplyListener(GameListener l) {
 		supplyListener = l;
+	}
+	
+	public void addDoneListener(GameListener l){
+		doneListener = l;
 	}
 
 	private void playCard(String card) {
