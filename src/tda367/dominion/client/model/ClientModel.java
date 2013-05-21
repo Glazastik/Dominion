@@ -73,7 +73,7 @@ public class ClientModel {
 
 	public void setPhase(String phase) {
 		this.phase = phase;
-
+		
 	}
 
 	public String getPhase() {

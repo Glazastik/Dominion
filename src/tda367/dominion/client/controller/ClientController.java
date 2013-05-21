@@ -97,6 +97,12 @@ public class ClientController {
 				if(phase.equals("action")){
 					view.updatePhase("action");
 					model.setPhase("action");
+				} else if(phase.equals("buy")){
+					view.updatePhase("buy");
+					model.setPhase("buy");
+				} else if(phase.equals("cleanup")){
+					view.updatePhase("cleanup");
+					model.setPhase("cleanup");
 				}
 			}
 		}

@@ -300,7 +300,12 @@ public class InGameState extends ControlledGameState {
 		GameEvent e = new GameEvent(card);
 		supplyListener.run(e);
 	}
-
+	
+	private void done(){
+		GameEvent e = new GameEvent();
+		doneListener.run(e);
+	}
+	
 	/**
 	 * Updates the arrays containing the amount of cards that are in play.
 	 * 
@@ -501,19 +506,7 @@ public class InGameState extends ControlledGameState {
 
 		// Next/End button listener
 		if (button == Input.MOUSE_LEFT_BUTTON && nextRec.contains(x, y)) {
-			hand.add("Copper");
-			try {
-				if (nextButton.getResourceReference() == "res/img/gui/ingame/NextButton.png") {
-					nextButton = new Image(
-							"res/img/gui/ingame/EndTurnButton.png");
-				} else {
-					// TODO: Replace with network stuff
-					// player.cleanUp();
-					nextButton = new Image("res/img/gui/ingame/NextButton.png");
-				}
-			} catch (SlickException s) {
-
-			}
+			this.done();
 		}
 
 		// play all treasures button listener

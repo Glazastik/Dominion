@@ -2,6 +2,7 @@ package tda367.dominion.server.main;
 
 import java.util.LinkedList;
 
+import tda367.dominion.commons.messages.AdvanceMessage;
 import tda367.dominion.commons.messages.BoolMessage;
 import tda367.dominion.commons.messages.CardMessage;
 import tda367.dominion.commons.messages.GainMessage;
@@ -22,7 +23,7 @@ public class GameRoom {
 	private int slots;
 	private String name;
 	private int id;
-	
+
 	private Dominion game;
 
 	/**
@@ -46,24 +47,29 @@ public class GameRoom {
 			players = new LinkedList<Player>();
 		}
 	}
-	
-	private void startGame(){
+
+	private void startGame() {
 		game = new Dominion(this.getPlayers());
 	}
-	
+
 	public void received(GameConnection gc, Object object) {
 		if (object instanceof CardMessage) {
 			CardMessage message = ((CardMessage) object);
 			print("Player played: " + message.getCard());
 			game.playCard(gc, message.getCard());
+
 		} else if (object instanceof BoolMessage) {
 			BoolMessage message = ((BoolMessage) object);
 			print("Bool: " + message.getBool());
 			game.playBool(gc, message.getBool());
+
 		} else if (object instanceof GainMessage) {
 			GainMessage message = ((GainMessage) object);
 			print("Bought/gained: " + message.getCard());
 			game.playGain(gc, message.getCard());
+
+		} else if(object instanceof AdvanceMessage){
+			print("Received Done");
 		} else {
 			print("Classname: " + object.getClass());
 		}
@@ -134,7 +140,7 @@ public class GameRoom {
 		}
 
 		updateSlots();
-		
+
 		if (isFull() && !isPlaying()) {
 			startGame();
 		}
@@ -142,7 +148,7 @@ public class GameRoom {
 
 	public boolean hasPlayer(String playerName) {
 		for (Player p : players) {
-			if (playerName.equals(p.getName())){
+			if (playerName.equals(p.getName())) {
 				return true;
 			}
 		}
@@ -152,7 +158,9 @@ public class GameRoom {
 
 	/**
 	 * Checks if a connection exists within the game
-	 * @param c the connection to be checked
+	 * 
+	 * @param c
+	 *            the connection to be checked
 	 * @return
 	 */
 	public boolean hasConnection(GameConnection c) {
@@ -173,6 +181,7 @@ public class GameRoom {
 
 	/**
 	 * If the room is full or not.
+	 * 
 	 * @return
 	 */
 	public boolean isFull() {
@@ -180,8 +189,9 @@ public class GameRoom {
 	}
 
 	/**
-	 * Removes a connection and player object from the game. 
-	 * The Player-object is so far a risky remove.
+	 * Removes a connection and player object from the game. The Player-object
+	 * is so far a risky remove.
+	 * 
 	 * @param playerName
 	 */
 	public void kickPlayer(String playerName) {
@@ -203,6 +213,7 @@ public class GameRoom {
 
 	/**
 	 * Checks if a game is on or not.
+	 * 
 	 * @return
 	 */
 	public boolean isPlaying() {
@@ -211,6 +222,7 @@ public class GameRoom {
 
 	/**
 	 * Returns all players connected to this room
+	 * 
 	 * @return
 	 */
 	public LinkedList<GameConnection> getConnections() {
@@ -219,17 +231,17 @@ public class GameRoom {
 
 	public Dominion getModel() {
 		return game;
-		
+
 	}
 
 	public String[] getPlayerNames() {
 		String[] names = new String[players.size()];
-		for(int i = 0; i < players.size(); i++){
+		for (int i = 0; i < players.size(); i++) {
 			names[i] = players.get(i).getName();
 		}
 		return names;
 	}
-	
+
 	private void print(String s) {
 		System.out.println(s);
 	}
