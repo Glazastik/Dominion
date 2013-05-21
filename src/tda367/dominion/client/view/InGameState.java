@@ -281,6 +281,11 @@ public class InGameState extends ControlledGameState {
 	public void addSupplyListener(GameListener l) {
 		supplyListener = l;
 	}
+	
+	public void addDoneListener(GameListener l){
+		doneListener = l;
+	}
+
 
 	private void playCard(String card) {
 		GameEvent e = new GameEvent(card);
