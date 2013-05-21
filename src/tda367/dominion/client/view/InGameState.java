@@ -1089,8 +1089,17 @@ public class InGameState extends ControlledGameState {
 				- gameContainerHeight / 3 - 45);
 		riksdaler.draw((float) 270, (float) gameContainerHeight
 				- gameContainerHeight / 3 - 45, (float) 0.03);
-		g.drawString(tipMessage, 490, gameContainerHeight - gameContainerHeight
-				/ 3 - 50);
+		if (tipMessage.length() > 30) {
+			String temp = tipMessage.substring(30);
+			String temp2 = tipMessage.substring(0, 30);
+			g.drawString(temp2, 490, gameContainerHeight - gameContainerHeight
+					/ 3 - 56);
+			g.drawString(temp, 490, gameContainerHeight - gameContainerHeight
+					/ 3 - 40);
+		} else {
+			g.drawString(tipMessage, 490, gameContainerHeight - gameContainerHeight
+					/ 3 - 50);
+		}
 	}
 
 	/**
