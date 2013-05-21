@@ -1408,15 +1408,15 @@ public class InGameState extends ControlledGameState {
 		if (phase.equals("action")) {
 			this.phase = phase;
 			this.addLogMessage("Action phase entered.");
-			this.setTipMessage("Action phase: play action cards");
+			this.setTipMessage("Action step: play action cards");
 		} else if (phase.equals("buy")) {
 			this.phase = phase;
 			this.addLogMessage("Buy phase entered.");
-			this.setTipMessage("Buy phase: play treasures and buy cards");
+			this.setTipMessage("Buy step: play treasures, buy cards");
 		} else if (phase.equals("cleanup")) {
 			this.phase = phase;
 			this.addLogMessage("Clean-up phase entered.");
-			this.setTipMessage("Clean-up phase");
+			this.setTipMessage("Clean-up step");
 		} else {
 			this.addLogMessage("Waiting for " + phase);
 			this.setTipMessage("Waiting for " + phase + "...");
