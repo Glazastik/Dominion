@@ -2,11 +2,14 @@ package tda367.dominion.server.game.cards;
 
 import java.util.LinkedList;
 
+import tda367.dominion.commons.messages.InstructionMessage;
+import tda367.dominion.commons.messages.InstructionMessageFactory;
 import tda367.dominion.server.game.CardInfoHandler;
 import tda367.dominion.server.game.GainingHandler;
 import tda367.dominion.server.game.Pile;
 import tda367.dominion.server.game.Player;
 import tda367.dominion.server.game.Supply;
+import tda367.dominion.server.main.GameRoom;
 
 public class Bureaucrat {
 	public static void play(Player player, LinkedList<Player> players, Supply supply){
@@ -56,8 +59,9 @@ public class Bureaucrat {
 	private static void Bureaucrat(Player player, Player p){
 		CardInfoHandler cif = CardInfoHandler.getInstance();
 				boolean done = false;
-				//p.sendInformationMessage("Chose a victory card to put on top of your deck.");
-				while(!done){
+				InstructionMessage temp = InstructionMessageFactory.CreateInstructionMessage("Chose a victory card to put on top of your deck.");
+				p.send(temp);
+				while(!done){ 
 					//Message message = p.getNextMessage();
 					//if(message instanceOf LocatedCardMessage){
 						//LocatedCardMessage tempMessage = (LocatedCardMessage) message;

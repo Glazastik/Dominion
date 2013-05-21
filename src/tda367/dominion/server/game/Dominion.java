@@ -19,7 +19,7 @@ public class Dominion {
 	// Player related
 	private final LinkedList<Player> players;
 	private TurnHandler turnHandler;
-
+	private CardInfoHandler cih;
 	private final Supply supply;
 	private final CardRulesHandler cardRulesHandler;
 	private NetworkHandler network;
@@ -37,7 +37,7 @@ public class Dominion {
 		this.supply = new Supply(players.size());
 		cardRulesHandler = new CardRulesHandler(players, supply);
 		network = NetworkHandler.getInstance();
-
+		cih = CardInfoHandler.getInstance();
 		init();
 		startGame();
 	}
@@ -53,7 +53,7 @@ public class Dominion {
 			// TODO: Inte alltid retur pa den!
 			return;
 		} else {
-			if (CardInfoHandler.isActionCard(card)) {
+			if (cih.isActionCard(card)) {
 				if (getActivePlayer().getActions() > 0) {
 					getActivePlayer().decreaseActions(1);
 				} else {
