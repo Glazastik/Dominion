@@ -452,25 +452,12 @@ public class InGameState extends ControlledGameState {
 	 */
 	@Override
 	public void mouseClicked(int button, int x, int y, int clicks) {
-		String card;
-
-		// Victory cards listener
-		card = recCheck(button, x, y, victoryCards, victoryRectangles);
-		if (card != null) {
-			supplyCard(card);
-			return;
-		}
-
-		// Treasure cards listener
-		card = recCheck(button, x, y, treasureCards, treasureRectangles);
-		if (card != null) {
-			supplyCard(card);
-			return;
-		}
-
-		// Action cards listener
-		card = recCheck(button, x, y, actionCards, actionRectangles);
-		if (card != null) {
+		
+		// Checks if you clicked a card in supply
+		String card = recCheck(button, x, y, victoryCards, victoryRectangles);
+		if ( card != null 
+		|| recCheck(button, x, y, treasureCards, treasureRectangles) != null
+		|| recCheck(button, x, y, actionCards, actionRectangles) != null) {
 			supplyCard(card);
 			return;
 		}
