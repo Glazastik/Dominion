@@ -188,6 +188,16 @@ public class Dominion {
 	public LinkedList<Player> getPlayers() {
 		return this.players;
 	}
+	
+	private LinkedList<Player> getInactivePlayers() {
+		LinkedList<Player> l = new LinkedList<Player>();
+		for(Player p : players) {
+			if(!p.equals(this.getActivePlayer())) {
+				l.add(p);
+			}
+		}
+		return l;
+	}
 
 	/**
 	 * Returns the Player having the specified connection
