@@ -98,7 +98,6 @@ public class InGameState extends ControlledGameState {
 	// Listeners
 	private GameListener cardListener;
 	private GameListener supplyListener;
-	private String phase;
 	private GameListener doneListener;
 
 	@Override
@@ -1323,7 +1322,7 @@ public class InGameState extends ControlledGameState {
 
 		for (int i = 0; i < playerNames.length; i++) {
 			if (!playerNames[i].equals(Settings.getName())) {
-				if (i == turn) {
+				if (i == turn ) {
 					g.setColor(Color.red);
 				} else {
 					g.setColor(Color.white);
@@ -1415,15 +1414,12 @@ public class InGameState extends ControlledGameState {
 	 */
 	public void setPhase(String phase) {
 		if (phase.equals("action")) {
-			this.phase = phase;
 			this.addLogMessage("Action phase entered.");
 			this.setTipMessage("Action step: play action cards");
 		} else if (phase.equals("buy")) {
-			this.phase = phase;
 			this.addLogMessage("Buy phase entered.");
 			this.setTipMessage("Buy step: play treasures, buy cards");
 		} else if (phase.equals("cleanup")) {
-			this.phase = phase;
 			this.addLogMessage("Clean-up phase entered.");
 			this.setTipMessage("Clean-up step");
 		} else {
