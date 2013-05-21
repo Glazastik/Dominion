@@ -23,6 +23,7 @@ public class Dominion {
 	private final Supply supply;
 	private final CardRulesHandler cardRulesHandler;
 	private NetworkHandler network;
+	private GainingHandler gainingHandler;
 
 	/**
 	 * Constructs a fine game of Dominion!
@@ -36,6 +37,7 @@ public class Dominion {
 		this.players = players;
 		this.supply = new Supply(players.size());
 		cardRulesHandler = new CardRulesHandler(players, supply);
+		gainingHandler = new GainingHandler(supply);
 		network = NetworkHandler.getInstance();
 		cih = CardInfoHandler.getInstance();
 		init();
@@ -61,7 +63,7 @@ public class Dominion {
 				} else {
 					return;
 				}
-			} else if(cih.isTreasureCard(card) && phase == Phase.BUY){
+			} else if (cih.isTreasureCard(card) && phase == Phase.BUY) {
 				getActivePlayer().play(card);
 			}
 		}
@@ -74,19 +76,11 @@ public class Dominion {
 	}
 
 	public void playGain(GameConnection gc, String card) {
-		if (turnHandler.getActivePlayer() != gc.getID()) {
-			return;
-		}
-		if (!supply.isAvailable(card)) {
-			return;
+		if (this.getActivePlayer().getID() == gc.getID()
+				&& turnHandler.getPhase() == Phase.BUY) {
+			gainingHandler.playerBuyCard(this.getActivePlayer(), card);
 		}
 
-		for (Player p : players) {
-			if (p.getID() == turnHandler.getActivePlayer()) {
-				p.gain(card);
-				return;
-			}
-		}
 	}
 
 	public void done(GameConnection gc) {

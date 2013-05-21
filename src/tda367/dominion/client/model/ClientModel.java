@@ -61,6 +61,7 @@ public class ClientModel {
 		GainMessage msg = new GainMessage();
 		msg.setCard(card);
 		connection.sendMessage(msg);
+		System.out.println("Sent gainstuff");
 	}
 
 	/**

@@ -457,21 +457,21 @@ public class InGameState extends ControlledGameState {
 		// Victory cards listener
 		card = recCheck(button, x, y, victoryCards, victoryRectangles);
 		if (card != null) {
-			System.out.println(card);
+			supplyCard(card);
 			return;
 		}
 
 		// Treasure cards listener
 		card = recCheck(button, x, y, treasureCards, treasureRectangles);
 		if (card != null) {
-			System.out.println(card);
+			supplyCard(card);
 			return;
 		}
 
 		// Action cards listener
 		card = recCheck(button, x, y, actionCards, actionRectangles);
 		if (card != null) {
-			System.out.println(card);
+			supplyCard(card);
 			return;
 		}
 
