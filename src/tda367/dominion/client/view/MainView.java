@@ -218,7 +218,7 @@ public class MainView extends StateBasedGame implements Runnable {
 		try {
 			theGame = new AppGameContainer(this);
 			theGame.setDisplayMode(Settings.SCREENHEIGHT, Settings.SCREENWIDTH,
-					false);
+					Settings.fullscreen);
 			theGame.setAlwaysRender(true);
 			theGame.setVSync(true);
 			theGame.setShowFPS(Settings.fpsshow);
@@ -232,6 +232,19 @@ public class MainView extends StateBasedGame implements Runnable {
 	public void run() {
 		startView();
 
+	}
+	
+	/**
+	 * Updates the resolution, fullscreen and fps settings.
+	 */
+	public void updateSettings() {
+		try {
+			theGame.setDisplayMode(Settings.SCREENHEIGHT, Settings.SCREENWIDTH,
+					Settings.fullscreen);
+			theGame.setShowFPS(Settings.fpsshow);
+		} catch (SlickException e) {
+			e.printStackTrace();
+		}
 	}
 
 	
