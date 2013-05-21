@@ -357,6 +357,7 @@ public class Player {
 		this.buys = 1;
 		updateCards();
 		updateStats();
+		
 	}
 	/**
 	 * Returns the number of cards in the players hand
@@ -456,7 +457,7 @@ public class Player {
 	public void updateCards() {
 		CardUpdateMessage msg = new CardUpdateMessage();
 		msg.setDeckSize(deck.getSize());
-		msg.setDiscard(deck.getTop());
+		msg.setDiscard(discard.getTop());
 		msg.setHand(hand.getCards());
 		msg.setInPlay(playingArea.getCards());
 		gameConnection.sendTCP(msg);
