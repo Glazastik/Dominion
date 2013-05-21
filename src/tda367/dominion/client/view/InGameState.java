@@ -45,7 +45,6 @@ public class InGameState extends ControlledGameState {
 	 * Stores which players turn it is. turn == 1 means that it is
 	 * playerNames[1]'s turn.
 	 */
-	private int turn;
 	private Image[] actionCardsAll;
 	private Image[] actionCards;
 	private Image[] victoryCards;
@@ -99,6 +98,7 @@ public class InGameState extends ControlledGameState {
 	private GameListener cardListener;
 	private GameListener supplyListener;
 	private GameListener doneListener;
+	private String active;
 
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
@@ -141,7 +141,6 @@ public class InGameState extends ControlledGameState {
 		playerNames[1] = "Player 2";
 		cardsOnHand[0] = 5; // Integer.parseInt(hand.get(0));
 		cardsOnHand[1] = 5; // Integer.parseInt(hand.get(1));
-		turn = 1;
 	}
 
 	/**
@@ -299,12 +298,12 @@ public class InGameState extends ControlledGameState {
 		GameEvent e = new GameEvent(card);
 		supplyListener.run(e);
 	}
-	
-	private void done(){
+
+	private void done() {
 		GameEvent e = new GameEvent();
 		doneListener.run(e);
 	}
-	
+
 	/**
 	 * Updates the arrays containing the amount of cards that are in play.
 	 * 
@@ -1096,8 +1095,8 @@ public class InGameState extends ControlledGameState {
 			g.drawString(temp, 490, gameContainerHeight - gameContainerHeight
 					/ 3 - 40);
 		} else {
-			g.drawString(tipMessage, 490, gameContainerHeight - gameContainerHeight
-					/ 3 - 50);
+			g.drawString(tipMessage, 490, gameContainerHeight
+					- gameContainerHeight / 3 - 50);
 		}
 	}
 
@@ -1321,19 +1320,17 @@ public class InGameState extends ControlledGameState {
 		int numberPainted = 0;
 
 		for (int i = 0; i < playerNames.length; i++) {
-			if (!playerNames[i].equals(Settings.getName())) {
-				if (i == turn ) {
-					g.setColor(Color.red);
-				} else {
-					g.setColor(Color.white);
-				}
-				g.drawString("Player: " + playerNames[i], xOffset, yOffsetName
-						+ space * numberPainted);
+			if (active.equals(playerNames[i])) {
+				g.setColor(Color.red);
+			} else {
 				g.setColor(Color.white);
-				g.drawString("Cards on hand: " + cardsOnHand[i], xOffset,
-						yOffsetHand + space * numberPainted);
-				numberPainted++;
 			}
+			g.drawString("Player: " + playerNames[i], xOffset, yOffsetName
+					+ space * numberPainted);
+			g.setColor(Color.white);
+			g.drawString("Cards on hand: " + cardsOnHand[i], xOffset,
+					yOffsetHand + space * numberPainted);
+			numberPainted++;
 		}
 	}
 
@@ -1408,9 +1405,10 @@ public class InGameState extends ControlledGameState {
 	}
 
 	/**
-	 * Updates the log and tipMessage when you switch phases. 
+	 * Updates the log and tipMessage when you switch phases.
+	 * 
 	 * @param phase
-	 * 				the phase to be entered.
+	 *            the phase to be entered.
 	 */
 	public void setPhase(String phase) {
 		if (phase.equals("action")) {
@@ -1425,6 +1423,9 @@ public class InGameState extends ControlledGameState {
 		} else {
 			this.addLogMessage("Waiting for " + phase);
 			this.setTipMessage("Waiting for " + phase + "...");
+			active = phase.substring(1, phase.length() - 1);
+			return;
 		}
+		active = Settings.getName();
 	}
 }
