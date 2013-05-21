@@ -2,16 +2,14 @@ package tda367.dominion.server.game;
 
 public class TurnHandler {
 	public enum Phase {
-		ACTION("action"),
-		BUY("buy"),
-		CLEANUP("cleanup");
+		ACTION("action"), BUY("buy"), CLEANUP("cleanup");
 		private final String s;
 
 		Phase(String s) {
 			this.s = s;
 		}
-		
-		public String toString(){
+
+		public String toString() {
 			return s;
 		}
 	}
@@ -31,6 +29,8 @@ public class TurnHandler {
 			phase = Phase.ACTION;
 		} else if (phase == Phase.ACTION) {
 			phase = Phase.BUY;
+		} else if (phase == Phase.BUY) {
+			phase = Phase.CLEANUP;
 		} else if (phase == Phase.CLEANUP) {
 			nextTurn();
 		}
@@ -43,7 +43,6 @@ public class TurnHandler {
 	}
 
 	private int getNextPlayer() {
-
 		return (activePlayer + 1) % players;
 	}
 
