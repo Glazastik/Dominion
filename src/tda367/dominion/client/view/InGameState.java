@@ -101,32 +101,6 @@ public class InGameState extends ControlledGameState {
 	private String phase;
 	private GameListener doneListener;
 
-	public InGameState(int id) {
-		super(id);
-	}
-
-	public void addCardListener(GameListener l) {
-		cardListener = l;
-	}
-
-	public void addSupplyListener(GameListener l) {
-		supplyListener = l;
-	}
-	
-	public void addDoneListener(GameListener l){
-		doneListener = l;
-	}
-
-	private void playCard(String card) {
-		GameEvent e = new GameEvent(card);
-		cardListener.run(e);
-	}
-
-	private void supplyCard(String card) {
-		GameEvent e = new GameEvent(card);
-		supplyListener.run(e);
-	}
-
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
@@ -146,7 +120,7 @@ public class InGameState extends ControlledGameState {
 		initImages();
 
 		// temporary status tip init
-		tipMessage = "Juicy beatles";
+		tipMessage = "Action Phase: Play action cards.";
 
 		// Initiate all rectangles
 		initRectangles();
@@ -154,10 +128,6 @@ public class InGameState extends ControlledGameState {
 		// Log init
 		logDisplay = false;
 		logText = new LinkedList<String>();
-
-		for (int i = 0; i < 10; i++) {
-			logText.addFirst("Test " + i);
-		}
 	}
 
 	/**
@@ -299,9 +269,29 @@ public class InGameState extends ControlledGameState {
 		}
 
 	}
-
 	
+	public InGameState(int id) {
+		super(id);
+	}
 
+	public void addCardListener(GameListener l) {
+		cardListener = l;
+	}
+
+	public void addSupplyListener(GameListener l) {
+		supplyListener = l;
+	}
+
+	private void playCard(String card) {
+		GameEvent e = new GameEvent(card);
+		cardListener.run(e);
+	}
+
+	private void supplyCard(String card) {
+		GameEvent e = new GameEvent(card);
+		supplyListener.run(e);
+	}
+	
 	/**
 	 * Updates the arrays containing the amount of cards that are in play.
 	 * 
