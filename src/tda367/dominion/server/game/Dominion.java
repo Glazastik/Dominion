@@ -53,14 +53,17 @@ public class Dominion {
 			// TODO: Inte alltid retur pa den!
 			return;
 		} else {
-			if (cih.isActionCard(card)) {
+			Phase phase = turnHandler.getPhase();
+			if (cih.isActionCard(card) && phase == Phase.ACTION) {
 				if (getActivePlayer().getActions() > 0) {
 					getActivePlayer().decreaseActions(1);
+					getActivePlayer().play(card);
 				} else {
 					return;
 				}
+			} else if(cih.isTreasureCard(card) && phase == Phase.BUY){
+				getActivePlayer().play(card);
 			}
-			getActivePlayer().play(card);
 		}
 	}
 
