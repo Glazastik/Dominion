@@ -50,6 +50,7 @@ public class InGameState extends ControlledGameState {
 	private Image[] victoryCards;
 	private Image[] treasureCards;
 	private Image[] playedCards;
+	private Image[] handCards;
 	private Image board = null;
 	private int gameContainerWidth;
 	private int gameContainerHeight;
@@ -80,6 +81,7 @@ public class InGameState extends ControlledGameState {
 	// Message to write in statusbar
 	private String tipMessage;
 
+	private boolean updateHand = true;
 	private boolean enterShowCard;// Temporary
 	private Image cardToShow;// Temporary
 
@@ -384,6 +386,7 @@ public class InGameState extends ControlledGameState {
 	public void setHand(LinkedList<String> hand2) {
 		this.hand = hand2;
 		resetHandRectangles();
+		updateHand = true;
 	}
 
 	/**
@@ -997,19 +1000,22 @@ public class InGameState extends ControlledGameState {
 	private void paintPlayerHand() throws SlickException {
 		cih = CardInfoHandler.getInstance();
 		String[] stringCards = hand.toArray(new String[0]);
-		Image[] imageCards = new Image[stringCards.length];
 
-		for (int i = 0; i < hand.size(); i++) {
-			imageCards[i] = new Image(cih.getImageLink(stringCards[i]));
+		if (updateHand) {
+			handCards = new Image[stringCards.length];
+			for (int i = 0; i < hand.size(); i++) {
+				handCards[i] = new Image(cih.getImageLink(stringCards[i]));
+			}
+			updateHand = false;
 		}
 
-		for (int i = 0; i < imageCards.length; i++) {
+		for (int i = 0; i < handCards.length; i++) {
 			float cardHeight = (float) gameContainerHeight * (float) (1.0 / 3);
-			double scale = (double) cardHeight / imageCards[i].getHeight();
-			float cardWidth = (float) (imageCards[i].getWidth() * scale);
+			double scale = (double) cardHeight / handCards[i].getHeight();
+			float cardWidth = (float) (handCards[i].getWidth() * scale);
 			float cardOverlap;
-			if (imageCards.length > 6) {
-				cardOverlap = (float) imageCards.length / (float) 5.5;
+			if (handCards.length > 6) {
+				cardOverlap = (float) handCards.length / (float) 5.5;
 			} else {
 				cardOverlap = 1;
 			}
@@ -1017,8 +1023,8 @@ public class InGameState extends ControlledGameState {
 			int xOffset = (int) (5 + cardWidth / cardOverlap * i);
 			int yOffset = (int) (gameContainerHeight - cardHeight - 10);
 
-			imageCards[i].draw(xOffset, yOffset, cardWidth, cardHeight);
-			if (i < imageCards.length - 1) {
+			handCards[i].draw(xOffset, yOffset, cardWidth, cardHeight);
+			if (i < handCards.length - 1) {
 				handRectangles[i].setBounds(xOffset, yOffset,
 						(int) (cardWidth / cardOverlap), (int) cardHeight);
 			} else {
