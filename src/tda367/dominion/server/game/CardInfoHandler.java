@@ -141,17 +141,17 @@ public class CardInfoHandler {
 	}
 	
 	public boolean isActionCard(String card) {
-		return cardTypes.get(card) == "Action";
+		return cardTypes.get(card).equals("Action");
 	}
 	
 	public boolean isTreasureCard(String card) {
-		return cardTypes.get(card) == "Treasure";
+		return cardTypes.get(card).equals("Treasure");
 	}
 	
 	public boolean isVictoryCard(String card) {
-		return cardTypes.get(card) == "Victory";
+		return cardTypes.get(card).equals("Victory");
 	}
 	public boolean isCurseCard(String card) {
-		return cardTypes.get(card) == "Curse";
+		return cardTypes.get(card).equals("Curse");
 	}
 }
