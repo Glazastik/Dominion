@@ -49,7 +49,8 @@ public class ClientModel {
 	 *            to be played.
 	 */
 	public void playCard(String card) {
-		if (phase != null && getPhase().equals("action")) {
+		if (phase != null && getPhase().equals("action")
+				|| getPhase().equals("buy")) {
 			CardMessage msg = new CardMessage();
 			msg.setCard(card);
 			connection.sendMessage(msg);
@@ -73,7 +74,7 @@ public class ClientModel {
 
 	public void setPhase(String phase) {
 		this.phase = phase;
-		
+
 	}
 
 	public String getPhase() {
