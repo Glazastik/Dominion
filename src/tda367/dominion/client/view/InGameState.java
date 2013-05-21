@@ -416,6 +416,15 @@ public class InGameState extends ControlledGameState {
 	public void setDeckSize(int size) {
 		deckSize = size;
 	}
+	
+	/**
+	 * Sets the message to be shown in the middle of the status bar.
+	 * 
+	 * @param message, the message to be shown.
+	 */
+	public void setTipMessage(String message) {
+		tipMessage = message;
+	}
 
 	/**
 	 * Adds a string to the log, so it appears at the bottom. Adds it to the
