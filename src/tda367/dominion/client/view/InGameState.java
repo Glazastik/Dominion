@@ -269,7 +269,12 @@ public class InGameState extends ControlledGameState {
 		}
 
 	}
-	
+
+	/**
+	 * Sets this states ID
+	 * 
+	 * @param id
+	 */
 	public InGameState(int id) {
 		super(id);
 	}
@@ -281,11 +286,10 @@ public class InGameState extends ControlledGameState {
 	public void addSupplyListener(GameListener l) {
 		supplyListener = l;
 	}
-	
-	public void addDoneListener(GameListener l){
+
+	public void addDoneListener(GameListener l) {
 		doneListener = l;
 	}
-
 
 	private void playCard(String card) {
 		GameEvent e = new GameEvent(card);
@@ -296,7 +300,7 @@ public class InGameState extends ControlledGameState {
 		GameEvent e = new GameEvent(card);
 		supplyListener.run(e);
 	}
-	
+
 	/**
 	 * Updates the arrays containing the amount of cards that are in play.
 	 * 
@@ -416,11 +420,12 @@ public class InGameState extends ControlledGameState {
 	public void setDeckSize(int size) {
 		deckSize = size;
 	}
-	
+
 	/**
 	 * Sets the message to be shown in the middle of the status bar.
 	 * 
-	 * @param message, the message to be shown.
+	 * @param message
+	 *            , the message to be shown.
 	 */
 	public void setTipMessage(String message) {
 		tipMessage = message;
@@ -982,9 +987,9 @@ public class InGameState extends ControlledGameState {
 			treasureRectangles[i].setSize((int) cardWidth, (int) cardHeight);
 		}
 	}
-	
+
 	private void paintPhase(Graphics g) {
-		
+
 	}
 
 	/**
@@ -1401,9 +1406,27 @@ public class InGameState extends ControlledGameState {
 		actionCards = moved.toArray(new Image[0]);
 	}
 
+	/**
+	 * Updates the log and tipMessage when you switch phases. 
+	 * @param phase
+	 * 				the phase to be entered.
+	 */
 	public void setPhase(String phase) {
-		this.phase = phase;
-		this.addLogMessage(phase + " phase entered.");
+		if (phase.equals("action")) {
+			this.phase = phase;
+			this.addLogMessage("Action phase entered.");
+			this.setTipMessage("Action phase: play action cards");
+		} else if (phase.equals("buy")) {
+			this.phase = phase;
+			this.addLogMessage("Buy phase entered.");
+			this.setTipMessage("Buy phase: play treasures and buy cards");
+		} else if (phase.equals("cleanup")) {
+			this.phase = phase;
+			this.addLogMessage("Clean-up phase entered.");
+			this.setTipMessage("Clean-up phase");
+		} else {
+			this.addLogMessage("Invalid phase entered");
+			this.setTipMessage("Invalid phase");
+		}
 	}
-
 }
