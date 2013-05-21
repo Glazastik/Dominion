@@ -22,7 +22,7 @@ public class Player {
 	private int actions;
 	private int buys;
 	private int money;
-	private CardInfoHandler cardInfoHandler;
+	private CardInfoHandler cih;
 	
 	/**
 	 * Creates a new instance of Player with all the necessary 
@@ -43,7 +43,7 @@ public class Player {
 		discard = new Pile();
 		playingArea = new Pile();
 		revealedCards = new Pile();
-		cardInfoHandler = CardInfoHandler.getInstance();
+		cih = CardInfoHandler.getInstance();
 		
 		this.actions = 0;
 		this.buys = 0;
@@ -315,11 +315,10 @@ public class Player {
 	 */
 	public void play(String card){
 		if(hand.contains(card)){
-			String type = cardInfoHandler.getCardType(card);
-			if(type.equals("Action")){
+			if(cih.isActionCard(card)) {
 				actions--;
 			}
-			if(!type.equals("Victory") && !type.equals("Curse") ){
+			if(!cih.isVictoryCard(card) && !cih.isCurseCard(card) ) {
 				playingArea.add(hand.pop(card));
 			}
 		}
@@ -333,13 +332,12 @@ public class Player {
 	public void play(int index) {
 		if(hand.getSize() > 0) {
 			String card = hand.getCard(index);
-			String type = cardInfoHandler.getCardType(card);
 			
-			if(type.equals("Action")) {
+			if(cih.isActionCard(card)) {
 				actions--;
 			}
 			
-			if(!type.equals("Victory") && !type.equals("Curse") ) {
+			if(!cih.isVictoryCard(card) && !cih.isCurseCard(card) ) {
 				playingArea.add(hand.pop(card));
 			}
 		}
@@ -436,24 +434,19 @@ public class Player {
 	 * Plays all treasures from hand
 	 */
 	public void playAllTreasures() {
-		CardInfoHandler cih = CardInfoHandler.getInstance();
-		for(int i = 0;i<hand.getSize(); i++) {
-			if(cih.getCardType(hand.getCard(i)).equals("Treasure")) {
-				play(i);
-				i--;
+		for(String card :hand.getCards()){
+			if(cih.isTreasureCard(card)) {
+				play(card);
 			}
 		}
 	}
 	public boolean hasActionCardsInHand(){
-		CardInfoHandler cih = CardInfoHandler.getInstance();
-		boolean hasActionCard = false;
-		for(String s: hand.getCards()){
-			if(cih.getCardType(s).equals("Action")){
-				hasActionCard = true;
+		for(String card: hand.getCards()){
+			if(cih.isActionCard(card)){
+				return true;
 			}
 		}
-		return hasActionCard;
-		
+		return false;
 	}
 	
 	public void send(Message msg) {

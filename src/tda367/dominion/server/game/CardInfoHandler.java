@@ -140,15 +140,18 @@ public class CardInfoHandler {
 		return croppedImages.get(cardName);
 	}
 	
-	public static boolean isActionCard(String card) {
+	public boolean isActionCard(String card) {
 		return cardTypes.get(card) == "Action";
 	}
 	
-	public static boolean isTreasureCard(String card) {
+	public boolean isTreasureCard(String card) {
 		return cardTypes.get(card) == "Treasure";
 	}
 	
-	public static boolean isVictoryCard(String card) {
+	public boolean isVictoryCard(String card) {
 		return cardTypes.get(card) == "Victory";
+	}
+	public boolean isCurseCard(String card) {
+		return cardTypes.get(card) == "Curse";
 	}
 }
