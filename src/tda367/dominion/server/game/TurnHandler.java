@@ -35,54 +35,6 @@ public class TurnHandler {
 			nextTurn();
 		}
 		return phase;
-		// while (!actionphaseDone) {
-		// System.out.println("Action phase:" + activePlayer.getName());
-		// requestActiveActions();
-		// Message message = activePlayer.getNextMessage();
-		// if(messages instanceOf LocatedCardMessage){
-		// LocatedCardMessage lcm = (LocatedCardMessage) message;
-		// if(lcm.getLocation().equals("Hand") &&
-		// cif.getCardType(lcm.getCardName()).equals("Action") &&
-		// player.getHand().contains(lcm.getCardName){
-		// crh.playCard(lcm.getCardName());
-		// }
-		// }
-		// actionphaseDone = !activePlayer.hasActionCardsInHand()
-		// // || !(activePlayer.getActions() > 0)/**
-		// * && (!message instanceOf
-		// * nextPhaseMessage)
-		// */
-		// ;
-		// activePlayer.removeInformationMessage();
-		// }
-
-		// while (!buyphaseDone) {
-		// activePlayer.sendInformationMessage("Play treasure cards and purchase cards");
-		// Message message = activePlayer.getNextMessage();
-		// if(messages instanceOf LocatedCardMessage){
-		// LocatedCardMessage lcm = (LocatedCardMessage) message;
-		// if(lcm.getLocation().equals("Hand") &&
-		// cif.getCardType(lcm.getCardName()).equals("Treasure") &&
-		// player.getHand().contains(lcm.getCardName){
-		// crh.playCard(lcm.getCardName());
-		// } else if (lcm.getLocation().equals("Supply")){
-		// gH.playerBuyCard(activePlayer, lcm.getCardName());
-		// }
-		// }
-
-		// // buyphaseDone = !(activePlayer.getBuys() > 0) /**
-		// * || (!message
-		// * instanceOf nextPhaseMessage)
-		// */
-		// ;
-		// activePlayer.removeInformationMessage();
-		// }
-		// activePlayer.cleanUp();
-		// if (!i.hasNext()) {
-		// i = players.iterator();
-		// }
-
-		// activePlayer = i.next();
 	}
 
 	private void nextTurn() {
