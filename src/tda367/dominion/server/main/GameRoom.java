@@ -70,6 +70,7 @@ public class GameRoom {
 
 		} else if(object instanceof AdvanceMessage){
 			print("Received Done");
+			game.done(gc);
 		} else {
 			print("Classname: " + object.getClass());
 		}

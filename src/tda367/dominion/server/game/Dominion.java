@@ -37,7 +37,7 @@ public class Dominion {
 		this.supply = new Supply(players.size());
 		cardRulesHandler = new CardRulesHandler(players, supply);
 		network = NetworkHandler.getInstance();
-		
+
 		init();
 		startGame();
 	}
@@ -47,14 +47,14 @@ public class Dominion {
 		turnHandler.startGame();
 		this.notifyPhase();
 	}
-	
+
 	public void playCard(GameConnection gc, String card) {
-		if(this.getActiveID() != gc.getID()) {
-//			TODO: Inte alltid retur pŒ den!
+		if (this.getActiveID() != gc.getID()) {
+			// TODO: Inte alltid retur pa den!
 			return;
 		} else {
-			if(CardInfoHandler.isActionCard(card)) {
-				if(getActivePlayer().getActions() > 0) {
+			if (CardInfoHandler.isActionCard(card)) {
+				if (getActivePlayer().getActions() > 0) {
 					getActivePlayer().decreaseActions(1);
 				} else {
 					return;
@@ -63,44 +63,54 @@ public class Dominion {
 			getActivePlayer().play(card);
 		}
 	}
-	
+
 	public void playBool(GameConnection gc, boolean bool) {
-		if(turnHandler.getActivePlayer() == gc.getID()) {
-			
+		if (turnHandler.getActivePlayer() == gc.getID()) {
+
 		}
 	}
-	
+
 	public void playGain(GameConnection gc, String card) {
-		if(turnHandler.getActivePlayer() != gc.getID()) {
+		if (turnHandler.getActivePlayer() != gc.getID()) {
 			return;
 		}
-		if(!supply.isAvailable(card)) {
+		if (!supply.isAvailable(card)) {
 			return;
 		}
-		
-		for(Player p : players) {
-			if(p.getID() == turnHandler.getActivePlayer()) {
+
+		for (Player p : players) {
+			if (p.getID() == turnHandler.getActivePlayer()) {
 				p.gain(card);
 				return;
 			}
 		}
 	}
-	
+
 	public void done(GameConnection gc) {
-		if(turnHandler.getActivePlayer() == gc.getID()) {
-			turnHandler.advance();
+		if (this.getActivePlayer().getID() == gc.getID()) {
+			Phase next = turnHandler.advance();
+
+			if (next == Phase.BUY) {
+				notifyPhase();
+			} else if (next == Phase.CLEANUP) {
+				this.getActivePlayer().cleanUp();
+				turnHandler.advance();
+				notifyPhase();
+			}
+
 		}
 	}
 
 	private void notifyPhase() {
-		//TODO: Fix
+		// TODO: Fix
 		sendTurnMessage(this.getActivePlayer(), turnHandler.getPhase());
 	}
 
 	private void sendTurnMessage(Player player, Phase phase) {
 		TurnMessage msg = new TurnMessage();
 		msg.setPhase(phase.toString());
-		player.send(msg);
+		msg.setActive(this.getActivePlayer().getName());
+		this.sendToAll(msg);
 	}
 
 	/**
@@ -128,21 +138,20 @@ public class Dominion {
 			p.updateStats();
 		}
 	}
-	
+
 	private int[] getPlayerIDs() {
-		int[] ids = new int[players.size()]; 
-		for(int i = 0; i < ids.length; i++){
+		int[] ids = new int[players.size()];
+		for (int i = 0; i < ids.length; i++) {
 			ids[i] = players.get(i).getID();
 		}
 		return ids;
 	}
 
-
 	private Player getActivePlayer() {
 		int i = turnHandler.getActivePlayer();
 		return players.get(i);
 	}
-	
+
 	private int getActiveID() {
 		int i = turnHandler.getActivePlayer();
 		return players.get(i).getID();

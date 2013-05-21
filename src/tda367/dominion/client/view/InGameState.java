@@ -1418,8 +1418,8 @@ public class InGameState extends ControlledGameState {
 			this.addLogMessage("Clean-up phase entered.");
 			this.setTipMessage("Clean-up phase");
 		} else {
-			this.addLogMessage("Invalid phase entered");
-			this.setTipMessage("Invalid phase");
+			this.addLogMessage("Waiting for " + phase);
+			this.setTipMessage("Waiting for " + phase + "...");
 		}
 	}
 }

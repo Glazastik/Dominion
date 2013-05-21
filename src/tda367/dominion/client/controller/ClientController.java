@@ -90,20 +90,31 @@ public class ClientController {
 				view.enterState(Settings.INGAMESTATE);
 				view.updatePlayersInfo(setup.getPlayers());
 			}
-			
-			if(object instanceof TurnMessage){
+
+			if (object instanceof TurnMessage) {
 				TurnMessage turn = (TurnMessage) object;
 				String phase = turn.getPhase();
-				if(phase.equals("action")){
-					view.updatePhase("action");
-					model.setPhase("action");
-				} else if(phase.equals("buy")){
-					view.updatePhase("buy");
-					model.setPhase("buy");
-				} else if(phase.equals("cleanup")){
-					view.updatePhase("cleanup");
-					model.setPhase("cleanup");
+				String player = turn.getActive();
+				if(player.equals(Settings.getName())){
+					if (phase.equals("action")) {
+						view.updatePhase("action");
+						model.setPhase("action");
+
+					} else if (phase.equals("buy")) {
+						view.updatePhase("buy");
+						model.setPhase("buy");
+
+					} else if (phase.equals("cleanup")) {
+						view.updatePhase("cleanup");
+						model.setPhase("cleanup");
+					}
+				} else {
+					view.updatePhase("<"+player+">");
+					model.setPhase("");
 				}
+				
+				
+				
 			}
 		}
 
@@ -138,10 +149,10 @@ public class ClientController {
 			model.playCard(e.getText());
 		}
 	}
-	
+
 	class DoneListener implements GameListener {
 		public void run(GameEvent e) {
-			
+
 			model.nextPhase();
 		}
 	}
