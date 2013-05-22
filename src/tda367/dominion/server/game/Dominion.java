@@ -51,45 +51,7 @@ public class Dominion {
 		this.notifyPhase();
 	}
 
-	public void playCard(GameConnection gc, String card) {
-		if (this.getActiveID() != gc.getID()) {
-			// TODO: Inte alltid retur pa den!
-			return;
-		} else {
-			Phase phase = turnHandler.getPhase();
-			if (cih.isActionCard(card) && phase == Phase.ACTION) {
-				if (getActivePlayer().getActions() > 0) {
-					getActivePlayer().play(card);
-					if(getActivePlayer().getActions() == 0){
-						done(gc);
-					}
-				} else {
-					return;
-				}
-			} else if (cih.isTreasureCard(card) && phase == Phase.BUY) {
-				getActivePlayer().play(card);
-			}
-		}
-	}
-
-	public void playBool(GameConnection gc, boolean bool) {
-		if (turnHandler.getActivePlayer() == gc.getID()) {
-
-		}
-	}
-
-	public void playGain(GameConnection gc, String card) {
-		if (this.getActivePlayer().getID() == gc.getID()
-				&& turnHandler.getPhase() == Phase.BUY) {
-			gainingHandler.playerBuyCard(this.getActivePlayer(), card);
-			if(this.getActivePlayer().getBuys() == 0){
-				done(gc);
-			}
-		}
-		
-		
-
-	}
+	
 
 	/**
 	 * Play all the treasure cards the player has in hand.
@@ -167,12 +129,12 @@ public class Dominion {
 		return ids;
 	}
 
-	private Player getActivePlayer() {
+	public Player getActivePlayer() {
 		int i = turnHandler.getActivePlayer();
 		return players.get(i);
 	}
 
-	private int getActiveID() {
+	public int getActiveID() {
 		int i = turnHandler.getActivePlayer();
 		return players.get(i).getID();
 	}
@@ -186,6 +148,14 @@ public class Dominion {
 		for (Player p : players) {
 			network.sendMessage(p.getID(), msg);
 		}
+	}
+	
+	public void playerBuyCard(String card) {
+		gainingHandler.playerBuyCard(getActivePlayer(), card);
+	}
+	
+	public void playerBuyCard(Player p, String card) {
+		gainingHandler.playerBuyCard(p, card);
 	}
 
 	/**
@@ -222,6 +192,10 @@ public class Dominion {
 		}
 
 		return null;
+	}
+	
+	public Phase getPhase() {
+		return turnHandler.getPhase();
 	}
 
 	/**

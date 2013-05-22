@@ -3,8 +3,10 @@ package tda367.dominion.server.main;
 import java.util.LinkedList;
 
 import tda367.dominion.commons.messages.*;
+import tda367.dominion.server.game.CardInfoHandler;
 import tda367.dominion.server.game.Dominion;
 import tda367.dominion.server.game.Player;
+import tda367.dominion.server.game.TurnHandler.Phase;
 import tda367.dominion.server.network.GameConnection;
 
 /**
@@ -17,6 +19,7 @@ public class GameRoom {
 	private static final int MAXPLAYERS = 2;
 	private LinkedList<Player> players;
 	private LinkedList<GameConnection> gcs;
+	private CardInfoHandler cih;
 	private int slots;
 	private String name;
 	private int id;
@@ -29,7 +32,7 @@ public class GameRoom {
 	 * @param gc
 	 */
 	public GameRoom(int id, String gameName) {
-
+		cih = CardInfoHandler.getInstance();
 		slots = 0;
 		name = gameName;
 		this.id = id;
@@ -53,17 +56,17 @@ public class GameRoom {
 		if (object instanceof CardMessage) {
 			CardMessage message = ((CardMessage) object);
 			print("Player played: " + message.getCard());
-			game.playCard(gc, message.getCard());
+			playCard(gc, message.getCard());
 
 		} else if (object instanceof BoolMessage) {
 			BoolMessage message = ((BoolMessage) object);
 			print("Bool: " + message.getBool());
-			game.playBool(gc, message.getBool());
+			playBool(gc, message.getBool());
 
 		} else if (object instanceof GainMessage) {
 			GainMessage message = ((GainMessage) object);
 			print("Bought/gained: " + message.getCard());
-			game.playGain(gc, message.getCard());
+			playGain(gc, message.getCard());
 
 		} else if(object instanceof PlayAllMessage){
 			print("Received PlayAll");
@@ -73,6 +76,43 @@ public class GameRoom {
 			game.done(gc);
 		} else {
 			print("Classname: " + object.getClass());
+		}
+	}
+	
+	public void playCard(GameConnection gc, String card) {
+		if (game.getActiveID() != gc.getID()) {
+			// TODO: Inte alltid retur pa den!
+			return;
+		} else {
+			Phase phase = game.getPhase();
+			if (cih.isActionCard(card) && phase == Phase.ACTION) {
+				if (game.getActivePlayer().getActions() > 0) {
+					game.getActivePlayer().play(card);
+					if(game.getActivePlayer().getActions() == 0){
+						game.done(gc);
+					}
+				} else {
+					return;
+				}
+			} else if (cih.isTreasureCard(card) && phase == Phase.BUY) {
+				game.getActivePlayer().play(card);
+			}
+		}
+	}
+
+	public void playBool(GameConnection gc, boolean bool) {
+		if (game.getActiveID() == gc.getID()) {
+
+		}
+	}
+
+	public void playGain(GameConnection gc, String card) {
+		if (game.getActiveID() == gc.getID()
+				&& game.getPhase() == Phase.BUY) {
+			game.playerBuyCard(card);
+			if(game.getActivePlayer().getBuys() == 0){
+				game.done(gc);
+			}
 		}
 	}
 
