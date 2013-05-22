@@ -36,8 +36,9 @@ public class Dominion {
 	public Dominion(LinkedList<Player> players) {
 		this.players = players;
 		this.supply = new Supply(players.size());
+		turnHandler = new TurnHandler(players.size());
 		cardRulesHandler = new CardRulesHandler(players, supply);
-		gainingHandler = new GainingHandler(supply);
+		gainingHandler = new GainingHandler(supply, turnHandler);
 		network = NetworkHandler.getInstance();
 		cih = CardInfoHandler.getInstance();
 		init();
@@ -45,7 +46,7 @@ public class Dominion {
 	}
 
 	private void startGame() {
-		turnHandler = new TurnHandler(players.size());
+		
 		turnHandler.startGame();
 		this.notifyPhase();
 	}
@@ -60,6 +61,9 @@ public class Dominion {
 				if (getActivePlayer().getActions() > 0) {
 					getActivePlayer().decreaseActions(1);
 					getActivePlayer().play(card);
+					if(getActivePlayer().getActions() == 0){
+						done(gc);
+					}
 				} else {
 					return;
 				}
@@ -79,7 +83,12 @@ public class Dominion {
 		if (this.getActivePlayer().getID() == gc.getID()
 				&& turnHandler.getPhase() == Phase.BUY) {
 			gainingHandler.playerBuyCard(this.getActivePlayer(), card);
+			if(this.getActivePlayer().getMoney() == 0 && turnHandler.hasBought()){
+				done(gc);
+			}
 		}
+		
+		
 
 	}
 

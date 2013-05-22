@@ -514,6 +514,7 @@ public class Player {
 		}
 		return false;
 	}
+	
 
 	public void send(Message msg) {
 		gameConnection.sendTCP(msg);

@@ -464,10 +464,8 @@ public class InGameState extends ControlledGameState {
 	public void mouseClicked(int button, int x, int y, int clicks) {
 		
 		// Checks if you clicked a card in supply
-		String card = recCheck(button, x, y, victoryCards, victoryRectangles);
-		if ( card != null 
-		|| recCheck(button, x, y, treasureCards, treasureRectangles) != null
-		|| recCheck(button, x, y, actionCards, actionRectangles) != null) {
+		String card = recSupplyCheck(button, x, y);
+		if(card != null){
 			supplyCard(card);
 			return;
 		}
@@ -515,6 +513,19 @@ public class InGameState extends ControlledGameState {
 		}
 	}
 	
+
+	private String recSupplyCheck(int button, int x, int y) {
+		String clickedCard = recCheck(button, x, y, victoryCards, victoryRectangles);
+		if(clickedCard == null){
+			clickedCard = recCheck(button, x, y, treasureCards, treasureRectangles);
+			if(clickedCard == null){
+				clickedCard = recCheck(button, x, y, actionCards, actionRectangles);
+				
+			}
+		}
+		
+		return clickedCard;
+	}
 
 	/**
 	 * This method is called every time this state is left.

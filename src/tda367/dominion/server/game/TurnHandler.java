@@ -4,6 +4,7 @@ public class TurnHandler {
 	public enum Phase {
 		ACTION("action"), BUY("buy"), CLEANUP("cleanup");
 		private final String s;
+		
 
 		Phase(String s) {
 			this.s = s;
@@ -19,6 +20,7 @@ public class TurnHandler {
 	private int players;
 	private int activePlayer;
 	private boolean isGameOver = false;
+	private boolean hasBought = false;
 
 	public TurnHandler(int players) {
 		this.players = players;
@@ -31,6 +33,7 @@ public class TurnHandler {
 			phase = Phase.BUY;
 		} else if (phase == Phase.BUY) {
 			phase = Phase.CLEANUP;
+			this.setBought(false);
 		} else if (phase == Phase.CLEANUP) {
 			nextTurn();
 		}
@@ -65,6 +68,15 @@ public class TurnHandler {
 
 	public boolean isGameOver() {
 		return isGameOver;
+	}
+
+	public void setBought(boolean b) {
+		hasBought = b;
+		
+	}
+	
+	public boolean hasBought(){
+		return hasBought;
 	}
 
 }
