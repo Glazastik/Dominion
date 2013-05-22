@@ -6,5 +6,6 @@
 .DS_Store
 .project
 .classpath
+options.txt
 /bin
 .settings
