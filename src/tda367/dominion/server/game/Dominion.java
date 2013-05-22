@@ -82,7 +82,7 @@ public class Dominion {
 		if (this.getActivePlayer().getID() == gc.getID()
 				&& turnHandler.getPhase() == Phase.BUY) {
 			gainingHandler.playerBuyCard(this.getActivePlayer(), card);
-			if(this.getActivePlayer().getMoney() == 0 && turnHandler.hasBought()){
+			if(this.getActivePlayer().getBuys() == 0){
 				done(gc);
 			}
 		}
