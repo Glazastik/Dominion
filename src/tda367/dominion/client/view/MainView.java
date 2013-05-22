@@ -50,6 +50,11 @@ public class MainView extends StateBasedGame implements Runnable {
 		addState(new InGameState(Settings.INGAMESTATE));
 	}
 	
+	public void addSettingsListener(GameListener l) {
+		OptionsState s = (OptionsState) getState(Settings.OPTIONSSTATE);
+		s.addSettingsListener(l);
+	}
+	
 	public void addExitListener(GameListener l) {
 		MainMenuState s = (MainMenuState) getState(Settings.MAINMENUSTATE);
 		s.addExitListener(l);
@@ -199,9 +204,9 @@ public class MainView extends StateBasedGame implements Runnable {
 			  String width = null;
 			  while ((strLine = br.readLine()) != null)   {
 				  if (line == 0) {
-					  height = strLine;
-				  } else if (line == 1) {
 					  width = strLine;
+				  } else if (line == 1) {
+					  height = strLine;
 				  } else if (line == 2) {
 					  if (strLine.equals("true")) {
 						  Settings.fullscreen = true;
@@ -218,7 +223,7 @@ public class MainView extends StateBasedGame implements Runnable {
 				  line++;
 			  }
 			  if (height != null && width != null) {
-				  Settings.setResolution(Integer.parseInt(height), Integer.parseInt(width));
+				  Settings.setResolution(Integer.parseInt(width), Integer.parseInt(height));
 			  }
 			  br.close();
 		} catch (Exception e) {
@@ -247,7 +252,7 @@ public class MainView extends StateBasedGame implements Runnable {
 	/**
 	 * Updates the resolution, fullscreen and fps settings.
 	 */
-	public void updateSettings() {
+	public static void updateSettings() {
 		try {
 			theGame.setDisplayMode(Settings.SCREENHEIGHT, Settings.SCREENWIDTH,
 					Settings.fullscreen);

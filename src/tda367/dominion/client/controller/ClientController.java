@@ -44,6 +44,7 @@ public class ClientController {
 		view.addDoneListener(new DoneListener());
 		view.addPlayAllListener(new PlayAllListener());
 		view.addExitListener(new ExitListener());
+		view.addSettingsListener(new SettingsListener());
 	}
 
 	// Listener classes
@@ -180,6 +181,12 @@ public class ClientController {
 	class ExitListener implements GameListener {
 		public void run(GameEvent e) {
 			MainView.exit();
+		}
+	}
+	
+	class SettingsListener implements GameListener {
+		public void run(GameEvent e) {
+			MainView.updateSettings();
 		}
 	}
 }
