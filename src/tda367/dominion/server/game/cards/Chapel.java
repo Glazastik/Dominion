@@ -1,25 +1,41 @@
 package tda367.dominion.server.game.cards;
 
+import tda367.dominion.commons.messages.Message;
+import tda367.dominion.commons.messages.*;
 import tda367.dominion.server.game.Player;
 
-public class Chapel {
+public class Chapel implements ChoiceCard {
 
-	public static void play(Player p){
-		int amountTrashed = 0;
-		//p.sendInformationMessage("Trash up to 4 cards from your hand")
-		//p.sendCreateDoneMessage();
-//		Message temp = p.getNextMessage();
-//		while(!temp instanceOf DoneMessage || trashedCards < 4 ){
-//			if(temp instanceOf LocatedCardMessage){
-//				LocatedCardMessage tempMessage = (LocatedCardMessage) temp;
-//				if((tempMessage.getLocation.equals("Hand") && p.getHand().contains(tempMessage.getCardName()){
-//					p.trash(tempMessage.getCardName());
-//					amountTrashed++;
-//				}
-//			}
-//		}
-		//p.removeDoneMessage();
-		//p.removeInformationMessage();
+	public enum State { ACTIVE, NONACTIVE }
+	public State state;
+	public int amountTrashed;
+	
+	public Chapel() {
+		state = State.NONACTIVE;
+		amountTrashed = 0;
+	}
+	
+	public void play(Player p) {
+		
+		state = State.ACTIVE;
+	}
+	
+	public void input(Message msg, Player p) {
+		if (msg instanceof DoneMessage) {
+			
+			state = State.NONACTIVE;
+			
+			amountTrashed = 0;
+			
+		} else if (msg instanceof CardMessage) {
+			
+			p.trashCard(((CardMessage) msg).getCard());
+			amountTrashed++;
+			
+			if (amountTrashed == 4) {
+				input(new DoneMessage(), null);
+			}
+		}
 	}
 
 }

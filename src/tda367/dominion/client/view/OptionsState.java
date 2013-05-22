@@ -1,6 +1,5 @@
 package tda367.dominion.client.view;
 
-import org.lwjgl.input.Mouse;
 import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;

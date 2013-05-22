@@ -59,7 +59,6 @@ public class Dominion {
 			Phase phase = turnHandler.getPhase();
 			if (cih.isActionCard(card) && phase == Phase.ACTION) {
 				if (getActivePlayer().getActions() > 0) {
-					getActivePlayer().decreaseActions(1);
 					getActivePlayer().play(card);
 					if(getActivePlayer().getActions() == 0){
 						done(gc);
