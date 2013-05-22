@@ -250,7 +250,7 @@ public class MainView extends StateBasedGame implements Runnable {
 	}
 	
 	/**
-	 * Updates the resolution, fullscreen and fps settings.
+	 * Updates the resolution, fullscreen and fps settings. Also writes them to a file.
 	 */
 	public static void updateSettings() {
 		try {
@@ -258,6 +258,20 @@ public class MainView extends StateBasedGame implements Runnable {
 					Settings.fullscreen);
 			theGame.setShowFPS(Settings.fpsshow);
 		} catch (SlickException e) {
+			e.printStackTrace();
+		}
+		
+		PrintWriter writer;
+		try {
+			writer = new PrintWriter("options.txt", "UTF-8");
+			writer.println(Settings.SCREENHEIGHT);
+			writer.println(Settings.SCREENWIDTH);
+			writer.println(Settings.fullscreen);
+			writer.println(Settings.fpsshow);
+			writer.close();
+		} catch (FileNotFoundException e) {
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
 	}

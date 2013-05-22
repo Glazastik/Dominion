@@ -18,14 +18,15 @@ public class Chapel implements ChoiceCard {
 	public void play(Player p) {
 		
 		state = State.ACTIVE;
+		
+		//TODO: Send some kind of message
 	}
 	
 	public void input(Message msg, Player p) {
 		if (msg instanceof DoneMessage) {
 			
 			state = State.NONACTIVE;
-			
-			amountTrashed = 0;
+			//TODO: Sedn mesgagew
 			
 		} else if (msg instanceof CardMessage) {
 			
@@ -34,7 +35,10 @@ public class Chapel implements ChoiceCard {
 			
 			if (amountTrashed == 4) {
 				input(new DoneMessage(), null);
+			} else {
+				//TODO: Send some other message
 			}
+			
 		}
 	}
 
