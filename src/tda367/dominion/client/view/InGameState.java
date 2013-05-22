@@ -160,7 +160,7 @@ public class InGameState extends ControlledGameState {
 	/**
 	 * Initiates the arrays holding the amount of cards.
 	 */
-	private void initAmounts() throws SlickException {
+	private void updateSupplyAmounts() throws SlickException {
 		nbrOfActionCards = getNbrOfCards(getActionCards(getSupply()));
 		nbrOfTreasureCards = getNbrOfCards(getTreasureCards(getSupply()));
 		nbrOfVictoryCards = getNbrOfCards(getVictoryCards(getSupply()));
@@ -1387,7 +1387,7 @@ public class InGameState extends ControlledGameState {
 
 		moveSupplyImages();
 		try {
-			initAmounts();
+			updateSupplyAmounts();
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
