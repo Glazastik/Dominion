@@ -11,6 +11,8 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.StateBasedGame;
 
 import tda367.dominion.client.model.Settings;
+import tda367.dominion.commons.listener.GameEvent;
+import tda367.dominion.commons.listener.GameListener;
 
 public class MainMenuState extends ControlledGameState {
 
@@ -39,6 +41,17 @@ public class MainMenuState extends ControlledGameState {
 	float position;
 	int volume;
 	int pitch;
+	
+	private GameListener exitGame;
+	
+	public void addExitListener(GameListener l) {
+		exitGame = l;
+	}
+	
+	public void exitGame() {
+		GameEvent e = new GameEvent();
+		exitGame.run(e);
+	}
 
 	/**
 	 * Creates a new instance of this state with the supplied ID and controller.
@@ -131,9 +144,9 @@ public class MainMenuState extends ControlledGameState {
 		// Checks if mouse cursor is within exitgame image
 		if (input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON)
 				&& exitRec.contains(xPos, yPos)) {
-			sbg.getContainer().exit();
+			exitGame();
 		} else if (input.isKeyPressed(Input.KEY_3)) {
-			sbg.getContainer().exit();
+			exitGame();
 		}
 
 		// Checks if mouse cursor is within options image

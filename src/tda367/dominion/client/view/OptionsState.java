@@ -60,7 +60,7 @@ public class OptionsState extends ControlledGameState {
 	    g.draw(lowResCheckbox);
 	    g.draw(fpsCheckbox);
 	    
-	    if (fullScreen == true) {
+	    if (Settings.fullscreen == true) {
 	    	checker.draw(fullScreenCheckbox.getMinX(), fullScreenCheckbox.getMinY());
 	    }
 	    
@@ -70,7 +70,7 @@ public class OptionsState extends ControlledGameState {
 	    	checker2.draw(hiResCheckbox.getMinX(), hiResCheckbox.getMinY());
 	    }
 	    
-	    if(fps == true) {
+	    if(Settings.fpsshow == true) {
 	    	checker3.draw(fpsCheckbox.getMinX(), fpsCheckbox.getMinY());
 	    }
 	    	

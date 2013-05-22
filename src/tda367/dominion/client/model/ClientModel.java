@@ -1,6 +1,7 @@
 package tda367.dominion.client.model;
 
 import tda367.dominion.client.network.ClientConnection;
+import tda367.dominion.client.view.MainView;
 import tda367.dominion.commons.messages.AdvanceMessage;
 import tda367.dominion.commons.messages.BoolMessage;
 import tda367.dominion.commons.messages.CardMessage;

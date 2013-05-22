@@ -43,6 +43,7 @@ public class ClientController {
 		view.addCardListener(new CardListener());
 		view.addDoneListener(new DoneListener());
 		view.addPlayAllListener(new PlayAllListener());
+		view.addExitListener(new ExitListener());
 	}
 
 	// Listener classes
@@ -173,6 +174,12 @@ public class ClientController {
 	class BoolListener implements GameListener {
 		public void run(GameEvent e) {
 			model.boolMessage(e.getBool());
+		}
+	}
+	
+	class ExitListener implements GameListener {
+		public void run(GameEvent e) {
+			MainView.exit();
 		}
 	}
 }
