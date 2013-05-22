@@ -102,7 +102,6 @@ public class InGameState extends ControlledGameState {
 	private GameListener supplyListener;
 	private GameListener doneListener;
 	private GameListener playAllListener;
-	
 
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
@@ -112,9 +111,6 @@ public class InGameState extends ControlledGameState {
 
 		initPlayerInfo();
 		initCards();
-
-		String[] actions = cih.getActionCards().toArray(new String[0]);
-		actionCardsAll = StringArraytoImageArray(actions);
 
 		gameContainerWidth = gc.getWidth();
 		gameContainerHeight = gc.getHeight();
@@ -155,6 +151,8 @@ public class InGameState extends ControlledGameState {
 				.getTreasureCards().toArray(new String[0])));
 		victoryCards = StringArraytoImageArray(getVictoryCards(cih
 				.getCardList().toArray(new String[0])));
+		actionCardsAll = StringArraytoImageArray(cih.getActionCards().toArray(
+				new String[0]));
 	}
 
 	/**
@@ -280,8 +278,8 @@ public class InGameState extends ControlledGameState {
 	public InGameState(int id) {
 		super(id);
 	}
-	
-	public void addPlayAllListener(GameListener l){
+
+	public void addPlayAllListener(GameListener l) {
 		playAllListener = l;
 	}
 
@@ -301,7 +299,7 @@ public class InGameState extends ControlledGameState {
 		GameEvent e = new GameEvent(card);
 		cardListener.run(e);
 	}
-	
+
 	private void playAll() {
 		playAllListener.run(new GameEvent());
 	}
@@ -462,10 +460,10 @@ public class InGameState extends ControlledGameState {
 	 */
 	@Override
 	public void mouseClicked(int button, int x, int y, int clicks) {
-		
+
 		// Checks if you clicked a card in supply
 		String card = recSupplyCheck(button, x, y);
-		if(card != null){
+		if (card != null) {
 			supplyCard(card);
 			return;
 		}
@@ -512,18 +510,20 @@ public class InGameState extends ControlledGameState {
 			// TODO: Replace with network stuff
 		}
 	}
-	
 
 	private String recSupplyCheck(int button, int x, int y) {
-		String clickedCard = recCheck(button, x, y, victoryCards, victoryRectangles);
-		if(clickedCard == null){
-			clickedCard = recCheck(button, x, y, treasureCards, treasureRectangles);
-			if(clickedCard == null){
-				clickedCard = recCheck(button, x, y, actionCards, actionRectangles);
-				
+		String clickedCard = recCheck(button, x, y, victoryCards,
+				victoryRectangles);
+		if (clickedCard == null) {
+			clickedCard = recCheck(button, x, y, treasureCards,
+					treasureRectangles);
+			if (clickedCard == null) {
+				clickedCard = recCheck(button, x, y, actionCards,
+						actionRectangles);
+
 			}
 		}
-		
+
 		return clickedCard;
 	}
 
