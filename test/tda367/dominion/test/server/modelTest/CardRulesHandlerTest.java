@@ -7,10 +7,10 @@ import java.util.LinkedList;
 
 import org.junit.Test;
 
-import tda367.dominion.server.game.CardRulesHandler;
 import tda367.dominion.server.game.Pile;
 import tda367.dominion.server.game.Player;
 import tda367.dominion.server.game.Supply;
+import tda367.dominion.server.main.CardRulesHandler;
 
 public class CardRulesHandlerTest {
 
