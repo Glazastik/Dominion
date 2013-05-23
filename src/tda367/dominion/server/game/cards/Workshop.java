@@ -22,10 +22,11 @@ public class Workshop extends ChoiceCard {
 
 	public void input(Message msg, Player p) {
 		if (msg instanceof CardMessage) {
+			String card = ((CardMessage) msg).getCard().split("Supply")[0];
 			CardInfoHandler cih = CardInfoHandler.getInstance();
 			GainingHandler gh = new GainingHandler(supply);
-			if (cih.getCardValue(((CardMessage) msg).getCard()) < 5) {
-				gh.playerGainCard(p, ((CardMessage) msg).getCard());
+			if (cih.getCardValue(card) < 5) {
+				gh.playerGainCard(p, card);
 				state = State.NONACTIVE;
 			}
 		}

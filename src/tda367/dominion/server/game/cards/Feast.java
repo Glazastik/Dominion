@@ -15,6 +15,7 @@ public class Feast extends ChoiceCard {
 		supply = s;
 	}
 	
+	@Override
 	public void play(Player p) {
 
 		state = State.ACTIVE;
@@ -23,10 +24,12 @@ public class Feast extends ChoiceCard {
 		
 	}
 
+	@Override
 	public void input(Message msg, Player p) {
 		if (msg instanceof CardMessage) {
+			String card = ((CardMessage) msg).getCard().split("Supply")[0];
 			GainingHandler gh = new GainingHandler(supply);
-			gh.playerGainCard(p, ((CardMessage) msg).getCard());
+			gh.playerGainCard(p, card);
 			state = State.NONACTIVE;
 		}
 	}

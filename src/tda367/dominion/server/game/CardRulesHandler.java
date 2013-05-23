@@ -53,7 +53,7 @@ public class CardRulesHandler {
 //				case "Library": Library.play(player); break;
 				case "Market": Market.play(player); break;
 //				case "Militia": Militia.play(player, players); break;
-//				case "Mine": Mine.play(player, supply); break;
+				case "Mine": activeCard = new Mine(supply); activeCard.play(player); break;
 				case "Moat": Moat.play(player); break;
 				case "Moneylender": Moneylender.play(player); break;
 //				case "Remodel": Remodel.play(player, supply); break;

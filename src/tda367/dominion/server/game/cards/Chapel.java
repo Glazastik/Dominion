@@ -13,6 +13,7 @@ public class Chapel extends ChoiceCard {
 		amountTrashed = 0;
 	}
 
+	@Override
 	public void play(Player p) {
 
 		state = State.ACTIVE;
@@ -22,6 +23,7 @@ public class Chapel extends ChoiceCard {
 		// TODO: Send some kind of message
 	}
 
+	@Override
 	public void input(Message msg, Player p) {
 		if (msg instanceof DoneMessage) {
 
