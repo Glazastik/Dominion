@@ -565,5 +565,14 @@ public class Player {
 		tmsg.setMessage(log);
 		this.send(tmsg);
 	}
+	
+	public boolean containsCard(String card) {
+		for (String s : hand.getCards()) {
+			if (s.equals(card)) {
+				return true;
+			}
+		}
+		return false;
+	}
 
 }

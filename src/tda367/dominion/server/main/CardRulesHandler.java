@@ -65,7 +65,7 @@ public class CardRulesHandler {
 				case "Smithy": Smithy.play(player); break;
 //				case "Spy": Spy.play(player, players); break;
 //				case "Thief": Thief.play(player, players); break;
-//				case "Throneroom": Throneroom.play(player, players, supply); break;
+				case "Throneroom": activeCard = new Throneroom(); activeCard.play(player); break;
 				case "Village": Village.play(player); break;
 				case "Witch": Witch.play(player, players, supply); break;
 				case "Woodcutter": Woodcutter.play(player); break;
