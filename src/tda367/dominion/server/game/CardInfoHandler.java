@@ -68,7 +68,7 @@ public class CardInfoHandler {
 		Iterator<String> i = temp.iterator();
 		while(i.hasNext()){
 			String tempString = (String) i.next();
-			if(this.getCardType(tempString).equals("Action")){
+			if(this.getCardType(tempString).equals("Action") || tempString.equals("Gardens")){
 				temp2.add(tempString);
 			}
 		}

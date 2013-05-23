@@ -153,15 +153,9 @@ public class InGameState extends ControlledGameState {
 				.getCardList().toArray(new String[0])));
 		actionCardsAll = StringArraytoImageArray(cih.getActionCards().toArray(
 				new String[0]));
-	}
-
-	/**
-	 * Initiates the arrays holding the amount of cards.
-	 */
-	private void updateSupplyAmounts() throws SlickException {
-		nbrOfActionCards = getNbrOfCards(getActionCards(getSupply()));
-		nbrOfTreasureCards = getNbrOfCards(getTreasureCards(getSupply()));
-		nbrOfVictoryCards = getNbrOfCards(getVictoryCards(getSupply()));
+//		for (String s : cih.getActionCards().toArray(new String[0])) {
+//			System.out.println(s);
+//		}
 	}
 
 	/**
@@ -224,7 +218,7 @@ public class InGameState extends ControlledGameState {
 		paintActionCards(actionCards);
 		paintTreasureCards(treasureCards);
 		paintPlayerHand();
-		paintNbrOfActionCards(nbrOfActionCards, actionCards, g);
+		paintNbrOfActionCards(g);
 		paintNbrOfTreasureCards(nbrOfTreasureCards, treasureCards, g);
 		paintNbrOfVictoryCards(nbrOfVictoryCards, victoryCards, g);
 		paintOpposingPlayers(g);
@@ -325,6 +319,9 @@ public class InGameState extends ControlledGameState {
 	 */
 	public void updateNbrOfCards() {
 		nbrOfActionCards = getNbrOfCards(getActionCards(getSupply()));
+		for(int i: nbrOfActionCards){
+			System.out.println(i);
+		}
 		nbrOfTreasureCards = getNbrOfCards(getTreasureCards(getSupply()));
 		nbrOfVictoryCards = getNbrOfCards(getVictoryCards(getSupply()));
 	}
@@ -695,12 +692,12 @@ public class InGameState extends ControlledGameState {
 			}
 		}
 
-		for (int i = 0; i < cards.length; i++) {
-			if (cards[i].equals("Gardens")) {// Ensures Gardens DOES end up with
-												// the actioncards
-				cardsToReturn[index] = cards[i];
-			}
-		}
+//		for (int i = 0; i < cards.length; i++) {
+//			if (cards[i].equals("Gardens")) {// Ensures Gardens DOES end up with
+//												// the actioncards
+//				cardsToReturn[index] = cards[i];
+//			}
+//		}
 
 		return sortStringArray(cardsToReturn);
 	}
@@ -1203,7 +1200,7 @@ public class InGameState extends ControlledGameState {
 	 * @param g
 	 *            graphics that will be used when painting
 	 */
-	private void paintNbrOfActionCards(int[] numbers, Image[] cards, Graphics g) {
+	private void paintNbrOfActionCards(Graphics g) {
 		float cardHeight;
 		double scale;
 		float cardWidth;
@@ -1211,18 +1208,18 @@ public class InGameState extends ControlledGameState {
 		int cardSpacing = 5;
 		int yOffset = 5;
 
-		for (int i = 0; i < cards.length; i++) {
+		for (int i = 0; i < actionCards.length; i++) {
 			cardWidth = (float) (gameContainerWidth / 9);
-			scale = (double) cardWidth / cards[i].getWidth();
-			cardHeight = (float) (cards[i].getHeight() * scale);
+			scale = (double) cardWidth / actionCards[i].getWidth();
+			cardHeight = (float) (actionCards[i].getHeight() * scale);
 			int orbOffset = 3;
 
-			if (i < cards.length / 2) {
+			if (i < actionCards.length / 2) {
 				g.setColor(Color.black);
 				g.fillOval(xOffset + cardWidth * (i) + (i * cardSpacing)
 						- orbOffset, yOffset - orbOffset, 24, 24);
 				g.setColor(Color.white);
-				g.drawString("" + numbers[i], xOffset + cardWidth * (i)
+				g.drawString("" + supply.get(splitString(actionCards[i])), xOffset + cardWidth * (i)
 						+ (i * cardSpacing), yOffset);
 			} else {
 				g.setColor(Color.black);
@@ -1230,7 +1227,7 @@ public class InGameState extends ControlledGameState {
 						+ ((i - 5) * cardSpacing) - orbOffset, cardHeight + 2
 						* yOffset - orbOffset, 24, 24);
 				g.setColor(Color.white);
-				g.drawString("" + numbers[i], xOffset + cardWidth * (i - 5)
+				g.drawString("" + supply.get(splitString(actionCards[i])), xOffset + cardWidth * (i - 5)
 						+ ((i - 5) * cardSpacing), cardHeight + 2 * yOffset);
 			}
 		}
@@ -1384,13 +1381,9 @@ public class InGameState extends ControlledGameState {
 	 */
 	public void setSupply(HashMap<String, Integer> supply) {
 		this.supply = supply;
-
+		
 		moveSupplyImages();
-		try {
-			updateSupplyAmounts();
-		} catch (SlickException e) {
-			e.printStackTrace();
-		}
+		this.updateNbrOfCards();
 	}
 
 	/**
@@ -1407,6 +1400,7 @@ public class InGameState extends ControlledGameState {
 	private void moveSupplyImages() {
 		LinkedList<Image> moved = new LinkedList<Image>();
 		for (String key : supply.keySet()) {
+			System.out.println(key +" " + supply.get(key));
 			for (int i = 0; i < actionCardsAll.length; i++) {
 				String name = splitString(actionCardsAll[i]);
 				if (name.equals(key)) {
