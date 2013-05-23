@@ -20,6 +20,11 @@ public class EndGameState extends BasicGameState {
 		// TODO Auto-generated method stub
 
 	}
+	
+	public void initState(LinkedList<Player> players){
+		setPlayers(players);
+		calculateScores(players);
+	}
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
