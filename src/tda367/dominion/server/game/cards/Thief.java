@@ -2,17 +2,28 @@ package tda367.dominion.server.game.cards;
 
 import java.util.LinkedList;
 
+import tda367.dominion.commons.messages.Message;
 import tda367.dominion.server.game.CardInfoHandler;
 import tda367.dominion.server.game.Pile;
 import tda367.dominion.server.game.Player;
 
-public class Thief {
+public class Thief extends ChoiceCard{
+	private CardInfoHandler cih = CardInfoHandler.getInstance();
+	private LinkedList<Player> players;
+	public Thief(LinkedList<Player> players){
+		state = State.NONACTIVE;
+		this.players=players;
+	}
 	
-	public static void play(Player player, LinkedList<Player> players){
+	public void play(Player player){
+		state = State.ACTIVE;
 		for(Player p : players){
 			if(p!=player){
 				if(!p.getHand().contains("Moat")){
-					Steal(player, p);
+					for(String card : p.revealTopOfDeck(2)){
+						//if()
+					}
+					//Steal(player, p);
 				} else {
 					/**
 					 * p.sendInformationMessage("Do you wish to reveal Moat?");
@@ -84,5 +95,11 @@ public class Thief {
 		//p.sendRemoveRevealedMessage;
 		//p.sendRemoveBoolMessage;
 		}
+	}
+
+	@Override
+	public void input(Message msg, Player p) {
+		// TODO Auto-generated method stub
+		
 	}
 }
