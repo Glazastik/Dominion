@@ -11,6 +11,7 @@ import com.esotericsoftware.kryonet.EndPoint;
 public class NetworkCommon {
 
 	public static final int TCPPORT = 54555;
+	public static final int UDPPORT = 56555;
 	
 	public static void register(EndPoint ep){
 		Kryo kryo = ep.getKryo();
