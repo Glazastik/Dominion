@@ -4,14 +4,9 @@ import tda367.dominion.server.game.CardInfoHandler;
 import tda367.dominion.server.game.Dominion;
 import tda367.dominion.server.game.Player;
 
-public class Adventurer implements ICard {
-	private Dominion game;
+public class Adventurer {
 	
-	public Adventurer(Dominion game) {
-		this.game = game;
-	}
-	
-	public void play() {
+	public static void play(Dominion game) {
 		Player player = game.getActivePlayer();
 		CardInfoHandler cardInfoHandler = CardInfoHandler.getInstance();
 		int treasuresRevealed = 0;

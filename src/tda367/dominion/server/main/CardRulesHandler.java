@@ -41,24 +41,24 @@ public class CardRulesHandler {
 		if((cih.getCardType(cardName).equals("Action") && player.getActions()>0) || cih.getCardType(cardName).equals("Treasure")) {
 			player.play(cardName);
 			switch(cardName){
-//				case "Adventurer": Adventurer.play(player); break;
+				case "Adventurer": Adventurer.play(game); break;
 //				case "Bureaucrat": Bureaucrat.play(player, players, supply); break;
-//				case "Cellar": activeCard = new Cellar(); activeCard.play(player); break;
+				case "Cellar": activeCard = new Cellar(game); activeCard.play(); break;
 //				case "Chancellor": Chancellor.play(player); break;
-//				case "Chapel": activeCard = new Chapel(); activeCard.play(player); break;
+				case "Chapel": activeCard = new Chapel(game); activeCard.play(); break;
 				case "Copper": player.increaseMoney(1); break;
 				case "Councilroom": Councilroom.play(game); break;
 				case "Feast": activeCard = new Feast(game); activeCard.play(); break;
 				case "Festival": Festival.play(game); break;
 				case "Gold": player.increaseMoney(3); break;
-//				case "Laboratory": activeCard = new Laboratory(); activeCard.play(player); break;
+				case "Laboratory": Laboratory.play(game); break;
 //				case "Library": Library.play(player); break;
 				case "Market": Market.play(player); break;
 //				case "Militia": Militia.play(player, players); break;
 				case "Mine": activeCard = new Mine(game); activeCard.play(); break;
 				case "Moat": Moat.play(game); break;
 				case "Moneylender": Moneylender.play(player); break;
-//				case "Remodel": activeCard = new Remodel(game); activeCard.play(player); break;
+				case "Remodel": activeCard = new Remodel(game); activeCard.play(); break;
 				case "Silver": player.increaseMoney(2); break;
 				case "Smithy": Smithy.play(game); break;
 //				case "Spy": Spy.play(player, players); break;

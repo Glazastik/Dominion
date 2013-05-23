@@ -23,6 +23,7 @@ public class Remodel extends ChoiceCard {
 		cih = CardInfoHandler.getInstance();
 	}
 
+	@Override
 	public void play() {
 		game.getActivePlayer().sendTip("Trash a card and then gain a card costing 2 more");
 		state = State.ACTIVE;
