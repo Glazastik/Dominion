@@ -6,18 +6,17 @@ import tda367.dominion.server.game.CardInfoHandler;
 import tda367.dominion.server.game.Dominion;
 import tda367.dominion.server.game.GainingHandler;
 import tda367.dominion.server.game.Player;
-import tda367.dominion.server.game.Supply;
 
 public class Feast extends ChoiceCard {
 	
 	private Dominion game; 
 
-	public Feast() {
+	public Feast(Dominion game) {
 		state = State.NONACTIVE;
 	}
 
 	@Override
-	public void play(Dominion game) {
+	public void play() {
 		this.game = game;
 		state = State.ACTIVE;
 

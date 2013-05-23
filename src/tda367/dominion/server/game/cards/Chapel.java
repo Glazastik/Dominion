@@ -7,14 +7,16 @@ import tda367.dominion.server.game.Player;
 public class Chapel extends ChoiceCard {
 
 	public int amountTrashed;
+	private Dominion game;
 
-	public Chapel() {
+	public Chapel(Dominion game) {
+		this.game = game;
 		state = State.NONACTIVE;
 		amountTrashed = 0;
 	}
 
 	@Override
-	public void play(Dominion game) {
+	public void play() {
 
 		state = State.ACTIVE;
 

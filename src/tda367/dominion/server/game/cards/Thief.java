@@ -4,45 +4,50 @@ import java.util.LinkedList;
 
 import tda367.dominion.commons.messages.Message;
 import tda367.dominion.server.game.CardInfoHandler;
+import tda367.dominion.server.game.Dominion;
 import tda367.dominion.server.game.Pile;
 import tda367.dominion.server.game.Player;
 
 public class Thief extends ChoiceCard{
 	private CardInfoHandler cih = CardInfoHandler.getInstance();
 	private LinkedList<Player> players;
+	private Dominion game;
 	public Thief(LinkedList<Player> players){
 		state = State.NONACTIVE;
 		this.players=players;
 	}
 	
-	public void play(Player player){
+	public Thief(Dominion game) {
+		this.game = game;
+	}
+	
+	public void play(){
 		state = State.ACTIVE;
+		LinkedList<Player> players = game.getInactivePlayers();
 		for(Player p : players){
-			if(p!=player){
-				if(!p.getHand().contains("Moat")){
-					for(String card : p.revealTopOfDeck(2)){
-						//if()
-					}
-					//Steal(player, p);
-				} else {
-					/**
-					 * p.sendInformationMessage("Do you wish to reveal Moat?");
-					 * p.createBoolMessage();
-					 * boolean done = false;
-					 * while(!done){
-					 * 	Message message = p.getNextMessage();
-					 * 	if(message instanceOf BoolMessage){
-					 * 		done = true;
-					 * 		BoolMessage boolMessage = (BoolMessage) message;
-					 * 		if(!boolMessage.isTrue()){
-					 * 			Steal(player, p);
-					 * 		}
-					 * 	}
-					 * }
-					 * p.removeInformationMessage();
-					 * p.removeBoolMessage();
-					 */
+			if(!p.getHand().contains("Moat")){
+				for(String card : p.revealTopOfDeck(2)){
+					//if()
 				}
+				//Steal(player, p);
+			} else {
+				/**
+				 * p.sendInformationMessage("Do you wish to reveal Moat?");
+				 * p.createBoolMessage();
+				 * boolean done = false;
+				 * while(!done){
+				 * 	Message message = p.getNextMessage();
+				 * 	if(message instanceOf BoolMessage){
+				 * 		done = true;
+				 * 		BoolMessage boolMessage = (BoolMessage) message;
+				 * 		if(!boolMessage.isTrue()){
+				 * 			Steal(player, p);
+				 * 		}
+				 * 	}
+				 * }
+				 * p.removeInformationMessage();
+				 * p.removeBoolMessage();
+				 */
 			}
 		}
 	}

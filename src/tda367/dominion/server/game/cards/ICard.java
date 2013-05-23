@@ -5,5 +5,5 @@ import tda367.dominion.server.game.Player;
 
 public interface ICard {
 	public enum State { ACTIVE, NONACTIVE };
-	public void play(Dominion game);
+	public void play();
 }

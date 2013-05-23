@@ -8,15 +8,17 @@ import tda367.dominion.server.game.Player;
 
 public class Cellar extends ChoiceCard {
 
+	private Dominion game;
 	public int amountDiscarded;
 	
-	public Cellar() {
+	public Cellar(Dominion game) {
+		this.game = game;
 		state = State.NONACTIVE;
 		amountDiscarded = 0;
 	}
 
 	@Override
-	public void play(Dominion game) {
+	public void play() {
 		
 		state = State.ACTIVE;
 		game.getActivePlayer().increaseActions(1);

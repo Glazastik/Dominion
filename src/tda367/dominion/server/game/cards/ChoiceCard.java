@@ -11,7 +11,7 @@ public abstract class ChoiceCard implements ICard {
 		return state == State.ACTIVE;
 	}
 	
-	public void play (Player p) {
+	public void play() {
 		state = State.ACTIVE;
 	}
 	

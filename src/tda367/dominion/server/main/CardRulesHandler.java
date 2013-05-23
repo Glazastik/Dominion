@@ -43,31 +43,31 @@ public class CardRulesHandler {
 			switch(cardName){
 //				case "Adventurer": Adventurer.play(player); break;
 //				case "Bureaucrat": Bureaucrat.play(player, players, supply); break;
-				case "Cellar": activeCard = new Cellar(); activeCard.play(player); break;
+//				case "Cellar": activeCard = new Cellar(); activeCard.play(player); break;
 //				case "Chancellor": Chancellor.play(player); break;
-				case "Chapel": activeCard = new Chapel(); activeCard.play(player); break;
+//				case "Chapel": activeCard = new Chapel(); activeCard.play(player); break;
 				case "Copper": player.increaseMoney(1); break;
 				case "Councilroom": Councilroom.play(game); break;
-				case "Feast": activeCard = new Feast(); activeCard.play(game); break;
+				case "Feast": activeCard = new Feast(game); activeCard.play(); break;
 				case "Festival": Festival.play(game); break;
 				case "Gold": player.increaseMoney(3); break;
-				case "Laboratory": activeCard = new Laboratory(); activeCard.play(player); break;
+//				case "Laboratory": activeCard = new Laboratory(); activeCard.play(player); break;
 //				case "Library": Library.play(player); break;
 				case "Market": Market.play(player); break;
 //				case "Militia": Militia.play(player, players); break;
-				case "Mine": activeCard = new Mine(); activeCard.play(game); break;
+				case "Mine": activeCard = new Mine(game); activeCard.play(); break;
 				case "Moat": Moat.play(game); break;
 				case "Moneylender": Moneylender.play(player); break;
-				case "Remodel": activeCard = new Remodel(supply); activeCard.play(player); break;
+//				case "Remodel": activeCard = new Remodel(game); activeCard.play(player); break;
 				case "Silver": player.increaseMoney(2); break;
 				case "Smithy": Smithy.play(game); break;
 //				case "Spy": Spy.play(player, players); break;
 //				case "Thief": Thief.play(player, players); break;
-				case "Throneroom": activeCard = new Throneroom(); activeCard.play(player); break;
+//				case "Throneroom": activeCard = new Throneroom(); activeCard.play(player); break;
 				case "Village": Village.play(game); break;
 				case "Witch": Witch.play(game); break;
 				case "Woodcutter": Woodcutter.play(game); break;
-				case "Workshop": activeCard = new Workshop(); activeCard.play(game); break;
+				case "Workshop": activeCard = new Workshop(game); activeCard.play(); break;
 			}
 		}
 	}

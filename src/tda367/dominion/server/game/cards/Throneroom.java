@@ -2,11 +2,15 @@ package tda367.dominion.server.game.cards;
 
 import tda367.dominion.commons.messages.CardMessage;
 import tda367.dominion.commons.messages.Message;
+import tda367.dominion.server.game.Dominion;
 import tda367.dominion.server.game.Player;
 
 public class Throneroom extends ChoiceCard {
+	
+	private Dominion game;
 
 	public Throneroom() {
+		this.game = game;
 		state = State.NONACTIVE;
 	}
 	

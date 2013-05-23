@@ -14,7 +14,8 @@ public class Mine extends ChoiceCard {
 	public boolean hasTrashed;
 	int valueOfTrash;
 	
-	public Mine() {
+	public Mine(Dominion game) {
+		this.game = game;
 		hasTrashed = false;
 		valueOfTrash = 0;
 	}
@@ -40,8 +41,7 @@ public class Mine extends ChoiceCard {
 	}
 
 	@Override
-	public void play(Dominion game) {
+	public void play() {
 //		TODO: Wiixtor stuff
-		this.game = game;
 	}
 }
