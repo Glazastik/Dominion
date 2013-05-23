@@ -3,18 +3,18 @@ package tda367.dominion.server.game.cards;
 import tda367.dominion.commons.messages.CardMessage;
 import tda367.dominion.commons.messages.Message;
 import tda367.dominion.server.game.CardInfoHandler;
+import tda367.dominion.server.game.Dominion;
 import tda367.dominion.server.game.GainingHandler;
 import tda367.dominion.server.game.Player;
 import tda367.dominion.server.game.Supply;
 
 public class Mine extends ChoiceCard {
 
-	public Supply supply;
+	public Dominion game;
 	public boolean hasTrashed;
 	int valueOfTrash;
 	
-	public Mine(Supply s) {
-		supply = s;
+	public Mine() {
 		hasTrashed = false;
 		valueOfTrash = 0;
 	}
@@ -26,7 +26,7 @@ public class Mine extends ChoiceCard {
 			card = card.split("Supply")[0];
 			CardInfoHandler cih = CardInfoHandler.getInstance();
 			if (hasTrashed && cih.getCardValue(card) <= valueOfTrash+3) {
-				GainingHandler gh = new GainingHandler(supply);
+				GainingHandler gh = new GainingHandler(game.getSupply());
 				gh.playerGainCardToHand(p, card);
 				state = State.NONACTIVE;
 			} else {
@@ -37,5 +37,11 @@ public class Mine extends ChoiceCard {
 				}
 			}
 		}	
+	}
+
+	@Override
+	public void play(Dominion game) {
+//		TODO: Wiixtor stuff
+		this.game = game;
 	}
 }

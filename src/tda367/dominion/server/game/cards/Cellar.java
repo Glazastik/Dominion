@@ -3,6 +3,7 @@ package tda367.dominion.server.game.cards;
 import tda367.dominion.commons.messages.CardMessage;
 import tda367.dominion.commons.messages.DoneMessage;
 import tda367.dominion.commons.messages.Message;
+import tda367.dominion.server.game.Dominion;
 import tda367.dominion.server.game.Player;
 
 public class Cellar extends ChoiceCard {
@@ -15,10 +16,10 @@ public class Cellar extends ChoiceCard {
 	}
 
 	@Override
-	public void play(Player p) {
+	public void play(Dominion game) {
 		
 		state = State.ACTIVE;
-		p.increaseActions(1);
+		game.getActivePlayer().increaseActions(1);
 		
 		// send message: Discard cards!
 	}

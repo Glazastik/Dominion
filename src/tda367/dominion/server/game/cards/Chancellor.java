@@ -1,11 +1,13 @@
 package tda367.dominion.server.game.cards;
 
+import tda367.dominion.commons.messages.Message;
+import tda367.dominion.server.game.Dominion;
 import tda367.dominion.server.game.Player;
 
-public class Chancellor implements ICard {
+public class Chancellor extends ChoiceCard {
 
-	public static void play(Player player) {
-		player.increaseMoney(2);
+	public void play(Dominion game) {
+		game.getActivePlayer().increaseMoney(2);
 		//player.createInformationMessage("Do you wish to discard your deck?");
 		//player.createBoolMessage();
 		//Message temp = player.getNextMessage()
@@ -17,5 +19,10 @@ public class Chancellor implements ICard {
 		//}
 		//player.removeBoolMessage();
 		//player.removeInformationMessage();
+	}
+
+	@Override
+	public void input(Message msg, Player p) {
+		// TODO Auto-generated method stub
 	}
 }

@@ -1,9 +1,9 @@
 package tda367.dominion.server.game.cards;
 
-import tda367.dominion.server.game.Player;
+import tda367.dominion.server.game.Dominion;
 
-public class Smithy implements ICard {
-	public static void play(Player player) {
-		player.draw(3);
+public class Smithy {
+	public static void play(Dominion game) {
+		game.getActivePlayer().draw(3);
 	}
 }

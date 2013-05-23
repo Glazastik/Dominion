@@ -3,26 +3,26 @@ package tda367.dominion.server.game.cards;
 import tda367.dominion.commons.messages.CardMessage;
 import tda367.dominion.commons.messages.Message;
 import tda367.dominion.server.game.CardInfoHandler;
+import tda367.dominion.server.game.Dominion;
 import tda367.dominion.server.game.GainingHandler;
 import tda367.dominion.server.game.Player;
 import tda367.dominion.server.game.Supply;
 
 public class Feast extends ChoiceCard {
+	
+	private Dominion game; 
 
-	public Supply supply;
-
-	public Feast(Supply s) {
+	public Feast() {
 		state = State.NONACTIVE;
-		supply = s;
 	}
 
 	@Override
-	public void play(Player p) {
-
+	public void play(Dominion game) {
+		this.game = game;
 		state = State.ACTIVE;
 
-		p.trashFromPlayingArea("Feast");
-		p.sendTip("Gain a card costing up to 5");
+		game.getActivePlayer().trashFromPlayingArea("Feast");
+		game.getActivePlayer().sendTip("Gain a card costing up to 5");
 
 	}
 
@@ -32,7 +32,7 @@ public class Feast extends ChoiceCard {
 			String card = ((CardMessage) msg).getCard().split("Supply")[0];
 			CardInfoHandler cih = CardInfoHandler.getInstance();
 			if (cih.getCardValue(card) <= 5) {
-				GainingHandler gh = new GainingHandler(supply);
+				GainingHandler gh = new GainingHandler(game.getSupply());
 				gh.playerGainCard(p, card);
 				state = State.NONACTIVE;
 			}

@@ -1,9 +1,9 @@
 package tda367.dominion.server.game.cards;
 
-import tda367.dominion.server.game.Player;
+import tda367.dominion.server.game.Dominion;
 
-public class Moat implements ICard {
-	public static void play(Player player){
-		player.draw(2);
+public class Moat {
+	public static void play(Dominion game){
+		game.getActivePlayer().draw(2);
 	}
 }

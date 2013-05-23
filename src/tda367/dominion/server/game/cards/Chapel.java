@@ -1,7 +1,7 @@
 package tda367.dominion.server.game.cards;
 
-import tda367.dominion.commons.messages.Message;
 import tda367.dominion.commons.messages.*;
+import tda367.dominion.server.game.Dominion;
 import tda367.dominion.server.game.Player;
 
 public class Chapel extends ChoiceCard {
@@ -14,12 +14,12 @@ public class Chapel extends ChoiceCard {
 	}
 
 	@Override
-	public void play(Player p) {
+	public void play(Dominion game) {
 
 		state = State.ACTIVE;
 
 		// Send message: Trash 4 cards or done.
-		p.sendTip("You may trash up to 4 more cards or press 'Done'.");
+		game.getActivePlayer().sendTip("You may trash up to 4 more cards or press 'Done'.");
 		// TODO: Send some kind of message
 	}
 

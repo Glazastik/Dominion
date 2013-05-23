@@ -174,7 +174,7 @@ public class Dominion {
 		return this.players;
 	}
 	
-	private LinkedList<Player> getInactivePlayers() {
+	public LinkedList<Player> getInactivePlayers() {
 		LinkedList<Player> l = new LinkedList<Player>();
 		for(Player p : players) {
 			if(!p.equals(this.getActivePlayer())) {
