@@ -61,27 +61,30 @@ public class EndGameState extends BasicGameState {
 		LinkedList<String> cards;
 		
 		for(Player p : players){
-			int score = 0;
-			
 			p.discardDeck();
 			p.discardHand();
 			cards = p.getDiscardPile().getCards();
-			
-			for(String card: cards){
-				if(card.equals("Estate")){
-					score += 1;
-				} else if(card.equals("Duchy")){
-					score += 3;
-				} else if(card.equals("Province")){
-					score += 6;
-				} else if(card.equals("Gardens")){
-					score += 1*((int)cards.size()%10);
-				}
-			}
-			
-			scores.add(score);
+			scores.add(calculateIndividualScore(cards));
 		}
 		return scores;
+	}
+	
+	private int calculateIndividualScore(LinkedList<String> cards){
+		int score = 0;
+		
+		for(String card: cards){
+			if(card.equals("Estate")){
+				score += 1;
+			} else if(card.equals("Duchy")){
+				score += 3;
+			} else if(card.equals("Province")){
+				score += 6;
+			} else if(card.equals("Gardens")){
+				score += 1*((int)cards.size()%10);
+			}
+		}
+		
+		return score;
 	}
 	
 	/**
