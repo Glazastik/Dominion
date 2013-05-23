@@ -58,6 +58,7 @@ public class GameRoom {
 	public void received(GameConnection gc, Object object) {
 		if (object instanceof CardMessage) {
 			CardMessage message = ((CardMessage) object);
+			System.out.println(cardRulesHandler.isCardActive());
 			if (cardRulesHandler.isCardActive()) {
 				cardRulesHandler.activeCard.input(message, game.getActivePlayer());
 			} else {
@@ -100,7 +101,7 @@ public class GameRoom {
 			if (cih.isActionCard(card) && phase == Phase.ACTION) {
 				if (game.getActivePlayer().getActions() > 0) {
 					cardRulesHandler.playCard(game.getActivePlayer(), card);
-					if(game.getActivePlayer().getActions() == 0){
+					if(game.getActivePlayer().getActions() == 0 && !cardRulesHandler.isCardActive()){
 						game.done(gc);
 					}
 				} else {

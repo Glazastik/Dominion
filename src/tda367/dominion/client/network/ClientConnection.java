@@ -27,7 +27,7 @@ public class ClientConnection {
 		new Thread("Connect") {
 			public void run() {
 				try {
-					 String host = JOptionPane.showInputDialog("Host:");
+					 String host = "localhost";//JOptionPane.showInputDialog("Host:");
 					client.connect(5000, host, NetworkCommon.TCPPORT);
 
 				} catch (IOException ex) {
