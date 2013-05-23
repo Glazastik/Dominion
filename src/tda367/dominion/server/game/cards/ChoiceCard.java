@@ -4,7 +4,8 @@ import tda367.dominion.commons.messages.Message;
 import tda367.dominion.server.game.Player;
 
 public abstract class ChoiceCard implements ICard {
-	private State state;
+	
+	protected State state;
 	
 	public boolean isActive() {
 		return state == State.ACTIVE;

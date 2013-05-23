@@ -7,9 +7,8 @@ import tda367.dominion.server.game.GainingHandler;
 import tda367.dominion.server.game.Player;
 import tda367.dominion.server.game.Supply;
 
-public class Workshop implements ChoiceCard {
+public class Workshop extends ChoiceCard {
 
-	public State state;
 	private Supply supply;
 
 	public Workshop(Supply s) {
@@ -17,12 +16,10 @@ public class Workshop implements ChoiceCard {
 		this.supply = s;
 	}
 
-	@Override
 	public void play(Player p) {
 		state = State.ACTIVE;
 	}
 
-	@Override
 	public void input(Message msg, Player p) {
 		if (msg instanceof CardMessage) {
 			CardInfoHandler cih = CardInfoHandler.getInstance();
@@ -32,16 +29,5 @@ public class Workshop implements ChoiceCard {
 				state = State.NONACTIVE;
 			}
 		}
-
 	}
-
-	@Override
-	public boolean isActive() {
-		if (state == State.ACTIVE) {
-			return false;
-		} else {
-			return false;
-		}
-	}
-
 }

@@ -6,10 +6,8 @@ import tda367.dominion.server.game.GainingHandler;
 import tda367.dominion.server.game.Player;
 import tda367.dominion.server.game.Supply;
 
-public class Feast implements ChoiceCard {
-
-	public enum State { ACTIVE, NONACTIVE }
-	public State state;
+public class Feast extends ChoiceCard {
+	
 	public Supply supply;
 	
 	public Feast(Supply s) {
@@ -17,16 +15,6 @@ public class Feast implements ChoiceCard {
 		supply = s;
 	}
 	
-	@Override
-	public boolean isActive() {
-		if (state == State.ACTIVE) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	@Override
 	public void play(Player p) {
 
 		state = State.ACTIVE;
@@ -35,7 +23,6 @@ public class Feast implements ChoiceCard {
 		
 	}
 
-	@Override
 	public void input(Message msg, Player p) {
 		if (msg instanceof CardMessage) {
 			GainingHandler gh = new GainingHandler(supply);

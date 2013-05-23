@@ -5,8 +5,8 @@ import tda367.dominion.commons.messages.DoneMessage;
 import tda367.dominion.commons.messages.Message;
 import tda367.dominion.server.game.Player;
 
-public class Cellar implements ChoiceCard {
-	public State state;
+public class Cellar extends ChoiceCard {
+
 	public int amountDiscarded;
 	
 	public Cellar() {
@@ -20,24 +20,21 @@ public class Cellar implements ChoiceCard {
 		state = State.ACTIVE;
 		p.increaseActions(1);
 		
-		//TODO:Send some kind of message
+		// send message: Discard cards!
 	}
 
 	@Override
 	public void input(Message msg, Player p) {
 		if (msg instanceof DoneMessage) {
 			p.draw(amountDiscarded);
+			//Send message: Player drew x cards.
 			state = State.NONACTIVE;
-			
-			//TODO:Sned Mssegase
 		} else if (msg instanceof CardMessage) {
 			p.discardCard(((CardMessage) msg).getCard());
 			amountDiscarded++;
 			if (p.getHandSize() == 0) {
 				input(new DoneMessage(), p);
 			}
-			
-			//TODO:Send messgae
 		}
 	}
 	

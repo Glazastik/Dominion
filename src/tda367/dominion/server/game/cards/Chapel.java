@@ -4,9 +4,8 @@ import tda367.dominion.commons.messages.Message;
 import tda367.dominion.commons.messages.*;
 import tda367.dominion.server.game.Player;
 
-public class Chapel implements ChoiceCard {
+public class Chapel extends ChoiceCard {
 
-	public State state;
 	public int amountTrashed;
 
 	public Chapel() {
@@ -18,14 +17,13 @@ public class Chapel implements ChoiceCard {
 
 		state = State.ACTIVE;
 
-		// TODO: Send some kind of message
+		// Send message: Trash 4 cards or done.
 	}
 
 	public void input(Message msg, Player p) {
 		if (msg instanceof DoneMessage) {
 
 			state = State.NONACTIVE;
-			// TODO: Sedn mesgagew
 
 		} else if (msg instanceof CardMessage) {
 
