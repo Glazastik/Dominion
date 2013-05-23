@@ -41,10 +41,11 @@ public class ClientController {
 		view.addHostListener(new HostRoomListener());
 		view.addSupplyListener(new SupplyListener());
 		view.addCardListener(new CardListener());
-		view.addDoneListener(new DoneListener());
+		view.addAdvanceListener(new AdvanceListener());
 		view.addPlayAllListener(new PlayAllListener());
 		view.addExitListener(new ExitListener());
 		view.addSettingsListener(new SettingsListener());
+		view.addDoneListener(new DoneListener());
 	}
 
 	// Listener classes
@@ -158,7 +159,7 @@ public class ClientController {
 		}
 	}
 
-	class DoneListener implements GameListener {
+	class AdvanceListener implements GameListener {
 		public void run(GameEvent e) {
 
 			model.nextPhase();
@@ -192,6 +193,12 @@ public class ClientController {
 	class SettingsListener implements GameListener {
 		public void run(GameEvent e) {
 			MainView.updateSettings();
+		}
+	}
+	
+	class DoneListener implements GameListener {
+		public void run(GameEvent e) {
+			model.doneCard();
 		}
 	}
 }

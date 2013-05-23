@@ -68,11 +68,13 @@ public class InGameState extends ControlledGameState {
 	private Image messageBox;
 	private Image statusBar;
 	private Image log;
+	private Image doneButton;
 	private Rectangle menuRec;
 	private Rectangle chatRec;
 	private Rectangle logRec;
 	private Rectangle nextRec;
 	private Rectangle playAllRec;
+	private Rectangle doneRec;
 
 	// Log variables
 	private boolean logDisplay;
@@ -100,8 +102,9 @@ public class InGameState extends ControlledGameState {
 	// Listeners
 	private GameListener cardListener;
 	private GameListener supplyListener;
-	private GameListener doneListener;
+	private GameListener advanceListener;
 	private GameListener playAllListener;
+	private GameListener doneListener;
 
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
@@ -174,6 +177,7 @@ public class InGameState extends ControlledGameState {
 		messageBox = new Image("res/img/gui/ingame/MessageBoxTemplate.png");
 		statusBar = new Image("res/img/gui/ingame/StatusBar.png");
 		log = new Image("res/img/gui/ingame/Log.png");
+		doneButton = new Image("res/img/gui/ingame/DoneButton.png");
 	}
 
 	/**
@@ -284,6 +288,10 @@ public class InGameState extends ControlledGameState {
 		supplyListener = l;
 	}
 
+	public void addAdvanceListener(GameListener l) {
+		advanceListener = l;
+	}
+	
 	public void addDoneListener(GameListener l) {
 		doneListener = l;
 	}
@@ -302,7 +310,12 @@ public class InGameState extends ControlledGameState {
 		supplyListener.run(e);
 	}
 
-	private void done() {
+	private void advance() {
+		GameEvent e = new GameEvent();
+		advanceListener.run(e);
+	}
+	
+	private void doneCard() {
 		GameEvent e = new GameEvent();
 		doneListener.run(e);
 	}
@@ -496,14 +509,18 @@ public class InGameState extends ControlledGameState {
 
 		// Next/End button listener
 		if (button == Input.MOUSE_LEFT_BUTTON && nextRec.contains(x, y)) {
-			this.done();
+			this.advance();
 		}
 
 		// play all treasures button listener
 		if (button == Input.MOUSE_LEFT_BUTTON && playAllRec.contains(x, y)) {
 			System.out.println("Play all treasures");
 			this.playAll();
-			// TODO: Replace with network stuff
+		}
+		
+		// done Button listener
+		if (button == Input.MOUSE_LEFT_BUTTON && doneRec.contains(x, y)) {
+			this.doneCard();
 		}
 	}
 
@@ -1051,6 +1068,8 @@ public class InGameState extends ControlledGameState {
 				- (3 * yOffset + buttonSpacing));
 		nextButton.draw(gameContainerWidth - 2 * xOffset, gameContainerHeight
 				- (yOffset + buttonSpacing + 50));
+		doneButton.draw(gameContainerWidth - 2 * xOffset, gameContainerHeight
+				- (yOffset + buttonSpacing + 155));
 		playAllButton.draw(gameContainerWidth - xOffset, gameContainerHeight
 				- (4 * yOffset + buttonSpacing));
 		menuRec = new Rectangle(gameContainerWidth - xOffset,
@@ -1064,6 +1083,8 @@ public class InGameState extends ControlledGameState {
 				buttonWidth, buttonHeight);
 		nextRec = new Rectangle(gameContainerWidth - 2 * xOffset,
 				gameContainerHeight - (yOffset + buttonSpacing + 50), 100, 100);
+		doneRec = new Rectangle(gameContainerWidth - 2 * xOffset, gameContainerHeight
+				- (yOffset + buttonSpacing + 155), doneButton.getWidth(), doneButton.getHeight());
 		playAllRec = new Rectangle(gameContainerWidth - xOffset,
 				gameContainerHeight - (4 * yOffset + buttonSpacing),
 				buttonWidth, buttonHeight);

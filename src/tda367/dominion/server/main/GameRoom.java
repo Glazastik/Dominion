@@ -82,8 +82,10 @@ public class GameRoom {
 			print("Received Done");
 			game.done(gc);
 		} else if(object instanceof DoneMessage) {
-			DoneMessage message = ((DoneMessage) object);
-			cardRulesHandler.activeCard.input(message, game.getActivePlayer());
+			if (cardRulesHandler.isCardActive()) {
+				DoneMessage message = ((DoneMessage) object);
+				cardRulesHandler.activeCard.input(message, game.getActivePlayer());
+			}
 		} else {
 			print("Classname: " + object.getClass());
 		}

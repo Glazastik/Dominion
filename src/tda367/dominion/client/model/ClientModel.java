@@ -1,11 +1,11 @@
 package tda367.dominion.client.model;
 
 import tda367.dominion.client.network.ClientConnection;
-import tda367.dominion.client.view.MainView;
 import tda367.dominion.commons.messages.AdvanceMessage;
 import tda367.dominion.commons.messages.BoolMessage;
 import tda367.dominion.commons.messages.CardMessage;
 import tda367.dominion.commons.messages.ConnectionMessage;
+import tda367.dominion.commons.messages.DoneMessage;
 import tda367.dominion.commons.messages.GainMessage;
 import tda367.dominion.commons.messages.PlayAllMessage;
 import tda367.dominion.commons.messages.RoomHostMessage;
@@ -57,6 +57,11 @@ public class ClientModel {
 			msg.setCard(card);
 			connection.sendMessage(msg);
 		}
+	}
+	
+	public void doneCard() {
+		DoneMessage msg = new DoneMessage();
+		connection.sendMessage(msg);
 	}
 
 	public void supplyCard(String card) {

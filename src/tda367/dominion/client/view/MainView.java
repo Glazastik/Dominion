@@ -49,23 +49,23 @@ public class MainView extends StateBasedGame implements Runnable {
 		addState(new ShowCardState(Settings.SHOWCARDSTATE));
 		addState(new InGameState(Settings.INGAMESTATE));
 	}
-	
+
 	public void addSettingsListener(GameListener l) {
 		OptionsState s = (OptionsState) getState(Settings.OPTIONSSTATE);
 		s.addSettingsListener(l);
 	}
-	
+
 	public void addExitListener(GameListener l) {
 		MainMenuState s = (MainMenuState) getState(Settings.MAINMENUSTATE);
 		s.addExitListener(l);
- 	}
+	}
 
 	public void addCardListener(GameListener l) {
 		InGameState s = (InGameState) getState(Settings.INGAMESTATE);
 		s.addCardListener(l);
 	}
-	
-	public void addPlayAllListener(GameListener l){
+
+	public void addPlayAllListener(GameListener l) {
 		InGameState s = (InGameState) getState(Settings.INGAMESTATE);
 		s.addPlayAllListener(l);
 	}
@@ -74,10 +74,10 @@ public class MainView extends StateBasedGame implements Runnable {
 		InGameState s = (InGameState) getState(Settings.INGAMESTATE);
 		s.addSupplyListener(l);
 	}
-	
-	public void addDoneListener(GameListener l){
+
+	public void addAdvanceListener(GameListener l) {
 		InGameState s = (InGameState) getState(Settings.INGAMESTATE);
-		s.addDoneListener(l);
+		s.addAdvanceListener(l);
 	}
 
 	public void addUpdateRoomListener(GameListener l) {
@@ -96,6 +96,11 @@ public class MainView extends StateBasedGame implements Runnable {
 		ServerListState s = (ServerListState) this
 				.getState(Settings.SERVERLISTSTATE);
 		s.addHostListener(l);
+	}
+
+	public void addDoneListener(GameListener l) {
+		InGameState s = (InGameState) this.getState(Settings.INGAMESTATE);
+		s.addDoneListener(l);
 	}
 
 	/**
@@ -178,58 +183,60 @@ public class MainView extends StateBasedGame implements Runnable {
 		InGameState g = ((InGameState) this.getState(Settings.INGAMESTATE));
 		g.setSupply(supply);
 	}
-	
-	public void updatePlayersInfo(String[] names){
+
+	public void updatePlayersInfo(String[] names) {
 		InGameState g = ((InGameState) this.getState(Settings.INGAMESTATE));
 		g.setPlayerNames(names);
 	}
-	
+
 	public void updatePhase(String phase) {
 		InGameState g = ((InGameState) this.getState(Settings.INGAMESTATE));
 		g.setPhase(phase);
 	}
 
 	/**
-	 * A method for starting and initiating the view, also reads settings from an options file.                                                            
+	 * A method for starting and initiating the view, also reads settings from
+	 * an options file.
 	 */
 	private void startView() {
 		try {
-			//Reads the file containing all the info about the options
+			// Reads the file containing all the info about the options
 			FileInputStream fstream = new FileInputStream("options.txt");
 			DataInputStream in = new DataInputStream(fstream);
-			  BufferedReader br = new BufferedReader(new InputStreamReader(in));
-			  String strLine;
-			  int line = 0;
-			  String height = null;
-			  String width = null;
-			  while ((strLine = br.readLine()) != null)   {
-				  if (line == 0) {
-					  width = strLine;
-				  } else if (line == 1) {
-					  height = strLine;
-				  } else if (line == 2) {
-					  if (strLine.equals("true")) {
-						  Settings.fullscreen = true;
-					  } else {
-						  Settings.fullscreen = false;
-					  }
-				  } else if (line == 3) {
-					  if (strLine.equals("true")) {
-						  Settings.fpsshow = true;
-					  } else {
-						  Settings.fpsshow = false;
-					  }
-				  }
-				  line++;
-			  }
-			  if (height != null && width != null) {
-				  Settings.setResolution(Integer.parseInt(width), Integer.parseInt(height));
-			  }
-			  br.close();
+			BufferedReader br = new BufferedReader(new InputStreamReader(in));
+			String strLine;
+			int line = 0;
+			String height = null;
+			String width = null;
+			while ((strLine = br.readLine()) != null) {
+				if (line == 0) {
+					width = strLine;
+				} else if (line == 1) {
+					height = strLine;
+				} else if (line == 2) {
+					if (strLine.equals("true")) {
+						Settings.fullscreen = true;
+					} else {
+						Settings.fullscreen = false;
+					}
+				} else if (line == 3) {
+					if (strLine.equals("true")) {
+						Settings.fpsshow = true;
+					} else {
+						Settings.fpsshow = false;
+					}
+				}
+				line++;
+			}
+			if (height != null && width != null) {
+				Settings.setResolution(Integer.parseInt(width),
+						Integer.parseInt(height));
+			}
+			br.close();
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-		
+
 		try {
 			theGame = new AppGameContainer(this);
 			theGame.setDisplayMode(Settings.SCREENHEIGHT, Settings.SCREENWIDTH,
@@ -248,9 +255,10 @@ public class MainView extends StateBasedGame implements Runnable {
 		startView();
 
 	}
-	
+
 	/**
-	 * Updates the resolution, fullscreen and fps settings. Also writes them to a file.
+	 * Updates the resolution, fullscreen and fps settings. Also writes them to
+	 * a file.
 	 */
 	public static void updateSettings() {
 		try {
@@ -260,7 +268,7 @@ public class MainView extends StateBasedGame implements Runnable {
 		} catch (SlickException e) {
 			e.printStackTrace();
 		}
-		
+
 		PrintWriter writer;
 		try {
 			writer = new PrintWriter("options.txt", "UTF-8");
@@ -275,7 +283,5 @@ public class MainView extends StateBasedGame implements Runnable {
 			e.printStackTrace();
 		}
 	}
-
-	
 
 }
