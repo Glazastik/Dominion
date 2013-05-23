@@ -478,7 +478,7 @@ public class Player {
 		String trashedCard = hand.pop(card);
 		updateCards();
 		return trashedCard;
-		
+
 	}
 
 	/**
@@ -553,17 +553,26 @@ public class Player {
 		}
 		return false;
 	}
-	
-	public void sendTip(String tip){
+
+	public void sendTip(String tip) {
 		TipMessage tmsg = new TipMessage();
 		tmsg.setMessage(tip);
 		this.send(tmsg);
 	}
-	
-	public void sendLog(String log){
+
+	public void sendLog(String log) {
 		LogMessage tmsg = new LogMessage();
 		tmsg.setMessage(log);
 		this.send(tmsg);
+	}
+
+	public boolean hasCardInHand(String card) {
+		for (String s : hand.getCards()) {
+			if (s.equals(card)) {
+				return true;
+			}
+		}
+		return false;
 	}
 
 }

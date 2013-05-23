@@ -17,12 +17,8 @@ public class Chapel extends ChoiceCard {
 
 	@Override
 	public void play() {
-
 		state = State.ACTIVE;
-
-		// Send message: Trash 4 cards or done.
 		game.getActivePlayer().sendTip("You may trash up to 4 more cards or press 'Done'.");
-		// TODO: Send some kind of message
 	}
 
 	@Override
