@@ -36,10 +36,7 @@ public class Chapel implements ChoiceCard {
 			
 			if (amountTrashed == 4) {
 				input(new DoneMessage(), null);
-			} else {
-				//TODO: Send some other message
-			}
-			
+			}			
 		}
 	}
 

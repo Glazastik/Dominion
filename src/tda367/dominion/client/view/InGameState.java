@@ -1013,12 +1013,11 @@ public class InGameState extends ControlledGameState {
 	 */
 	private void paintPlayerHand() throws SlickException {
 		cih = CardInfoHandler.getInstance();
-		String[] stringCards = hand.toArray(new String[0]);
-
+		
 		if (updateHand) {
-			handCards = new Image[stringCards.length];
+			handCards = new Image[hand.size()];
 			for (int i = 0; i < hand.size(); i++) {
-				handCards[i] = new Image(cih.getImageLink(stringCards[i]));
+				handCards[i] = new Image(cih.getImageLink(hand.get(i)));
 			}
 			updateHand = false;
 		}
