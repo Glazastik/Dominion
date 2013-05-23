@@ -39,7 +39,7 @@ public class GainingHandler {
 		// The model should handle that on it's own
 		if (supply.isAvailable(cardName)) {
 			if (cardInfoHandler.getCardValue(cardName) <= player.getMoney()
-					&& player.getBuys() > 0 && !turnHandler.hasBought()) {
+					&& player.getBuys() > 0) {
 				player.decreaseMoney(cardInfoHandler.getCardValue(cardName));
 				player.decreaseBuy(1);
 				player.gain(supply.take(cardName));
