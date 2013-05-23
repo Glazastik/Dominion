@@ -102,6 +102,11 @@ public class MainView extends StateBasedGame implements Runnable {
 		InGameState s = (InGameState) this.getState(Settings.INGAMESTATE);
 		s.addDoneListener(l);
 	}
+	
+	public void addBoolListener(GameListener l) {
+		InGameState s = (InGameState) this.getState(Settings.INGAMESTATE);
+		s.addBoolListener(l);
+	}
 
 	/**
 	 * Sets the resolution of the game to width and height
