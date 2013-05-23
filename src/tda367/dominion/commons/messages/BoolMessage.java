@@ -10,7 +10,7 @@ public class BoolMessage implements Message {
 		this.bool = bool;
 	}
 	
-	public boolean getBool() {
+	public boolean isTrue() {
 		return bool;
 	}
 

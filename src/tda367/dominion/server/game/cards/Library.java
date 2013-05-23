@@ -1,33 +1,51 @@
 package tda367.dominion.server.game.cards;
 
+import tda367.dominion.commons.messages.BoolMessage;
+import tda367.dominion.commons.messages.Message;
 import tda367.dominion.server.game.CardInfoHandler;
 import tda367.dominion.server.game.Player;
 
-public class Library {
-
-	public static void play(Player p){
+public class Library extends ChoiceCard{
+	public Library(){
+		state = State.NONACTIVE;
+	}
+	public void play(Player p){
+		state = State.ACTIVE;
 		CardInfoHandler cif = CardInfoHandler.getInstance();
 		while(p.getHandSize() < 7){
 			if(p.revealTopOfDeck() == null){
+				state = State.NONACTIVE;
 				break;
 			} else if(cif.getCardType(p.revealTopOfDeck()).equals("Action")){
+				//p.s
 				//p.sendCardMessage(p.revealTopOfDeck());
-				//p.sendInformationMessage("Set aside?");
-				//p.createBoolMessage();
-				//Message temp = p.getNextMessage();
-				//if(temp instanceOf YesNoMessage){
-				//	if((YesNoMessage) temp.isTrue()){
-					//	p.draw();
-					//} else {
-					//	p.setAsideTopOfDeck();
-					//}
-				//p.sendRemoveInstructionMessage();
+				//p.createBoolMessage(),
+				p.sendTip("Set aside: " + p.revealTopOfDeck() + "?");
+				break;
 			} else {
 				p.draw();
 			}
 		}
+		if(p.revealTopOfDeck() == null || p.getHandSize() >= 7){
+			p.putRevealedCardsInDiscard();
+			state = State.NONACTIVE;
+		}
 		//p.sendRemoveRevealedMessages();
-		p.putRevealedCardsInDiscard();
+	}
+	@Override
+	public void input(Message msg, Player p) {
+		if(msg instanceof BoolMessage){
+			if(((BoolMessage)msg).isTrue()){
+				p.draw();
+			} else {
+				p.discardTopOfDeck();
+			}
+		}
+		if(p.revealTopOfDeck() == null || p.getHandSize() >= 7){
+			p.putRevealedCardsInDiscard();
+			state = State.NONACTIVE;
+		}
 	}
 
 }
+
