@@ -73,19 +73,27 @@ public class Dominion {
 			Phase next = turnHandler.advance();
 
 			if (next == Phase.BUY) {
-				notifyPhase();
+//				notifyPhase();
 			} else if (next == Phase.CLEANUP) {
 				this.getActivePlayer().cleanUp();
 				turnHandler.advance();
-				notifyPhase();
+//				notifyPhase();
 			}
+			
+			notifyPhase();
 
 		}
 	}
 
 	private void notifyPhase() {
 		// TODO: Fix
+		if(turnHandler.getPhase() == Phase.ACTION){
+			if(this.getActivePlayer().hasActionCards()){
+				turnHandler.advance();
+			}
+		}
 		sendTurnMessage(this.getActivePlayer(), turnHandler.getPhase());
+		
 	}
 
 	private void sendTurnMessage(Player player, Phase phase) {

@@ -515,7 +515,6 @@ public class Player {
 		}
 		return false;
 	}
-	
 
 	public void send(Message msg) {
 		gameConnection.sendTCP(msg);
@@ -536,6 +535,17 @@ public class Player {
 		msg.setBuys(buys);
 		msg.setMoney(money);
 		gameConnection.sendTCP(msg);
+	}
+
+	public boolean hasActionCards() {
+		if (hand != null) {
+			for (int i = 0; i < hand.getSize(); i++) {
+				if (cih.isActionCard(hand.getCard(i))) {
+					return true;
+				}
+			}
+		}
+		return false;
 	}
 
 }
