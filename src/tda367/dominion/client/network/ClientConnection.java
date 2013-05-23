@@ -1,9 +1,6 @@
 package tda367.dominion.client.network;
 
 import java.io.IOException;
-import java.net.InetAddress;
-
-import javax.swing.JOptionPane;
 
 import tda367.dominion.commons.messages.Message;
 import tda367.dominion.commons.network.NetworkCommon;
@@ -29,11 +26,8 @@ public class ClientConnection {
 			public void run() {
 				try {
 					// String host = JOptionPane.showInputDialog("Host:");
-					InetAddress lol = client.discoverHost(NetworkCommon.UDPPORT, 1000);
-					if(lol == null){
-						lol = InetAddress.getLocalHost();
-					}
-					client.connect(5000, lol, NetworkCommon.TCPPORT, NetworkCommon.UDPPORT);
+					client.connect(5000, "localhost", NetworkCommon.TCPPORT);
+
 				} catch (IOException ex) {
 					System.out.println("Network is borken");
 				}

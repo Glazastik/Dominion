@@ -33,7 +33,7 @@ public class NetworkHandler {
 		NetworkCommon.register(server);
 
 		try {
-			server.bind(NetworkCommon.TCPPORT, NetworkCommon.UDPPORT);
+			server.bind(NetworkCommon.TCPPORT);
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
