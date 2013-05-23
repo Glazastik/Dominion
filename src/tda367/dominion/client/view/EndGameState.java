@@ -17,7 +17,6 @@ public class EndGameState extends BasicGameState {
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
-		// TODO Auto-generated method stub
 
 	}
 	
@@ -29,20 +28,17 @@ public class EndGameState extends BasicGameState {
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 			throws SlickException {
-		// TODO Auto-generated method stub
 
 	}
 
 	@Override
 	public int getID() {
-		// TODO Auto-generated method stub
 		return 0;
 	}
 	
@@ -74,6 +70,12 @@ public class EndGameState extends BasicGameState {
 		return scores;
 	}
 	
+	/**
+	 * Calculates the score for an individual player.
+	 * 
+	 * @param cards the cards that the player has
+	 * @return the players score
+	 */
 	private int calculateIndividualScore(LinkedList<String> cards){
 		int score = 0;
 		
