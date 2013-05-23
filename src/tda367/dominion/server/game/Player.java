@@ -3,6 +3,7 @@ package tda367.dominion.server.game;
 import java.util.List;
 
 import tda367.dominion.commons.messages.CardUpdateMessage;
+import tda367.dominion.commons.messages.LogMessage;
 import tda367.dominion.commons.messages.Message;
 import tda367.dominion.commons.messages.PlayerUpdateMessage;
 import tda367.dominion.commons.messages.TipMessage;
@@ -556,6 +557,12 @@ public class Player {
 	public void sendTip(String tip){
 		TipMessage tmsg = new TipMessage();
 		tmsg.setMessage(tip);
+		this.send(tmsg);
+	}
+	
+	public void sendLog(String log){
+		LogMessage tmsg = new LogMessage();
+		tmsg.setMessage(log);
 		this.send(tmsg);
 	}
 

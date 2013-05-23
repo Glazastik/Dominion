@@ -7,6 +7,7 @@ import tda367.dominion.commons.listener.GameEvent;
 import tda367.dominion.commons.listener.GameListener;
 import tda367.dominion.commons.messages.CardUpdateMessage;
 import tda367.dominion.commons.messages.CreateBoolMessage;
+import tda367.dominion.commons.messages.LogMessage;
 import tda367.dominion.commons.messages.PlayerUpdateMessage;
 import tda367.dominion.commons.messages.RoomMessage;
 import tda367.dominion.commons.messages.SetupMessage;
@@ -89,6 +90,10 @@ public class ClientController {
 			
 			if(object instanceof TipMessage){
 				view.updateTip(((TipMessage) object).getMessage());
+			}
+			
+			if(object instanceof LogMessage){
+				view.updateLog(((LogMessage) object).getMessage());
 			}
 
 			if (object instanceof SetupMessage) {
