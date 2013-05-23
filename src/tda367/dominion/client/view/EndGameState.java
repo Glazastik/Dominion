@@ -8,6 +8,7 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import tda367.dominion.server.game.Player;
+import tda367.dominion.server.game.Pile;
 
 public class EndGameState extends BasicGameState {
 
@@ -56,7 +57,31 @@ public class EndGameState extends BasicGameState {
 	 * @return an LinkedList of calculated scores
 	 */
 	private LinkedList<Integer> calculateScores(LinkedList<Player> players){
-		return null;
+		LinkedList<Integer> scores = new LinkedList<Integer>();
+		LinkedList<String> cards;
+		
+		for(Player p : players){
+			int score = 0;
+			
+			p.discardDeck();
+			p.discardHand();
+			cards = p.getDiscardPile().getCards();
+			
+			for(String card: cards){
+				if(card.equals("Estate")){
+					score += 1;
+				} else if(card.equals("Duchy")){
+					score += 3;
+				} else if(card.equals("Province")){
+					score += 6;
+				} else if(card.equals("Gardens")){
+					score += 1*((int)cards.size()%10);
+				}
+			}
+			
+			scores.add(score);
+		}
+		return scores;
 	}
 	
 	/**
