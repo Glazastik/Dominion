@@ -48,6 +48,7 @@ public class ClientController {
 		view.addExitListener(new ExitListener());
 		view.addSettingsListener(new SettingsListener());
 		view.addDoneListener(new DoneListener());
+		view.addBoolListener(new BoolListener());
 	}
 
 	// Listener classes

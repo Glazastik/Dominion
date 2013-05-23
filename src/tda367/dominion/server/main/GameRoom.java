@@ -60,16 +60,22 @@ public class GameRoom {
 			CardMessage message = ((CardMessage) object);
 			System.out.println(cardRulesHandler.isCardActive());
 			if (cardRulesHandler.isCardActive()) {
-				cardRulesHandler.activeCard.input(message, game.getActivePlayer());
+				cardRulesHandler.activeCard.input(message,
+						game.getActivePlayer());
 			} else {
 				print("Player played: " + message.getCard());
 				playCard(gc, message.getCard());
 			}
 
 		} else if (object instanceof BoolMessage) {
-			BoolMessage message = ((BoolMessage) object);
-			print("Bool: " + message.getBool());
-			playBool(gc, message.getBool());
+			if (object instanceof CardMessage) {
+				BoolMessage message = ((BoolMessage) object);
+				cardRulesHandler.activeCard.input(message, game.getActivePlayer());
+			} else {
+				BoolMessage message = ((BoolMessage) object);
+				print("Bool: " + message.getBool());
+				playBool(gc, message.getBool());
+			}
 
 		} else if (object instanceof GainMessage) {
 			GainMessage message = ((GainMessage) object);
@@ -82,10 +88,11 @@ public class GameRoom {
 		} else if (object instanceof AdvanceMessage) {
 			print("Received Done");
 			game.done(gc);
-		} else if(object instanceof DoneMessage) {
+		} else if (object instanceof DoneMessage) {
 			if (cardRulesHandler.isCardActive()) {
 				DoneMessage message = ((DoneMessage) object);
-				cardRulesHandler.activeCard.input(message, game.getActivePlayer());
+				cardRulesHandler.activeCard.input(message,
+						game.getActivePlayer());
 			}
 		} else {
 			print("Classname: " + object.getClass());
@@ -101,7 +108,8 @@ public class GameRoom {
 			if (cih.isActionCard(card) && phase == Phase.ACTION) {
 				if (game.getActivePlayer().getActions() > 0) {
 					cardRulesHandler.playCard(game.getActivePlayer(), card);
-					if(game.getActivePlayer().getActions() == 0 && !cardRulesHandler.isCardActive()){
+					if (game.getActivePlayer().getActions() == 0
+							&& !cardRulesHandler.isCardActive()) {
 						game.done(gc);
 					}
 				} else {

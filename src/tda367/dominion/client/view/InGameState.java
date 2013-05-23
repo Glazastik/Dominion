@@ -69,12 +69,16 @@ public class InGameState extends ControlledGameState {
 	private Image statusBar;
 	private Image log;
 	private Image doneButton;
+	private Image yesButton;
+	private Image noButton;
 	private Rectangle menuRec;
 	private Rectangle chatRec;
 	private Rectangle logRec;
 	private Rectangle nextRec;
 	private Rectangle playAllRec;
 	private Rectangle doneRec;
+	private Rectangle yesRec;
+	private Rectangle noRec;
 
 	// Log variables
 	private boolean logDisplay;
@@ -105,6 +109,11 @@ public class InGameState extends ControlledGameState {
 	private GameListener advanceListener;
 	private GameListener playAllListener;
 	private GameListener doneListener;
+	private GameListener boolListener;
+	
+	//Message box variables
+	private boolean paintYesNo = false;
+	private String messageText;
 
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
@@ -178,6 +187,8 @@ public class InGameState extends ControlledGameState {
 		statusBar = new Image("res/img/gui/ingame/StatusBar.png");
 		log = new Image("res/img/gui/ingame/Log.png");
 		doneButton = new Image("res/img/gui/ingame/DoneButton.png");
+		yesButton = new Image("res/img/gui/ingame/YesButton.png");
+		noButton = new Image("res/img/gui/ingame/NoButton.png");
 	}
 
 	/**
@@ -233,6 +244,10 @@ public class InGameState extends ControlledGameState {
 
 		if (playedCards != null) {
 			paintPlayedCards(playedCards);
+		}
+		
+		if (paintYesNo) {
+			paintYesNoMessageBox(messageText, g);
 		}
 
 	}
@@ -295,6 +310,10 @@ public class InGameState extends ControlledGameState {
 	public void addDoneListener(GameListener l) {
 		doneListener = l;
 	}
+	
+	public void addBoolListener(GameListener l) {
+		boolListener = l;
+	}
 
 	private void playCard(String card) {
 		GameEvent e = new GameEvent(card);
@@ -318,6 +337,11 @@ public class InGameState extends ControlledGameState {
 	private void doneCard() {
 		GameEvent e = new GameEvent();
 		doneListener.run(e);
+	}
+	
+	private void sendBool(boolean b) {
+		GameEvent e = new GameEvent(b);
+		boolListener.run(e);
 	}
 
 	/**
@@ -518,6 +542,13 @@ public class InGameState extends ControlledGameState {
 		// done Button listener
 		if (button == Input.MOUSE_LEFT_BUTTON && doneRec.contains(x, y)) {
 			this.doneCard();
+		}
+		
+		// yes Button listener 
+		if (button == Input.MOUSE_LEFT_BUTTON && yesRec.contains(x, y)) {
+			this.sendBool(true);
+		} else if (button == Input.MOUSE_LEFT_BUTTON && noRec.contains(x, y)) {
+			this.sendBool(false);
 		}
 	}
 
@@ -1185,10 +1216,14 @@ public class InGameState extends ControlledGameState {
 	 *            , the message to be written in the box
 	 * @param g
 	 */
-	private void paintMessageBox(String message, Graphics g) {
-		int x = gameContainerWidth - 270;
-		int y = gameContainerHeight - gameContainerHeight / 3 - 230;
-		messageBox.draw(x, y, 250, 150);
+	private void paintYesNoMessageBox(String message, Graphics g) {
+		int x = gameContainerWidth/2 - messageBox.getWidth()/2;
+		int y = gameContainerHeight/2 - messageBox.getHeight()/2;
+		messageBox.draw(x, y, messageBox.getWidth(), messageBox.getHeight());
+		yesButton.draw(x + messageBox.getWidth()/3, y+ messageBox.getHeight() - 20, yesButton.getWidth(), yesButton.getHeight());
+		noButton.draw(x + (messageBox.getWidth()/3) * 2, y + messageBox.getHeight() - 20, noButton.getWidth(), noButton.getHeight());
+		yesRec.setBounds(x + messageBox.getWidth()/3, y + messageBox.getHeight() - 20, noButton.getWidth(), noButton.getHeight());
+		noRec.setBounds(x + (messageBox.getWidth()/3) * 2, y + messageBox.getHeight() - 20, noButton.getWidth(), noButton.getHeight());
 		g.drawString(message, x + 20, y + 20);
 	}
 
