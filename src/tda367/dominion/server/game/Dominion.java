@@ -152,6 +152,9 @@ public class Dominion {
 	
 	public void playerBuyCard(String card) {
 		gainingHandler.playerBuyCard(getActivePlayer(), card);
+		SupplyMessage msg = new SupplyMessage();
+		msg.setSupply(supply.getCardsInSupply());
+		this.sendToAll(msg);
 	}
 	
 	public void playerBuyCard(Player p, String card) {

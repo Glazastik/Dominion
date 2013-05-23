@@ -93,6 +93,11 @@ public class ClientController {
 				view.enterState(Settings.INGAMESTATE);
 				view.updatePlayersInfo(setup.getPlayers());
 			}
+			
+			if (object instanceof SupplyMessage){
+				SupplyMessage msg = (SupplyMessage) object;
+				view.updateSupply(msg.getSupply());
+			}
 
 			if (object instanceof TurnMessage) {
 				TurnMessage turn = (TurnMessage) object;

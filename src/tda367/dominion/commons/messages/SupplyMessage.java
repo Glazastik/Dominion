@@ -2,7 +2,7 @@ package tda367.dominion.commons.messages;
 
 import java.util.HashMap;
 
-public class SupplyMessage {
+public class SupplyMessage implements Message {
 	private HashMap<String,Integer> supply;
 
 	/**

@@ -44,6 +44,7 @@ public class GainingHandler {
 				player.decreaseBuy(1);
 				player.gain(supply.take(cardName));
 				turnHandler.setBought(true);
+				
 			}
 		}
 	}
