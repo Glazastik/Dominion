@@ -19,7 +19,6 @@ public class NetworkCommon {
 		kryo.register(SupplyMessage.class);
 		kryo.register(HashMap.class);
 		
-		kryo.register(BasicMessage.class);
 		kryo.register(BoolMessage.class);
 		kryo.register(DoneMessage.class);
 		kryo.register(ConnectionMessage.class);
@@ -42,18 +41,6 @@ public class NetworkCommon {
 		kryo.register(AdvanceMessage.class);
 		kryo.register(TipMessage.class);
 		kryo.register(LogMessage.class);
-	}
-	
-	public static class BasicMessage{
-		private String message;
-		
-		public String getMessage(){
-			return message;
-		}
-		
-		public void setMessage(String message){
-			this.message = message;
-		}
 	}
 
 }
