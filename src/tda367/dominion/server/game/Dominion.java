@@ -21,7 +21,6 @@ public class Dominion {
 	private TurnHandler turnHandler;
 	private CardInfoHandler cih;
 	private final Supply supply;
-	private final CardRulesHandler cardRulesHandler;
 	private NetworkHandler network;
 	private GainingHandler gainingHandler;
 
@@ -37,7 +36,6 @@ public class Dominion {
 		this.players = players;
 		this.supply = new Supply(players.size());
 		turnHandler = new TurnHandler(players.size());
-		cardRulesHandler = new CardRulesHandler(players, supply);
 		gainingHandler = new GainingHandler(supply, turnHandler);
 		network = NetworkHandler.getInstance();
 		cih = CardInfoHandler.getInstance();
@@ -214,15 +212,6 @@ public class Dominion {
 	 */
 	public Supply getSupply() {
 		return this.supply;
-	}
-
-	/**
-	 * Returns the {@link CardRulesHandler} used in the game.
-	 * 
-	 * @return the {@link CardRulesHandler}
-	 */
-	public CardRulesHandler getCardRulesHandler() {
-		return this.cardRulesHandler;
 	}
 
 	/**

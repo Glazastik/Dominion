@@ -52,7 +52,7 @@ public class GameRoom {
 
 	private void startGame() {
 		game = new Dominion(this.getPlayers());
-		cardRulesHandler = game.getCardRulesHandler();
+		cardRulesHandler = new CardRulesHandler(game.getPlayers(), game.getSupply());
 	}
 
 	public void received(GameConnection gc, Object object) {
