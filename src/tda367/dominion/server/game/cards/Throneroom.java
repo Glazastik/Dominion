@@ -14,7 +14,7 @@ public class Throneroom extends ChoiceCard {
 	public void input(Message msg, Player p) {
 		if (msg instanceof CardMessage) {
 			String card = ((CardMessage) msg).getCard();
-			if (p.containsCard(card)) {
+			if (p.hasCardInHand(card)) {
 				
 			}
 		}

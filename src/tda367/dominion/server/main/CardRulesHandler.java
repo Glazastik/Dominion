@@ -60,7 +60,7 @@ public class CardRulesHandler {
 				case "Mine": activeCard = new Mine(supply); activeCard.play(player); break;
 				case "Moat": Moat.play(player); break;
 				case "Moneylender": Moneylender.play(player); break;
-//				case "Remodel": Remodel.play(player, supply); break;
+				case "Remodel": activeCard = new Remodel(supply); activeCard.play(player); break;
 				case "Silver": player.increaseMoney(2); break;
 				case "Smithy": Smithy.play(player); break;
 //				case "Spy": Spy.play(player, players); break;
