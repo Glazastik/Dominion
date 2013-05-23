@@ -18,7 +18,7 @@ public class Chapel extends ChoiceCard {
 		state = State.ACTIVE;
 
 		// Send message: Trash 4 cards or done.
-		p.sendTip("You need to trash up to 4 dawg!");
+		p.sendTip("You may trash up to 4 more cards or press 'Done'.");
 		// TODO: Send some kind of message
 	}
 
@@ -31,7 +31,7 @@ public class Chapel extends ChoiceCard {
 
 			p.trashCard(((CardMessage) msg).getCard());
 			amountTrashed++;
-			// Send: Player trashed msg.getCard
+			p.sendTip("You may trash up to "+ (4-amountTrashed) + " more cards or press 'Done'.");
 
 			if (amountTrashed == 4) {
 				input(new DoneMessage(), p);

@@ -177,6 +177,7 @@ public class Player {
 	 */
 	public void discardHand() {
 		discard.add(hand);
+		updateCards();
 	}
 
 	/**
@@ -473,7 +474,10 @@ public class Player {
 	 * @return the trashed card
 	 */
 	public String trashCard(String card) {
-		return hand.pop(card);
+		String trashedCard = hand.pop(card);
+		updateCards();
+		return trashedCard;
+		
 	}
 
 	/**
