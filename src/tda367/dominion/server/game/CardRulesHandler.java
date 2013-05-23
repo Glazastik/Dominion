@@ -42,7 +42,7 @@ public class CardRulesHandler {
 			switch(cardName){
 //				case "Adventurer": Adventurer.play(player); break;
 //				case "Bureaucrat": Bureaucrat.play(player, players, supply); break;
-//				case "Cellar": Cellar.play(player); break;
+				case "Cellar": activeCard = new Cellar(); activeCard.play(player); break;
 //				case "Chancellor": Chancellor.play(player); break;
 				case "Chapel": activeCard = new Chapel(); activeCard.play(player); break;
 				case "Copper": player.increaseMoney(1); break;
@@ -55,7 +55,7 @@ public class CardRulesHandler {
 				case "Market": Market.play(player); break;
 //				case "Militia": Militia.play(player, players); break;
 //				case "Mine": Mine.play(player, supply); break;
-//				case "Moat": Moat.play(player); break;
+				case "Moat": Moat.play(player); break;
 //				case "Moneylender": Moneylender.play(player); break;
 //				case "Remodel": Remodel.play(player, supply); break;
 				case "Silver": player.increaseMoney(2); break;
@@ -66,7 +66,7 @@ public class CardRulesHandler {
 				case "Village": Village.play(player); break;
 				case "Witch": Witch.play(player, players, supply); break;
 				case "Woodcutter": Woodcutter.play(player); break;
-//				case "Workshop": Workshop.play(player, supply); break;
+				case "Workshop": activeCard = new Workshop(supply); activeCard.play(player); break;
 			}
 		}
 	}
