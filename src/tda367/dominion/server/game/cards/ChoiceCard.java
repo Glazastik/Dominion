@@ -3,13 +3,16 @@ package tda367.dominion.server.game.cards;
 import tda367.dominion.commons.messages.Message;
 import tda367.dominion.server.game.Player;
 
-public interface ChoiceCard extends ICard {
+public abstract class ChoiceCard implements ICard {
+	private State state;
 	
-	public enum State { ACTIVE, NONACTIVE }
+	public boolean isActive() {
+		return state == State.ACTIVE;
+	}
 	
-	public boolean isActive();
+	public void play (Player p) {
+		state = State.ACTIVE;
+	}
 	
-	public void play (Player p);
-	
-	public void input (Message msg, Player p);
+	public abstract void input (Message msg, Player p);
 }
