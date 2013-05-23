@@ -40,6 +40,7 @@ public class NetworkCommon {
 		
 		kryo.register(TurnMessage.class);
 		kryo.register(AdvanceMessage.class);
+		kryo.register(TipMessage.class);
 	}
 	
 	public static class BasicMessage{

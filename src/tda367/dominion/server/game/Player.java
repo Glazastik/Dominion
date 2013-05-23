@@ -5,6 +5,7 @@ import java.util.List;
 import tda367.dominion.commons.messages.CardUpdateMessage;
 import tda367.dominion.commons.messages.Message;
 import tda367.dominion.commons.messages.PlayerUpdateMessage;
+import tda367.dominion.commons.messages.TipMessage;
 import tda367.dominion.server.network.GameConnection;
 
 /**
@@ -526,7 +527,7 @@ public class Player {
 		msg.setDiscard(discard.getTop());
 		msg.setHand(hand.getCards());
 		msg.setInPlay(playingArea.getCards());
-		gameConnection.sendTCP(msg);
+		send(msg);
 	}
 
 	public void updateStats() {
@@ -534,7 +535,7 @@ public class Player {
 		msg.setActions(actions);
 		msg.setBuys(buys);
 		msg.setMoney(money);
-		gameConnection.sendTCP(msg);
+		send(msg);
 	}
 
 	public boolean hasActionCards() {
@@ -546,6 +547,12 @@ public class Player {
 			}
 		}
 		return false;
+	}
+	
+	public void sendTip(String tip){
+		TipMessage tmsg = new TipMessage();
+		tmsg.setMessage(tip);
+		this.send(tmsg);
 	}
 
 }

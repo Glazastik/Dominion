@@ -284,4 +284,10 @@ public class MainView extends StateBasedGame implements Runnable {
 		}
 	}
 
+	public void updateTip(String message) {
+		InGameState g = ((InGameState) this.getState(Settings.INGAMESTATE));
+		g.setTipMessage(message);
+		
+	}
+
 }

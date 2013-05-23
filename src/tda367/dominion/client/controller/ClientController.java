@@ -11,6 +11,7 @@ import tda367.dominion.commons.messages.PlayerUpdateMessage;
 import tda367.dominion.commons.messages.RoomMessage;
 import tda367.dominion.commons.messages.SetupMessage;
 import tda367.dominion.commons.messages.SupplyMessage;
+import tda367.dominion.commons.messages.TipMessage;
 import tda367.dominion.commons.messages.TurnMessage;
 
 import com.esotericsoftware.kryonet.Connection;
@@ -72,7 +73,7 @@ public class ClientController {
 			if (object instanceof CreateBoolMessage) {
 
 			}
-
+			
 			if (object instanceof PlayerUpdateMessage) {
 				System.out.println("Update Stats");
 				PlayerUpdateMessage o = (PlayerUpdateMessage) object;
@@ -84,6 +85,10 @@ public class ClientController {
 				CardUpdateMessage o = (CardUpdateMessage) object;
 				view.updateCards(o.getHand(), o.getInPlay(), o.getDiscard(),
 						o.getDeckSize());
+			}
+			
+			if(object instanceof TipMessage){
+				view.updateTip(((TipMessage) object).getMessage());
 			}
 
 			if (object instanceof SetupMessage) {
