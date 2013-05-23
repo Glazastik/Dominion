@@ -231,7 +231,6 @@ public class InGameState extends ControlledGameState {
 			paintPlayedCards(playedCards);
 		}
 
-		// paintMessageBox("Test Baws" ,g);
 	}
 
 	@Override
@@ -691,13 +690,6 @@ public class InGameState extends ControlledGameState {
 				index++;
 			}
 		}
-
-//		for (int i = 0; i < cards.length; i++) {
-//			if (cards[i].equals("Gardens")) {// Ensures Gardens DOES end up with
-//												// the actioncards
-//				cardsToReturn[index] = cards[i];
-//			}
-//		}
 
 		return sortStringArray(cardsToReturn);
 	}
