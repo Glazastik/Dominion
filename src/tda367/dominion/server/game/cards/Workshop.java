@@ -8,9 +8,6 @@ import tda367.dominion.server.game.Player;
 import tda367.dominion.server.game.Supply;
 
 public class Workshop implements ChoiceCard {
-	public enum State {
-		ACTIVE, NONACTIVE
-	}
 
 	public State state;
 	private Supply supply;
@@ -31,7 +28,7 @@ public class Workshop implements ChoiceCard {
 			CardInfoHandler cih = CardInfoHandler.getInstance();
 			GainingHandler gh = new GainingHandler(supply);
 			if (cih.getCardValue(((CardMessage) msg).getCard()) < 5) {
-				gh.playerGainCardToHand(p, ((CardMessage) msg).getCard());
+				gh.playerGainCard(p, ((CardMessage) msg).getCard());
 				state = State.NONACTIVE;
 			}
 		}

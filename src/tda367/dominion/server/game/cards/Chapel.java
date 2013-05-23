@@ -6,10 +6,6 @@ import tda367.dominion.server.game.Player;
 
 public class Chapel implements ChoiceCard {
 
-	public enum State {
-		ACTIVE, NONACTIVE
-	}
-
 	public State state;
 	public int amountTrashed;
 
@@ -38,7 +34,7 @@ public class Chapel implements ChoiceCard {
 			// Send: Player trashed msg.getCard
 
 			if (amountTrashed == 4) {
-				input(new DoneMessage(), null);
+				input(new DoneMessage(), p);
 			}
 		}
 	}

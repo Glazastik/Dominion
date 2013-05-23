@@ -6,7 +6,6 @@ import tda367.dominion.commons.messages.Message;
 import tda367.dominion.server.game.Player;
 
 public class Cellar implements ChoiceCard {
-	public enum State { ACTIVE, NONACTIVE }
 	public State state;
 	public int amountDiscarded;
 	
@@ -34,11 +33,15 @@ public class Cellar implements ChoiceCard {
 		} else if (msg instanceof CardMessage) {
 			p.discardCard(((CardMessage) msg).getCard());
 			amountDiscarded++;
+			if (p.getHandSize() == 0) {
+				input(new DoneMessage(), p);
+			}
 			
 			//TODO:Send messgae
 		}
 	}
 	
+	@Override
 	public boolean isActive() {
 		if (state == State.ACTIVE) {
 			return true;
