@@ -12,7 +12,7 @@ import tda367.dominion.server.game.Pile;
 
 public class EndGameState extends BasicGameState {
 
-	LinkedList<Player> players;
+	private LinkedList<Player> players;
 	
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
@@ -98,7 +98,6 @@ public class EndGameState extends BasicGameState {
 	 * Paints the scores of the players provided
 	 */
 	private void paintScores(Graphics g){
-		
 	}
 
 }
