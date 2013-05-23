@@ -14,7 +14,7 @@ import tda367.dominion.server.game.cards.ChoiceCard.State;
 public class CardRulesHandler {
 	private LinkedList<Player> players;
 	private Supply supply;
-	private ChoiceCard activeCard;
+	public ChoiceCard activeCard;
 	
 	/**
 	 * Creates a new CardRulesHandler with a list of players 
@@ -44,7 +44,7 @@ public class CardRulesHandler {
 //				case "Bureaucrat": Bureaucrat.play(player, players, supply); break;
 //				case "Cellar": Cellar.play(player); break;
 //				case "Chancellor": Chancellor.play(player); break;
-//				case "Chapel": activeCard = new Chapel(); activeCard.play(player); break;
+				case "Chapel": activeCard = new Chapel(); activeCard.play(player); break;
 				case "Copper": player.increaseMoney(1); break;
 				case "Councilroom": Councilroom.play(player, players); break;
 //				case "Feast": Feast.play(player, supply); break;
@@ -90,6 +90,10 @@ public class CardRulesHandler {
 		}
 	}
 	
+	/**
+	 * A method for checking if a card is active and waiting for input.
+	 * @return
+	 */
 	public boolean isCardActive() {
 		if (activeCard != null) {
 			if (activeCard.state == State.ACTIVE) {

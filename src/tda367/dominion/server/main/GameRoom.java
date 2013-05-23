@@ -58,8 +58,12 @@ public class GameRoom {
 	public void received(GameConnection gc, Object object) {
 		if (object instanceof CardMessage) {
 			CardMessage message = ((CardMessage) object);
-			print("Player played: " + message.getCard());
-			playCard(gc, message.getCard());
+			if (cardRulesHandler.isCardActive()) {
+				cardRulesHandler.activeCard.input(message, game.getActivePlayer());
+			} else {
+				print("Player played: " + message.getCard());
+				playCard(gc, message.getCard());
+			}
 
 		} else if (object instanceof BoolMessage) {
 			BoolMessage message = ((BoolMessage) object);
@@ -77,6 +81,9 @@ public class GameRoom {
 		} else if (object instanceof AdvanceMessage) {
 			print("Received Done");
 			game.done(gc);
+		} else if(object instanceof DoneMessage) {
+			DoneMessage message = ((DoneMessage) object);
+			cardRulesHandler.activeCard.input(message, game.getActivePlayer());
 		} else {
 			print("Classname: " + object.getClass());
 		}
@@ -90,8 +97,8 @@ public class GameRoom {
 			Phase phase = game.getPhase();
 			if (cih.isActionCard(card) && phase == Phase.ACTION) {
 				if (game.getActivePlayer().getActions() > 0) {
-					game.getActivePlayer().play(card);
-					if (game.getActivePlayer().getActions() == 0) {
+					cardRulesHandler.playCard(game.getActivePlayer(), card);
+					if(game.getActivePlayer().getActions() == 0){
 						game.done(gc);
 					}
 				} else {

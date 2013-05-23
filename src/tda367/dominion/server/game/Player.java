@@ -351,6 +351,7 @@ public class Player {
 		if (hand.contains(card)) {
 			if (cih.isActionCard(card)) {
 				actions--;
+				playingArea.add(hand.pop(card));
 			} else if (cih.isTreasureCard(card)) {
 				playingArea.add(hand.pop(card));
 				int inc = 0;

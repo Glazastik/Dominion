@@ -32,6 +32,7 @@ public class Chapel implements ChoiceCard {
 			
 			p.trashCard(((CardMessage) msg).getCard());
 			amountTrashed++;
+			//Send: Player trashed msg.getCard
 			
 			if (amountTrashed == 4) {
 				input(new DoneMessage(), null);
