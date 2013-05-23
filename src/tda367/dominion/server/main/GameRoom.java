@@ -20,6 +20,7 @@ public class GameRoom {
 	private static final int MAXPLAYERS = 2;
 	private LinkedList<Player> players;
 	private LinkedList<GameConnection> gcs;
+	private CardRulesHandler cardRulesHandler;
 	private CardInfoHandler cih;
 	private int slots;
 	private String name;
@@ -51,6 +52,7 @@ public class GameRoom {
 
 	private void startGame() {
 		game = new Dominion(this.getPlayers());
+		cardRulesHandler = game.getCardRulesHandler();
 	}
 
 	public void received(GameConnection gc, Object object) {
@@ -69,17 +71,17 @@ public class GameRoom {
 			print("Bought/gained: " + message.getCard());
 			playGain(gc, message.getCard());
 
-		} else if(object instanceof PlayAllMessage){
+		} else if (object instanceof PlayAllMessage) {
 			print("Received PlayAll");
 			game.playAll(gc);
-		} else if(object instanceof AdvanceMessage){
+		} else if (object instanceof AdvanceMessage) {
 			print("Received Done");
 			game.done(gc);
 		} else {
 			print("Classname: " + object.getClass());
 		}
 	}
-	
+
 	public void playCard(GameConnection gc, String card) {
 		if (game.getActiveID() != gc.getID()) {
 			// TODO: Inte alltid retur pa den!
@@ -89,7 +91,7 @@ public class GameRoom {
 			if (cih.isActionCard(card) && phase == Phase.ACTION) {
 				if (game.getActivePlayer().getActions() > 0) {
 					game.getActivePlayer().play(card);
-					if(game.getActivePlayer().getActions() == 0){
+					if (game.getActivePlayer().getActions() == 0) {
 						game.done(gc);
 					}
 				} else {
@@ -108,10 +110,9 @@ public class GameRoom {
 	}
 
 	public void playGain(GameConnection gc, String card) {
-		if (game.getActiveID() == gc.getID()
-				&& game.getPhase() == Phase.BUY) {
+		if (game.getActiveID() == gc.getID() && game.getPhase() == Phase.BUY) {
 			game.playerBuyCard(card);
-			if(game.getActivePlayer().getBuys() == 0){
+			if (game.getActivePlayer().getBuys() == 0) {
 				game.done(gc);
 			}
 		}
