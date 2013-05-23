@@ -331,9 +331,6 @@ public class InGameState extends ControlledGameState {
 	 */
 	public void updateNbrOfCards() {
 		nbrOfActionCards = getNbrOfCards(getActionCards(getSupply()));
-		for(int i: nbrOfActionCards){
-			System.out.println(i);
-		}
 		nbrOfTreasureCards = getNbrOfCards(getTreasureCards(getSupply()));
 		nbrOfVictoryCards = getNbrOfCards(getVictoryCards(getSupply()));
 	}
@@ -1412,7 +1409,6 @@ public class InGameState extends ControlledGameState {
 	private void moveSupplyImages() {
 		LinkedList<Image> moved = new LinkedList<Image>();
 		for (String key : supply.keySet()) {
-			System.out.println(key +" " + supply.get(key));
 			for (int i = 0; i < actionCardsAll.length; i++) {
 				String name = splitString(actionCardsAll[i]);
 				if (name.equals(key)) {
