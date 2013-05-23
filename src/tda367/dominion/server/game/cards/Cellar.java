@@ -19,6 +19,7 @@ public class Cellar implements ChoiceCard {
 	public void play(Player p) {
 		
 		state = State.ACTIVE;
+		p.increaseActions(1);
 		
 		//TODO:Send some kind of message
 	}
