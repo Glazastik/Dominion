@@ -18,6 +18,7 @@ public class Workshop extends ChoiceCard {
 
 	public void play(Player p) {
 		state = State.ACTIVE;
+		p.sendTip("Gain a card costing up to 3");
 	}
 
 	public void input(Message msg, Player p) {
@@ -28,6 +29,8 @@ public class Workshop extends ChoiceCard {
 			if (cih.getCardValue(card) < 5) {
 				gh.playerGainCard(p, card);
 				state = State.NONACTIVE;
+				//Temporary tip
+				p.sendTip("Continua playing actions!");
 			}
 		}
 	}
