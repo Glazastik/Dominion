@@ -41,13 +41,14 @@ public class MainMenuState extends ControlledGameState {
 	float position;
 	int volume;
 	int pitch;
-	
+
 	private GameListener exitGame;
-	
+	private float bgX = -35;
+
 	public void addExitListener(GameListener l) {
 		exitGame = l;
 	}
-	
+
 	public void exitGame() {
 		GameEvent e = new GameEvent();
 		exitGame.run(e);
@@ -108,7 +109,8 @@ public class MainMenuState extends ControlledGameState {
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
-		background.draw();
+
+		background.draw((float) (-150 + (100*Math.sin(bgX))), 0);
 		g.drawString("Main Menu " + mouse, 0, 0);
 
 		drawMenuItems();
@@ -121,6 +123,7 @@ public class MainMenuState extends ControlledGameState {
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int time)
 			throws SlickException {
+		moveBackground(time);
 		Input input = gc.getInput();
 		int xPos = Mouse.getX();
 		int yPos = gc.getHeight() - Mouse.getY();
@@ -167,19 +170,28 @@ public class MainMenuState extends ControlledGameState {
 		openingMenuMusic.setVolume(volume);
 
 	}
-	
+
+	/**
+	 * Moves the background image a little to make it prettier
+	 * @param delta
+	 */
+	private void moveBackground(int delta) {
+		bgX = bgX + 0.0001f * delta;
+		
+	}
+
 	/**
 	 * Takes care of all actions that calls mouseClicked
 	 */
 	@Override
 	public void mouseClicked(int button, int x, int y, int clicks) {
-		
+
 		// Checks if the mouse cursor is within the audio image
 		if (button == Input.MOUSE_LEFT_BUTTON && audioRec.contains(x, y)) {
 			if (openingMenuMusic.playing()) {
 				openingMenuMusic.pause();
 			} else {
-				openingMenuMusic.loop((float)1.5, volume);
+				openingMenuMusic.loop((float) 1.5, volume);
 			}
 		}
 	}
