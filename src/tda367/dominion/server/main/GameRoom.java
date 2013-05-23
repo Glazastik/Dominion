@@ -73,8 +73,8 @@ public class GameRoom {
 				cardRulesHandler.activeCard.input(message, game.getActivePlayer());
 			} else {
 				BoolMessage message = ((BoolMessage) object);
-				print("Bool: " + message.getBool());
-				playBool(gc, message.getBool());
+				print("Bool: " + message.isTrue());
+				playBool(gc, message.isTrue());
 			}
 
 		} else if (object instanceof GainMessage) {
