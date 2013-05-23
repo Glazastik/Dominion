@@ -8,6 +8,10 @@ import tda367.dominion.server.game.Player;
 import tda367.dominion.server.game.Supply;
 
 public class Workshop implements ChoiceCard {
+	public enum State {
+		ACTIVE, NONACTIVE
+	}
+
 	public State state;
 	private Supply supply;
 
@@ -15,7 +19,7 @@ public class Workshop implements ChoiceCard {
 		state = State.NONACTIVE;
 		this.supply = s;
 	}
-	
+
 	@Override
 	public void play(Player p) {
 		state = State.ACTIVE;
@@ -25,29 +29,22 @@ public class Workshop implements ChoiceCard {
 	public void input(Message msg, Player p) {
 		if (msg instanceof CardMessage) {
 			CardInfoHandler cih = CardInfoHandler.getInstance();
+			GainingHandler gh = new GainingHandler(supply);
 			if (cih.getCardValue(((CardMessage) msg).getCard()) < 5) {
-				GainingHandler gh = new GainingHandler(supply);
 				gh.playerGainCardToHand(p, ((CardMessage) msg).getCard());
 				state = State.NONACTIVE;
 			}
 		}
-		
+
 	}
-//	public static void play(Player p, Supply supply){
-//		GainingHandler gH = new GainingHandler(supply);
-//		boolean doneGaining = false;
-//		//p.sendInformationMessage("Gain a card costing up to 4.");
-//		while(!doneGaining){
-//		//Message message = p.getNextMessage();
-//		//if(message instanceOf LocatedCardMessage){
-//			//LocatedCardMessage tempMessage = (LocatedCardMessage) message;
-//			//if(tempMessage.getLocation().equals("Supply") && gh.isCardGainable(tempMessage.getCardName(), 4)){
-//				//gH.playerGainCard(player, cardName);
-//				//doneGaining = true;
-//			//}
-//		//}
-//		}
-//		//p.removeInformationMessage();
-//	}
-	
+
+	@Override
+	public boolean isActive() {
+		if (state == State.ACTIVE) {
+			return false;
+		} else {
+			return false;
+		}
+	}
+
 }

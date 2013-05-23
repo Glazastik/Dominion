@@ -3,7 +3,6 @@ package tda367.dominion.server.game;
 import java.util.LinkedList;
 
 import tda367.dominion.server.game.cards.*;
-import tda367.dominion.server.game.cards.ChoiceCard.State;
 
 /**
  * A class that handles how the cards that are played affect the game and players.
@@ -56,7 +55,7 @@ public class CardRulesHandler {
 //				case "Militia": Militia.play(player, players); break;
 //				case "Mine": Mine.play(player, supply); break;
 				case "Moat": Moat.play(player); break;
-//				case "Moneylender": Moneylender.play(player); break;
+				case "Moneylender": Moneylender.play(player); break;
 //				case "Remodel": Remodel.play(player, supply); break;
 				case "Silver": player.increaseMoney(2); break;
 				case "Smithy": Smithy.play(player); break;
@@ -96,7 +95,7 @@ public class CardRulesHandler {
 	 */
 	public boolean isCardActive() {
 		if (activeCard != null) {
-			if (activeCard.state == State.ACTIVE) {
+			if (activeCard.isActive()) {
 				return true;
 			} else {
 				return false;

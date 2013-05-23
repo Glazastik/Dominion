@@ -6,37 +6,49 @@ import tda367.dominion.server.game.Player;
 
 public class Chapel implements ChoiceCard {
 
-	public enum State { ACTIVE, NONACTIVE }
+	public enum State {
+		ACTIVE, NONACTIVE
+	}
+
 	public State state;
 	public int amountTrashed;
-	
+
 	public Chapel() {
 		state = State.NONACTIVE;
 		amountTrashed = 0;
 	}
-	
+
 	public void play(Player p) {
-		
+
 		state = State.ACTIVE;
-		
-		//TODO: Send some kind of message
+
+		// TODO: Send some kind of message
 	}
-	
+
 	public void input(Message msg, Player p) {
 		if (msg instanceof DoneMessage) {
-			
+
 			state = State.NONACTIVE;
-			//TODO: Sedn mesgagew
-			
+			// TODO: Sedn mesgagew
+
 		} else if (msg instanceof CardMessage) {
-			
+
 			p.trashCard(((CardMessage) msg).getCard());
 			amountTrashed++;
-			//Send: Player trashed msg.getCard
-			
+			// Send: Player trashed msg.getCard
+
 			if (amountTrashed == 4) {
 				input(new DoneMessage(), null);
-			}			
+			}
+		}
+	}
+
+	@Override
+	public boolean isActive() {
+		if (state == State.ACTIVE) {
+			return true;
+		} else {
+			return false;
 		}
 	}
 

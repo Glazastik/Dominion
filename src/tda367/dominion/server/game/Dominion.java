@@ -88,7 +88,7 @@ public class Dominion {
 	private void notifyPhase() {
 		// TODO: Fix
 		if(turnHandler.getPhase() == Phase.ACTION){
-			if(this.getActivePlayer().hasActionCards()){
+			if(!this.getActivePlayer().hasActionCards()){
 				turnHandler.advance();
 			}
 		}

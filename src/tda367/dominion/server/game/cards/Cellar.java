@@ -38,4 +38,12 @@ public class Cellar implements ChoiceCard {
 			//TODO:Send messgae
 		}
 	}
+	
+	public boolean isActive() {
+		if (state == State.ACTIVE) {
+			return true;
+		} else {
+			return false;
+		}
+	}
 }
