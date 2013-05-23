@@ -47,7 +47,7 @@ public class EndGameState extends BasicGameState {
 	 * @param players the players whose score will be shown
 	 */
 	public void setPlayers(LinkedList<Player> players){
-		
+		this.players = players;
 	}
 	
 	/**
