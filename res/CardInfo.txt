@@ -16,7 +16,7 @@ Laboratory Action 5
 Library Action 5
 Market Action 5
 Militia Action 4
-Mine Action 6
+Mine Action 5
 Moat Action 2
 Moneylender Action 4
 Province Victory 8

@@ -21,8 +21,7 @@ public class Cellar extends ChoiceCard {
 		
 		state = State.ACTIVE;
 		game.getActivePlayer().increaseActions(1);
-		
-		// send message: Discard cards!
+		game.getActivePlayer().sendTip("Discard up to 4 cards from hand or press done!");
 	}
 
 	@Override
@@ -34,6 +33,7 @@ public class Cellar extends ChoiceCard {
 		} else if (msg instanceof CardMessage) {
 			p.discardCard(((CardMessage) msg).getCard());
 			amountDiscarded++;
+			p.sendTip("Discard up to " + (4-amountDiscarded) + " cards from hand or press done!");
 			if (p.getHandSize() == 0) {
 				input(new DoneMessage(), p);
 			}

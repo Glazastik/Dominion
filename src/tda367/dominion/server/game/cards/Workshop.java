@@ -16,7 +16,7 @@ public class Workshop extends ChoiceCard {
 
 	public void play() {
 		state = State.ACTIVE;
-		game.getActivePlayer().sendTip("Gain a card costing up to 3");
+		game.getActivePlayer().sendTip("Gain a card costing up to 4");
 	}
 
 	public void input(Message msg, Player p) {
@@ -24,7 +24,7 @@ public class Workshop extends ChoiceCard {
 			String card = ((CardMessage) msg).getCard().split("Supply")[0];
 			CardInfoHandler cih = CardInfoHandler.getInstance();
 			GainingHandler gh = new GainingHandler(game.getSupply());
-			if (cih.getCardValue(card) < 5) {
+			if (cih.getCardValue(card) <= 4) {
 				gh.playerGainCard(p, card);
 				state = State.NONACTIVE;
 				//Temporary tip

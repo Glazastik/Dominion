@@ -70,7 +70,8 @@ public class GameRoom {
 		} else if (object instanceof BoolMessage) {
 			if (object instanceof CardMessage) {
 				BoolMessage message = ((BoolMessage) object);
-				cardRulesHandler.activeCard.input(message, game.getActivePlayer());
+				cardRulesHandler.activeCard.input(message,
+						game.getActivePlayer());
 			} else {
 				BoolMessage message = ((BoolMessage) object);
 				print("Bool: " + message.isTrue());
@@ -78,9 +79,16 @@ public class GameRoom {
 			}
 
 		} else if (object instanceof GainMessage) {
-			GainMessage message = ((GainMessage) object);
-			print("Bought/gained: " + message.getCard());
-			playGain(gc, message.getCard());
+			if (cardRulesHandler.isCardActive()) {
+				GainMessage message = ((GainMessage) object);
+				CardMessage cm = new CardMessage();
+				cm.setCard(message.getCard());
+				cardRulesHandler.activeCard.input(cm, game.getActivePlayer());
+			} else {
+				GainMessage message = ((GainMessage) object);
+				print("Bought/gained: " + message.getCard());
+				playGain(gc, message.getCard());
+			}
 
 		} else if (object instanceof PlayAllMessage) {
 			print("Received PlayAll");
