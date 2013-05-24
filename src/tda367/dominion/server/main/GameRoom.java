@@ -89,6 +89,7 @@ public class GameRoom {
 				print("Bought/gained: " + message.getCard());
 				playGain(gc, message.getCard());
 			}
+			game.updateSupply();
 
 		} else if (object instanceof PlayAllMessage) {
 			print("Received PlayAll");

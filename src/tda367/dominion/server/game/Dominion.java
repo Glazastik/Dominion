@@ -105,6 +105,12 @@ public class Dominion {
 		cbm.setText(s);
 		sendToActive(cbm);
 	}
+	
+	public void updateSupply() {
+		SupplyMessage msg = new SupplyMessage();
+		msg.setSupply(supply.getCardsInSupply());
+		this.sendToAll(msg);
+	}
 
 	/**
 	 * Initialize the game, send messages to all involved players.
