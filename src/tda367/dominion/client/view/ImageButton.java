@@ -11,6 +11,7 @@ public class ImageButton extends Image {
 
 	private Rectangle rec;
 	private GameListener listener;
+	private boolean visible = true;
 
 	public ImageButton(String s) throws SlickException {
 		super(s);
@@ -33,7 +34,25 @@ public class ImageButton extends Image {
 	}
 	
 	public void draw(int x, int y) {
-		super.draw(x, y);
-		rec.setLocation(x, y);
+		if(isVisible()){
+			super.draw(x, y);
+			rec.setLocation(x, y);
+		}
+	}
+
+	/**
+	 * If the button is visible or not.
+	 * @return the visible
+	 */
+	public boolean isVisible() {
+		return visible;
+	}
+
+	/**
+	 * Sets the visibility.
+	 * @param visible the visible to set
+	 */
+	public void setVisible(boolean visible) {
+		this.visible = visible;
 	}
 }
