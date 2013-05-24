@@ -9,4 +9,13 @@ package tda367.dominion.commons.messages;
  * Chancellor
  */
 public class CreateBoolMessage implements Message{
+	private String text;
+	
+	public void setText(String s) {
+		text = s;
+	}
+	
+	public String getText() {
+		return text;
+	}
 }

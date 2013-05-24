@@ -74,7 +74,8 @@ public class ClientController {
 			}
 
 			if (object instanceof CreateBoolMessage) {
-
+				CreateBoolMessage cbm = (CreateBoolMessage) object;
+				view.activateYesNoBox(cbm.getText());
 			}
 			
 			if (object instanceof PlayerUpdateMessage) {

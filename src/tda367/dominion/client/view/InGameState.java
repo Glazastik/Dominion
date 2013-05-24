@@ -484,6 +484,11 @@ public class InGameState extends ControlledGameState {
 	public void addLogMessage(String str) {
 		logText.addFirst(str);
 	}
+	
+	public void activateYesNoBox(String s) {
+		paintYesNo = true;
+		messageText = s;
+	}
 
 	/**
 	 * Takes care of all actions that calls mouseClicked
@@ -544,11 +549,13 @@ public class InGameState extends ControlledGameState {
 			this.doneCard();
 		}
 		
-		// yes Button listener 
+		// yes/no Button listener 
 		if (button == Input.MOUSE_LEFT_BUTTON && yesRec.contains(x, y)) {
 			this.sendBool(true);
+			paintYesNo = false;
 		} else if (button == Input.MOUSE_LEFT_BUTTON && noRec.contains(x, y)) {
 			this.sendBool(false);
+			paintYesNo = false;
 		}
 	}
 

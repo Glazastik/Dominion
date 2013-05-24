@@ -3,6 +3,7 @@ package tda367.dominion.server.game;
 import java.util.HashMap;
 import java.util.LinkedList;
 
+import tda367.dominion.commons.messages.CreateBoolMessage;
 import tda367.dominion.commons.messages.Message;
 import tda367.dominion.commons.messages.SetupMessage;
 import tda367.dominion.commons.messages.SupplyMessage;
@@ -98,6 +99,12 @@ public class Dominion {
 		msg.setActive(this.getActivePlayer().getName());
 		this.sendToAll(msg);
 	}
+	
+	public void activateYesNoBox(String s) {
+		CreateBoolMessage cbm = new CreateBoolMessage();
+		cbm.setText(s);
+		sendToActive(cbm);
+	}
 
 	/**
 	 * Initialize the game, send messages to all involved players.
@@ -152,6 +159,15 @@ public class Dominion {
 		for (Player p : players) {
 			network.sendMessage(p.getID(), msg);
 		}
+	}
+	
+	/**
+	 * Sends a particular message to the active player.
+	 * 
+	 * @param msg
+	 */
+	private void sendToActive(Message msg) {
+		network.sendMessage(getActiveID(), msg);
 	}
 	
 	public void playerBuyCard(String card) {
