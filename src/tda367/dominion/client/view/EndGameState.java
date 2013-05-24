@@ -125,10 +125,15 @@ public class EndGameState extends BasicGameState {
 	 * @param player the player whose score is to be calculated
 	 * @return an int of calculated score
 	 */
-	private int calculateScore(Player player){
-		player.discardDeck();
-		player.discardHand();
-		return calculateScoreFromDeck(player.getDiscardPile().getCards());
+	private LinkedList<Integer> calculateScore(LinkedList<Player> players){
+		LinkedList<Integer> scores = new LinkedList<Integer>();
+		
+		for(Player p: players){
+			p.discardDeck();
+			p.discardHand();
+			scores.add(calculateScoreFromDeck(p.getDiscardPile().getCards()));
+		}
+		return scores;
 	}
 	
 	/**
