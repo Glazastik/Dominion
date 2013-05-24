@@ -27,10 +27,15 @@ import tda367.dominion.server.game.Player;
  */
 public class EndGameState extends BasicGameState {
 
+	int id;
 	private Image background;
 	private LinkedList<String> names;
 	private LinkedList<Integer> scores;
 	private LinkedList<Integer> places;
+	
+	public EndGameState(int id){
+		this.id = id;
+	}
 	
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
@@ -56,7 +61,7 @@ public class EndGameState extends BasicGameState {
 
 	@Override
 	public int getID() {
-		return 0;
+		return id;
 	}
 	
 	/**
