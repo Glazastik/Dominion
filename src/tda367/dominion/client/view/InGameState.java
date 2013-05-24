@@ -180,6 +180,7 @@ public class InGameState extends ControlledGameState {
 		nextButton = new ImageButton("res/img/gui/ingame/NextButton.png");
 		playAllButton = new ImageButton(
 				"res/img/gui/ingame/PlayAllTreasures.png");
+		playAllButton.setVisible(false);
 		messageBox = new ImageButton(
 				"res/img/gui/ingame/MessageBoxTemplate.png");
 		statusBar = new ImageButton("res/img/gui/ingame/StatusBar.png");
@@ -435,7 +436,7 @@ public class InGameState extends ControlledGameState {
 	 */
 	public void setTopOfPile(String topOfPile) {
 		if (topOfPile == null) {
-			this.topOfPile = "No cards in discard.";
+			this.topOfPile = "Nothing.";
 		} else {
 			this.topOfPile = topOfPile;
 		}
@@ -1446,15 +1447,19 @@ public class InGameState extends ControlledGameState {
 	 */
 	public void setPhase(String phase) {
 		if (phase.equals("action")) {
+			playAllButton.setVisible(false);
 			this.addLogMessage("Action phase entered.");
 			this.setTipMessage("Action step: play action cards");
 		} else if (phase.equals("buy")) {
+			playAllButton.setVisible(true);
 			this.addLogMessage("Buy phase entered.");
 			this.setTipMessage("Buy step: play treasures, buy cards");
 		} else if (phase.equals("cleanup")) {
+			playAllButton.setVisible(false);
 			this.addLogMessage("Clean-up phase entered.");
 			this.setTipMessage("Clean-up step");
 		} else {
+			playAllButton.setVisible(false);
 			this.addLogMessage("Waiting for " + phase);
 			this.setTipMessage("Waiting for " + phase + "...");
 			active = phase.substring(1, phase.length() - 1);

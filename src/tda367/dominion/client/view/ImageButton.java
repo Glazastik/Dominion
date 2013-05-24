@@ -20,13 +20,13 @@ public class ImageButton extends Image {
 	}
 
 	public void contains(int x, int y) {
-		if (rec.contains(x, y)) {
+		if (rec.contains(x, y) && isVisible()) {
 			listener.run(new GameEvent());
 		}
 	}
 	
 	public void contains(int x, int y, boolean b) {
-		if (rec.contains(x, y)) {
+		if (rec.contains(x, y) && isVisible()) {
 			listener.run(new GameEvent(b));
 		}
 	}
