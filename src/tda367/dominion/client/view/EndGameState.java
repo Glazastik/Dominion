@@ -53,6 +53,7 @@ public class EndGameState extends BasicGameState {
 		names = new LinkedList<String>();
 		scores = new LinkedList<Integer>();
 		places = new LinkedList<Integer>();
+		
 	}
 
 	@Override
@@ -153,15 +154,16 @@ public class EndGameState extends BasicGameState {
 	 * Paints the scores of the players provided
 	 */
 	private void paintScores(Graphics g, GameContainer gc) throws SlickException{
-		int yOffset = 100;
-		int xOffset = 25;
+		int yOffset = (gc.getHeight() - backToLobby.getHeight())/2;
+		int xOffset = 50;
+		int spacing = 100;
 		Image crown;
 		
 		for(int i = 0; i < names.size(); i++){
 			crown = new Image("res/img/gui/end/crown_" + places.get(i) + ".png");
-			crown.draw(xOffset, yOffset*i, 75, 75);
-			g.drawString(names.get(i), xOffset + 100, yOffset*i);
-			g.drawString("" + scores.get(i), xOffset + 150, yOffset*i);
+			crown.draw(xOffset, yOffset + (spacing*i), 75, 75);
+			g.drawString(names.get(i), xOffset + 100, yOffset + (spacing*i) + 75/2);
+			g.drawString("" + scores.get(i), xOffset + 200, yOffset + (spacing*i) + 75/2);
 		}
 	}
 	
