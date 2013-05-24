@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 
+import org.lwjgl.input.Mouse;
 import org.lwjgl.util.Rectangle;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
@@ -11,6 +12,8 @@ import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
+
+import tda367.dominion.client.model.Settings;
 import tda367.dominion.server.game.Player;
 
 /**
@@ -62,7 +65,11 @@ public class EndGameState extends BasicGameState {
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 			throws SlickException {
-
+		int xPos = Mouse.getX();
+		int yPos = gc.getHeight() - Mouse.getY();
+		if(backToLobbyRec.contains(xPos, yPos)){
+			sbg.enterState(Settings.SERVERLISTSTATE);
+		}
 	}
 
 	@Override
@@ -81,7 +88,7 @@ public class EndGameState extends BasicGameState {
 			this.scores = scores;
 			places = setPlacings(scores);
 	}
-	
+
 	/**
 	 * Calculates what place the different players have gotten.
 	 * 
