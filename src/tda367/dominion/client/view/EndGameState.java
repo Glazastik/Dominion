@@ -51,14 +51,14 @@ public class EndGameState extends BasicGameState {
 		}
 	}
 	
-	private LinkedList<Integer> setPlacings(){
-		LinkedList<Integer> scoresClone = (LinkedList<Integer>) scores.clone();
+	private LinkedList<Integer> setPlacings(LinkedList<Integer> scoresToBeRanked){
+		LinkedList<Integer> scoresClone = (LinkedList<Integer>) scoresToBeRanked.clone();
 		Collections.sort(scoresClone);
 		LinkedList<Integer> placings = new LinkedList<Integer>();
 		
-		for(int i = 0; i < scores.size(); i++){
+		for(int i = 0; i < scoresToBeRanked.size(); i++){
 			for(int j = 0; j < scoresClone.size(); j++){
-				if(scores.get(i) == scoresClone.get(j)){
+				if(scoresToBeRanked.get(i) == scoresClone.get(j)){
 					placings.add(i, j);
 				}
 			}
@@ -108,12 +108,14 @@ public class EndGameState extends BasicGameState {
 	 */
 	private void paintScores(Graphics g, GameContainer gc) throws SlickException{
 		int yOffset = 100;
-		int xOffset = gc.getWidth()/2;
+		int xOffset = gc.getWidth()/5;
 		Image crown;
 		
-		for(int i = 0; i < null.size(); i++){
-			crown = new Image("res/img/gui/end/crown_" + i);
+		for(int i = 0; i < names.size(); i++){
+			crown = new Image("res/img/gui/end/crown_" + places.get(i));
 			crown.draw(xOffset, yOffset*i, 75, 75);
+			g.drawString(names.get(i), xOffset + 100, yOffset*i);
+			g.drawString("" + scores.get(i), xOffset + 150, yOffset*i);
 		}
 	}
 
