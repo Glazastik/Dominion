@@ -8,8 +8,6 @@ import tda367.dominion.server.game.GainingHandler;
 import tda367.dominion.server.game.Player;
 
 public class Workshop extends ChoiceCard {
-
-	private Dominion game;
 	
 	public Workshop(Dominion game) {
 		this.game = game;

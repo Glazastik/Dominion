@@ -16,8 +16,6 @@ import tda367.dominion.server.game.Player;
  */
 public class Chancellor extends ChoiceCard {
 	
-	private Dominion game;
-	
 	public Chancellor(Dominion game) {
 		this.game = game;
 	}

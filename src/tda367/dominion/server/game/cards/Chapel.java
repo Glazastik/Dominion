@@ -7,7 +7,6 @@ import tda367.dominion.server.game.Player;
 public class Chapel extends ChoiceCard {
 
 	public int amountTrashed;
-	private Dominion game;
 
 	public Chapel(Dominion game) {
 		this.game = game;

@@ -6,11 +6,9 @@ import tda367.dominion.server.game.CardInfoHandler;
 import tda367.dominion.server.game.Dominion;
 import tda367.dominion.server.game.GainingHandler;
 import tda367.dominion.server.game.Player;
-import tda367.dominion.server.game.Supply;
 
 public class Mine extends ChoiceCard {
-
-	public Dominion game;
+	
 	public boolean hasTrashed;
 	int valueOfTrash;
 	

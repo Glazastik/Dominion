@@ -7,8 +7,7 @@ import tda367.dominion.server.game.Dominion;
 import tda367.dominion.server.game.Player;
 
 public class Cellar extends ChoiceCard {
-
-	private Dominion game;
+	
 	public int amountDiscarded;
 	
 	public Cellar(Dominion game) {

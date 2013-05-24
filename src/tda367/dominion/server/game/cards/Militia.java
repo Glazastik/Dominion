@@ -11,7 +11,6 @@ import tda367.dominion.server.game.Player;
 public class Militia extends ChoiceCard {
 	private LinkedList<Player> players;
 	private Player activePlayer;
-	private Dominion game;
 	private HashMap<Player, Boolean> moatStatus;
 	public Militia (LinkedList<Player> players){
 		this.players = players;
