@@ -11,6 +11,7 @@ public class Settings {
 	public static final int SERVERLISTSTATE = 3;
 	public static final int SPLASHSTATE = 4;
 	public static final int SHOWCARDSTATE = 5;
+	public static final int ENDGAMESTATE = 6;
 	public static int SCREENHEIGHT = 1280;
 	public static int SCREENWIDTH = 800;
 	

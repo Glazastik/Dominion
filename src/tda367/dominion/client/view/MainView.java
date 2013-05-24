@@ -42,12 +42,13 @@ public class MainView extends StateBasedGame implements Runnable {
 	@Override
 	public void initStatesList(GameContainer gc) throws SlickException {
 		addState(new SplashScreen(Settings.SPLASHSTATE));
-		enterState(Settings.SPLASHSTATE);
 		addState(new MainMenuState(Settings.MAINMENUSTATE));
 		addState(new ServerListState(Settings.SERVERLISTSTATE));
 		addState(new OptionsState(Settings.OPTIONSSTATE));
 		addState(new ShowCardState(Settings.SHOWCARDSTATE));
 		addState(new InGameState(Settings.INGAMESTATE));
+		addState(new EndGameState(Settings.ENDGAMESTATE));
+		enterState(Settings.SPLASHSTATE);
 	}
 
 	public void addSettingsListener(GameListener l) {
