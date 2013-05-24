@@ -30,7 +30,6 @@ public class Bureaucrat extends ChoiceCard {
 	public void play(Player player){
 		state = State.ACTIVE;
 		this.inactivePlayers = dominion.getInactivePlayers();
-		CardInfoHandler cif = CardInfoHandler.getInstance();
 		
 		if(gH.isCardGainable("Silver")){
 			player.putOnTopOfDeck(dominion.getSupply().take("Silver"));
@@ -46,6 +45,9 @@ public class Bureaucrat extends ChoiceCard {
 				}
 			}
 		}	
+		if(!notAffected.containsValue(false)){
+			state = State.NONACTIVE;
+		}
 	}
 	@Override
 	public void input(Message msg, Player p) {
@@ -53,8 +55,12 @@ public class Bureaucrat extends ChoiceCard {
 			if(!notAffected.get(p)){
 				if(cih.isVictoryCard(((CardMessage)msg).getCard()) && p.hasCardInHand(((CardMessage)msg).getCard())){
 					p.putOnTopOfDeck(p.getHand().pop(((CardMessage)msg).getCard()));
+					notAffected.put(p, true);
 				}
 			}
+		}
+		if(!notAffected.containsValue(false)){
+			state = State.NONACTIVE;
 		}
 	}
 }
