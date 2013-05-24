@@ -7,6 +7,7 @@ import java.util.LinkedList;
 
 import org.junit.Test;
 
+import tda367.dominion.server.game.Dominion;
 import tda367.dominion.server.game.Pile;
 import tda367.dominion.server.game.Player;
 import tda367.dominion.server.game.Supply;
@@ -22,7 +23,7 @@ public class CardRulesHandlerTest {
 		players.add(player1);
 		players.add(player2);
 		Supply supply = new Supply(players.size());
-		CardRulesHandler rulesHandler = new CardRulesHandler(players, supply);
+		CardRulesHandler rulesHandler = new CardRulesHandler(new Dominion(players));
 		player1.addToHand("Village");
 		rulesHandler.playCard(player1, "Village");
 		assertTrue(player1.getActions() == 2);

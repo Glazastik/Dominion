@@ -6,6 +6,7 @@ import java.util.LinkedList;
 
 import org.junit.Test;
 
+import tda367.dominion.server.game.Dominion;
 import tda367.dominion.server.game.Player;
 import tda367.dominion.server.game.cards.Councilroom;
 
@@ -20,11 +21,16 @@ public class CouncilroomTest {
 		players.add(p1);
 		players.add(p2);
 		players.add(p3);
+		
+		Dominion game = new Dominion(players);
+		
 		int p1Cards = p1.getHandSize();
 		int p1Buys = p1.getBuys();
 		int p2Cards = p2.getHandSize();
 		int p3Cards = p3.getHandSize();
-		Councilroom.play(p1, players);	
+		
+		
+		Councilroom.play(game);	
 		assertTrue(p1.getBuys() - p1Buys == 1);
 		assertTrue(p1.getHandSize() - p1Cards == 4);
 		assertTrue(p2.getHandSize() - p2Cards == 1);
