@@ -21,19 +21,18 @@ public class Cellar extends ChoiceCard {
 		
 		state = State.ACTIVE;
 		game.getActivePlayer().increaseActions(1);
-		game.getActivePlayer().sendTip("Discard up to 4 cards from hand or press done!");
+		game.getActivePlayer().sendTip("Discard any number of cards in hand and then draw that many or press done!");
 	}
 
 	@Override
 	public void input(Message msg, Player p) {
 		if (msg instanceof DoneMessage) {
 			p.draw(amountDiscarded);
-			//Send message: Player drew x cards.
+			p.sendTip("Done, continue playing actions.");
 			state = State.NONACTIVE;
 		} else if (msg instanceof CardMessage) {
 			p.discardCard(((CardMessage) msg).getCard());
 			amountDiscarded++;
-			p.sendTip("Discard up to " + (4-amountDiscarded) + " cards from hand or press done!");
 			if (p.getHandSize() == 0) {
 				input(new DoneMessage(), p);
 			}
