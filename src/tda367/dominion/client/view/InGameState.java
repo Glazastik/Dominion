@@ -45,6 +45,7 @@ public class InGameState extends ControlledGameState {
 	 * Stores which players turn it is. turn == 1 means that it is
 	 * playerNames[1]'s turn.
 	 */
+	private ImageButton doneButton2;
 	private Image[] actionCardsAll;
 	private Image[] actionCards;
 	private Image[] victoryCards;
@@ -135,10 +136,17 @@ public class InGameState extends ControlledGameState {
 
 		// Initiate all rectangles
 		initRectangles();
+		
+		// Initiate buttons
+		initButtons();
 
 		// Log init
 		logDisplay = false;
 		logText = new LinkedList<String>();
+	}
+	
+	private void initButtons() throws SlickException {
+		doneButton2 = new ImageButton("res/img/gui/ingame/DoneButton.png");
 	}
 
 	/**
@@ -308,7 +316,7 @@ public class InGameState extends ControlledGameState {
 	}
 
 	public void addDoneListener(GameListener l) {
-		doneListener = l;
+		doneButton2.addListener(l);
 	}
 
 	public void addBoolListener(GameListener l) {
@@ -519,19 +527,16 @@ public class InGameState extends ControlledGameState {
 
 		// Menu button listener
 		if (button == Input.MOUSE_LEFT_BUTTON && menuRec.contains(x, y)) {
-			System.out.println("Menu button");
 			return;
 		}
 
 		// Chat button listener
 		if (button == Input.MOUSE_LEFT_BUTTON && chatRec.contains(x, y)) {
-			System.out.println("Chat Button");
 			return;
 		}
 
 		// Log button listener
 		if (button == Input.MOUSE_LEFT_BUTTON && logRec.contains(x, y)) {
-			System.out.println("Log Button");
 			logDisplay = !logDisplay;
 			return;
 		}
@@ -544,16 +549,18 @@ public class InGameState extends ControlledGameState {
 
 		// play all treasures button listener
 		if (button == Input.MOUSE_LEFT_BUTTON && playAllRec.contains(x, y)) {
-			System.out.println("Play all treasures");
 			this.playAll();
 			return;
 		}
 
 		// done Button listener
-		if (button == Input.MOUSE_LEFT_BUTTON && doneRec.contains(x, y)) {
-			this.doneCard();
-			return;
+		if (button == Input.MOUSE_LEFT_BUTTON) {
+			doneButton2.contains(x, y);
 		}
+//		if (button == Input.MOUSE_LEFT_BUTTON && doneRec.contains(x, y)) {
+//			this.doneCard();
+//			return;
+//		}
 
 		// yes/no Button listener
 		if (yesRec != null) {
@@ -1105,6 +1112,8 @@ public class InGameState extends ControlledGameState {
 		int buttonHeight = menuButton.getHeight();
 		int buttonWidth = menuButton.getWidth();
 		int buttonSpacing = 10;
+		doneButton2.draw(gameContainerWidth - 2 * xOffset, gameContainerHeight
+				- (yOffset + buttonSpacing + 155));
 		menuButton.draw(gameContainerWidth - xOffset, gameContainerHeight
 				- (yOffset + buttonSpacing));
 		chatButton.draw(gameContainerWidth - xOffset, gameContainerHeight
@@ -1113,8 +1122,8 @@ public class InGameState extends ControlledGameState {
 				- (3 * yOffset + buttonSpacing));
 		nextButton.draw(gameContainerWidth - 2 * xOffset, gameContainerHeight
 				- (yOffset + buttonSpacing + 50));
-		doneButton.draw(gameContainerWidth - 2 * xOffset, gameContainerHeight
-				- (yOffset + buttonSpacing + 155));
+//		doneButton.draw(gameContainerWidth - 2 * xOffset, gameContainerHeight
+//				- (yOffset + buttonSpacing + 155));
 		playAllButton.draw(gameContainerWidth - xOffset, gameContainerHeight
 				- (4 * yOffset + buttonSpacing));
 		menuRec = new Rectangle(gameContainerWidth - xOffset,
@@ -1128,9 +1137,9 @@ public class InGameState extends ControlledGameState {
 				buttonWidth, buttonHeight);
 		nextRec = new Rectangle(gameContainerWidth - 2 * xOffset,
 				gameContainerHeight - (yOffset + buttonSpacing + 50), 100, 100);
-		doneRec = new Rectangle(gameContainerWidth - 2 * xOffset,
-				gameContainerHeight - (yOffset + buttonSpacing + 155),
-				doneButton.getWidth(), doneButton.getHeight());
+//		doneRec = new Rectangle(gameContainerWidth - 2 * xOffset,
+//				gameContainerHeight - (yOffset + buttonSpacing + 155),
+//				doneButton.getWidth(), doneButton.getHeight());
 		playAllRec = new Rectangle(gameContainerWidth - xOffset,
 				gameContainerHeight - (4 * yOffset + buttonSpacing),
 				buttonWidth, buttonHeight);
