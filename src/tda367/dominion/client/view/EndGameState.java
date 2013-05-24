@@ -27,6 +27,7 @@ import tda367.dominion.server.game.Player;
  */
 public class EndGameState extends BasicGameState {
 
+	private Image background;
 	private LinkedList<String> names;
 	private LinkedList<Integer> scores;
 	private LinkedList<Integer> places;
@@ -34,6 +35,7 @@ public class EndGameState extends BasicGameState {
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
+		background = new Image("res/img/gui/menu/boardtemp.png");
 		names = new LinkedList<String>();
 		scores = new LinkedList<Integer>();
 		places = new LinkedList<Integer>();
@@ -42,6 +44,7 @@ public class EndGameState extends BasicGameState {
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
+		background.draw();
 		paintScores(g, gc);
 	}
 
@@ -136,7 +139,7 @@ public class EndGameState extends BasicGameState {
 		Image crown;
 		
 		for(int i = 0; i < names.size(); i++){
-			crown = new Image("res/img/gui/end/crown_" + places.get(i));
+			crown = new Image("res/img/gui/end/crown_" + places.get(i) + ".png");
 			crown.draw(xOffset, yOffset*i, 75, 75);
 			g.drawString(names.get(i), xOffset + 100, yOffset*i);
 			g.drawString("" + scores.get(i), xOffset + 150, yOffset*i);
