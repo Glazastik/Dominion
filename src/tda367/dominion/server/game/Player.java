@@ -1,12 +1,9 @@
 package tda367.dominion.server.game;
 
+import java.util.LinkedList;
 import java.util.List;
 
-import tda367.dominion.commons.messages.CardUpdateMessage;
-import tda367.dominion.commons.messages.LogMessage;
-import tda367.dominion.commons.messages.Message;
-import tda367.dominion.commons.messages.PlayerUpdateMessage;
-import tda367.dominion.commons.messages.TipMessage;
+import tda367.dominion.commons.messages.*;
 import tda367.dominion.server.network.GameConnection;
 
 /**
@@ -552,6 +549,21 @@ public class Player {
 			}
 		}
 		return false;
+	}
+	
+	public void reveal(LinkedList<String> cards) {
+		RevealMessage msg = new RevealMessage();
+		for(String s : cards) {
+			msg.addCard(s);
+		}
+		
+		this.send(msg);
+	}
+	
+	public void reveal(String card) {
+		LinkedList<String> cards = new LinkedList<String>();
+		cards.add(card);
+		this.reveal(cards);
 	}
 
 	public void sendTip(String tip) {
