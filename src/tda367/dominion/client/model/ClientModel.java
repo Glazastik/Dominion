@@ -20,6 +20,10 @@ public class ClientModel {
 	public ClientModel() {
 		this.connection = new ClientConnection();
 	}
+	
+	public void connect(){
+		connection.connect();
+	}
 
 	public void addListener(Listener l) {
 		connection.addListener(l);

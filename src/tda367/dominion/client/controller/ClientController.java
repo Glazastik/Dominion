@@ -70,6 +70,7 @@ public class ClientController {
 			if (object instanceof RoomMessage) {
 				RoomMessage rmsg = (RoomMessage) object;
 				view.updateRoomData(rmsg.getRooms());
+				
 			}
 
 			if (object instanceof CreateBoolMessage) {
@@ -147,18 +148,21 @@ public class ClientController {
 	class UpdateRoomListener implements GameListener {
 		public void run(GameEvent e) {
 			model.searchForGame();
+			model.connect();
 		}
 	}
 
 	class JoinRoomListener implements GameListener {
 		public void run(GameEvent e) {
 			model.joinRoom(e.getInt());
+			model.connect();
 		}
 	}
 
 	class HostRoomListener implements GameListener {
 		public void run(GameEvent e) {
 			model.hostRoom(e.getInt());
+			model.connect();
 		}
 	}
 

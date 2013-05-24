@@ -12,44 +12,48 @@ import com.esotericsoftware.kryonet.Listener;
 
 public class ClientConnection {
 	private final Client client;
-	
+
 	public ClientConnection() {
 		client = new Client();
 		client.start();
-		
+
 		NetworkCommon.register(client);
 	}
-	
+
 	/**
 	 * Connects to the server
 	 */
-	private void connect() {
-		new Thread("Connect") {
-			public void run() {
-				try {
-					 String host = "localhost";//JOptionPane.showInputDialog("Host:");
-					client.connect(5000, host, NetworkCommon.TCPPORT);
+	public void connect() {
+		if (!client.isConnected()) {
+			new Thread("Connect") {
+				public void run() {
+					try {
+						String host = "localhost";// JOptionPane.showInputDialog("Host:");
+						client.connect(5000, host, NetworkCommon.TCPPORT);
 
-				} catch (IOException ex) {
-					System.out.println("Network is borken");
+					} catch (IOException ex) {
+						System.out.println("Network is borken");
+					}
 				}
-			}
-		}.start();
+			}.start();
+		}
 	}
-	
+
 	/**
 	 * Sends a message via TCP.
 	 * 
-	 * @param msg the message that will be sent
+	 * @param msg
+	 *            the message that will be sent
 	 */
 	public void sendMessage(Message msg) {
 		client.sendTCP(msg);
 	}
-	
+
 	/**
-	 * Makes the controller listen to network traffic. 
+	 * Makes the controller listen to network traffic.
 	 * 
-	 * @param l the listener object
+	 * @param l
+	 *            the listener object
 	 */
 	public void addListener(Listener l) {
 		client.addListener(l);
