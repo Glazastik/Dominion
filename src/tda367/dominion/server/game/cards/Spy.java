@@ -1,6 +1,7 @@
 package tda367.dominion.server.game.cards;
 
 import java.util.HashMap;
+import java.util.Iterator;
 import java.util.LinkedList;
 
 import tda367.dominion.commons.messages.BoolMessage;
@@ -12,6 +13,8 @@ public class Spy extends ChoiceCard {
 	private HashMap<Player,Boolean> moatStatus;
 	private Player activePlayer;
 	private LinkedList<Player> orderedPlayers;
+	private Player currentTarget;
+	Iterator<Player> i = orderedPlayers.iterator();
 	public Spy(LinkedList<Player> players){
 		state = State.NONACTIVE;
 		this.players = players;
@@ -31,39 +34,33 @@ public class Spy extends ChoiceCard {
 			orderedPlayers.add(players.get(i));
 		}
 		//player.sendRevealedMessage(player.revealTopOfDeck());
-		//player.sendTip("Discard this from top of " + p.getName() + "'s deck?");
-		for(Player p: ordered){
-			if(!p.getHand().contains("Moat") || player == p){
-				//player.sendRevealMessage
-				
-			} else {
+		player.sendTip("Discard this from top of " + player.getName() + "'s deck?");
+		
+		for(Player p: orderedPlayers){
+			if(p.getHand().contains("Moat") && player != p){
 				moatStatus.put(p, true);
-				/**
-				 * p.sendInformationMessage("Do you wish to reveal Moat?");
-				 * p.createBoolMessage();
-				 * boolean done = false;
-				 * while(!done){
-				 * 	Message message = p.getNextMessage();
-				 * 	if(message instanceOf BoolMessage){
-				 * 		done = true;
-				 * 		BoolMessage boolMessage = (BoolMessage) message;
-				 * 		if(!boolMessage.isTrue()){
-				 * 			Spy(player, p);
-				 * 		}
-				 * 	}
-				 * }
-				 * p.removeInformationMessage();
-				 * p.removeBoolMessage(); 
-				 */
 			}
 		}
+		currentTarget = player;
 	}
 	@Override
 	public void input(Message msg, Player p) {
 		if(msg instanceof BoolMessage){
 			if(((BoolMessage)msg).isTrue()){
-				
+				currentTarget.discardTopOfDeck();
+			}
+			while(i.hasNext()){
+				currentTarget = i.next();
+				if(moatStatus.get(currentTarget) && i.hasNext()){
+					//NÄSTA TARGET
+				} else if (!moatStatus.get(currentTarget)) {
+					p.sendTip("Discard this from top of " + currentTarget.getName() + "'s deck?");
+					break;
+				} else {
+					state = State.NONACTIVE;
+				}
 			}
 		}
+		
 	}
 }
