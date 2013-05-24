@@ -5,15 +5,7 @@ import tda367.dominion.client.model.Settings;
 import tda367.dominion.client.view.MainView;
 import tda367.dominion.commons.listener.GameEvent;
 import tda367.dominion.commons.listener.GameListener;
-import tda367.dominion.commons.messages.CardUpdateMessage;
-import tda367.dominion.commons.messages.CreateBoolMessage;
-import tda367.dominion.commons.messages.LogMessage;
-import tda367.dominion.commons.messages.PlayerUpdateMessage;
-import tda367.dominion.commons.messages.RoomMessage;
-import tda367.dominion.commons.messages.SetupMessage;
-import tda367.dominion.commons.messages.SupplyMessage;
-import tda367.dominion.commons.messages.TipMessage;
-import tda367.dominion.commons.messages.TurnMessage;
+import tda367.dominion.commons.messages.*;
 
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
@@ -135,6 +127,11 @@ public class ClientController {
 				
 				
 				
+			}
+			
+			if (object instanceof EndMessage) {
+				EndMessage egs = ((EndMessage)object);
+				view.setupEndState(egs.getNames(), egs.getScores());
 			}
 		}
 
