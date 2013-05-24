@@ -69,12 +69,10 @@ public class EndGameState extends BasicGameState {
 	 * 
 	 * @param players the players who have participated in a game
 	 */
-	public void setData(LinkedList<Player> players){
-		for(Player p: players){
-			names.add(p.getName());
-			scores.add(calculateScore(p));
+	public void setData(LinkedList<String> names, LinkedList<Integer> scores){
+			this.names = names;
+			this.scores = scores;
 			places = setPlacings(scores);
-		}
 	}
 	
 	/**
@@ -100,10 +98,10 @@ public class EndGameState extends BasicGameState {
 	}
 	
 	/**
-	 * Calculates the score of the provided players.
+	 * Calculates the score of the provided player.
 	 * 
-	 * @param players the players whose score is to be calculated
-	 * @return an LinkedList of calculated scores
+	 * @param player the player whose score is to be calculated
+	 * @return an int of calculated score
 	 */
 	private int calculateScore(Player player){
 		player.discardDeck();
