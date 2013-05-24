@@ -44,7 +44,7 @@ public class CardRulesHandler {
 				case "Adventurer": Adventurer.play(game); break;
 //				case "Bureaucrat": Bureaucrat.play(player, players, supply); break;
 				case "Cellar": activeCard = new Cellar(game); activeCard.play(); break;
-				case "Chancellor": activeCard = new Chancellor(game); activeCard.play(playe); break;
+				case "Chancellor": activeCard = new Chancellor(game); activeCard.play(); break;
 				case "Chapel": activeCard = new Chapel(game); activeCard.play(); break;
 				case "Copper": player.increaseMoney(1); break;
 				case "Councilroom": Councilroom.play(game); break;
