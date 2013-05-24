@@ -1,5 +1,6 @@
 package tda367.dominion.client.view;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 
 import org.newdawn.slick.GameContainer;
@@ -9,17 +10,15 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import tda367.dominion.server.game.Player;
-import tda367.dominion.server.game.Pile;
 
 public class EndGameState extends BasicGameState {
 
-	private LinkedList<Integer> scores;
-	private LinkedList<Player> players;
+	private HashMap<String, Integer> scores;
 	
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
-
+		scores = new HashMap<String, Integer>();
 	}
 
 	@Override
@@ -39,23 +38,22 @@ public class EndGameState extends BasicGameState {
 		return 0;
 	}
 	
+	public void noName(LinkedList<Player> players){
+		for(Player p: players){
+			scores.put(p.getName(), calculateScore(p));
+		}
+	}
+	
 	/**
 	 * Calculates the score of the provided players.
 	 * 
 	 * @param players the players whose score is to be calculated
 	 * @return an LinkedList of calculated scores
 	 */
-	public LinkedList<Integer> calculateScores(LinkedList<Player> players){
-		LinkedList<Integer> scores = new LinkedList<Integer>();
-		LinkedList<String> cards;
-		
-		for(Player p : players){
-			p.discardDeck();
-			p.discardHand();
-			cards = p.getDiscardPile().getCards();
-			scores.add(calculateIndividualScore(cards));
-		}
-		return scores;
+	private int calculateScore(Player player){
+		player.discardDeck();
+		player.discardHand();
+		return calculateScoreFromDeck(player.getDiscardPile().getCards());
 	}
 	
 	/**
@@ -64,7 +62,7 @@ public class EndGameState extends BasicGameState {
 	 * @param cards the cards that the player has
 	 * @return the players score
 	 */
-	private int calculateIndividualScore(LinkedList<String> cards){
+	private int calculateScoreFromDeck(LinkedList<String> cards){
 		int score = 0;
 		
 		for(String card: cards){
