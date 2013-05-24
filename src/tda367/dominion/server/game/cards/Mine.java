@@ -28,11 +28,13 @@ public class Mine extends ChoiceCard {
 				GainingHandler gh = new GainingHandler(game.getSupply());
 				gh.playerGainCardToHand(p, card);
 				state = State.NONACTIVE;
+				p.sendTip("Done, continue playing actions.");
 			} else {
 				if (cih.isTreasureCard(card)) {
 					p.trashCard(card);
 					valueOfTrash = cih.getCardValue(card);
 					hasTrashed = true;
+					p.sendTip("Gain a treasure costing " + valueOfTrash+3);
 				}
 			}
 		}	
@@ -40,6 +42,7 @@ public class Mine extends ChoiceCard {
 
 	@Override
 	public void play() {
-//		TODO: Wiixtor stuff
+		game.getActivePlayer().sendTip("Trash a treasure from hand then gain a treasure worth up to 3 more.");
+		state = State.ACTIVE;
 	}
 }
