@@ -460,7 +460,11 @@ public class InGameState extends ControlledGameState {
 	 *            format
 	 */
 	public void setTopOfPile(String topOfPile) {
-		this.topOfPile = topOfPile;
+		if (topOfPile == null) {
+			this.topOfPile = "No cards in discard.";
+		} else {
+			this.topOfPile = topOfPile;
+		}
 	}
 
 	/**
