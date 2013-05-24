@@ -28,6 +28,7 @@ import tda367.dominion.server.game.Player;
 public class EndGameState extends BasicGameState {
 
 	int id;
+	private Image backToLobby;
 	private Image background;
 	private LinkedList<String> names;
 	private LinkedList<Integer> scores;
@@ -40,6 +41,7 @@ public class EndGameState extends BasicGameState {
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
+		backToLobby = new Image("res/img/gui/end/backtolobby.png");
 		background = new Image("res/img/gui/menu/boardtemp.png");
 		names = new LinkedList<String>();
 		scores = new LinkedList<Integer>();
@@ -50,6 +52,7 @@ public class EndGameState extends BasicGameState {
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
 		background.draw();
+		backToLobby.draw();
 		paintScores(g, gc);
 	}
 
@@ -138,7 +141,7 @@ public class EndGameState extends BasicGameState {
 	 */
 	private void paintScores(Graphics g, GameContainer gc) throws SlickException{
 		int yOffset = 100;
-		int xOffset = gc.getWidth()/5;
+		int xOffset = 25;
 		Image crown;
 		
 		for(int i = 0; i < names.size(); i++){
@@ -152,8 +155,11 @@ public class EndGameState extends BasicGameState {
 	/**
 	 * Paints the button that lets you leave this state.
 	 */
-	private void paintContinue(){
+	private void paintContinue(GameContainer gc){
+		int xOffset = (gc.getHeight() - backToLobby.getHeight())/2;
+		int yOffset = gc.getWidth() - 25;
 		
+		backToLobby.draw(xOffset, yOffset);
 	}
 
 }
