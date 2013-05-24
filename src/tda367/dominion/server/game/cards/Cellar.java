@@ -29,6 +29,7 @@ public class Cellar extends ChoiceCard {
 		if (msg instanceof DoneMessage) {
 			p.draw(amountDiscarded);
 			p.sendTip("Done, continue playing actions.");
+			p.sendLog(p.getName() + " drew " + amountDiscarded + "cards with cellar.");
 			state = State.NONACTIVE;
 		} else if (msg instanceof CardMessage) {
 			p.discardCard(((CardMessage) msg).getCard());
