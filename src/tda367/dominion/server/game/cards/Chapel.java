@@ -24,7 +24,7 @@ public class Chapel extends ChoiceCard {
 	public void input(Message msg, Player p) {
 		if (msg instanceof DoneMessage) {
 
-			p.sendLog(("Continue action phase.");
+			p.sendTip("Continue action phase.");
 			state = State.NONACTIVE;
 
 		} else if (msg instanceof CardMessage) {
