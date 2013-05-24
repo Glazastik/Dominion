@@ -1,16 +1,18 @@
 package tda367.dominion.commons.messages;
 
+import java.util.LinkedList;
+
 /**
  * A message that tells the client the card that is revealed.
  */
 public class RevealMessage {
-	private String card;
+	private LinkedList<String> cards = new LinkedList<String>();
 	
-	public void setCard(String card) {
-		this.card = card;
+	public void addCard(String card) {
+		cards.add(card);
 	}
 	
-	public String getCard() {
-		return card;
+	public LinkedList<String> getCards() {
+		return cards;
 	}
 }
