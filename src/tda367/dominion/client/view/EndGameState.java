@@ -12,17 +12,13 @@ import tda367.dominion.server.game.Pile;
 
 public class EndGameState extends BasicGameState {
 
+	private LinkedList<Integer> scores;
 	private LinkedList<Player> players;
 	
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
 
-	}
-	
-	public void initState(LinkedList<Player> players){
-		setPlayers(players);
-		calculateScores(players);
 	}
 
 	@Override
@@ -43,21 +39,12 @@ public class EndGameState extends BasicGameState {
 	}
 	
 	/**
-	 * Sets the players whose score is to be calculated and shown
-	 * 
-	 * @param players the players whose score will be shown
-	 */
-	public void setPlayers(LinkedList<Player> players){
-		this.players = players;
-	}
-	
-	/**
 	 * Calculates the score of the provided players.
 	 * 
 	 * @param players the players whose score is to be calculated
 	 * @return an LinkedList of calculated scores
 	 */
-	private LinkedList<Integer> calculateScores(LinkedList<Player> players){
+	public LinkedList<Integer> calculateScores(LinkedList<Player> players){
 		LinkedList<Integer> scores = new LinkedList<Integer>();
 		LinkedList<String> cards;
 		
@@ -97,7 +84,8 @@ public class EndGameState extends BasicGameState {
 	/**
 	 * Paints the scores of the players provided
 	 */
-	private void paintScores(Graphics g){
+	private void paintScores(Graphics g, GameContainer gc){
+
 	}
 
 }
