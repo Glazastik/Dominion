@@ -1222,8 +1222,8 @@ public class InGameState extends ControlledGameState {
 		messageBox.draw(x, y, messageBox.getWidth(), messageBox.getHeight());
 		yesButton.draw(x + messageBox.getWidth()/3, y+ messageBox.getHeight() - 20, yesButton.getWidth(), yesButton.getHeight());
 		noButton.draw(x + (messageBox.getWidth()/3) * 2, y + messageBox.getHeight() - 20, noButton.getWidth(), noButton.getHeight());
-		yesRec.setBounds(x + messageBox.getWidth()/3, y + messageBox.getHeight() - 20, noButton.getWidth(), noButton.getHeight());
-		noRec.setBounds(x + (messageBox.getWidth()/3) * 2, y + messageBox.getHeight() - 20, noButton.getWidth(), noButton.getHeight());
+		yesRec = new Rectangle(x + messageBox.getWidth()/3, y + messageBox.getHeight() - 20, noButton.getWidth(), noButton.getHeight());
+		noRec = new Rectangle(x + (messageBox.getWidth()/3) * 2, y + messageBox.getHeight() - 20, noButton.getWidth(), noButton.getHeight());
 		g.drawString(message, x + 20, y + 20);
 	}
 
