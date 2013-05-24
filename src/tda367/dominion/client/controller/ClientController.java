@@ -78,13 +78,11 @@ public class ClientController {
 			}
 			
 			if (object instanceof PlayerUpdateMessage) {
-				System.out.println("Update Stats");
 				PlayerUpdateMessage o = (PlayerUpdateMessage) object;
 				view.updatePlayer(o.getActions(), o.getBuys(), o.getMoney());
 			}
 
 			if (object instanceof CardUpdateMessage) {
-				System.out.println("Update Cards");
 				CardUpdateMessage o = (CardUpdateMessage) object;
 				view.updateCards(o.getHand(), o.getInPlay(), o.getDiscard(),
 						o.getDeckSize());
@@ -169,7 +167,6 @@ public class ClientController {
 	// Will be activated every time a card is chosen
 	class CardListener implements GameListener {
 		public void run(GameEvent e) {
-			System.out.println("Play " + e.getText());
 			model.playCard(e.getText());
 		}
 	}
