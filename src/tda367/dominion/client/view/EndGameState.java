@@ -25,7 +25,12 @@ import tda367.dominion.server.game.Player;
  * players name, one showing its score and one showing its overall 
  * placement. Each one of those are paired by its index, so player 
  * whose name is index 0 has his score and placement saved in index 0
- * as well.
+ * as well.</p>
+ * 
+ * <p>Please note that this state is virtually useless without <code>
+ * initData(LinkedList{String}, LinkedList{Integer})</code> being 
+ * called as this is the method that sets the data this class
+ * will be working with.</p>
  * 
  * @author Group 28
  *
@@ -86,7 +91,7 @@ public class EndGameState extends BasicGameState {
 	 * @param names the names of the players who participated in a game
 	 * @param scores the scores the players achieved in the game
 	 */
-	public void setData(LinkedList<String> names, LinkedList<Integer> scores){
+	public void initData(LinkedList<String> names, LinkedList<Integer> scores){
 			this.names = names;
 			this.scores = scores;
 			places = setPlacings(scores);
