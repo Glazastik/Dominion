@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 
 import tda367.dominion.commons.messages.CreateBoolMessage;
+import tda367.dominion.commons.messages.EndMessage;
 import tda367.dominion.commons.messages.Message;
 import tda367.dominion.commons.messages.SetupMessage;
 import tda367.dominion.commons.messages.SupplyMessage;
@@ -80,6 +81,65 @@ public class Dominion {
 			notifyPhase();
 
 		}
+	}
+	
+	public void gameOver() {
+		EndMessage msg = new EndMessage();
+		
+		LinkedList<String> names = new LinkedList<String>();
+		
+		for(Player p : players) {
+			names.add(p.getName());
+		}
+		
+		msg.setNames(names);
+		msg.setScores(calculateScore());
+		sendToAll(msg);
+	}
+	
+	/**
+	 * Calculates the score of the provided player.
+	 * 
+	 * @param player
+	 *            the player whose score is to be calculated
+	 * @return an int of calculated score
+	 */
+	private LinkedList<Integer> calculateScore() {
+		LinkedList<Integer> scores = new LinkedList<Integer>();
+		LinkedList<Player> players = getPlayers();
+
+		for (Player p : players) {
+			p.cleanUp();
+			p.discardDeck();
+			p.discardHand();
+			scores.add(calculateScoreFromDeck(p.getDiscardPile().getCards()));
+		}
+		return scores;
+	}
+
+	/**
+	 * Calculates the score for an individual player.
+	 * 
+	 * @param cards
+	 *            the cards that the player has
+	 * @return the players score
+	 */
+	private int calculateScoreFromDeck(LinkedList<String> cards) {
+		int score = 0;
+
+		for (String card : cards) {
+			if (card.equals("Estate")) {
+				score += 1;
+			} else if (card.equals("Duchy")) {
+				score += 3;
+			} else if (card.equals("Province")) {
+				score += 6;
+			} else if (card.equals("Gardens")) {
+				score += 1 * ((int) cards.size() % 10);
+			}
+		}
+
+		return score;
 	}
 
 	private void notifyPhase() {

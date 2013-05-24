@@ -117,7 +117,8 @@ public class GameRoom {
 			if (cih.isActionCard(card) && phase == Phase.ACTION) {
 				if (game.getActivePlayer().getActions() > 0) {
 					cardRulesHandler.playCard(game.getActivePlayer(), card);
-					game.sendLogToAll(game.getActivePlayer().getName() + " played " + card);
+					game.sendLogToAll(game.getActivePlayer().getName()
+							+ " played " + card);
 					if (game.getActivePlayer().getActions() == 0
 							&& !cardRulesHandler.isCardActive()) {
 						game.done(gc);
@@ -143,6 +144,10 @@ public class GameRoom {
 			if (game.getActivePlayer().getBuys() == 0) {
 				game.done(gc);
 			}
+		}
+		
+		if(game.getSupply().gameIsOver()) {
+			
 		}
 	}
 
