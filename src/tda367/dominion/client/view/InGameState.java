@@ -110,8 +110,8 @@ public class InGameState extends ControlledGameState {
 	private GameListener playAllListener;
 	private GameListener doneListener;
 	private GameListener boolListener;
-	
-	//Message box variables
+
+	// Message box variables
 	private boolean paintYesNo = false;
 	private String messageText;
 
@@ -165,9 +165,9 @@ public class InGameState extends ControlledGameState {
 				.getCardList().toArray(new String[0])));
 		actionCardsAll = StringArraytoImageArray(cih.getActionCards().toArray(
 				new String[0]));
-//		for (String s : cih.getActionCards().toArray(new String[0])) {
-//			System.out.println(s);
-//		}
+		// for (String s : cih.getActionCards().toArray(new String[0])) {
+		// System.out.println(s);
+		// }
 	}
 
 	/**
@@ -245,7 +245,7 @@ public class InGameState extends ControlledGameState {
 		if (playedCards != null) {
 			paintPlayedCards(playedCards);
 		}
-		
+
 		if (paintYesNo) {
 			paintYesNoMessageBox(messageText, g);
 		}
@@ -306,11 +306,11 @@ public class InGameState extends ControlledGameState {
 	public void addAdvanceListener(GameListener l) {
 		advanceListener = l;
 	}
-	
+
 	public void addDoneListener(GameListener l) {
 		doneListener = l;
 	}
-	
+
 	public void addBoolListener(GameListener l) {
 		boolListener = l;
 	}
@@ -333,12 +333,12 @@ public class InGameState extends ControlledGameState {
 		GameEvent e = new GameEvent();
 		advanceListener.run(e);
 	}
-	
+
 	private void doneCard() {
 		GameEvent e = new GameEvent();
 		doneListener.run(e);
 	}
-	
+
 	private void sendBool(boolean b) {
 		GameEvent e = new GameEvent(b);
 		boolListener.run(e);
@@ -484,7 +484,7 @@ public class InGameState extends ControlledGameState {
 	public void addLogMessage(String str) {
 		logText.addFirst(str);
 	}
-	
+
 	public void activateYesNoBox(String s) {
 		paintYesNo = true;
 		messageText = s;
@@ -520,42 +520,53 @@ public class InGameState extends ControlledGameState {
 		// Menu button listener
 		if (button == Input.MOUSE_LEFT_BUTTON && menuRec.contains(x, y)) {
 			System.out.println("Menu button");
+			return;
 		}
 
 		// Chat button listener
 		if (button == Input.MOUSE_LEFT_BUTTON && chatRec.contains(x, y)) {
 			System.out.println("Chat Button");
+			return;
 		}
 
 		// Log button listener
 		if (button == Input.MOUSE_LEFT_BUTTON && logRec.contains(x, y)) {
 			System.out.println("Log Button");
 			logDisplay = !logDisplay;
+			return;
 		}
 
 		// Next/End button listener
 		if (button == Input.MOUSE_LEFT_BUTTON && nextRec.contains(x, y)) {
 			this.advance();
+			return;
 		}
 
 		// play all treasures button listener
 		if (button == Input.MOUSE_LEFT_BUTTON && playAllRec.contains(x, y)) {
 			System.out.println("Play all treasures");
 			this.playAll();
+			return;
 		}
-		
+
 		// done Button listener
 		if (button == Input.MOUSE_LEFT_BUTTON && doneRec.contains(x, y)) {
 			this.doneCard();
+			return;
 		}
-		
-		// yes/no Button listener 
-		if (button == Input.MOUSE_LEFT_BUTTON && yesRec.contains(x, y)) {
-			this.sendBool(true);
-			paintYesNo = false;
-		} else if (button == Input.MOUSE_LEFT_BUTTON && noRec.contains(x, y)) {
-			this.sendBool(false);
-			paintYesNo = false;
+
+		// yes/no Button listener
+		if (yesRec != null) {
+			if (button == Input.MOUSE_LEFT_BUTTON && yesRec.contains(x, y)) {
+				this.sendBool(true);
+				paintYesNo = false;
+				return;
+			} else if (button == Input.MOUSE_LEFT_BUTTON
+					&& noRec.contains(x, y)) {
+				this.sendBool(false);
+				paintYesNo = false;
+				return;
+			}
 		}
 	}
 
@@ -1048,7 +1059,7 @@ public class InGameState extends ControlledGameState {
 	 */
 	private void paintPlayerHand() throws SlickException {
 		cih = CardInfoHandler.getInstance();
-		
+
 		if (updateHand) {
 			handCards = new Image[hand.size()];
 			for (int i = 0; i < hand.size(); i++) {
@@ -1117,8 +1128,9 @@ public class InGameState extends ControlledGameState {
 				buttonWidth, buttonHeight);
 		nextRec = new Rectangle(gameContainerWidth - 2 * xOffset,
 				gameContainerHeight - (yOffset + buttonSpacing + 50), 100, 100);
-		doneRec = new Rectangle(gameContainerWidth - 2 * xOffset, gameContainerHeight
-				- (yOffset + buttonSpacing + 155), doneButton.getWidth(), doneButton.getHeight());
+		doneRec = new Rectangle(gameContainerWidth - 2 * xOffset,
+				gameContainerHeight - (yOffset + buttonSpacing + 155),
+				doneButton.getWidth(), doneButton.getHeight());
 		playAllRec = new Rectangle(gameContainerWidth - xOffset,
 				gameContainerHeight - (4 * yOffset + buttonSpacing),
 				buttonWidth, buttonHeight);
@@ -1224,13 +1236,21 @@ public class InGameState extends ControlledGameState {
 	 * @param g
 	 */
 	private void paintYesNoMessageBox(String message, Graphics g) {
-		int x = gameContainerWidth/2 - messageBox.getWidth()/2;
-		int y = gameContainerHeight/2 - messageBox.getHeight()/2;
+		int x = gameContainerWidth / 2 - messageBox.getWidth() / 2;
+		int y = gameContainerHeight / 2 - messageBox.getHeight() / 2;
 		messageBox.draw(x, y, messageBox.getWidth(), messageBox.getHeight());
-		yesButton.draw(x + messageBox.getWidth()/3, y+ messageBox.getHeight() - 20, yesButton.getWidth(), yesButton.getHeight());
-		noButton.draw(x + (messageBox.getWidth()/3) * 2, y + messageBox.getHeight() - 20, noButton.getWidth(), noButton.getHeight());
-		yesRec = new Rectangle(x + messageBox.getWidth()/3, y + messageBox.getHeight() - 20, noButton.getWidth(), noButton.getHeight());
-		noRec = new Rectangle(x + (messageBox.getWidth()/3) * 2, y + messageBox.getHeight() - 20, noButton.getWidth(), noButton.getHeight());
+		yesButton.draw(x + messageBox.getWidth() / 3,
+				y + messageBox.getHeight() - 20, yesButton.getWidth(),
+				yesButton.getHeight());
+		noButton.draw(x + (messageBox.getWidth() / 3) * 2,
+				y + messageBox.getHeight() - 20, noButton.getWidth(),
+				noButton.getHeight());
+		yesRec = new Rectangle(x + messageBox.getWidth() / 3, y
+				+ messageBox.getHeight() - 20, noButton.getWidth(),
+				noButton.getHeight());
+		noRec = new Rectangle(x + (messageBox.getWidth() / 3) * 2, y
+				+ messageBox.getHeight() - 20, noButton.getWidth(),
+				noButton.getHeight());
 		g.drawString(message, x + 20, y + 20);
 	}
 
@@ -1270,16 +1290,18 @@ public class InGameState extends ControlledGameState {
 				g.fillOval(xOffset + cardWidth * (i) + (i * cardSpacing)
 						- orbOffset, yOffset - orbOffset, 24, 24);
 				g.setColor(Color.white);
-				g.drawString("" + supply.get(splitString(actionCards[i])), xOffset + cardWidth * (i)
-						+ (i * cardSpacing), yOffset);
+				g.drawString("" + supply.get(splitString(actionCards[i])),
+						xOffset + cardWidth * (i) + (i * cardSpacing), yOffset);
 			} else {
 				g.setColor(Color.black);
 				g.fillOval(xOffset + cardWidth * (i - 5)
 						+ ((i - 5) * cardSpacing) - orbOffset, cardHeight + 2
 						* yOffset - orbOffset, 24, 24);
 				g.setColor(Color.white);
-				g.drawString("" + supply.get(splitString(actionCards[i])), xOffset + cardWidth * (i - 5)
-						+ ((i - 5) * cardSpacing), cardHeight + 2 * yOffset);
+				g.drawString(
+						"" + supply.get(splitString(actionCards[i])),
+						xOffset + cardWidth * (i - 5) + ((i - 5) * cardSpacing),
+						cardHeight + 2 * yOffset);
 			}
 		}
 	}
@@ -1432,7 +1454,7 @@ public class InGameState extends ControlledGameState {
 	 */
 	public void setSupply(HashMap<String, Integer> supply) {
 		this.supply = supply;
-		
+
 		moveSupplyImages();
 		this.updateNbrOfCards();
 	}
