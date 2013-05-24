@@ -73,7 +73,8 @@ public class EndGameState extends BasicGameState {
 	/**
 	 * Initiates the data for this class.
 	 * 
-	 * @param players the players who have participated in a game
+	 * @param names the names of the players who participated in a game
+	 * @param scores the scores the players achieved in the game
 	 */
 	public void setData(LinkedList<String> names, LinkedList<Integer> scores){
 			this.names = names;
