@@ -4,6 +4,7 @@ import java.util.LinkedList;
 
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
+import org.newdawn.slick.Image;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -84,8 +85,15 @@ public class EndGameState extends BasicGameState {
 	/**
 	 * Paints the scores of the players provided
 	 */
-	private void paintScores(Graphics g, GameContainer gc){
-
+	private void paintScores(Graphics g, GameContainer gc) throws SlickException{
+		int yOffset = 100;
+		int xOffset = gc.getWidth()/2;
+		Image crown;
+		
+		for(int i = 0; i < scores.size(); i++){
+			crown = new Image("res/img/gui/end/crown_" + i);
+			crown.draw(xOffset, yOffset*i, 75, 75);
+		}
 	}
 
 }
