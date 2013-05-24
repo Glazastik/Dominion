@@ -37,8 +37,7 @@ public class Spy extends ChoiceCard {
 			orderedPlayers.add(players.get(i));
 		}
 		player.reveal(player.revealTopOfDeck());
-		player.sendTip("Discard this from top of " + player.getName() + "'s deck?");
-		dominion.
+		dominion.activateYesNoBox("Discard this from top of your deck?");
 		
 		for(Player p: orderedPlayers){
 			if(p.getHand().contains("Moat") && player != p){
@@ -60,7 +59,7 @@ public class Spy extends ChoiceCard {
 					//NÄSTA TARGET
 				} else if (!moatStatus.get(currentTarget)) {
 					p.reveal(currentTarget.revealTopOfDeck());
-					p.sendTip("Discard this from top of " + currentTarget.getName() + "'s deck?");
+					dominion.activateYesNoBox("Discard this from top of " + p.getName() + "'s deck?");
 					break;
 				} else if (!i.hasNext()){
 					state = State.NONACTIVE;
