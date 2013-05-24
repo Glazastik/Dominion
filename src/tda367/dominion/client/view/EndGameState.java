@@ -1,5 +1,6 @@
 package tda367.dominion.client.view;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 
@@ -13,12 +14,16 @@ import tda367.dominion.server.game.Player;
 
 public class EndGameState extends BasicGameState {
 
-	private HashMap<String, Integer> scores;
+	private LinkedList<String> names;
+	private LinkedList<Integer> scores;
+	private LinkedList<Integer> places;
 	
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
-		scores = new HashMap<String, Integer>();
+		names = new LinkedList<String>();
+		scores = new LinkedList<Integer>();
+		places = new LinkedList<Integer>();
 	}
 
 	@Override
@@ -38,10 +43,28 @@ public class EndGameState extends BasicGameState {
 		return 0;
 	}
 	
-	public void noName(LinkedList<Player> players){
+	public void setData(LinkedList<Player> players){
 		for(Player p: players){
-			scores.put(p.getName(), calculateScore(p));
+			names.add(p.getName());
+			scores.add(calculateScore(p));
+			places = setPlacings(scores);
 		}
+	}
+	
+	private LinkedList<Integer> setPlacings(){
+		LinkedList<Integer> scoresClone = (LinkedList<Integer>) scores.clone();
+		Collections.sort(scoresClone);
+		LinkedList<Integer> placings = new LinkedList<Integer>();
+		
+		for(int i = 0; i < scores.size(); i++){
+			for(int j = 0; j < scoresClone.size(); j++){
+				if(scores.get(i) == scoresClone.get(j)){
+					placings.add(i, j);
+				}
+			}
+		}
+		
+		return placings;
 	}
 	
 	/**
@@ -88,7 +111,7 @@ public class EndGameState extends BasicGameState {
 		int xOffset = gc.getWidth()/2;
 		Image crown;
 		
-		for(int i = 0; i < scores.size(); i++){
+		for(int i = 0; i < null.size(); i++){
 			crown = new Image("res/img/gui/end/crown_" + i);
 			crown.draw(xOffset, yOffset*i, 75, 75);
 		}
