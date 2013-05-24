@@ -118,5 +118,12 @@ public class EndGameState extends BasicGameState {
 			g.drawString("" + scores.get(i), xOffset + 150, yOffset*i);
 		}
 	}
+	
+	/**
+	 * Paints the button that lets you leave this state.
+	 */
+	private void paintContinue(){
+		
+	}
 
 }
