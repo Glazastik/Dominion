@@ -6,18 +6,21 @@ import java.util.LinkedList;
 
 import tda367.dominion.commons.messages.BoolMessage;
 import tda367.dominion.commons.messages.Message;
+import tda367.dominion.server.game.Dominion;
 import tda367.dominion.server.game.Player;
 
 public class Spy extends ChoiceCard {
+	private Dominion dominion;
 	private LinkedList<Player> players;
 	private HashMap<Player,Boolean> moatStatus;
 	private Player activePlayer;
 	private LinkedList<Player> orderedPlayers;
 	private Player currentTarget;
 	Iterator<Player> i;
-	public Spy(LinkedList<Player> players){
+	public Spy(Dominion dom){
+		this.dominion = dom;
 		state = State.NONACTIVE;
-		this.players = players;
+		this.players = dominion.getPlayers();
 		moatStatus = new HashMap<Player,Boolean>();
 		for (Player p : players){
 			moatStatus.put(p, false);
@@ -33,9 +36,9 @@ public class Spy extends ChoiceCard {
 		for (int i = 0 ; i < startingPos ; i++){
 			orderedPlayers.add(players.get(i));
 		}
-		player.s
-		//player.sendRevealedMessage(player.revealTopOfDeck());
+		player.reveal(player.revealTopOfDeck());
 		player.sendTip("Discard this from top of " + player.getName() + "'s deck?");
+		dominion.
 		
 		for(Player p: orderedPlayers){
 			if(p.getHand().contains("Moat") && player != p){
@@ -56,6 +59,7 @@ public class Spy extends ChoiceCard {
 				if(moatStatus.get(currentTarget) && i.hasNext()){
 					//NÄSTA TARGET
 				} else if (!moatStatus.get(currentTarget)) {
+					p.reveal(currentTarget.revealTopOfDeck());
 					p.sendTip("Discard this from top of " + currentTarget.getName() + "'s deck?");
 					break;
 				} else if (!i.hasNext()){
