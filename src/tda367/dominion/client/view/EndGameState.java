@@ -29,7 +29,7 @@ public class EndGameState extends BasicGameState {
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
-
+		paintScores(g, gc);
 	}
 
 	@Override
