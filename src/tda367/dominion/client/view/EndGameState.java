@@ -9,6 +9,7 @@ import org.lwjgl.util.Rectangle;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -58,16 +59,17 @@ public class EndGameState extends BasicGameState {
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
 		background.draw();
-		paintContinue(gc);
 		paintScores(g, gc);
+		paintContinue(gc);
 	}
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 			throws SlickException {
+		Input input = gc.getInput();
 		int xPos = Mouse.getX();
 		int yPos = gc.getHeight() - Mouse.getY();
-		if(backToLobbyRec.contains(xPos, yPos)){
+		if(input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON) && backToLobbyRec.contains(xPos, yPos)){
 			sbg.enterState(Settings.SERVERLISTSTATE);
 		}
 	}
@@ -167,9 +169,9 @@ public class EndGameState extends BasicGameState {
 	 * Paints the button that lets you leave this state.
 	 */
 	private void paintContinue(GameContainer gc){
-		int xOffset = (gc.getHeight() - backToLobby.getHeight())/2;
-		int yOffset = gc.getWidth() - 25;
-		backToLobbyRec.setSize(gc.getWidth(), gc.getHeight());
+		int yOffset = (gc.getHeight() - backToLobby.getHeight())/2;
+		int xOffset = gc.getWidth() - backToLobby.getWidth() - 25;
+		backToLobbyRec.setSize(backToLobby.getWidth(), backToLobby.getHeight());
 		backToLobbyRec.setLocation(xOffset, yOffset);
 		backToLobby.draw(xOffset, yOffset);
 	}
