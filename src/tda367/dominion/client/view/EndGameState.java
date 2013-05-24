@@ -12,6 +12,19 @@ import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 import tda367.dominion.server.game.Player;
 
+/**
+ * A class that is used to display scores and placings of players
+ * who have participated in a game.
+ * 
+ * <p>The data is structured using three lists; one showing the 
+ * players name, one showing its score and one showing its overall 
+ * placement. Each one of those are paired by its index, so player 
+ * whose name is index 0 has his score and placement saved in index 0
+ * as well.
+ * 
+ * @author Group 28
+ *
+ */
 public class EndGameState extends BasicGameState {
 
 	private LinkedList<String> names;
@@ -43,6 +56,11 @@ public class EndGameState extends BasicGameState {
 		return 0;
 	}
 	
+	/**
+	 * Initiates the data for this class.
+	 * 
+	 * @param players the players who have participated in a game
+	 */
 	public void setData(LinkedList<Player> players){
 		for(Player p: players){
 			names.add(p.getName());
@@ -51,6 +69,12 @@ public class EndGameState extends BasicGameState {
 		}
 	}
 	
+	/**
+	 * Calculates what place the different players have gotten.
+	 * 
+	 * @param scoresToBeRanked the scores of the players
+	 * @return a LinkedList containing the placings
+	 */
 	private LinkedList<Integer> setPlacings(LinkedList<Integer> scoresToBeRanked){
 		LinkedList<Integer> scoresClone = (LinkedList<Integer>) scoresToBeRanked.clone();
 		Collections.sort(scoresClone);
