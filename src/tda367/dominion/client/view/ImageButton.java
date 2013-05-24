@@ -25,6 +25,12 @@ public class ImageButton extends Image {
 		}
 	}
 	
+	public void contains(int x, int y, boolean b) {
+		if (rec.contains(x, y)) {
+			listener.run(new GameEvent(b));
+		}
+	}
+	
 	public boolean boolContains(int x, int y) {
 		return rec.contains(x, y);
 	}
