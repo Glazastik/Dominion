@@ -167,6 +167,12 @@ public class Dominion {
 		}
 	}
 	
+	public void sendLogToAll(String text){
+		for (Player p : players) {
+			p.sendLog(text);
+		}
+	}
+	
 	/**
 	 * Sends a particular message to the active player.
 	 * 
@@ -181,6 +187,8 @@ public class Dominion {
 		SupplyMessage msg = new SupplyMessage();
 		msg.setSupply(supply.getCardsInSupply());
 		this.sendToAll(msg);
+		this.sendLogToAll(this.getActivePlayer().getName() + " bought " + card);
+		
 	}
 	
 	public void playerBuyCard(Player p, String card) {

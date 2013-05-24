@@ -9,6 +9,7 @@ import org.lwjgl.util.Rectangle;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
+import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
@@ -24,7 +25,12 @@ import tda367.dominion.server.game.Player;
  * players name, one showing its score and one showing its overall 
  * placement. Each one of those are paired by its index, so player 
  * whose name is index 0 has his score and placement saved in index 0
- * as well.
+ * as well.</p>
+ * 
+ * <p>Please note that this state is virtually useless without <code>
+ * initData(LinkedList{String}, LinkedList{Integer})</code> being 
+ * called as this is the method that sets the data this class
+ * will be working with.</p>
  * 
  * @author Group 28
  *
@@ -52,22 +58,24 @@ public class EndGameState extends BasicGameState {
 		names = new LinkedList<String>();
 		scores = new LinkedList<Integer>();
 		places = new LinkedList<Integer>();
+		
 	}
 
 	@Override
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
 		background.draw();
-		paintContinue(gc);
 		paintScores(g, gc);
+		paintContinue(gc);
 	}
 
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int delta)
 			throws SlickException {
+		Input input = gc.getInput();
 		int xPos = Mouse.getX();
 		int yPos = gc.getHeight() - Mouse.getY();
-		if(backToLobbyRec.contains(xPos, yPos)){
+		if(input.isMouseButtonDown(Input.MOUSE_LEFT_BUTTON) && backToLobbyRec.contains(xPos, yPos)){
 			sbg.enterState(Settings.SERVERLISTSTATE);
 		}
 	}
@@ -83,7 +91,7 @@ public class EndGameState extends BasicGameState {
 	 * @param names the names of the players who participated in a game
 	 * @param scores the scores the players achieved in the game
 	 */
-	public void setData(LinkedList<String> names, LinkedList<Integer> scores){
+	public void initData(LinkedList<String> names, LinkedList<Integer> scores){
 			this.names = names;
 			this.scores = scores;
 			places = setPlacings(scores);
@@ -151,15 +159,16 @@ public class EndGameState extends BasicGameState {
 	 * Paints the scores of the players provided
 	 */
 	private void paintScores(Graphics g, GameContainer gc) throws SlickException{
-		int yOffset = 100;
-		int xOffset = 25;
+		int yOffset = (gc.getHeight() - backToLobby.getHeight())/2;
+		int xOffset = 50;
+		int spacing = 100;
 		Image crown;
 		
 		for(int i = 0; i < names.size(); i++){
 			crown = new Image("res/img/gui/end/crown_" + places.get(i) + ".png");
-			crown.draw(xOffset, yOffset*i, 75, 75);
-			g.drawString(names.get(i), xOffset + 100, yOffset*i);
-			g.drawString("" + scores.get(i), xOffset + 150, yOffset*i);
+			crown.draw(xOffset, yOffset + (spacing*i), 75, 75);
+			g.drawString(names.get(i), xOffset + 100, yOffset + (spacing*i) + 75/2);
+			g.drawString("" + scores.get(i), xOffset + 200, yOffset + (spacing*i) + 75/2);
 		}
 	}
 	
@@ -167,9 +176,9 @@ public class EndGameState extends BasicGameState {
 	 * Paints the button that lets you leave this state.
 	 */
 	private void paintContinue(GameContainer gc){
-		int xOffset = (gc.getHeight() - backToLobby.getHeight())/2;
-		int yOffset = gc.getWidth() - 25;
-		backToLobbyRec.setSize(gc.getWidth(), gc.getHeight());
+		int yOffset = (gc.getHeight() - backToLobby.getHeight())/2;
+		int xOffset = gc.getWidth() - backToLobby.getWidth() - 25;
+		backToLobbyRec.setSize(backToLobby.getWidth(), backToLobby.getHeight());
 		backToLobbyRec.setLocation(xOffset, yOffset);
 		backToLobby.draw(xOffset, yOffset);
 	}

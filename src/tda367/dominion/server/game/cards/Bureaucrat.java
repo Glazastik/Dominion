@@ -1,76 +1,66 @@
 package tda367.dominion.server.game.cards;
 
+import java.util.HashMap;
 import java.util.LinkedList;
 
+import tda367.dominion.commons.messages.CardMessage;
 import tda367.dominion.commons.messages.InstructionMessage;
 import tda367.dominion.commons.messages.InstructionMessageFactory;
+import tda367.dominion.commons.messages.Message;
 import tda367.dominion.server.game.CardInfoHandler;
+import tda367.dominion.server.game.Dominion;
 import tda367.dominion.server.game.GainingHandler;
 import tda367.dominion.server.game.Pile;
 import tda367.dominion.server.game.Player;
 import tda367.dominion.server.game.Supply;
 import tda367.dominion.server.main.GameRoom;
 
-public class Bureaucrat {
-	public static void play(Player player, LinkedList<Player> players, Supply supply){
-		GainingHandler gH = new GainingHandler(supply);
-		CardInfoHandler cif = CardInfoHandler.getInstance();
-		boolean hasVictoryCard = false;
+public class Bureaucrat extends ChoiceCard {
+	private Dominion dominion;
+	private GainingHandler gH;
+	private LinkedList<Player> inactivePlayers;
+	private HashMap<Player,Boolean> notAffected;
+	private CardInfoHandler cih;
+	public Bureaucrat(Dominion dom){
+		state = State.NONACTIVE;
+		this.dominion = dom;
+		this.gH = new GainingHandler(dominion.getSupply());
+		cih = CardInfoHandler.getInstance();
+	}
+	public void play(Player player){
+		state = State.ACTIVE;
+		this.inactivePlayers = dominion.getInactivePlayers();
+		
 		if(gH.isCardGainable("Silver")){
-			player.putOnTopOfDeck(supply.take("Silver"));
+			player.putOnTopOfDeck(dominion.getSupply().take("Silver"));
 		}
-		for(Player p : players){
-			hasVictoryCard = false;
-			if(p!=player){
-				Pile hand = p.getHand();
-				for(String card : hand.getCards()){
-					if(cif.getCardType(card).equals("Victory")){
-						hasVictoryCard = true;
-					}
-				}
-				if(hasVictoryCard && !p.getHand().contains("Moat")){
-					Bureaucrat(player, p);
-				} else if(hasVictoryCard && p.getHand().contains("Moat")){
-					/**
-					 * p.sendInformationMessage("Do you wish to reveal Moat?");
-					 * p.createBoolMessage();
-					 * boolean done = false;
-					 * while(!done){
-					 * 	Message message = p.getNextMessage();
-					 * 	if(message instanceOf BoolMessage){
-					 * 		done = true;
-					 * 		BoolMessage boolMessage = (BoolMessage) message;
-					 * 		if(!boolMessage.isTrue()){
-					 * 			Bureaucrat(player,p);
-					 * 		}
-					 * 	}
-					 * }
-					 * p.removeInformationMessage();
-					 * p.removeBoolMessage(); 
-					 */
-				} else {
-					//player.sendMultipleCardMessage(p.getHand().getCards());
-					//wait(1000);
-					//player.removeMultipleCardMessage();
+		for (Player p : dominion.getPlayers()){
+			notAffected.put(p,(p.hasCardInHand("Moat")||p==player));
+		}
+		
+		for (Player p : inactivePlayers){
+			if(!notAffected.get(p)){
+				if(p.hasCardInHand("Estate") || p.hasCardInHand("Duchy") || p.hasCardInHand("Province") || p.hasCardInHand("Gardens")){
+					p.sendTip("Choose a victory card to put on top of deck");
 				}
 			}
 		}	
+		if(!notAffected.containsValue(false)){
+			state = State.NONACTIVE;
+		}
 	}
-	private static void Bureaucrat(Player player, Player p){
-		CardInfoHandler cif = CardInfoHandler.getInstance();
-				boolean done = false;
-				InstructionMessage temp = InstructionMessageFactory.CreateInstructionMessage("Chose a victory card to put on top of your deck.");
-				p.send(temp);
-				while(!done){ 
-					//Message message = p.getNextMessage();
-					//if(message instanceOf LocatedCardMessage){
-						//LocatedCardMessage tempMessage = (LocatedCardMessage) message;
-						//if(tempMessage.getLocation().equals("Hand") && cif.getCardType(tempMessage.getCardName().equals("Victory"))){
-							//p.putOnTopOfDeck(p.getHand().pop(tempMessage.getCardName());)
-							//done = true;
-						//}
-					//}
+	@Override
+	public void input(Message msg, Player p) {
+		if(msg instanceof CardMessage){
+			if(!notAffected.get(p)){
+				if(cih.isVictoryCard(((CardMessage)msg).getCard()) && p.hasCardInHand(((CardMessage)msg).getCard())){
+					p.putOnTopOfDeck(p.getHand().pop(((CardMessage)msg).getCard()));
+					notAffected.put(p, true);
 				}
-				//p.removeInformationMessage();
+			}
+		}
+		if(!notAffected.containsValue(false)){
+			state = State.NONACTIVE;
+		}
 	}
 }
