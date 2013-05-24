@@ -4,6 +4,7 @@ import java.util.Collections;
 import java.util.HashMap;
 import java.util.LinkedList;
 
+import org.lwjgl.util.Rectangle;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -28,6 +29,7 @@ import tda367.dominion.server.game.Player;
 public class EndGameState extends BasicGameState {
 
 	int id;
+	private Rectangle backToLobbyRec;
 	private Image backToLobby;
 	private Image background;
 	private LinkedList<String> names;
@@ -42,6 +44,7 @@ public class EndGameState extends BasicGameState {
 	public void init(GameContainer gc, StateBasedGame sbg)
 			throws SlickException {
 		backToLobby = new Image("res/img/gui/end/backtolobby.png");
+		backToLobbyRec = new Rectangle();
 		background = new Image("res/img/gui/menu/boardtemp.png");
 		names = new LinkedList<String>();
 		scores = new LinkedList<Integer>();
@@ -52,7 +55,7 @@ public class EndGameState extends BasicGameState {
 	public void render(GameContainer gc, StateBasedGame sbg, Graphics g)
 			throws SlickException {
 		background.draw();
-		backToLobby.draw();
+		paintContinue(gc);
 		paintScores(g, gc);
 	}
 
@@ -158,7 +161,8 @@ public class EndGameState extends BasicGameState {
 	private void paintContinue(GameContainer gc){
 		int xOffset = (gc.getHeight() - backToLobby.getHeight())/2;
 		int yOffset = gc.getWidth() - 25;
-		
+		backToLobbyRec.setSize(gc.getWidth(), gc.getHeight());
+		backToLobbyRec.setLocation(xOffset, yOffset);
 		backToLobby.draw(xOffset, yOffset);
 	}
 
