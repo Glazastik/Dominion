@@ -39,7 +39,7 @@ public class CardRulesHandler {
 			player.play(cardName);
 			switch(cardName){
 				case "Adventurer": Adventurer.play(game); break;
-//				case "Bureaucrat": Bureaucrat.play(player, players, supply); break;
+				case "Bureaucrat": activeCard = new Bureaucrat(game); activeCard.play(); break;
 				case "Cellar": activeCard = new Cellar(game); activeCard.play(); break;
 				case "Chancellor": activeCard = new Chancellor(game); activeCard.play(); break;
 				case "Chapel": activeCard = new Chapel(game); activeCard.play(); break;
@@ -49,7 +49,7 @@ public class CardRulesHandler {
 				case "Festival": Festival.play(game); break;
 				case "Gold": player.increaseMoney(3); break;
 				case "Laboratory": Laboratory.play(game); break;
-//				case "Library": Library.play(player); break;
+				case "Library": activeCard = new Library(game); activeCard.play(); break;
 				case "Market": Market.play(player); break;
 				case "Militia": activeCard = new Militia(game); activeCard.play(); break;
 				case "Mine": activeCard = new Mine(game); activeCard.play(); break;
