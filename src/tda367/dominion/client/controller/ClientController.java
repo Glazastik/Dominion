@@ -59,6 +59,16 @@ public class ClientController {
 		@Override
 		public void received(Connection connection, Object object) {
 
+			if (object instanceof RevealCardMessage) {
+				RevealCardMessage rcm = (RevealCardMessage) object;
+				view.setRevealedCard(rcm.getCard());
+			}
+			
+			if (object instanceof RevealMultipleCardMessage) {
+				RevealMultipleCardMessage rmcm = (RevealMultipleCardMessage) object;
+				view.setRevealedCards(rmcm.getCards());
+			}
+			
 			if (object instanceof RoomMessage) {
 				RoomMessage rmsg = (RoomMessage) object;
 				view.updateRoomData(rmsg.getRooms());
@@ -190,6 +200,7 @@ public class ClientController {
 	
 	class BoolListener implements GameListener {
 		public void run(GameEvent e) {
+			System.out.println("Recieved bool message in controller");
 			model.boolMessage(e.getBool());
 		}
 	}
