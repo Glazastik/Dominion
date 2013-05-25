@@ -119,7 +119,7 @@ public class Supply {
 	public boolean gameIsOver() {
 		Set<String> cardKeys = cardsInSupply.keySet();
 		Iterator i = cardKeys.iterator();
-		int pilesEmpty = 3;
+		int pilesEmpty = 0;
 		while (i.hasNext()) {
 			if (cardsInSupply.get(i.next()) == 0) {
 				pilesEmpty++;
