@@ -198,7 +198,7 @@ public class Player {
 	 */
 	public void gain(String card) {
 		discard.add(card);
-		
+		this.updateCards();
 	}
 
 	/**
