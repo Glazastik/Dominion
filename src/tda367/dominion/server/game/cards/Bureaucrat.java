@@ -18,6 +18,7 @@ public class Bureaucrat extends ChoiceCard {
 	
 	
 	public Bureaucrat(Dominion dom){
+		notAffected = new HashMap<Player,Boolean>();
 		state = State.NONACTIVE;
 		this.game = dom;
 		this.gH = new GainingHandler(game.getSupply());
