@@ -6,6 +6,8 @@ import java.util.LinkedList;
 import tda367.dominion.commons.messages.CreateBoolMessage;
 import tda367.dominion.commons.messages.EndMessage;
 import tda367.dominion.commons.messages.Message;
+import tda367.dominion.commons.messages.RevealCardMessage;
+import tda367.dominion.commons.messages.RevealMultipleCardMessage;
 import tda367.dominion.commons.messages.SetupMessage;
 import tda367.dominion.commons.messages.SupplyMessage;
 import tda367.dominion.commons.messages.TurnMessage;
@@ -161,10 +163,47 @@ public class Dominion {
 		this.sendToAll(msg);
 	}
 
+	/**
+	 * Sends a message that activates a yesNoBox in the view.
+	 * 
+	 * @param s
+	 */
 	public void activateYesNoBox(String s) {
 		CreateBoolMessage cbm = new CreateBoolMessage();
 		cbm.setText(s);
 		sendToActive(cbm);
+	}
+
+	/**
+	 * Sends a revealMultipleCardsMessage to everyone except the active player.
+	 * 
+	 * @param cards
+	 */
+	public void revealMultipleCards(String[] cards) {
+		LinkedList<String> cardsLinked = new LinkedList<String>();
+		for (String s : cards) {
+			cardsLinked.add(s);
+		}
+		RevealMultipleCardMessage rmcm = new RevealMultipleCardMessage();
+		rmcm.setCards(cards);
+		for (Player p : getInactivePlayers()) {
+			p.reveal(cardsLinked);
+		}
+		sendToAll(rmcm);
+	}
+
+	/**
+	 * Sends a revealCardMessage to everyone except the active player.
+	 * 
+	 * @param cards
+	 */
+	public void revealCard(String card) {
+		RevealCardMessage rcm = new RevealCardMessage();
+		rcm.setCard(card);
+		for (Player p : getInactivePlayers()) {
+			p.reveal(card);
+		}
+		sendToAll(rcm);
 	}
 
 	public void updateSupply() {
@@ -228,6 +267,23 @@ public class Dominion {
 		}
 	}
 
+	/**
+	 * Sends a particular message to all connected players.
+	 * 
+	 * @param msg
+	 */
+	private void sendToInactive(Message msg) {
+		LinkedList<Player> inactive = getInactivePlayers();
+		for (Player p : inactive) {
+			network.sendMessage(p.getID(), msg);
+		}
+	}
+
+	/**
+	 * TODO: ADD DESCRIPTION
+	 * 
+	 * @param text
+	 */
 	public void sendLogToAll(String text) {
 		for (Player p : players) {
 			p.sendLog(text);
