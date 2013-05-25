@@ -68,7 +68,6 @@ public class GameRoom {
 
 		} else if (object instanceof BoolMessage) {
 			if (cardRulesHandler.isCardActive()) {
-				System.out.println("Recived boolMessage in GameRoom");
 				BoolMessage message = ((BoolMessage) object);
 				cardRulesHandler.activeCard.input(message,
 						game.getActivePlayer());

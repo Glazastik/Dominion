@@ -29,7 +29,6 @@ public class Chancellor extends ChoiceCard {
 	@Override
 	public void input(Message msg, Player p) {
 		if (msg instanceof BoolMessage) {
-			System.out.println("Recieved boolmessage in chancellor");
 			if (((BoolMessage) msg).isTrue()) {
 				p.discardDeck();
 			}

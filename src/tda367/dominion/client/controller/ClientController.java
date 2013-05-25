@@ -206,7 +206,6 @@ public class ClientController {
 	
 	class BoolListener implements GameListener {
 		public void run(GameEvent e) {
-			System.out.println("Recieved bool message in controller");
 			model.boolMessage(e.getBool());
 		}
 	}

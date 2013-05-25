@@ -572,11 +572,11 @@ public class InGameState extends ControlledGameState {
 		// yes/no Button listener
 		if (button == Input.MOUSE_LEFT_BUTTON && yesButton.boolContains(x, y)) {
 			yesButton.contains(x, y, true);
-//			paintYesNo = false;
+			paintYesNo = false;
 			return;
 		} else if (button == Input.MOUSE_LEFT_BUTTON) {
 			noButton.contains(x, y, false);
-//			paintYesNo = false;
+			paintYesNo = false;
 			return;
 		}
 	}
@@ -1231,12 +1231,8 @@ public class InGameState extends ControlledGameState {
 		int x = gameContainerWidth / 2 - messageBox.getWidth() / 2;
 		int y = gameContainerHeight / 2 - messageBox.getHeight() / 2;
 		messageBox.draw(x, y, messageBox.getWidth(), messageBox.getHeight());
-		yesButton.draw(x + messageBox.getWidth() / 3,
-				y + messageBox.getHeight() - 20, yesButton.getWidth(),
-				yesButton.getHeight());
-		noButton.draw(x + (messageBox.getWidth() / 3) * 2,
-				y + messageBox.getHeight() - 20, noButton.getWidth(),
-				noButton.getHeight());
+		yesButton.draw(x + 10, y + 90);
+		noButton.draw(x + 125, y + 90);
 		g.drawString(message, x + 20, y + 20);
 	}
 
