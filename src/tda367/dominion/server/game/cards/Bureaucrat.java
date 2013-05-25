@@ -4,38 +4,34 @@ import java.util.HashMap;
 import java.util.LinkedList;
 
 import tda367.dominion.commons.messages.CardMessage;
-import tda367.dominion.commons.messages.InstructionMessage;
-import tda367.dominion.commons.messages.InstructionMessageFactory;
 import tda367.dominion.commons.messages.Message;
 import tda367.dominion.server.game.CardInfoHandler;
 import tda367.dominion.server.game.Dominion;
 import tda367.dominion.server.game.GainingHandler;
-import tda367.dominion.server.game.Pile;
 import tda367.dominion.server.game.Player;
-import tda367.dominion.server.game.Supply;
-import tda367.dominion.server.main.GameRoom;
 
 public class Bureaucrat extends ChoiceCard {
-	private Dominion dominion;
 	private GainingHandler gH;
 	private LinkedList<Player> inactivePlayers;
 	private HashMap<Player,Boolean> notAffected;
 	private CardInfoHandler cih;
+	
+	
 	public Bureaucrat(Dominion dom){
 		state = State.NONACTIVE;
-		this.dominion = dom;
-		this.gH = new GainingHandler(dominion.getSupply());
+		this.game = dom;
+		this.gH = new GainingHandler(game.getSupply());
 		cih = CardInfoHandler.getInstance();
 	}
-	public void play(Player player){
+	public void play(){
 		state = State.ACTIVE;
-		this.inactivePlayers = dominion.getInactivePlayers();
+		this.inactivePlayers = game.getInactivePlayers();
 		
 		if(gH.isCardGainable("Silver")){
-			player.putOnTopOfDeck(dominion.getSupply().take("Silver"));
+			game.getActivePlayer().putOnTopOfDeck(game.getSupply().take("Silver"));
 		}
-		for (Player p : dominion.getPlayers()){
-			notAffected.put(p,(p.hasCardInHand("Moat")||p==player));
+		for (Player p : game.getPlayers()){
+			notAffected.put(p,(p.hasCardInHand("Moat")||p==game.getActivePlayer()));
 		}
 		
 		for (Player p : inactivePlayers){
@@ -56,12 +52,12 @@ public class Bureaucrat extends ChoiceCard {
 				if(cih.isVictoryCard(((CardMessage)msg).getCard()) && p.hasCardInHand(((CardMessage)msg).getCard())){
 					p.putOnTopOfDeck(p.getHand().pop(((CardMessage)msg).getCard()));
 					notAffected.put(p, true);
-					p.sendTip("Waiting for " +  dominion.getActivePlayer().getName() + " to finish their turn.");
+					p.sendTip("Waiting for " +  game.getActivePlayer().getName() + " to finish their turn.");
 				}
 			}
 		}
 		if(!notAffected.containsValue(false)){
-			dominion.getActivePlayer().sendTip("Continue");
+			game.getActivePlayer().sendTip("Continue");
 			state = State.NONACTIVE;
 		}
 	}
