@@ -6,15 +6,14 @@ import tda367.dominion.server.game.Dominion;
 import tda367.dominion.server.game.Player;
 
 public class Throneroom extends ChoiceCard {
-	
-//	private Dominion game;
-//
-//	public Throneroom() {
-//		this.game = game;
-//		state = State.NONACTIVE;
-//	}
-//	
-//	@Override
+	private Dominion dominion;
+	public Throneroom(Dominion dom){
+		dominion = dom;
+	}
+	public void play(){
+		
+	}
+	@Override
 	public void input(Message msg, Player p) {
 //		if (msg instanceof CardMessage) {
 //			String card = ((CardMessage) msg).getCard();
