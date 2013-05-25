@@ -99,7 +99,7 @@ public class InGameState extends ControlledGameState {
 	private Image cardToShow;// Temporary
 
 	// Player stats
-	private String active;
+	private String active = "";
 	private int actions;
 	private int buys;
 	private int money;
@@ -167,7 +167,7 @@ public class InGameState extends ControlledGameState {
 		playerNames = new String[amountOfPlayers];
 		cardsOnHand = new int[amountOfPlayers];
 
-		playerNames[0] = Settings.getName();
+		playerNames[0] = "Morfar";
 		playerNames[1] = "Player 2";
 		cardsOnHand[0] = 5; // Integer.parseInt(hand.get(0));
 		cardsOnHand[1] = 5; // Integer.parseInt(hand.get(1));

@@ -77,8 +77,13 @@ public class Dominion {
 
 			if (next == Phase.BUY) {
 			} else if (next == Phase.CLEANUP) {
+
 				this.getActivePlayer().cleanUp();
 				turnHandler.advance();
+
+				if (supply.gameIsOver()) {
+					this.gameOver();
+				}
 			}
 
 			notifyPhase();

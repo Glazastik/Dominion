@@ -128,6 +128,7 @@ public class MainView extends StateBasedGame implements Runnable {
 	}
 	
 	public void setupEndState(LinkedList<String> names, LinkedList<Integer> scores){
+		System.out.println("Please poke");
 		EndGameState egs = (EndGameState) this.getState(Settings.ENDGAMESTATE);
 		egs.initData(names, scores);
 		this.enterState(Settings.ENDGAMESTATE);
