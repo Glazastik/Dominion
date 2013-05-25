@@ -45,6 +45,7 @@ public class Pile {
 		while(pile.getSize()>0){
 			this.add(pile.pop());
 		}
+		
 	}
 	
 	/**

@@ -91,7 +91,6 @@ public class Player {
 		} else if (deck.getSize() > 0) {
 			hand.add(deck.pop());
 		}
-		updateCards();
 	}
 
 	private void discardPileToDeck() {
@@ -109,6 +108,8 @@ public class Player {
 		for (int i = 0; i < number; i++) {
 			draw();
 		}
+		this.updateCards();
+		this.updateStats();
 	}
 
 	/**
@@ -197,7 +198,7 @@ public class Player {
 	 */
 	public void gain(String card) {
 		discard.add(card);
-		updateCards();
+		
 	}
 
 	/**
@@ -207,7 +208,6 @@ public class Player {
 	 */
 	public void addToHand(String card) {
 		hand.add(card);
-		updateCards();
 	}
 
 	/**
@@ -388,8 +388,7 @@ public class Player {
 				playingArea.add(hand.pop(card));
 			}
 		}
-		updateCards();
-		updateStats();
+		
 	}
 
 	/**

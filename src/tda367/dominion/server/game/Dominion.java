@@ -65,6 +65,8 @@ public class Dominion {
 		}
 		
 		getActivePlayer().playAllTreasures();
+		getActivePlayer().updateCards();
+		getActivePlayer().updateStats();
 		
 	}
 
@@ -312,6 +314,11 @@ public class Dominion {
 	public HashMap<String, Integer> getSupplyInfo() {
 		return supply.getCardsInSupply();
 
+	}
+
+	public void updateActive() {
+		getActivePlayer().updateCards();
+		getActivePlayer().updateStats();
 	}
 
 }
