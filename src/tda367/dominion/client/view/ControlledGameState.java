@@ -5,15 +5,20 @@ import org.newdawn.slick.state.BasicGameState;
 import tda367.dominion.commons.listener.GameEvent;
 import tda367.dominion.commons.listener.GameListener;
 
+/**
+ * A helping abstract class for the ViewStates.
+ * 
+ * @author Group 28
+ */
 public abstract class ControlledGameState extends BasicGameState {
-	
+
 	private int id;
 	private GameListener listener;
-	
+
 	public ControlledGameState(int id) {
 		this.id = id;
 	}
-	
+
 	/**
 	 * Returns the ID of this state.
 	 * 
@@ -22,11 +27,11 @@ public abstract class ControlledGameState extends BasicGameState {
 	public int getID() {
 		return id;
 	}
-	
+
 	public void onEvent(GameEvent e) {
 		listener.run(e);
 	}
-	
+
 	public void addListener(GameListener l) {
 		listener = l;
 	}

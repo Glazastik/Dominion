@@ -21,6 +21,16 @@ import tda367.dominion.commons.listener.GameListener;
 import tda367.dominion.server.game.CardInfoHandler;
 import tda367.dominion.server.game.Supply;
 
+/**
+ * A class in control of everything that happens in-game.
+ * 
+ * <p>The game is entirely server based for increased security.
+ * The client talks with the server by alerting a listener every
+ * time a button is clicked. This class should be seen as a visual
+ * representation of the server.</p>
+ * 
+ * @author Group 28
+ */
 public class InGameState extends ControlledGameState {
 
 	private CardInfoHandler cih;

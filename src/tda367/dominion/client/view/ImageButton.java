@@ -7,6 +7,11 @@ import org.newdawn.slick.SlickException;
 import tda367.dominion.commons.listener.GameEvent;
 import tda367.dominion.commons.listener.GameListener;
 
+/**
+ * A class with logic and visuals for a button.
+ *  
+ * @author Group 28
+ */
 public class ImageButton extends Image {
 
 	private Rectangle rec;

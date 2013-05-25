@@ -8,6 +8,11 @@ import org.newdawn.slick.SlickException;
 import org.newdawn.slick.state.BasicGameState;
 import org.newdawn.slick.state.StateBasedGame;
 
+/**
+ * A state for taking a closer look at a card.
+ * 
+ * @author Group 28
+ */
 public class ShowCardState extends BasicGameState {
 
 	private final int ID;

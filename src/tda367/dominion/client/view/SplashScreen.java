@@ -13,8 +13,7 @@ import org.newdawn.slick.state.StateBasedGame;
  * loads first, and later enters this state, but it 
  * is as good as it gets.
  * 
- * @author Pontus
- *
+ * @author Group 28
  */
 public class SplashScreen extends BasicGameState {
 

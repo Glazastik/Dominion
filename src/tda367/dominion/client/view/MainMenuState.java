@@ -14,6 +14,11 @@ import tda367.dominion.client.model.Settings;
 import tda367.dominion.commons.listener.GameEvent;
 import tda367.dominion.commons.listener.GameListener;
 
+/**
+ * A class representing the main menu and the moving background.
+ * 
+ * @author Group 28
+ */
 public class MainMenuState extends ControlledGameState {
 
 	String mouse = "";

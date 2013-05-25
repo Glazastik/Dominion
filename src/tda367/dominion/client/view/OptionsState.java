@@ -13,6 +13,14 @@ import tda367.dominion.client.model.Settings;
 import tda367.dominion.commons.listener.GameEvent;
 import tda367.dominion.commons.listener.GameListener;
 
+/**
+ * This is the option view that displays options to the player.
+ * 
+ * <p>It uses the ClientModel to store the settings and updates the
+ * ClientController by alerting a listener.</p>
+ * 
+ * @author Group 28
+ */
 public class OptionsState extends ControlledGameState {
 	
 	Image background;

@@ -20,6 +20,9 @@ import org.newdawn.slick.state.StateBasedGame;
 import tda367.dominion.client.model.Settings;
 import tda367.dominion.commons.listener.GameListener;
 
+/**
+ * This is the first view class to start, it creates and calls all the ViewStates.
+ */
 public class MainView extends StateBasedGame implements Runnable {
 
 	public static AppGameContainer theGame;

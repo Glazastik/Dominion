@@ -16,6 +16,11 @@ import tda367.dominion.client.model.Settings;
 import tda367.dominion.commons.listener.GameEvent;
 import tda367.dominion.commons.listener.GameListener;
 
+/**
+ * A class that lists available game rooms.
+ * 
+ * @author Group 28
+ */
 public class ServerListState extends ControlledGameState {
 	private String[][] roomData = new String[0][0];
 	private Image board;
