@@ -117,6 +117,16 @@ public class MainView extends StateBasedGame implements Runnable {
 		s.activateYesNoBox(text);
 	}
 	
+	public void setRevealedCards(String[] cards) {
+		InGameState s = (InGameState) this.getState(Settings.INGAMESTATE);
+		s.setRevealedCards(cards);
+	}
+	
+	public void setRevealedCard(String cards) {
+		InGameState s = (InGameState) this.getState(Settings.INGAMESTATE);
+		s.setRevealedCard(cards);
+	}
+	
 	public void setupEndState(LinkedList<String> names, LinkedList<Integer> scores){
 		EndGameState egs = (EndGameState) this.getState(Settings.ENDGAMESTATE);
 		egs.initData(names, scores);
