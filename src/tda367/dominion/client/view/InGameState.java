@@ -12,6 +12,7 @@ import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
 import org.newdawn.slick.Input;
 import org.newdawn.slick.SlickException;
+import org.newdawn.slick.geom.RoundedRectangle;
 import org.newdawn.slick.state.StateBasedGame;
 
 import tda367.dominion.client.model.Settings;
@@ -106,6 +107,11 @@ public class InGameState extends ControlledGameState {
 	// Message box variables
 	private boolean paintYesNo = false;
 	private String messageText;
+	
+	// reveal cards variables
+	private boolean revealCards = false;
+	private Image[] revealedCards;
+	private Rectangle[] revealedRectangles;
 
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
@@ -249,6 +255,10 @@ public class InGameState extends ControlledGameState {
 
 		if (paintYesNo) {
 			paintYesNoMessageBox(messageText, g);
+		}
+		
+		if (revealCards) {
+			paintRevealedCards(g);
 		}
 
 	}
@@ -482,7 +492,7 @@ public class InGameState extends ControlledGameState {
 	 */
 	@Override
 	public void mouseClicked(int button, int x, int y, int clicks) {
-
+		
 		// Checks if you clicked a card in supply
 		String card = recSupplyCheck(button, x, y);
 		if (card != null) {
@@ -501,6 +511,14 @@ public class InGameState extends ControlledGameState {
 		if (card != null) {
 			System.out.println(card);
 			playCard(card);
+			return;
+		}
+		
+		// RevealedCards Listener
+		if (revealedCards != null) {
+			card = recCheck(button, x, y, revealedCards, revealedRectangles);
+			playCard(card);
+			revealCards = false;
 			return;
 		}
 
@@ -1400,6 +1418,44 @@ public class InGameState extends ControlledGameState {
 				}
 			}
 		}
+	}
+	
+	/**
+	 * A method for painting all the revealedCards and their respective rectangle.
+	 * 
+	 * @param g 
+	 * 			used for painting the backGround for the revealedCards
+	 */
+	public void paintRevealedCards(Graphics g) {
+		g.setColor(Color.black);
+		RoundedRectangle backGround;
+		backGround = new RoundedRectangle(10, 10, gameContainerWidth - gameContainerWidth/5, gameContainerHeight/2 - 100, 15);
+		g.draw(backGround);
+		g.fill(backGround);
+		
+		for (int i = 0; i < revealedCards.length; i++) {
+			float cardHeight = (float) gameContainerHeight * (float) (1.0 / 3);
+			double scale = (double) cardHeight / handCards[i].getHeight();
+			float cardWidth = (float) (handCards[i].getWidth() * scale);
+			revealedCards[i].draw(20 + (cardWidth * i), 20, cardWidth, cardHeight);
+			revealedRectangles[i].setBounds((int) (20 + (cardWidth * i)), 20, (int) cardWidth, (int) cardHeight);
+		}
+	}
+	
+	/**
+	 * Initiates and sets the images and rectangles related to RevealedCards
+	 * 
+	 * @param s
+	 * @throws SlickException
+	 */
+	public void setRevealedCards(String[] s) throws SlickException {
+		Image[] temp = new Image[s.length];
+		CardInfoHandler cih = CardInfoHandler.getInstance();
+		for (int i = 0; i < s.length; i++) {
+			temp[i] = new Image(cih.getImageLink(s[i]));
+		}
+		revealedCards = StringArraytoImageArray(s);
+		revealedRectangles = initRectangleArray(revealedCards.length);
 	}
 
 	/**

@@ -34,7 +34,7 @@ public class Mine extends ChoiceCard {
 					p.trashCard(card);
 					valueOfTrash = cih.getCardValue(card);
 					hasTrashed = true;
-					p.sendTip("Gain a treasure costing " + valueOfTrash+3);
+					p.sendTip("Gain a treasure costing " + (valueOfTrash+3));
 				}
 			}
 		}	
