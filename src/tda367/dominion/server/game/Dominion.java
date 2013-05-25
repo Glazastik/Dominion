@@ -46,12 +46,10 @@ public class Dominion {
 	}
 
 	private void startGame() {
-		
+
 		turnHandler.startGame();
 		this.notifyPhase();
 	}
-
-	
 
 	/**
 	 * Play all the treasure cards the player has in hand.
@@ -60,14 +58,15 @@ public class Dominion {
 	 *            the requesting connection
 	 */
 	public void playAll(GameConnection gc) {
-		if (this.getActiveID() != gc.getID() || turnHandler.getPhase() != Phase.BUY) {
+		if (this.getActiveID() != gc.getID()
+				|| turnHandler.getPhase() != Phase.BUY) {
 			return;
 		}
-		
+
 		getActivePlayer().playAllTreasures();
 		getActivePlayer().updateCards();
 		getActivePlayer().updateStats();
-		
+
 	}
 
 	public void done(GameConnection gc) {
@@ -79,26 +78,26 @@ public class Dominion {
 				this.getActivePlayer().cleanUp();
 				turnHandler.advance();
 			}
-			
+
 			notifyPhase();
 
 		}
 	}
-	
+
 	public void gameOver() {
 		EndMessage msg = new EndMessage();
-		
+
 		LinkedList<String> names = new LinkedList<String>();
-		
-		for(Player p : players) {
+
+		for (Player p : players) {
 			names.add(p.getName());
 		}
-		
+
 		msg.setNames(names);
 		msg.setScores(calculateScore());
 		sendToAll(msg);
 	}
-	
+
 	/**
 	 * Calculates the score of the provided player.
 	 * 
@@ -146,13 +145,13 @@ public class Dominion {
 
 	private void notifyPhase() {
 		// TODO: Fix
-		if(turnHandler.getPhase() == Phase.ACTION){
-			if(!this.getActivePlayer().hasActionCards()){
+		if (turnHandler.getPhase() == Phase.ACTION) {
+			if (!this.getActivePlayer().hasActionCards()) {
 				turnHandler.advance();
 			}
 		}
 		sendTurnMessage(this.getActivePlayer(), turnHandler.getPhase());
-		
+
 	}
 
 	private void sendTurnMessage(Player player, Phase phase) {
@@ -161,13 +160,13 @@ public class Dominion {
 		msg.setActive(this.getActivePlayer().getName());
 		this.sendToAll(msg);
 	}
-	
+
 	public void activateYesNoBox(String s) {
 		CreateBoolMessage cbm = new CreateBoolMessage();
 		cbm.setText(s);
 		sendToActive(cbm);
 	}
-	
+
 	public void updateSupply() {
 		SupplyMessage msg = new SupplyMessage();
 		msg.setSupply(supply.getCardsInSupply());
@@ -228,13 +227,13 @@ public class Dominion {
 			network.sendMessage(p.getID(), msg);
 		}
 	}
-	
-	public void sendLogToAll(String text){
+
+	public void sendLogToAll(String text) {
 		for (Player p : players) {
 			p.sendLog(text);
 		}
 	}
-	
+
 	/**
 	 * Sends a particular message to the active player.
 	 * 
@@ -243,16 +242,16 @@ public class Dominion {
 	private void sendToActive(Message msg) {
 		network.sendMessage(getActiveID(), msg);
 	}
-	
+
 	public void playerBuyCard(String card) {
 		gainingHandler.playerBuyCard(getActivePlayer(), card);
 		SupplyMessage msg = new SupplyMessage();
 		msg.setSupply(supply.getCardsInSupply());
 		this.sendToAll(msg);
 		this.sendLogToAll(this.getActivePlayer().getName() + " bought " + card);
-		
+
 	}
-	
+
 	public void playerBuyCard(Player p, String card) {
 		gainingHandler.playerBuyCard(p, card);
 	}
@@ -265,11 +264,11 @@ public class Dominion {
 	public LinkedList<Player> getPlayers() {
 		return this.players;
 	}
-	
+
 	public LinkedList<Player> getInactivePlayers() {
 		LinkedList<Player> l = new LinkedList<Player>();
-		for(Player p : players) {
-			if(!p.equals(this.getActivePlayer())) {
+		for (Player p : players) {
+			if (!p.equals(this.getActivePlayer())) {
 				l.add(p);
 			}
 		}
@@ -292,7 +291,7 @@ public class Dominion {
 
 		return null;
 	}
-	
+
 	public Phase getPhase() {
 		return turnHandler.getPhase();
 	}
@@ -319,6 +318,16 @@ public class Dominion {
 	public void updateActive() {
 		getActivePlayer().updateCards();
 		getActivePlayer().updateStats();
+	}
+
+	public void checkDone(GameConnection gc) {
+		Phase current = turnHandler.getPhase();
+		Player active = this.getActivePlayer();
+		if (current == Phase.ACTION && !active.hasActionCardsInHand()) {
+			done(gc);
+		} else if (current == Phase.BUY && active.getBuys() == 0) {
+			done(gc);
+		}
 	}
 
 }

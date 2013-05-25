@@ -84,6 +84,9 @@ public class GameRoom {
 				CardMessage cm = new CardMessage();
 				cm.setCard(message.getCard());
 				cardRulesHandler.activeCard.input(cm, game.getActivePlayer());
+				if (!cardRulesHandler.isCardActive()) {
+					game.checkDone(gc);
+				}
 			} else {
 				GainMessage message = ((GainMessage) object);
 				print("Recieved gain message: " + message.getCard());
@@ -102,13 +105,15 @@ public class GameRoom {
 				DoneMessage message = ((DoneMessage) object);
 				cardRulesHandler.activeCard.input(message,
 						game.getActivePlayer());
+				game.checkDone(gc);
+
 			}
 		} else {
 			print("Classname: " + object.getClass());
 			return;
 		}
 		game.updateActive();
-		
+
 	}
 
 	public void playCard(GameConnection gc, String card) {
@@ -150,9 +155,9 @@ public class GameRoom {
 				game.done(gc);
 			}
 		}
-		
-		if(game.getSupply().gameIsOver()) {
-			
+
+		if (game.getSupply().gameIsOver()) {
+
 		}
 	}
 
