@@ -58,7 +58,7 @@ public class CardRulesHandler {
 				case "Remodel": activeCard = new Remodel(game); activeCard.play(); break;
 				case "Silver": player.increaseMoney(2); break;
 				case "Smithy": Smithy.play(game); break;
-//				case "Spy": Spy.play(player, players); break;
+				case "Spy": activeCard = new Spy(game); activeCard.play(); break;
 //				case "Thief": Thief.play(player, players); break;
 //				case "Throneroom": activeCard = new Throneroom(); activeCard.play(player); break;
 				case "Village": Village.play(game); break;
