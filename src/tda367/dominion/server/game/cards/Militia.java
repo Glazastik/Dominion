@@ -70,6 +70,7 @@ public class Militia extends ChoiceCard {
 	public void input(Message msg, Player player) {
 		boolean doneDiscarding = false;
 		if(player!=activePlayer && !moatStatus.get(player)){
+			System.out.println("is not active player and no moatstatus");
 			if(msg instanceof CardMessage && player.getHandSize()>3){
 				if(player.hasCardInHand(((CardMessage) msg).getCard())){
 					player.discardCard(((CardMessage) msg).getCard());

@@ -105,6 +105,7 @@ public class InGameState extends ControlledGameState {
 	private int money;
 
 	// Cards
+	private HashMap<String,Image> handImages;
 	private LinkedList<String> hand = new LinkedList<String>();
 	private LinkedList<String> inPlay = new LinkedList<String>();
 	private String topOfPile = "";
@@ -150,6 +151,10 @@ public class InGameState extends ControlledGameState {
 		// Log init
 		logDisplay = false;
 		logText = new LinkedList<String>();
+		handImages = new HashMap();
+		for(String s : cih.getCardList()){
+			handImages.put(s, new Image(cih.getImageLink(s)));
+		}
 	}
 
 	/**
@@ -1069,18 +1074,14 @@ public class InGameState extends ControlledGameState {
 		cih = CardInfoHandler.getInstance();
 
 		if (updateHand) {
-			//TODO: Remove printing.
-			System.out.println("handsize " + hand.size());
 			handCards = new Image[hand.size()];
 			for (int i = 0; i < hand.size(); i++) {
-				System.out.println(i);
-				handCards[i] = new Image(cih.getImageLink(hand.get(i)));
+				handCards[i] = handImages.get(hand.get(i));
 			}
 			updateHand = false;
-			System.out.println("handsize2 " + hand.size());
 		}
 
-		for (int i = 0; i < handCards.length; i++) {
+		for (int i = 0; i < hand.size(); i++) {
 			float cardHeight = (float) gameContainerHeight * (float) (1.0 / 3);
 			double scale = (double) cardHeight / handCards[i].getHeight();
 			float cardWidth = (float) (handCards[i].getWidth() * scale);
