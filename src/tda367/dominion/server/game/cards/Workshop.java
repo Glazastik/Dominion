@@ -28,7 +28,7 @@ public class Workshop extends ChoiceCard {
 				gh.playerGainCard(p, card);
 				state = State.NONACTIVE;
 				//Temporary tip
-				p.sendTip("Continua playing actions!");
+				p.sendTip("Continue playing actions!");
 			}
 		}
 	}

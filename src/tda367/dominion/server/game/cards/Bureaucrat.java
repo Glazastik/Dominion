@@ -56,10 +56,12 @@ public class Bureaucrat extends ChoiceCard {
 				if(cih.isVictoryCard(((CardMessage)msg).getCard()) && p.hasCardInHand(((CardMessage)msg).getCard())){
 					p.putOnTopOfDeck(p.getHand().pop(((CardMessage)msg).getCard()));
 					notAffected.put(p, true);
+					p.sendTip("Waiting for " +  dominion.getActivePlayer().getName() + " to finish their turn.");
 				}
 			}
 		}
 		if(!notAffected.containsValue(false)){
+			dominion.getActivePlayer().sendTip("Continue");
 			state = State.NONACTIVE;
 		}
 	}

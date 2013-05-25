@@ -38,6 +38,7 @@ public class Remodel extends ChoiceCard {
 			} else if(cih.getCardValue(card) <= valueOfTrash+2) {
 				GainingHandler gh = new GainingHandler(game.getSupply());					
 				gh.playerGainCard(p, card);
+				p.sendTip("Continue playing action cards.");
 				state = State.NONACTIVE;
 			}
 		}

@@ -62,12 +62,14 @@ public class Spy extends ChoiceCard {
 					dominion.activateYesNoBox("Discard this from top of " + p.getName() + "'s deck?");
 					break;
 				} else if (!i.hasNext()){
+					p.sendTip("Continue playing action cards.");
 					state = State.NONACTIVE;
 				}
 			}
 			
 		}
 		if(!i.hasNext()){
+			p.sendTip("Continue playing action cards.");
 			state = State.NONACTIVE;
 		}
 		

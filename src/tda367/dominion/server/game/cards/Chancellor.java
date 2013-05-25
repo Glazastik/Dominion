@@ -32,6 +32,7 @@ public class Chancellor extends ChoiceCard {
 			if (((BoolMessage) msg).isTrue()) {
 				p.discardDeck();
 			}
+			p.sendTip("Continue playing action cards.");
 			state = State.NONACTIVE;
 		}
 	}
