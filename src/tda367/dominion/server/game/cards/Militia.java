@@ -80,9 +80,12 @@ public class Militia extends ChoiceCard {
 		for (Player p : players){
 			if(p != player && p.getHandSize()>3 && !moatStatus.get(p)){
 				noOneDiscards = false;
+			} else {
+				p.sendTip("Wait for " + activePlayer.getName() + " to finish playing action cards.");
 			}
 		}
 		if(noOneDiscards){
+			activePlayer.sendTip("Continue playing action cards.");
 			state = State.NONACTIVE;
 		}
 	}

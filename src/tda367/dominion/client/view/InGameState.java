@@ -1059,11 +1059,15 @@ public class InGameState extends ControlledGameState {
 		cih = CardInfoHandler.getInstance();
 
 		if (updateHand) {
+			//TODO: Remove printing.
+			System.out.println("handsize " + hand.size());
 			handCards = new Image[hand.size()];
 			for (int i = 0; i < hand.size(); i++) {
+				System.out.println(i);
 				handCards[i] = new Image(cih.getImageLink(hand.get(i)));
 			}
 			updateHand = false;
+			System.out.println("handsize2 " + hand.size());
 		}
 
 		for (int i = 0; i < handCards.length; i++) {
