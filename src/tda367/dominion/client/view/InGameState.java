@@ -120,9 +120,11 @@ public class InGameState extends ControlledGameState {
 	private String messageText;
 	
 	// reveal cards variables
+	private String[] revealedInString;
 	private boolean revealCards = false;
 	private Image[] revealedCards;
 	private Rectangle[] revealedRectangles;
+	private boolean updateRevealedCards = false;
 
 	@Override
 	public void init(GameContainer gc, StateBasedGame sbg)
@@ -181,9 +183,6 @@ public class InGameState extends ControlledGameState {
 				.getCardList().toArray(new String[0])));
 		actionCardsAll = StringArraytoImageArray(cih.getActionCards().toArray(
 				new String[0]));
-		// for (String s : cih.getActionCards().toArray(new String[0])) {
-		// System.out.println(s);
-		// }
 	}
 
 	/**
@@ -524,7 +523,6 @@ public class InGameState extends ControlledGameState {
 			e.printStackTrace();
 		}
 		if (card != null) {
-			System.out.println(card);
 			playCard(card);
 			return;
 		}
@@ -572,13 +570,13 @@ public class InGameState extends ControlledGameState {
 		}
 
 		// yes/no Button listener
-		if (button == Input.MOUSE_LEFT_BUTTON) {
+		if (button == Input.MOUSE_LEFT_BUTTON && yesButton.boolContains(x, y)) {
 			yesButton.contains(x, y, true);
-			paintYesNo = false;
+//			paintYesNo = false;
 			return;
 		} else if (button == Input.MOUSE_LEFT_BUTTON) {
 			noButton.contains(x, y, false);
-			paintYesNo = false;
+//			paintYesNo = false;
 			return;
 		}
 	}
@@ -1440,13 +1438,23 @@ public class InGameState extends ControlledGameState {
 	 * 
 	 * @param g 
 	 * 			used for painting the backGround for the revealedCards
+	 * @throws SlickException 
 	 */
-	public void paintRevealedCards(Graphics g) {
+	public void paintRevealedCards(Graphics g) throws SlickException {
 		g.setColor(Color.black);
 		RoundedRectangle backGround;
 		backGround = new RoundedRectangle(10, 10, gameContainerWidth - gameContainerWidth/5, gameContainerHeight/2 - 100, 15);
 		g.draw(backGround);
 		g.fill(backGround);
+		
+		if (updateRevealedCards) {
+
+			revealedCards = new Image[revealedInString.length];
+			for (int i = 0; i < hand.size(); i++) {
+				revealedCards[i] = new Image(cih.getImageLink(revealedInString[0]));
+			}
+			updateRevealedCards = false;
+		}
 		
 		for (int i = 0; i < revealedCards.length; i++) {
 			float cardHeight = (float) gameContainerHeight * (float) (1.0 / 3);
@@ -1458,19 +1466,32 @@ public class InGameState extends ControlledGameState {
 	}
 	
 	/**
-	 * Initiates and sets the images and rectangles related to RevealedCards
+	 * Initiates and sets the images and rectangles related to RevealedCards.
+	 * Makes render paint them, by setting revealCards = true.
 	 * 
 	 * @param s
 	 * @throws SlickException
 	 */
-	public void setRevealedCards(String[] s) throws SlickException {
-		Image[] temp = new Image[s.length];
-		CardInfoHandler cih = CardInfoHandler.getInstance();
-		for (int i = 0; i < s.length; i++) {
-			temp[i] = new Image(cih.getImageLink(s[i]));
-		}
-		revealedCards = StringArraytoImageArray(s);
+	public void setRevealedCards(String[] s) {
+		revealedInString = s;
 		revealedRectangles = initRectangleArray(revealedCards.length);
+		revealCards = true;
+		updateRevealedCards = true;
+	}
+	
+	/**
+	 * Initiates and sets the images and rectangles related to RevealedCards.
+	 * Makes render paint them, by setting revealCards = true.
+	 * 
+	 * @param s
+	 * @throws SlickException
+	 */
+	public void setRevealedCard(String s) {
+		revealedInString = new String[1];
+		revealedInString[0] = s;
+		revealedRectangles = initRectangleArray(revealedInString.length);
+		revealCards = true;
+		updateRevealedCards  = true;
 	}
 
 	/**
