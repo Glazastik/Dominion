@@ -367,8 +367,7 @@ public class Player {
 				this.increaseMoney(inc);
 			}
 		}
-		updateCards();
-		updateStats();
+		
 	}
 
 	/**
