@@ -1,17 +1,22 @@
 package tda367.dominion.commons.messages;
 
 import java.util.LinkedList;
+
 /**
- * A class used to send a message cointaining multiple cards for exampel when a player shows his hand to another player.
+ * A class used to send a message cointaining multiple cards for exampel when a
+ * player shows his hand to another player.
+ * 
  * @author christoffer
- *
+ * 
  */
-public class RevealMultipleCardMessage implements Message{
-	private LinkedList<String> cards;
-	public void setCards(LinkedList<String> cards){
-		this.cards=cards;
+public class RevealMultipleCardMessage implements Message {
+	private String[] cards;
+
+	public void setCards(String[] cards) {
+		this.cards = cards;
 	}
-	public LinkedList<String> getCards(){
+
+	public String[] getCards() {
 		return this.cards;
 	}
 }
