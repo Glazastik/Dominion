@@ -31,7 +31,11 @@ public class ImageButton extends Image {
 	}
 	
 	public void contains(int x, int y, boolean b) {
+		System.out.println("Sent booolMessga from IMAGEBUUTIN");
+		System.out.println("Contains: " + rec.contains(x, y));
+		System.out.println("Visibility: " + isVisible());
 		if (rec.contains(x, y) && isVisible()) {
+			System.out.println("Passed contains check!");
 			listener.run(new GameEvent(b));
 		}
 	}
