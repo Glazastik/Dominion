@@ -15,10 +15,10 @@ public class Spy extends ChoiceCard {
 	private Player activePlayer;
 	private LinkedList<Player> orderedPlayers;
 	private Player currentTarget;
-	Iterator<Player> i;
+	private Iterator<Player> iterator;
 
-	public Spy(Dominion dom) {
-		game = dom;
+	public Spy(Dominion game) {
+		this.game = game;
 		state = State.NONACTIVE;
 		this.players = game.getPlayers();
 		activePlayer = game.getActivePlayer();
@@ -47,7 +47,7 @@ public class Spy extends ChoiceCard {
 			}
 		}
 		currentTarget = activePlayer;
-		i = orderedPlayers.iterator();
+		iterator = orderedPlayers.iterator();
 	}
 
 	@Override
@@ -56,23 +56,23 @@ public class Spy extends ChoiceCard {
 			if (((BoolMessage) msg).isTrue()) {
 				currentTarget.discardTopOfDeck();
 			}
-			while (i.hasNext()) {
-				currentTarget = i.next();
-				if (moatStatus.get(currentTarget) && i.hasNext()) {
+			while (iterator.hasNext()) {
+				currentTarget = iterator.next();
+				if (moatStatus.get(currentTarget) && iterator.hasNext()) {
 					// NÄSTA TARGET
 				} else if (!moatStatus.get(currentTarget)) {
 					game.revealCard(currentTarget.revealTopOfDeck());
 					game.activateYesNoBox("Discard this from top of "
 							+ p.getName() + "'s deck?");
 					break;
-				} else if (!i.hasNext()) {
+				} else if (!iterator.hasNext()) {
 					p.sendTip("Continue playing action cards.");
 					state = State.NONACTIVE;
 				}
 			}
 
 		}
-		if (!i.hasNext()) {
+		if (!iterator.hasNext()) {
 			p.sendTip("Continue playing action cards.");
 			state = State.NONACTIVE;
 		}

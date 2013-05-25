@@ -12,25 +12,24 @@ public class Militia extends ChoiceCard {
 	private LinkedList<Player> players;
 	private Player activePlayer;
 	private HashMap<Player, Boolean> moatStatus;
-	public Militia (LinkedList<Player> players){
+	
+	public Militia (Dominion game) {
+		this.game = game;
 		state = State.NONACTIVE;
-		this.players = players;
+		this.players = game.getPlayers();
+		activePlayer = game.getActivePlayer();
+		moatStatus = new HashMap<Player, Boolean>();
 		for(Player p : players){
 			moatStatus.put(p, false);
 		}
-	}
-	
-	public Militia(Dominion game) {
-		this.game = game;
-	}
+	} 
 
 	public void play(){
 		state = State.ACTIVE;
-		activePlayer = game.getActivePlayer();
 		game.getActivePlayer().increaseMoney(2);
 		
-		LinkedList<Player> players = game.getInactivePlayers();
-		for(Player p: players){
+		LinkedList<Player> inActivePlayers = game.getInactivePlayers();
+		for(Player p: inActivePlayers){
 			if(!p.getHand().contains("Moat")){
 				if(p.getHandSize()>3){
 					p.sendTip("Discard down to 3 cards");
@@ -40,7 +39,7 @@ public class Militia extends ChoiceCard {
 			}
 		}
 		boolean noOneDiscards = true;
-		for (Player p : players){
+		for (Player p : inActivePlayers){
 			if(p.getHandSize()>3 && !moatStatus.get(p)){
 				noOneDiscards = false;
 			}
