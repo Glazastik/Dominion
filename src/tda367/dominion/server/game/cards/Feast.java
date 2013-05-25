@@ -32,6 +32,7 @@ public class Feast extends ChoiceCard {
 				GainingHandler gh = new GainingHandler(game.getSupply());
 				gh.playerGainCard(p, card);
 				state = State.NONACTIVE;
+				game.getActivePlayer().sendTip("Continue the action phase");
 			}
 		}
 	}

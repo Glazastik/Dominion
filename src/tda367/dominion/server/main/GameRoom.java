@@ -86,7 +86,7 @@ public class GameRoom {
 				cardRulesHandler.activeCard.input(cm, game.getActivePlayer());
 			} else {
 				GainMessage message = ((GainMessage) object);
-				print("Bought/gained: " + message.getCard());
+				print("Recieved gain message: " + message.getCard());
 				playGain(gc, message.getCard());
 			}
 			game.updateSupply();
