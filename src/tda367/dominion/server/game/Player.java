@@ -108,8 +108,6 @@ public class Player {
 		for (int i = 0; i < number; i++) {
 			draw();
 		}
-		this.updateCards();
-		this.updateStats();
 	}
 
 	/**
@@ -176,7 +174,6 @@ public class Player {
 	 */
 	public void discardHand() {
 		discard.add(hand);
-		updateCards();
 	}
 
 	/**
