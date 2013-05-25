@@ -150,15 +150,11 @@ public class GameRoom {
 	public void playGain(GameConnection gc, String card) {
 		if (game.getActiveID() == gc.getID() && game.getPhase() == Phase.BUY) {
 			game.playerBuyCard(card);
-			game.updateActive();
 			if (game.getActivePlayer().getBuys() == 0) {
 				game.done(gc);
 			}
 		}
 
-		if (game.getSupply().gameIsOver()) {
-
-		}
 	}
 
 	/**
