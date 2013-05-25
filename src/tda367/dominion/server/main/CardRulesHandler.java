@@ -35,7 +35,7 @@ public class CardRulesHandler {
 	 */
 	public void playCard(Player player, String cardName) {
 		CardInfoHandler cih = CardInfoHandler.getInstance(); 
-		if((cih.getCardType(cardName).equals("Action") && player.getActions()>0) || cih.getCardType(cardName).equals("Treasure")) {
+		if((player.hasCardInHand(cardName) &&(cih.getCardType(cardName).equals("Action") && player.getActions()>0) || cih.getCardType(cardName).equals("Treasure"))) {
 			player.play(cardName);
 			switch(cardName){
 				case "Adventurer": Adventurer.play(game); break;

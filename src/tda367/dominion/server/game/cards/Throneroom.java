@@ -2,25 +2,37 @@ package tda367.dominion.server.game.cards;
 
 import tda367.dominion.commons.messages.CardMessage;
 import tda367.dominion.commons.messages.Message;
+import tda367.dominion.server.game.CardInfoHandler;
 import tda367.dominion.server.game.Dominion;
 import tda367.dominion.server.game.Player;
 
 public class Throneroom extends ChoiceCard {
 	private Dominion dominion;
+	private Player activePlayer;
+	private CardInfoHandler cih = CardInfoHandler.getInstance();
 	public Throneroom(Dominion dom){
+		state = State.NONACTIVE;
 		dominion = dom;
 	}
 	public void play(){
-		
+		state = State.ACTIVE;
+		activePlayer = dominion.getActivePlayer();
+		if(activePlayer.hasActionCardsInHand()){
+			activePlayer.sendTip("Choose an action card to play twice");
+		} else {
+			state = State.NONACTIVE;
+		}
 	}
 	@Override
 	public void input(Message msg, Player p) {
-//		if (msg instanceof CardMessage) {
-//			String card = ((CardMessage) msg).getCard();
-//			if (p.hasCardInHand(card)) {
-//				
-//			}
-//		}
+		if (msg instanceof CardMessage) {
+			String card = ((CardMessage) msg).getCard();
+				if (p.hasCardInHand(card) && activePlayer == p && cih.isActionCard(card)) {
+					p.increaseActions(1);
+					p.play(card);
+					
+				}
+		}
 //		
 	}
 //	public static void play(Player p, LinkedList<Player> players, Supply supply){
