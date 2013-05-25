@@ -1,8 +1,7 @@
 package tda367.dominion.client.model;
 /**
  * Will be the main reference for global constants and options variables.
- * @author Glazastik
- *
+ * @author Group 28
  */
 public class Settings {
 	public static final int INGAMESTATE = 0;

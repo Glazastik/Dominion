@@ -10,6 +10,12 @@ import tda367.dominion.commons.messages.*;
 import com.esotericsoftware.kryonet.Connection;
 import com.esotericsoftware.kryonet.Listener;
 
+/**
+ * The client's most powerful class.
+ * Has access to pretty much everything and listens to the network.
+ *  
+ * @author Group 28
+ */
 public class ClientController {
 	private ClientModel model;
 	private MainView view;

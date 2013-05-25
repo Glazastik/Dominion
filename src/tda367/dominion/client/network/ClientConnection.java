@@ -10,6 +10,11 @@ import tda367.dominion.commons.network.NetworkCommon;
 import com.esotericsoftware.kryonet.Client;
 import com.esotericsoftware.kryonet.Listener;
 
+/**
+ * A class where all the network magic happens.
+ * 
+ * @author Group 28
+ */
 public class ClientConnection {
 	private final Client client;
 
