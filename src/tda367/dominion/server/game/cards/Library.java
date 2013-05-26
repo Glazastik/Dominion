@@ -22,7 +22,7 @@ public class Library extends ChoiceCard {
 				state = State.NONACTIVE;
 				break;
 			} else if(cif.getCardType(player.revealTopOfDeck()).equals("Action")){
-				game.revealCard(player.revealTopOfDeck());
+				player.reveal(player.revealTopOfDeck());
 				game.activateYesNoBox("Set aside?");
 				break;
 			} else {
