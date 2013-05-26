@@ -81,7 +81,6 @@ public class InGameState extends ControlledGameState {
 	private Image board = null;
 	private int gameContainerWidth;
 	private int gameContainerHeight;
-	private int amountOfPlayers;
 	private Image riksdaler = null;
 	private Rectangle[] actionRectangles;
 	private Rectangle[] victoryRectangles;
@@ -135,7 +134,6 @@ public class InGameState extends ControlledGameState {
 		enterShowCard = false;
 		cih = CardInfoHandler.getInstance();
 
-		initPlayerInfo();
 		initCards();
 
 		gameContainerWidth = gc.getWidth();
@@ -156,7 +154,7 @@ public class InGameState extends ControlledGameState {
 		// Log init
 		logDisplay = false;
 		logText = new LinkedList<String>();
-		handImages = new HashMap();
+		handImages = new HashMap<String, Image>();
 		for (String s : cih.getCardList()) {
 			handImages.put(s, new Image(cih.getImageLink(s)));
 		}
@@ -165,15 +163,14 @@ public class InGameState extends ControlledGameState {
 	/**
 	 * Initiates the player info.
 	 */
-	private void initPlayerInfo() {
-		amountOfPlayers = 2; // Should probably be supplied from network later
-		playerNames = new String[amountOfPlayers];
-		cardsOnHand = new int[amountOfPlayers];
+	private void initPlayerInfo(int players) {
+		playerNames = new String[players];
+		cardsOnHand = new int[players];
 
-		playerNames[0] = "Morfar";
-		playerNames[1] = "Player 2";
-		cardsOnHand[0] = 5; // Integer.parseInt(hand.get(0));
-		cardsOnHand[1] = 5; // Integer.parseInt(hand.get(1));
+		for(int i = 0; i < players; i++){
+			playerNames[i] = "";
+			cardsOnHand[i] = 5;
+		}
 	}
 
 	/**
@@ -781,7 +778,7 @@ public class InGameState extends ControlledGameState {
 		LinkedList<String> allActionCards = cih.getActionCards();
 		LinkedList<String> cardsToReturn = new LinkedList<String>();
 		cardsToReturn = new LinkedList<String>();
-		System.out.println("input längd: " + cards.length);
+		System.out.println("input lï¿½ngd: " + cards.length);
 		for (int i = 0; i < cards.length; i++) {
 			if (allActionCards.contains(cards[i])) {
 				cardsToReturn.add(cards[i]);
@@ -1542,6 +1539,9 @@ public class InGameState extends ControlledGameState {
 	 * Sets all players' names.
 	 */
 	public void setPlayerNames(String[] names) {
+		if(playerNames == null){
+			initPlayerInfo(names.length);
+		}
 		playerNames = names;
 	}
 
