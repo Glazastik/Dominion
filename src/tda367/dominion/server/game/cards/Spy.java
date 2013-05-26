@@ -27,19 +27,26 @@ public class Spy extends ChoiceCard {
 		for (Player p : players) {
 			notAffected.put(p, false);
 		}
+		System.out.println("Constructor done");
 	}
 
 	public void play() {
 		state = State.ACTIVE;
 		activePlayer = game.getActivePlayer();
-		
+		System.out.println("in play");
 		int startingPos = players.indexOf(activePlayer);
+		
+		System.out.println(startingPos);
+		System.out.println(players.size());
+		
 		for (int i = startingPos; i < players.size(); startingPos++) {
 			orderedPlayers.add(players.get(i));
 		}
+		System.out.println("Exit first loop");
 		for (int i = 0; i < startingPos; i++) {
 			orderedPlayers.add(players.get(i));
 		}
+		System.out.println("Exit second loop");
 		
 		activePlayer.reveal(activePlayer.revealTopOfDeck());
 		game.activateYesNoBox("Discard this from top of your deck?");
