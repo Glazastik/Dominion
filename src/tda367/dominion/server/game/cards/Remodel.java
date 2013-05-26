@@ -35,6 +35,7 @@ public class Remodel extends ChoiceCard {
 				hasTrashed = true;
 				valueOfTrash = cih.getCardValue(card);
 				p.trashCard(card);
+				game.getActivePlayer().sendTip("Gain a card costing " + (valueOfTrash + 2) + " more");
 			} else if(cih.getCardValue(card) <= valueOfTrash+2) {
 				GainingHandler gh = new GainingHandler(game.getSupply());					
 				gh.playerGainCard(p, card);
