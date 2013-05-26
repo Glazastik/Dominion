@@ -258,7 +258,7 @@ public class ServerListState extends ControlledGameState {
 					+ (1 + i) * spacing, itemWidth, itemHeight);
 			g.drawString(roomData[i][1], xOffset + 15, yOffset + (i + 1)
 					* itemHeight + (1 + i) * spacing + 15);
-			g.drawString(roomData[i][2] + "/4", xOffset + 220, yOffset
+			g.drawString(roomData[i][2] + "/2", xOffset + 220, yOffset
 					+ (i + 1) * itemHeight + (1 + i) * spacing + 15);
 		}
 	}
