@@ -30,7 +30,6 @@ public class Militia extends ChoiceCard {
 		activePlayer.increaseMoney(2);
 		LinkedList<Player> inactivePlayers = game.getInactivePlayers();
 		
-		System.out.println("Active: " + activePlayer.getName());
 		for (Player p : inactivePlayers){
 			System.out.println("Inactive: " + p.getName());
 		}
@@ -63,7 +62,6 @@ public class Militia extends ChoiceCard {
 		boolean doneDiscarding = false;
 		
 		if(!notAffected.get(player)){
-			System.out.println("is not active player and no moatstatus");
 			if(msg instanceof CardMessage && player.getHandSize()>3){
 				if(player.hasCardInHand(((CardMessage) msg).getCard())){
 					player.discardCard(((CardMessage) msg).getCard());
