@@ -204,14 +204,14 @@ public class Dominion {
 	 * 
 	 * @param cards
 	 */
-	public void revealCard(String card) {
-		RevealCardMessage rcm = new RevealCardMessage();
-		rcm.setCard(card);
-		for (Player p : getInactivePlayers()) {
-			p.reveal(card);
-		}
-		sendToAll(rcm);
-	}
+//	public void revealCard(String card) {
+//		RevealCardMessage rcm = new RevealCardMessage();
+//		rcm.setCard(card);
+//		for (Player p : getInactivePlayers()) {
+//			p.reveal(card);
+//		}
+//		sendToAll(rcm);
+//	}
 
 	public void updateSupply() {
 		SupplyMessage msg = new SupplyMessage();

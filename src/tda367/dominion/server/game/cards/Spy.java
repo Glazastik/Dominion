@@ -31,6 +31,7 @@ public class Spy extends ChoiceCard {
 
 	public void play() {
 		state = State.ACTIVE;
+		activePlayer = game.getActivePlayer();
 		
 		int startingPos = players.indexOf(activePlayer);
 		for (int i = startingPos; i < players.size(); startingPos++) {
@@ -40,7 +41,7 @@ public class Spy extends ChoiceCard {
 			orderedPlayers.add(players.get(i));
 		}
 		
-		game.revealCard(activePlayer.revealTopOfDeck());
+		activePlayer.reveal(activePlayer.revealTopOfDeck());
 		game.activateYesNoBox("Discard this from top of your deck?");
 
 		for (Player p : orderedPlayers) {
@@ -63,7 +64,7 @@ public class Spy extends ChoiceCard {
 				if (notAffected.get(currentTarget) && iterator.hasNext()) {
 					// NÄSTA TARGET
 				} else if (!notAffected.get(currentTarget)) {
-					game.revealCard(currentTarget.revealTopOfDeck());
+					activePlayer.reveal(currentTarget.revealTopOfDeck());
 					game.activateYesNoBox("Discard this from top of "
 							+ p.getName() + "'s deck?");
 					break;
