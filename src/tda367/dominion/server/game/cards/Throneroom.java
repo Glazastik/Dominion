@@ -17,7 +17,7 @@ public class Throneroom extends ChoiceCard {
 	public void play(){
 		state = State.ACTIVE;
 		activePlayer = dominion.getActivePlayer();
-		if(activePlayer.hasActionCardsInHand()){
+		if(activePlayer.hasActionCards()){
 			activePlayer.sendTip("Choose an action card to play twice");
 		} else {
 			state = State.NONACTIVE;
