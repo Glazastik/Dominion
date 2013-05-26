@@ -41,43 +41,47 @@ public class Spy extends ChoiceCard {
 			orderedPlayers.add(players.get(i));
 		}
 		
-		activePlayer.reveal(activePlayer.revealTopOfDeck());
-		game.activateYesNoBox("Discard this from top of your deck?");
+		game.activateYesNoBox("Discard " + activePlayer.revealTopOfDeck() +" from top of your deck?");
 
 		for (Player p : orderedPlayers) {
 			if (p.getHand().contains("Moat") && activePlayer != p) {
 				notAffected.put(p, true);
 			}
 		}
-		currentTarget = activePlayer;
 		iterator = orderedPlayers.iterator();
+		currentTarget = iterator.next();
+		
 	}
 
 	@Override
 	public void input(Message msg, Player p) {
-		if (msg instanceof BoolMessage) {
+		System.out.println("MESSAGE");
+		if (msg instanceof BoolMessage && p == activePlayer) {
 			if (((BoolMessage) msg).isTrue()) {
 				currentTarget.discardTopOfDeck();
+				notAffected.put(currentTarget, true);
 			}
 			while (iterator.hasNext()) {
 				currentTarget = iterator.next();
 				if (notAffected.get(currentTarget) && iterator.hasNext()) {
 					// NÄSTA TARGET
-				} else if (!notAffected.get(currentTarget)) {
-					activePlayer.reveal(currentTarget.revealTopOfDeck());
-					game.activateYesNoBox("Discard this from top of "
-							+ p.getName() + "'s deck?");
-					break;
 				} else if (!iterator.hasNext()) {
 					p.sendTip("Continue playing action cards.");
 					state = State.NONACTIVE;
-				}
+					break;
+				} else if (!notAffected.get(currentTarget)) {
+					activePlayer.reveal(currentTarget.revealTopOfDeck());
+					game.activateYesNoBox("Discard " + activePlayer.revealTopOfDeck() + " from top of " + p.getName() + "'s deck?");
+					break;
+				} 
 			}
 
 		}
 		if (!iterator.hasNext()) {
 			p.sendTip("Continue playing action cards.");
 			state = State.NONACTIVE;
+			activePlayer.draw();
+			activePlayer.increaseActions(1);
 		}
 
 	}
