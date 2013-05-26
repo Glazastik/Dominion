@@ -8,7 +8,6 @@ import org.junit.Test;
 
 import tda367.dominion.server.game.Dominion;
 import tda367.dominion.server.game.Player;
-import tda367.dominion.server.game.cards.Festival;
 import tda367.dominion.server.game.cards.Village;
 
 public class VillageTest {
@@ -23,7 +22,7 @@ public class VillageTest {
 		players.add(p3);
 		
 		Dominion game = new Dominion(players);		
-		Village.play(game);
+		
 		return game;
 	}
 	
@@ -32,8 +31,13 @@ public class VillageTest {
 		Dominion game = this.initGame();
 		Player p = game.getActivePlayer();
 		
-		assertTrue(p.getActions() == 3);
-		assertTrue(p.getHandSize() == 6);
+		int actions = p.getActions();
+		int hand = p.getHandSize();
+		
+		Village.play(game);
+		
+		assertTrue(p.getActions() - actions == 2);
+		assertTrue(p.getHandSize() - hand == 1);
 		
 	}
 

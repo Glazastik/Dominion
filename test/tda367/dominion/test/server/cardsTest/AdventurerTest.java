@@ -12,15 +12,26 @@ import tda367.dominion.server.game.Player;
 import tda367.dominion.server.game.cards.Adventurer;
 
 public class AdventurerTest {
-
+	
+	private Dominion initGame() {
+		Player p1 = new Player("Markolio");
+		Player p2 = new Player("Knugen");
+		Player p3 = new Player("Bacchus");
+		LinkedList<Player> players = new LinkedList<Player>();
+		players.add(p1);
+		players.add(p2);
+		players.add(p3);
+		
+		Dominion game = new Dominion(players);		
+		return game;
+	}
+	
 	@Test
 	public void testPlay() {
-		Player p = new Player(0, "Wrath");
-		LinkedList<Player> players = new LinkedList<Player>();
-		players.add(p);
-		Dominion game = new Dominion(players);
+		Dominion game = this.initGame();
+		Player p = game.getActivePlayer();
 		
-		int random = (int)Math.random() * 100;
+		int random = (int)Math.random() * 10000;
 		for(int i=random;i>0;i--) {
 			p.gain("Curse");
 		}

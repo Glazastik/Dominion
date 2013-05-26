@@ -9,7 +9,6 @@ import org.junit.Test;
 import tda367.dominion.server.game.Dominion;
 import tda367.dominion.server.game.Player;
 import tda367.dominion.server.game.cards.Councilroom;
-import tda367.dominion.server.game.cards.Throneroom;
 
 public class CouncilroomTest {
 

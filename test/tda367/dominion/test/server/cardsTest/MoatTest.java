@@ -9,7 +9,6 @@ import org.junit.Test;
 import tda367.dominion.server.game.Dominion;
 import tda367.dominion.server.game.Player;
 import tda367.dominion.server.game.cards.Moat;
-import tda367.dominion.server.game.cards.Village;
 
 public class MoatTest {
 	

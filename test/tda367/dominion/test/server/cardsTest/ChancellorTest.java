@@ -11,24 +11,40 @@ import tda367.dominion.server.game.Player;
 import tda367.dominion.server.game.cards.Chancellor;
 
 public class ChancellorTest {
-
+	
+	private Dominion initGame() {
+		Player p1 = new Player("Markolio");
+		Player p2 = new Player("Knugen");
+		Player p3 = new Player("Bacchus");
+		LinkedList<Player> players = new LinkedList<Player>();
+		players.add(p1);
+		players.add(p2);
+		players.add(p3);
+		
+		Dominion game = new Dominion(players);		
+		return game;
+	}
+	
 	@Test
 	public void testPlay() {
-		Player p = new Player(0, "Man");
-		LinkedList<Player> players = new LinkedList<Player>();
-		players.add(p);
-		Dominion game = new Dominion(players);
+		Dominion game = this.initGame();
+		Player p = game.getActivePlayer();
 		
 		int money = p.getMoney();
+		
 		Chancellor c = new Chancellor(game);
 		c.play();
-		assertTrue(p.getMoney() - money == 2);		
+		
+		assertTrue(p.getMoney() - money == 2);
 	}
 	
 	@Test 
 	public void testDiscardDeck() {
-		Player p = new Player(1, "Man #2");
-//		Chancellor.discardDeck(p);
+		Dominion game = this.initGame();
+		Player p = game.getActivePlayer();
+		
+		p.discardDeck();
+		
 		assertTrue(p.getDeckSize() == 0);
 	}
 

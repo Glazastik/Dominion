@@ -22,7 +22,7 @@ public class FestivalTest {
 		players.add(p3);
 		
 		Dominion game = new Dominion(players);		
-		Festival.play(game);
+		
 		return game;
 	}
 	
@@ -31,9 +31,15 @@ public class FestivalTest {
 		Dominion game = this.initGame();
 		Player p = game.getActivePlayer();
 		
-		assertTrue(p.getBuys() == 2);
-		assertTrue(p.getActions() == 3);
-		assertTrue(p.getMoney() == 2);
+		int buy = p.getBuys();
+		int action = p.getActions();
+		int money = p.getMoney();
+		
+		Festival.play(game);
+		
+		assertTrue(p.getBuys() - buy == 1);
+		assertTrue(p.getActions() - action == 2);
+		assertTrue(p.getMoney() - money == 1);
 	}
 
 }

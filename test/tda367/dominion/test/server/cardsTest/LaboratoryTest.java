@@ -8,7 +8,6 @@ import org.junit.Test;
 
 import tda367.dominion.server.game.Dominion;
 import tda367.dominion.server.game.Player;
-import tda367.dominion.server.game.cards.Festival;
 import tda367.dominion.server.game.cards.Laboratory;
 
 public class LaboratoryTest {
