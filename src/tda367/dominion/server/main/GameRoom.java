@@ -93,7 +93,7 @@ public class GameRoom {
 			}
 			game.updateSupply();
 
-		} else if (object instanceof PlayAllMessage) {
+		} else if (object instanceof PlayAllMessage && !cardRulesHandler.isCardActive()) {
 			print("Received PlayAll");
 			game.playAll(gc);
 		} else if (object instanceof AdvanceMessage) {
