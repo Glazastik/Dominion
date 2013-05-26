@@ -778,18 +778,18 @@ public class InGameState extends ControlledGameState {
 	 */
 	private String[] getActionCards(String[] cards) {
 		cih = CardInfoHandler.getInstance();
-		List<String> allActionCards = cih.getActionCards();
-		String[] cardsToReturn = new String[10];
-
-		int index = 0;
+		LinkedList<String> allActionCards = cih.getActionCards();
+		LinkedList<String> cardsToReturn = new LinkedList<String>();
+		cardsToReturn = new LinkedList<String>();
+		System.out.println("input längd: " + cards.length);
 		for (int i = 0; i < cards.length; i++) {
 			if (allActionCards.contains(cards[i])) {
-				cardsToReturn[index] = cards[i];
-				index++;
+				cardsToReturn.add(cards[i]);
 			}
 		}
+		String[] tempCards = cardsToReturn.toArray(new String[0]);
 
-		return sortStringArray(cardsToReturn);
+		return sortStringArray(tempCards);
 	}
 
 	/**
