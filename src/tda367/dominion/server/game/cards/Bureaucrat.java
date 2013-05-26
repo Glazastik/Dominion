@@ -36,7 +36,11 @@ public class Bureaucrat extends ChoiceCard {
 		}
 		
 		for (Player p : game.getPlayers()){
-			notAffected.put(p,(p.hasCardInHand("Moat")|| p==activePlayer));
+			if(p != activePlayer && !p.hasCardInHand("Moat") && (p.hasCardInHand("Estate") || p.hasCardInHand("Duchy") || p.hasCardInHand("Province") || p.hasCardInHand("Gardens"))){
+				notAffected.put(p, false);
+			} else {
+				notAffected.put(p, true);
+			}
 		}
 		
 		for (Player p : inactivePlayers){
@@ -60,6 +64,7 @@ public class Bureaucrat extends ChoiceCard {
 			if(!notAffected.get(p)){
 				if(cih.isVictoryCard(((CardMessage)msg).getCard()) && p.hasCardInHand(((CardMessage)msg).getCard())){
 					p.putOnTopOfDeck(p.getHand().pop(((CardMessage)msg).getCard()));
+					p.updateCards();
 					notAffected.put(p, true);
 					p.sendTip("Waiting for " +  game.getActivePlayer().getName() + " to finish their turn.");
 				}
