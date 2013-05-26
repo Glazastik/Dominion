@@ -121,7 +121,6 @@ public class CardInfoHandler {
 	 * @return the cards value
 	 */
 	public int getCardValue(String cardName){
-		System.out.println(cardName);
 		return cardValues.get(cardName);
 	}
 	/**

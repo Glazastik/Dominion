@@ -61,6 +61,7 @@ public class Spy extends ChoiceCard {
 				currentTarget.discardTopOfDeck();
 				notAffected.put(currentTarget, true);
 			}
+			System.out.println("Iterator has next: " + iterator.hasNext());
 			while (iterator.hasNext()) {
 				System.out.println("Iterator has next");
 				currentTarget = iterator.next();

@@ -47,18 +47,17 @@ public class Library extends ChoiceCard {
 			}
 		}
 		while (player.getHandSize() < 7) {
-			if (p.revealTopOfDeck() == null || p.getHandSize() >= 7) {
-				p.putRevealedCardsInDiscard();
+			if (player.revealTopOfDeck() == null) {
 				state = State.NONACTIVE;
 				break;
-			} else if (cif.getCardType(p.revealTopOfDeck()).equals("Action")) {
+			} else if (cif.getCardType(player.revealTopOfDeck()).equals(
+					"Action")) {
 				game.activateYesNoBox("Set aside: " + player.revealTopOfDeck()
 						+ "?");
 				break;
 			} else {
-				p.draw();
+				player.draw();
 			}
 		}
 	}
-
 }
