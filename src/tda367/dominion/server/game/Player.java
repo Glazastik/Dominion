@@ -326,20 +326,6 @@ public class Player {
 	}
 
 	/**
-	 * An equals method
-	 * 
-	 * @param p
-	 * @return
-	 */
-	public boolean equals(Player p) {
-		if (p.getID() == this.getID()) {
-			return true;
-		} else {
-			return false;
-		}
-	}
-
-	/**
 	 * Takes a specified card from hand and puts it in the playing area.
 	 * 
 	 * @param card
