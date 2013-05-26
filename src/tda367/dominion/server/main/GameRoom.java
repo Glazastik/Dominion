@@ -60,7 +60,7 @@ public class GameRoom {
 			CardMessage message = ((CardMessage) object);
 			if (cardRulesHandler.isCardActive()) {
 				cardRulesHandler.activeCard.input(message,
-						game.getActivePlayer());
+						game.getPlayer(gc));
 			} else {
 				print("Player played: " + message.getCard());
 				playCard(gc, message.getCard());
@@ -70,7 +70,7 @@ public class GameRoom {
 			if (cardRulesHandler.isCardActive()) {
 				BoolMessage message = ((BoolMessage) object);
 				cardRulesHandler.activeCard.input(message,
-						game.getActivePlayer());
+						game.getPlayer(gc));
 			} else {
 				BoolMessage message = ((BoolMessage) object);
 				print("Bool: " + message.isTrue());
@@ -82,7 +82,7 @@ public class GameRoom {
 				GainMessage message = ((GainMessage) object);
 				CardMessage cm = new CardMessage();
 				cm.setCard(message.getCard());
-				cardRulesHandler.activeCard.input(cm, game.getActivePlayer());
+				cardRulesHandler.activeCard.input(cm, game.getPlayer(gc));
 				if (!cardRulesHandler.isCardActive()) {
 					game.checkDone(gc);
 				}
@@ -103,7 +103,7 @@ public class GameRoom {
 			if (cardRulesHandler.isCardActive()) {
 				DoneMessage message = ((DoneMessage) object);
 				cardRulesHandler.activeCard.input(message,
-						game.getActivePlayer());
+						game.getPlayer(gc));
 				game.checkDone(gc);
 
 			}
