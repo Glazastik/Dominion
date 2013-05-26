@@ -15,9 +15,9 @@ public class Militia extends ChoiceCard {
 	
 	public Militia (Dominion game) {
 		this.game = game;
-		state = State.NONACTIVE;
+		this.activePlayer = game.getActivePlayer();
 		this.players = game.getPlayers();
-		activePlayer = game.getActivePlayer();
+		state = State.NONACTIVE;
 		moatStatus = new HashMap<Player, Boolean>();
 		for(Player p : players){
 			moatStatus.put(p, false);
@@ -26,21 +26,30 @@ public class Militia extends ChoiceCard {
 
 	public void play(){
 		state = State.ACTIVE;
-		game.getActivePlayer().increaseMoney(2);
+		activePlayer = game.getActivePlayer();
+		activePlayer.increaseMoney(2);
+		LinkedList<Player> inactivePlayers = game.getInactivePlayers();
 		
-		LinkedList<Player> inActivePlayers = game.getInactivePlayers();
-		for(Player p: inActivePlayers){
-			if(!p.getHand().contains("Moat")){
-				if(p.getHandSize()>3){
-					p.sendTip("Discard down to 3 cards");
-					moatStatus.put(p, false);
-				}
+		System.out.println("Active: " + activePlayer.getName());
+		for (Player p : inactivePlayers){
+			System.out.println("Inactive: " + p.getName());
+		}
+		
+		moatStatus.put(activePlayer, true);
+		for(Player p: inactivePlayers){
+			if(!p.getHand().contains("Moat") && p.getHandSize()>3){
+				System.out.println("PUTTING FALSE");
+				System.out.println(p.getName());
+				p.sendTip("Discard down to 3 cards");
+				moatStatus.put(p, false);
 			} else {
+				System.out.println("PUTTING TRUE");
 				moatStatus.put(p, true);
 			}
 		}
+		
 		boolean noOneDiscards = true;
-		for (Player p : inActivePlayers){
+		for (Player p : inactivePlayers){
 			if(p.getHandSize()>3 && !moatStatus.get(p)){
 				noOneDiscards = false;
 			}
@@ -51,8 +60,12 @@ public class Militia extends ChoiceCard {
 	}
 	@Override
 	public void input(Message msg, Player player) {
+		System.out.println("Is in input");
 		boolean doneDiscarding = false;
-		if(player!=activePlayer && !moatStatus.get(player)){
+		System.out.println(player.getName());
+		System.out.println(!moatStatus.get(player));
+		System.out.println(player!=activePlayer);
+		if(!moatStatus.get(player)){
 			System.out.println("is not active player and no moatstatus");
 			if(msg instanceof CardMessage && player.getHandSize()>3){
 				if(player.hasCardInHand(((CardMessage) msg).getCard())){
