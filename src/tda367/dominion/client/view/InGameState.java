@@ -24,10 +24,11 @@ import tda367.dominion.server.game.Supply;
 /**
  * A class in control of everything that happens in-game.
  * 
- * <p>The game is entirely server based for increased security.
- * The client talks with the server by alerting a listener every
- * time a button is clicked. This class should be seen as a visual
- * representation of the server.</p>
+ * <p>
+ * The game is entirely server based for increased security. The client talks
+ * with the server by alerting a listener every time a button is clicked. This
+ * class should be seen as a visual representation of the server.
+ * </p>
  * 
  * @author Group 28
  */
@@ -105,7 +106,7 @@ public class InGameState extends ControlledGameState {
 	private int money;
 
 	// Cards
-	private HashMap<String,Image> handImages;
+	private HashMap<String, Image> handImages;
 	private LinkedList<String> hand = new LinkedList<String>();
 	private LinkedList<String> inPlay = new LinkedList<String>();
 	private String topOfPile = "";
@@ -114,11 +115,13 @@ public class InGameState extends ControlledGameState {
 	// Listeners
 	private GameListener cardListener;
 	private GameListener supplyListener;
+	private GameListener advanceListener;
+	private GameListener backListener;
 
 	// Message box variables
 	private boolean paintYesNo = false;
 	private String messageText;
-	
+
 	// reveal cards variables
 	private String[] revealedInString;
 	private boolean revealCards = false;
@@ -154,7 +157,7 @@ public class InGameState extends ControlledGameState {
 		logDisplay = false;
 		logText = new LinkedList<String>();
 		handImages = new HashMap();
-		for(String s : cih.getCardList()){
+		for (String s : cih.getCardList()) {
 			handImages.put(s, new Image(cih.getImageLink(s)));
 		}
 	}
@@ -270,7 +273,7 @@ public class InGameState extends ControlledGameState {
 		if (paintYesNo) {
 			paintYesNoMessageBox(messageText, g);
 		}
-		
+
 		if (revealCards) {
 			paintRevealedCards(g);
 		}
@@ -280,8 +283,6 @@ public class InGameState extends ControlledGameState {
 	@Override
 	public void update(GameContainer gc, StateBasedGame sbg, int time)
 			throws SlickException {
-
-		Input input = gc.getInput();
 		gameContainerWidth = gc.getWidth();
 		gameContainerHeight = gc.getHeight();
 
@@ -299,12 +300,6 @@ public class InGameState extends ControlledGameState {
 					.showCard(cardToShow);
 			sbg.enterState(Settings.SHOWCARDSTATE);
 		}
-
-		// Return to menu
-		if (input.isKeyPressed(Input.KEY_SPACE)) {
-			sbg.enterState(1);
-		}
-
 	}
 
 	/**
@@ -314,6 +309,10 @@ public class InGameState extends ControlledGameState {
 	 */
 	public InGameState(int id) {
 		super(id);
+	}
+
+	public void addBackListener(GameListener l) {
+		menuButton.addListener(l);
 	}
 
 	public void addPlayAllListener(GameListener l) {
@@ -330,6 +329,7 @@ public class InGameState extends ControlledGameState {
 
 	public void addAdvanceListener(GameListener l) {
 		nextButton.addListener(l);
+		advanceListener = l;
 	}
 
 	public void addDoneListener(GameListener l) {
@@ -349,6 +349,10 @@ public class InGameState extends ControlledGameState {
 	private void supplyCard(String card) {
 		GameEvent e = new GameEvent(card);
 		supplyListener.run(e);
+	}
+
+	private void advancePhase() {
+		advanceListener.run(new GameEvent());
 	}
 
 	/**
@@ -506,7 +510,7 @@ public class InGameState extends ControlledGameState {
 	 */
 	@Override
 	public void mouseClicked(int button, int x, int y, int clicks) {
-		
+
 		// Checks if you clicked a card in supply
 		String card = recSupplyCheck(button, x, y);
 		if (card != null) {
@@ -526,7 +530,7 @@ public class InGameState extends ControlledGameState {
 			playCard(card);
 			return;
 		}
-		
+
 		// RevealedCards Listener
 		if (revealedCards != null) {
 			card = recCheck(button, x, y, revealedCards, revealedRectangles);
@@ -536,7 +540,8 @@ public class InGameState extends ControlledGameState {
 		}
 
 		// Menu button listener
-		if (button == Input.MOUSE_LEFT_BUTTON && menuButton.boolContains(x, y)) {
+		if (button == Input.MOUSE_LEFT_BUTTON) {
+			menuButton.contains(x, y);
 			return;
 		}
 
@@ -558,7 +563,8 @@ public class InGameState extends ControlledGameState {
 		}
 
 		// play all treasures button listener
-		if (button == Input.MOUSE_LEFT_BUTTON && playAllButton.boolContains(x, y)) {
+		if (button == Input.MOUSE_LEFT_BUTTON
+				&& playAllButton.boolContains(x, y)) {
 			playAllButton.contains(x, y);
 			return;
 		}
@@ -578,6 +584,13 @@ public class InGameState extends ControlledGameState {
 			noButton.contains(x, y, false);
 			paintYesNo = false;
 			return;
+		}
+	}
+
+	@Override
+	public void keyPressed(int key, char c) {
+		if (key == Input.KEY_TAB) {
+			advancePhase();
 		}
 	}
 
@@ -1428,39 +1441,44 @@ public class InGameState extends ControlledGameState {
 			}
 		}
 	}
-	
+
 	/**
-	 * A method for painting all the revealedCards and their respective rectangle.
+	 * A method for painting all the revealedCards and their respective
+	 * rectangle.
 	 * 
-	 * @param g 
-	 * 			used for painting the backGround for the revealedCards
-	 * @throws SlickException 
+	 * @param g
+	 *            used for painting the backGround for the revealedCards
+	 * @throws SlickException
 	 */
 	public void paintRevealedCards(Graphics g) throws SlickException {
 		g.setColor(Color.black);
 		RoundedRectangle backGround;
-		backGround = new RoundedRectangle(10, 10, gameContainerWidth - gameContainerWidth/5, gameContainerHeight/2 - 100, 15);
+		backGround = new RoundedRectangle(10, 10, gameContainerWidth
+				- gameContainerWidth / 5, gameContainerHeight / 2 - 100, 15);
 		g.draw(backGround);
 		g.fill(backGround);
-		
+
 		if (updateRevealedCards) {
 
 			revealedCards = new Image[revealedInString.length];
 			for (int i = 0; i < hand.size(); i++) {
-				revealedCards[i] = new Image(cih.getImageLink(revealedInString[0]));
+				revealedCards[i] = new Image(
+						cih.getImageLink(revealedInString[0]));
 			}
 			updateRevealedCards = false;
 		}
-		
+
 		for (int i = 0; i < revealedCards.length; i++) {
 			float cardHeight = (float) gameContainerHeight * (float) (1.0 / 3);
 			double scale = (double) cardHeight / handCards[i].getHeight();
 			float cardWidth = (float) (handCards[i].getWidth() * scale);
-			revealedCards[i].draw(20 + (cardWidth * i), 20, cardWidth, cardHeight);
-			revealedRectangles[i].setBounds((int) (20 + (cardWidth * i)), 20, (int) cardWidth, (int) cardHeight);
+			revealedCards[i].draw(20 + (cardWidth * i), 20, cardWidth,
+					cardHeight);
+			revealedRectangles[i].setBounds((int) (20 + (cardWidth * i)), 20,
+					(int) cardWidth, (int) cardHeight);
 		}
 	}
-	
+
 	/**
 	 * Initiates and sets the images and rectangles related to RevealedCards.
 	 * Makes render paint them, by setting revealCards = true.
@@ -1474,7 +1492,7 @@ public class InGameState extends ControlledGameState {
 		revealCards = true;
 		updateRevealedCards = true;
 	}
-	
+
 	/**
 	 * Initiates and sets the images and rectangles related to RevealedCards.
 	 * Makes render paint them, by setting revealCards = true.
@@ -1487,7 +1505,7 @@ public class InGameState extends ControlledGameState {
 		revealedInString[0] = s;
 		revealedRectangles = initRectangleArray(revealedInString.length);
 		revealCards = true;
-		updateRevealedCards  = true;
+		updateRevealedCards = true;
 	}
 
 	/**

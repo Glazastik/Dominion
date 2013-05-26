@@ -113,7 +113,9 @@ public class MainView extends StateBasedGame implements Runnable {
 	
 	public void addBackListener(GameListener l) {
 		OptionsState s = (OptionsState) this.getState(Settings.OPTIONSSTATE);
+		InGameState igs = (InGameState) this.getState(Settings.INGAMESTATE);
 		s.addBackListener(l);
+		igs.addBackListener(l);
 	}
 
 	public void activateYesNoBox(String text) {
