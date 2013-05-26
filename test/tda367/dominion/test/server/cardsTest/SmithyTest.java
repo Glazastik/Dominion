@@ -14,7 +14,7 @@ public class SmithyTest {
 
 	@Test
 	public void testPlay() {
-		Player p = new Player(0, "Mr.Smith");
+		Player p = new Player("Kalle");
 		LinkedList<Player> players = new LinkedList<Player>();
 		players.add(p);
 		Dominion game = new Dominion(players);
