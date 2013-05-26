@@ -80,11 +80,9 @@ public class CardInfoHandler {
 	public LinkedList<String> getTreasureCards(){
 		LinkedList<String> temp = this.getCardList();
 		LinkedList<String> temp2 = new LinkedList<String>();
-		Iterator<String> i = temp.iterator();
-		while(i.hasNext()){
-			String tempString = (String) i.next();
-			if(this.getCardType(tempString).equals("Treasure")){
-				temp2.add(tempString);
+		for(String s : temp){
+			if(this.getCardType(s).equals("Treasure")){
+				temp2.add(s);
 			}
 		}
 		return temp2;
@@ -96,11 +94,9 @@ public class CardInfoHandler {
 	public LinkedList<String> getVictoryCards(){
 		LinkedList<String> temp = this.getCardList();
 		LinkedList<String> temp2 = new LinkedList<String>();
-		Iterator<String> i = temp.iterator();
-		while(i.hasNext()){
-			String tempString = (String) i.next();
-			if(this.getCardType(tempString).equals("Victory")){
-				temp2.add(tempString);
+		for(String s : temp){
+			if(this.getCardType(s).equals("Victory")){
+				temp2.add(s);
 			}
 		}
 		
