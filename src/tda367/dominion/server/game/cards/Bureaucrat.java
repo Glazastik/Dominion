@@ -14,6 +14,7 @@ public class Bureaucrat extends ChoiceCard {
 	private GainingHandler gH;
 	private LinkedList<Player> inactivePlayers;
 	private HashMap<Player,Boolean> notAffected;
+	private Player activePlayer;
 	private CardInfoHandler cih;
 	
 	
@@ -23,16 +24,19 @@ public class Bureaucrat extends ChoiceCard {
 		this.game = dom;
 		this.gH = new GainingHandler(game.getSupply());
 		cih = CardInfoHandler.getInstance();
+		notAffected = new HashMap();
 	}
 	public void play(){
 		state = State.ACTIVE;
 		this.inactivePlayers = game.getInactivePlayers();
+		this.activePlayer = game.getActivePlayer();
 		
 		if(gH.isCardGainable("Silver")){
-			game.getActivePlayer().putOnTopOfDeck(game.getSupply().take("Silver"));
+			activePlayer.putOnTopOfDeck(game.getSupply().take("Silver"));
 		}
+		
 		for (Player p : game.getPlayers()){
-			notAffected.put(p,(p.hasCardInHand("Moat")||p==game.getActivePlayer()));
+			notAffected.put(p,(p.hasCardInHand("Moat")|| p==activePlayer));
 		}
 		
 		for (Player p : inactivePlayers){
@@ -41,9 +45,13 @@ public class Bureaucrat extends ChoiceCard {
 					p.sendTip("Choose a victory card to put on top of deck");
 				}
 			}
-		}	
+		}
 		if(!notAffected.containsValue(false)){
 			state = State.NONACTIVE;
+			activePlayer.sendTip("Continue playing action cards.");
+			for(Player p : inactivePlayers){
+				p.sendTip("Wait for " + activePlayer.getName() + " to finish his/her turn.");
+			}
 		}
 	}
 	@Override
@@ -58,7 +66,7 @@ public class Bureaucrat extends ChoiceCard {
 			}
 		}
 		if(!notAffected.containsValue(false)){
-			game.getActivePlayer().sendTip("Continue");
+			game.getActivePlayer().sendTip("Continue playing action cards");
 			state = State.NONACTIVE;
 		}
 	}
