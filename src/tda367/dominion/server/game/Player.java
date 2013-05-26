@@ -61,8 +61,9 @@ public class Player {
 	 * @param i
 	 * @param string
 	 */
-	public Player(int i, String string) {
+	public Player(String name) {
 		this(new GameConnection());
+		gameConnection.setPlayerName(name);
 	}
 
 	private void init() {
@@ -515,7 +516,9 @@ public class Player {
 	}
 
 	public void send(Message msg) {
-		gameConnection.sendTCP(msg);
+		if(gameConnection.isConnected()) {
+			gameConnection.sendTCP(msg);
+		}
 	}
 
 	public void updateCards() {
