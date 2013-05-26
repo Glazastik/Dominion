@@ -34,15 +34,15 @@ public class MainMenuState extends ControlledGameState {
 	Image background = null;
 	Image logo = null;
 	Image hover = null;
-	Image audio = null;
-	Image muted = null;
+//	Image audio = null;
+//	Image muted = null;
 
 	Rectangle playRec = null;
 	Rectangle exitRec = null;
 	Rectangle optionsRec = null;
 	Rectangle audioRec = null;
 
-	Music openingMenuMusic;
+//	Music openingMenuMusic;
 	float position;
 	int volume;
 	int pitch;
@@ -88,8 +88,8 @@ public class MainMenuState extends ControlledGameState {
 		background = new Image("res/img/gui/menu/background.jpg");
 		hover = new Image("res/img/gui/menu/hover.png");
 		logo = new Image("res/img/gui/menu/logo.png");
-		audio = new Image("res/img/gui/menu/audio.png");
-		muted = new Image("res/img/gui/menu/muted.png");
+//		audio = new Image("res/img/gui/menu/audio.png");
+//		muted = new Image("res/img/gui/menu/muted.png");
 
 		setOffsets(gc);
 
@@ -105,8 +105,8 @@ public class MainMenuState extends ControlledGameState {
 
 		gc.setMouseCursor("res/img/gui/menu/wow2.gif", 0, 0);
 
-		volume = 100;
-		openingMenuMusic = new Music("res/sfx/music3.wav");
+//		volume = 100;
+//		openingMenuMusic = new Music("res/sfx/music3.wav");
 		// openingMenuMusic.loop();
 
 	}
@@ -119,7 +119,7 @@ public class MainMenuState extends ControlledGameState {
 		g.drawString("Main Menu " + mouse, 0, 0);
 
 		drawMenuItems();
-		drawAudioIcons();
+//		drawAudioIcons();
 
 		logo.draw(20, 20);
 
@@ -172,7 +172,7 @@ public class MainMenuState extends ControlledGameState {
 					Transitions.createNewHorizontalSplitTransition());
 		}
 
-		openingMenuMusic.setVolume(volume);
+//		openingMenuMusic.setVolume(volume);
 
 	}
 
@@ -192,13 +192,13 @@ public class MainMenuState extends ControlledGameState {
 	public void mouseClicked(int button, int x, int y, int clicks) {
 
 		// Checks if the mouse cursor is within the audio image
-		if (button == Input.MOUSE_LEFT_BUTTON && audioRec.contains(x, y)) {
-			if (openingMenuMusic.playing()) {
-				openingMenuMusic.pause();
-			} else {
-				openingMenuMusic.loop((float) 1.5, volume);
-			}
-		}
+//		if (button == Input.MOUSE_LEFT_BUTTON && audioRec.contains(x, y)) {
+//			if (openingMenuMusic.playing()) {
+//				openingMenuMusic.pause();
+//			} else {
+//				openingMenuMusic.loop((float) 1.5, volume);
+//			}
+//		}
 	}
 
 	/**
@@ -206,17 +206,17 @@ public class MainMenuState extends ControlledGameState {
 	 */
 	@Override
 	public void keyPressed(int key, char c) {
-		if (key == Input.KEY_M) {
-			if (openingMenuMusic.playing()) {
-				openingMenuMusic.pause();
-			} else {
-				openingMenuMusic.play((float) 1.5, 100);
-			}
-		} else if (key == Input.KEY_DOWN) {
-			volume -= 10;
-		} else if (key == Input.KEY_UP) {
-			volume += 10;
-		}
+//		if (key == Input.KEY_M) {
+//			if (openingMenuMusic.playing()) {
+//				openingMenuMusic.pause();
+//			} else {
+//				openingMenuMusic.play((float) 1.5, 100);
+//			}
+//		} else if (key == Input.KEY_DOWN) {
+//			volume -= 10;
+//		} else if (key == Input.KEY_UP) {
+//			volume += 10;
+//		}
 	}
 
 	/**
@@ -260,17 +260,17 @@ public class MainMenuState extends ControlledGameState {
 
 	}
 
-	/**
-	 * A method for drawing the audio icon in the bottom right corner.
-	 */
-	private void drawAudioIcons() {
-		if (openingMenuMusic.playing()) {
-			audio.draw(1210, 710);
-			audioRec.setBounds(1210, 710, 64, 64);
-		} else {
-			muted.draw(1210, 710);
-		}
-	}
+//	/**
+//	 * A method for drawing the audio icon in the bottom right corner.
+//	 */
+//	private void drawAudioIcons() {
+//		if (openingMenuMusic.playing()) {
+//			audio.draw(1210, 710);
+//			audioRec.setBounds(1210, 710, 64, 64);
+//		} else {
+//			muted.draw(1210, 710);
+//		}
+//	}
 
 	private void setRecs() {
 		playRec.setLocation(xOffset, yOffset);
