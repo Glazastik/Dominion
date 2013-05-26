@@ -2,12 +2,18 @@ package tda367.dominion.server.main;
 
 import java.util.LinkedList;
 
-import tda367.dominion.commons.messages.*;
+import tda367.dominion.commons.messages.AdvanceMessage;
+import tda367.dominion.commons.messages.BoolMessage;
+import tda367.dominion.commons.messages.CardMessage;
+import tda367.dominion.commons.messages.DoneMessage;
+import tda367.dominion.commons.messages.GainMessage;
+import tda367.dominion.commons.messages.PlayAllMessage;
 import tda367.dominion.server.game.CardInfoHandler;
-import tda367.dominion.server.main.CardRulesHandler;
 import tda367.dominion.server.game.Dominion;
 import tda367.dominion.server.game.Player;
 import tda367.dominion.server.game.TurnHandler.Phase;
+import tda367.dominion.server.game.cards.Cellar;
+import tda367.dominion.server.game.cards.Chapel;
 import tda367.dominion.server.network.GameConnection;
 
 /**
@@ -93,12 +99,21 @@ public class GameRoom {
 			}
 			game.updateSupply();
 
-		} else if (object instanceof PlayAllMessage && !cardRulesHandler.isCardActive()) {
+		} else if (object instanceof PlayAllMessage
+				&& !cardRulesHandler.isCardActive()) {
 			print("Received PlayAll");
 			game.playAll(gc);
 		} else if (object instanceof AdvanceMessage) {
-			print("Received Done");
-			game.done(gc);
+			//Sends done message to chapel/cellar if they are active
+			if (cardRulesHandler.activeCard instanceof Cellar
+					|| cardRulesHandler.activeCard instanceof Chapel) {
+				cardRulesHandler.activeCard.input(new DoneMessage(),
+						game.getActivePlayer());
+			} 
+			//Next phase
+			if (!cardRulesHandler.isCardActive()) {
+				game.done(gc);
+			}
 		} else if (object instanceof DoneMessage) {
 			if (cardRulesHandler.isCardActive()) {
 				DoneMessage message = ((DoneMessage) object);
