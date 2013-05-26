@@ -355,7 +355,7 @@ public class InGameState extends ControlledGameState {
 	private void advancePhase() {
 		advanceListener.run(new GameEvent());
 	}
-	
+
 	private void playAllTreasures() {
 		playAllListener.run(new GameEvent());
 	}
@@ -568,7 +568,8 @@ public class InGameState extends ControlledGameState {
 		}
 
 		// play all treasures button listener
-		if (button == Input.MOUSE_LEFT_BUTTON && playAllButton.boolContains(x, y)) {
+		if (button == Input.MOUSE_LEFT_BUTTON
+				&& playAllButton.boolContains(x, y)) {
 			playAllButton.contains(x, y);
 			return;
 		}
@@ -597,7 +598,7 @@ public class InGameState extends ControlledGameState {
 			advancePhase();
 			return;
 		}
-		
+
 		if (key == Input.KEY_Q) {
 			playAllTreasures();
 			return;
@@ -1256,7 +1257,14 @@ public class InGameState extends ControlledGameState {
 		messageBox.draw(x, y, messageBox.getWidth(), messageBox.getHeight());
 		yesButton.draw(x + 10, y + 90);
 		noButton.draw(x + 125, y + 90);
-		g.drawString(message, x + 20, y + 20);
+		if (message.length() > 25) {
+			String temp = message.substring(0, 25);
+			String temp2 = message.substring(25);
+			g.drawString(temp, x + 20, y + 20);
+			g.drawString(temp2, x + 20, y + 45);
+		} else {
+			g.drawString(message, x + 20, y + 20);
+		}
 	}
 
 	/**

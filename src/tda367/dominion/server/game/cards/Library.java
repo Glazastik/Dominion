@@ -6,34 +6,33 @@ import tda367.dominion.server.game.CardInfoHandler;
 import tda367.dominion.server.game.Dominion;
 import tda367.dominion.server.game.Player;
 
-public class Library extends ChoiceCard{
-	private Dominion dominion;
+public class Library extends ChoiceCard {
 	private Player player; 
 	private CardInfoHandler cif = CardInfoHandler.getInstance();
-	public Library(Dominion dom){
-		this.dominion = dom;
+	
+	public Library(Dominion game){
+		this.game = game;
 		state = State.NONACTIVE;
 	}
-	public void play(Player p){
-		player = p;
+	public void play(){
+		player = game.getActivePlayer();
 		state = State.ACTIVE;
-		while(p.getHandSize() < 7){
-			if(p.revealTopOfDeck() == null){
+		while(player.getHandSize() < 7){
+			if(player.revealTopOfDeck() == null){
 				state = State.NONACTIVE;
 				break;
-			} else if(cif.getCardType(p.revealTopOfDeck()).equals("Action")){
-				p.reveal(p.revealTopOfDeck());
-				dominion.activateYesNoBox("Set aside?");
+			} else if(cif.getCardType(player.revealTopOfDeck()).equals("Action")){
+				game.revealCard(player.revealTopOfDeck());
+				game.activateYesNoBox("Set aside?");
 				break;
 			} else {
-				p.draw();
+				player.draw();
 			}
 		}
-		if(p.revealTopOfDeck() == null || p.getHandSize() >= 7){
-			p.putRevealedCardsInDiscard();
+		if(player.revealTopOfDeck() == null || player.getHandSize() >= 7){
+			player.putRevealedCardsInDiscard();
 			state = State.NONACTIVE;
 		}
-		//p.sendRemoveRevealedMessages();
 	}
 	@Override
 	public void input(Message msg, Player p) {
@@ -49,7 +48,7 @@ public class Library extends ChoiceCard{
 			state = State.NONACTIVE;
 		} else if(cif.getCardType(p.revealTopOfDeck()).equals("Action")) {
 			p.reveal(p.revealTopOfDeck());
-			dominion.activateYesNoBox("Set aside?");
+			game.activateYesNoBox("Set aside?");
 		} else {
 			p.draw();
 		}
