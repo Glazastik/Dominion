@@ -3,6 +3,7 @@ package tda367.dominion.client.controller;
 import tda367.dominion.client.model.ClientModel;
 import tda367.dominion.client.model.Settings;
 import tda367.dominion.client.view.MainView;
+import tda367.dominion.client.view.Transitions;
 import tda367.dominion.commons.listener.GameEvent;
 import tda367.dominion.commons.listener.GameListener;
 import tda367.dominion.commons.messages.*;
@@ -47,6 +48,7 @@ public class ClientController {
 		view.addSettingsListener(new SettingsListener());
 		view.addDoneListener(new DoneListener());
 		view.addBoolListener(new BoolListener());
+		view.addBackListener(new BackListener());
 	}
 
 	// Listener classes
@@ -225,6 +227,12 @@ public class ClientController {
 	class DoneListener implements GameListener {
 		public void run(GameEvent e) {
 			model.doneCard();
+		}
+	}
+	
+	class BackListener implements GameListener {
+		public void run(GameEvent e) {
+			view.enterState(Settings.MAINMENUSTATE, null, Transitions.createNewHorizontalSplitTransition());
 		}
 	}
 }

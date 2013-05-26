@@ -7,7 +7,6 @@ import java.io.FileNotFoundException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 
@@ -112,6 +111,11 @@ public class MainView extends StateBasedGame implements Runnable {
 		s.addBoolListener(l);
 	}
 	
+	public void addBackListener(GameListener l) {
+		OptionsState s = (OptionsState) this.getState(Settings.OPTIONSSTATE);
+		s.addBackListener(l);
+	}
+
 	public void activateYesNoBox(String text) {
 		InGameState s = (InGameState) this.getState(Settings.INGAMESTATE);
 		s.activateYesNoBox(text);

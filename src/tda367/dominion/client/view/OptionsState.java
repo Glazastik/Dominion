@@ -27,6 +27,7 @@ public class OptionsState extends ControlledGameState {
 	Image checker;
 	Image checker2;
 	Image checker3;
+	ImageButton backButton;
 	public RoundedRectangle fullScreenCheckbox;
 	public RoundedRectangle hiResCheckbox;
 	public RoundedRectangle lowResCheckbox;
@@ -38,6 +39,10 @@ public class OptionsState extends ControlledGameState {
 	
 	public void addSettingsListener(GameListener l) {
 		settingsChanged = l;
+	}
+	
+	public void addBackListener(GameListener l) {
+		backButton.addListener(l);
 	}
 	
 	public void settingsChanged() {
@@ -57,6 +62,7 @@ public class OptionsState extends ControlledGameState {
 		lowResCheckbox = new RoundedRectangle(100, 335, 25, 25, 1);
 		fpsCheckbox = new RoundedRectangle(100, 520, 25, 25, 1);
 		
+		backButton = new ImageButton("res/img/gui/serverList/backButton.png");
 		background = new Image("res/img/gui/ingame/BoardTemp.png");
 		checker = new Image("res/img/gui/menu/checker.png");
 		checker2 = new Image("res/img/gui/menu/checker.png");
@@ -68,7 +74,6 @@ public class OptionsState extends ControlledGameState {
 			throws SlickException {
 		background.draw();
 		g.setColor(Color.white);
-		g.drawString("Options Menu", 0, 0);
 		g.drawString("Resolution:", 100, 300);
 		g.drawString("800x600", 100, 317);
 		g.drawString("1280x800", 180, 317);
@@ -78,6 +83,7 @@ public class OptionsState extends ControlledGameState {
 	    g.draw(hiResCheckbox);
 	    g.draw(lowResCheckbox);
 	    g.draw(fpsCheckbox);
+	    backButton.draw(20, 20);
 	    
 	    if (Settings.fullscreen == true) {
 	    	checker.draw(fullScreenCheckbox.getMinX(), fullScreenCheckbox.getMinY());
@@ -148,6 +154,10 @@ public class OptionsState extends ControlledGameState {
 			return;
 		}
 		
+		//Checks if mouse cursor is within back button
+		if(button == Input.MOUSE_LEFT_BUTTON) {
+			backButton.contains(x, y);
+		}
 	}
 	
 	/**
