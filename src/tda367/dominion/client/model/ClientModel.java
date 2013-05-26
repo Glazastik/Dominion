@@ -39,7 +39,6 @@ public class ClientModel {
 		msg.setRoomId(roomId);
 		msg.setName(Settings.getName());
 		connection.sendMessage(msg);
-		System.out.println("Connectionmessage sent");
 	}
 
 	public void hostRoom(int i) {
@@ -69,12 +68,10 @@ public class ClientModel {
 		GainMessage msg = new GainMessage();
 		msg.setCard(card);
 		connection.sendMessage(msg);
-		System.out.println("Sent gainstuff");
 	}
 	
 	public void playAll(){
 		connection.sendMessage(new PlayAllMessage());
-		System.out.println("Played all treasure!");
 	}
 
 	/**

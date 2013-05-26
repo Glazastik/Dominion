@@ -134,7 +134,6 @@ public class MainView extends StateBasedGame implements Runnable {
 	}
 	
 	public void setupEndState(LinkedList<String> names, LinkedList<Integer> scores){
-		System.out.println("Please poke");
 		EndGameState egs = (EndGameState) this.getState(Settings.ENDGAMESTATE);
 		egs.initData(names, scores);
 		this.enterState(Settings.ENDGAMESTATE);
@@ -176,7 +175,6 @@ public class MainView extends StateBasedGame implements Runnable {
 	public void updateRoomData(String[][] s) {
 		GameState g = this.getState(Settings.SERVERLISTSTATE);
 		((ServerListState) g).updateRoomData(s);
-		System.out.println("Updating game rooms");
 	}
 
 	/**

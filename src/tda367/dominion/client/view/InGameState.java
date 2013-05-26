@@ -778,7 +778,6 @@ public class InGameState extends ControlledGameState {
 		LinkedList<String> allActionCards = cih.getActionCards();
 		LinkedList<String> cardsToReturn = new LinkedList<String>();
 		cardsToReturn = new LinkedList<String>();
-		System.out.println("input l�ngd: " + cards.length);
 		for (int i = 0; i < cards.length; i++) {
 			if (allActionCards.contains(cards[i])) {
 				cardsToReturn.add(cards[i]);

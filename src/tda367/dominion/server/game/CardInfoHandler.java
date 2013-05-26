@@ -70,7 +70,6 @@ public class CardInfoHandler {
 				temp2.add(s);
 			}
 		}
-		System.out.println("temp2: " +  temp2.size());
 		return temp2;
 	}
 	/**

@@ -55,16 +55,6 @@ public class ClientController {
 	class NetworkListener extends Listener {
 
 		@Override
-		public void connected(Connection c) {
-			System.out.println("Connected, it works");
-		}
-
-		@Override
-		public void disconnected(Connection c) {
-			System.out.println("Disconnected");
-		}
-
-		@Override
 		public void received(Connection connection, Object object) {
 
 			if (object instanceof RevealCardMessage) {
