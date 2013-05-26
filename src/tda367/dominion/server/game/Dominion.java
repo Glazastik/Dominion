@@ -2,11 +2,11 @@ package tda367.dominion.server.game;
 
 import java.util.HashMap;
 import java.util.LinkedList;
+import java.util.Set;
 
 import tda367.dominion.commons.messages.CreateBoolMessage;
 import tda367.dominion.commons.messages.EndMessage;
 import tda367.dominion.commons.messages.Message;
-import tda367.dominion.commons.messages.RevealCardMessage;
 import tda367.dominion.commons.messages.RevealMultipleCardMessage;
 import tda367.dominion.commons.messages.SetupMessage;
 import tda367.dominion.commons.messages.SupplyMessage;
@@ -51,6 +51,12 @@ public class Dominion {
 
 		turnHandler.startGame();
 		this.notifyPhase();
+		
+		Set<String> ss = supply.getCardsInSupply().keySet();
+		
+		for(String s : ss) {
+			System.out.println(s.toString());
+		}
 	}
 
 	/**
