@@ -7,50 +7,58 @@ import tda367.dominion.server.game.Dominion;
 import tda367.dominion.server.game.Player;
 
 public class Library extends ChoiceCard {
-	private Player player; 
+	private Player player;
 	private CardInfoHandler cif = CardInfoHandler.getInstance();
-	
-	public Library(Dominion game){
+
+	public Library(Dominion game) {
 		this.game = game;
 		state = State.NONACTIVE;
 	}
-	public void play(){
+
+	public void play() {
 		player = game.getActivePlayer();
 		state = State.ACTIVE;
-		while(player.getHandSize() < 7){
-			if(player.revealTopOfDeck() == null){
+		while (player.getHandSize() < 7) {
+			if (player.revealTopOfDeck() == null) {
 				state = State.NONACTIVE;
 				break;
-			} else if(cif.getCardType(player.revealTopOfDeck()).equals("Action")){
-				game.activateYesNoBox("Set aside: " + player.revealTopOfDeck() + "?");
+			} else if (cif.getCardType(player.revealTopOfDeck()).equals(
+					"Action")) {
+				game.activateYesNoBox("Set aside: " + player.revealTopOfDeck()
+						+ "?");
 				break;
 			} else {
 				player.draw();
 			}
 		}
-		if(player.revealTopOfDeck() == null || player.getHandSize() >= 7){
+		if (player.revealTopOfDeck() == null || player.getHandSize() >= 7) {
 			player.putRevealedCardsInDiscard();
 			state = State.NONACTIVE;
 		}
 	}
+
 	@Override
 	public void input(Message msg, Player p) {
-		if(msg instanceof BoolMessage){
-			if(((BoolMessage)msg).isTrue()){
+		if (msg instanceof BoolMessage) {
+			if (!((BoolMessage) msg).isTrue()) {
 				p.draw();
 			} else {
 				p.discardTopOfDeck();
 			}
 		}
-		if(p.revealTopOfDeck() == null || p.getHandSize() >= 7){
-			p.putRevealedCardsInDiscard();
-			state = State.NONACTIVE;
-		} else if(cif.getCardType(p.revealTopOfDeck()).equals("Action")) {
-			game.activateYesNoBox("Set aside: " + player.revealTopOfDeck() + "?");
-		} else {
-			p.draw();
+		while (player.getHandSize() < 7) {
+			if (p.revealTopOfDeck() == null || p.getHandSize() >= 7) {
+				p.putRevealedCardsInDiscard();
+				state = State.NONACTIVE;
+				break;
+			} else if (cif.getCardType(p.revealTopOfDeck()).equals("Action")) {
+				game.activateYesNoBox("Set aside: " + player.revealTopOfDeck()
+						+ "?");
+				break;
+			} else {
+				p.draw();
+			}
 		}
 	}
 
 }
-
