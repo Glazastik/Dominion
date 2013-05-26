@@ -26,10 +26,10 @@ public class Thief extends ChoiceCard{
 		LinkedList<Player> players = game.getInactivePlayers();
 		for(Player p : players){
 			if(!p.getHand().contains("Moat")){
-				for(String card : p.revealTopOfDeck(2)){
-					//if()
-				}
-				//Steal(player, p);
+//				for(String card : p.revealTopOfDeck(2)){
+//					if()
+//				}
+//				Steal(player, p);
 			} else {
 				/**
 				 * p.sendInformationMessage("Do you wish to reveal Moat?");
@@ -56,9 +56,9 @@ public class Thief extends ChoiceCard{
 		Pile trashedCards = new Pile();
 		boolean hasTreasure  = false;
 		Pile tempList = new Pile();
-		for(String s : p.revealTopOfDeck(2)){
-			tempList.add(s);
-		}
+//		for(String s : p.revealTopOfDeck(2)){
+//			tempList.add(s);
+//		}
 		//for(String s: tempList){
 		//	if(cif.getCardType(s).equals("Treasure")){
 		//		hasTreasure = true;

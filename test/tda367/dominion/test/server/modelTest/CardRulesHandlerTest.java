@@ -17,8 +17,8 @@ public class CardRulesHandlerTest {
 
 	@Test
 	public void playCardTest() {
-		Player player1 = new Player(0, "Wasa");
-		Player player2 = new Player(1, "Kristian");
+		Player player1 = new Player("Wasa");
+		Player player2 = new Player("Kristian");
 		LinkedList<Player> players = new LinkedList<Player>();
 		players.add(player1);
 		players.add(player2);

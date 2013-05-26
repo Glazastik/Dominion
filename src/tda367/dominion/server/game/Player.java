@@ -230,15 +230,6 @@ public class Player {
 	}
 
 	/**
-	 * Reveal the top card of the deck
-	 * 
-	 * @return a list of the top cards
-	 */
-	public List<String> revealTopOfDeck(int number) {
-		return deck.getTop(number);
-	}
-
-	/**
 	 * Discard a card from the deck
 	 * 
 	 * @param card
