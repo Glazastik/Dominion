@@ -134,6 +134,12 @@ public class Pile {
 		return l;
 	}
 	
+	/**
+	 * Return a specific card.
+	 * 
+	 * @param index of the card
+	 * @return the specific card
+	 */
 	public String getCard(int index) {
 		return cards.get(index);
 	}

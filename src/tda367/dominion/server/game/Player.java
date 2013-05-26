@@ -483,7 +483,8 @@ public class Player {
 		}
 	}
 
-	public boolean hasActionCardsInHand() {
+	
+	public boolean hasActionCards() {
 		for (String card : hand.getCards()) {
 			if (cih.isActionCard(card)) {
 				return true;
@@ -492,12 +493,20 @@ public class Player {
 		return false;
 	}
 
+	/**
+	 * Send a godtyckligt message.
+	 * 
+	 * @param msg
+	 */
 	public void send(Message msg) {
 		if(gameConnection.isConnected()) {
 			gameConnection.sendTCP(msg);
 		}
 	}
 
+	/**
+	 * Update the cards for the client.
+	 */
 	public void updateCards() {
 		CardUpdateMessage msg = new CardUpdateMessage();
 		msg.setDeckSize(deck.getSize());
@@ -507,23 +516,15 @@ public class Player {
 		send(msg);
 	}
 
+	/**
+	 * Updates the stats for the client.
+	 */
 	public void updateStats() {
 		PlayerUpdateMessage msg = new PlayerUpdateMessage();
 		msg.setActions(actions);
 		msg.setBuys(buys);
 		msg.setMoney(money);
 		send(msg);
-	}
-
-	public boolean hasActionCards() {
-		if (hand != null) {
-			for (int i = 0; i < hand.getSize(); i++) {
-				if (cih.isActionCard(hand.getCard(i))) {
-					return true;
-				}
-			}
-		}
-		return false;
 	}
 	
 	public void reveal(LinkedList<String> cards) {
@@ -543,18 +544,34 @@ public class Player {
 		this.send(msg);
 	}
 
+	/**
+	 * Send a String that will instruct the player on what's up.
+	 * 
+	 * @param tip
+	 */
 	public void sendTip(String tip) {
 		TipMessage tmsg = new TipMessage();
 		tmsg.setMessage(tip);
 		this.send(tmsg);
 	}
 
+	/**
+	 * Send a String that will show up in the player's log.
+	 * 
+	 * @param log
+	 */
 	public void sendLog(String log) {
 		LogMessage tmsg = new LogMessage();
 		tmsg.setMessage(log);
 		this.send(tmsg);
 	}
 
+	/**
+	 * Return true if the card can be found in the player's hand.
+	 * 
+	 * @param card
+	 * @return
+	 */
 	public boolean hasCardInHand(String card) {
 		for (String s : hand.getCards()) {
 			if (s.equals(card)) {

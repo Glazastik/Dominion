@@ -392,7 +392,7 @@ public class Dominion {
 	public void checkDone(GameConnection gc) {
 		Phase current = turnHandler.getPhase();
 		Player active = this.getActivePlayer();
-		if (current == Phase.ACTION && !active.hasActionCardsInHand()) {
+		if (current == Phase.ACTION && !active.hasActionCards()) {
 			done(gc);
 		} else if (current == Phase.BUY && active.getBuys() == 0) {
 			done(gc);
