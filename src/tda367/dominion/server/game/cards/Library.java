@@ -22,8 +22,7 @@ public class Library extends ChoiceCard {
 				state = State.NONACTIVE;
 				break;
 			} else if(cif.getCardType(player.revealTopOfDeck()).equals("Action")){
-				player.reveal(player.revealTopOfDeck());
-				game.activateYesNoBox("Set aside?");
+				game.activateYesNoBox("Set aside: " + player.revealTopOfDeck() + "?");
 				break;
 			} else {
 				player.draw();
@@ -47,8 +46,7 @@ public class Library extends ChoiceCard {
 			p.putRevealedCardsInDiscard();
 			state = State.NONACTIVE;
 		} else if(cif.getCardType(p.revealTopOfDeck()).equals("Action")) {
-			p.reveal(p.revealTopOfDeck());
-			game.activateYesNoBox("Set aside?");
+			game.activateYesNoBox("Set aside: " + player.revealTopOfDeck() + "?");
 		} else {
 			p.draw();
 		}
