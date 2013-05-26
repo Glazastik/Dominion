@@ -47,21 +47,12 @@ public class CardInfoHandlerTest {
 	}
 	@Test
 	public void testGetCardValue() {
-		boolean bool = true;
 		CardInfoHandler cardInfoHandler = CardInfoHandler.getInstance();
-		if(cardInfoHandler.getCardValue("Gold")!=6){
-			bool = false;
-		}
-		if(cardInfoHandler.getCardValue("Province")!=8){
-			bool = false;
-		}
-		if(cardInfoHandler.getCardValue("Smithy")!=4){
-			bool = false;
-		}
-		if(cardInfoHandler.getCardValue("Market")!=5){
-			bool = false;
-		}
-		assertTrue(bool);
+		
+		assertTrue(cardInfoHandler.getCardValue("Gold") == 6);
+		assertTrue(cardInfoHandler.getCardValue("Province") == 8);
+		assertTrue(cardInfoHandler.getCardValue("Smithy") == 4);
+		assertTrue(cardInfoHandler.getCardValue("Market") == 5);
 	}
 	@Test
 	public void testGetCardImageLink() {
@@ -82,6 +73,7 @@ public class CardInfoHandlerTest {
 	public void testGetActionCards(){
 		boolean bool = true;
 		CardInfoHandler cardInfoHandler = CardInfoHandler.getInstance();
+		
 		LinkedList<String> temp = cardInfoHandler.getActionCards();
 		for (String s : temp){
 			if(!cardInfoHandler.isActionCard(s) && !s.equals("Gardens")){
