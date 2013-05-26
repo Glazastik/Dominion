@@ -24,8 +24,6 @@ Remodel Action 4
 Silver Treasure 3
 Smithy Action 4
 Spy Action 4
-Thief Action 4
-Throneroom Action 4
 Village Action 3
 Witch Action 5
 Woodcutter Action 3
