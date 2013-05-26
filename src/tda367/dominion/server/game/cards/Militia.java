@@ -11,16 +11,16 @@ import tda367.dominion.server.game.Player;
 public class Militia extends ChoiceCard {
 	private LinkedList<Player> players;
 	private Player activePlayer;
-	private HashMap<Player, Boolean> moatStatus;
+	private HashMap<Player, Boolean> notAffected;
 	
 	public Militia (Dominion game) {
 		this.game = game;
 		this.activePlayer = game.getActivePlayer();
 		this.players = game.getPlayers();
 		state = State.NONACTIVE;
-		moatStatus = new HashMap<Player, Boolean>();
+		notAffected = new HashMap<Player, Boolean>();
 		for(Player p : players){
-			moatStatus.put(p, false);
+			notAffected.put(p, false);
 		}
 	} 
 
@@ -35,22 +35,22 @@ public class Militia extends ChoiceCard {
 			System.out.println("Inactive: " + p.getName());
 		}
 		
-		moatStatus.put(activePlayer, true);
+		notAffected.put(activePlayer, true);
 		for(Player p: inactivePlayers){
 			if(!p.getHand().contains("Moat") && p.getHandSize()>3){
 				System.out.println("PUTTING FALSE");
 				System.out.println(p.getName());
 				p.sendTip("Discard down to 3 cards");
-				moatStatus.put(p, false);
+				notAffected.put(p, false);
 			} else {
 				System.out.println("PUTTING TRUE");
-				moatStatus.put(p, true);
+				notAffected.put(p, true);
 			}
 		}
 		
 		boolean noOneDiscards = true;
 		for (Player p : inactivePlayers){
-			if(p.getHandSize()>3 && !moatStatus.get(p)){
+			if(p.getHandSize()>3 && !notAffected.get(p)){
 				noOneDiscards = false;
 			}
 		}
@@ -60,12 +60,9 @@ public class Militia extends ChoiceCard {
 	}
 	@Override
 	public void input(Message msg, Player player) {
-		System.out.println("Is in input");
 		boolean doneDiscarding = false;
-		System.out.println(player.getName());
-		System.out.println(!moatStatus.get(player));
-		System.out.println(player!=activePlayer);
-		if(!moatStatus.get(player)){
+		
+		if(!notAffected.get(player)){
 			System.out.println("is not active player and no moatstatus");
 			if(msg instanceof CardMessage && player.getHandSize()>3){
 				if(player.hasCardInHand(((CardMessage) msg).getCard())){
@@ -73,15 +70,20 @@ public class Militia extends ChoiceCard {
 				}
 			}
 		}
-		boolean noOneDiscards = true;
 		for (Player p : players){
-			if(p != player && p.getHandSize()>3 && !moatStatus.get(p)){
-				noOneDiscards = false;
-			} else {
+			if(p == activePlayer || p.getHandSize() <= 3){
+				notAffected.put(p, true);
+			}
+		}
+		
+		
+		for (Player p : players){
+			if(p != activePlayer && notAffected.get(p)){
 				p.sendTip("Wait for " + activePlayer.getName() + " to finish playing action cards.");
 			}
 		}
-		if(noOneDiscards){
+		
+		if(!notAffected.containsValue(false)){
 			activePlayer.sendTip("Continue playing action cards.");
 			state = State.NONACTIVE;
 		}
