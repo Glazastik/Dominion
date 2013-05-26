@@ -540,7 +540,7 @@ public class InGameState extends ControlledGameState {
 		}
 
 		// Menu button listener
-		if (button == Input.MOUSE_LEFT_BUTTON) {
+		if (button == Input.MOUSE_LEFT_BUTTON && chatButton.boolContains(x, y)) {
 			menuButton.contains(x, y);
 			return;
 		}
@@ -563,8 +563,7 @@ public class InGameState extends ControlledGameState {
 		}
 
 		// play all treasures button listener
-		if (button == Input.MOUSE_LEFT_BUTTON
-				&& playAllButton.boolContains(x, y)) {
+		if (button == Input.MOUSE_LEFT_BUTTON && playAllButton.boolContains(x, y)) {
 			playAllButton.contains(x, y);
 			return;
 		}
