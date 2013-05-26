@@ -8,23 +8,32 @@ import org.junit.Test;
 
 import tda367.dominion.server.game.Dominion;
 import tda367.dominion.server.game.Player;
+import tda367.dominion.server.game.cards.Festival;
 import tda367.dominion.server.game.cards.Laboratory;
 
 public class LaboratoryTest {
-
+	private Dominion initGame() {
+		Player p1 = new Player("Markolio");
+		Player p2 = new Player("Knugen");
+		Player p3 = new Player("Bacchus");
+		LinkedList<Player> players = new LinkedList<Player>();
+		players.add(p1);
+		players.add(p2);
+		players.add(p3);
+		
+		Dominion game = new Dominion(players);		
+		Laboratory.play(game);
+		return game;
+	}
+	
 	@Test
 	public void testPlay() {
-		Player p = new Player(0, "King Rex");
+		Dominion game = this.initGame();
 		
-		LinkedList<Player> players = new LinkedList<Player>();
-		players.add(p);
-		Dominion game = new Dominion(players);
+		Player p = game.getActivePlayer();
 		
-		int handsize = p.getHandSize();
-		int actions = p.getActions();
-		Laboratory.play(game);
-		assertTrue(p.getHandSize() - handsize == 2);
-		assertTrue(p.getActions() - actions == 1);
+		assertTrue(p.getHandSize() == 7);
+		assertTrue(p.getActions() == 2);
 	}
 
 }
