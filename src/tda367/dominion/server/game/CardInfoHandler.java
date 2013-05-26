@@ -66,12 +66,12 @@ public class CardInfoHandler {
 		LinkedList<String> temp = this.getCardList();
 		LinkedList<String> temp2 = new LinkedList<String>();
 		Iterator<String> i = temp.iterator();
-		while(i.hasNext()){
-			String tempString = (String) i.next();
-			if(this.getCardType(tempString).equals("Action") || tempString.equals("Gardens")){
-				temp2.add(tempString);
+		for(String s : temp){
+			if(this.getCardType(s).equals("Action") || s.equals("Gardens")){
+				temp2.add(s);
 			}
 		}
+		System.out.println("temp2: " +  temp2.size());
 		return temp2;
 	}
 	/**

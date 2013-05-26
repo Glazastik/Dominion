@@ -58,9 +58,6 @@ public class CardInfoHandlerTest {
 		if(cardInfoHandler.getCardValue("Smithy")!=4){
 			bool = false;
 		}
-		if(cardInfoHandler.getCardValue("Thief")!=4){
-			bool = false;
-		}
 		if(cardInfoHandler.getCardValue("Market")!=5){
 			bool = false;
 		}
@@ -86,16 +83,16 @@ public class CardInfoHandlerTest {
 		boolean bool = true;
 		CardInfoHandler cardInfoHandler = CardInfoHandler.getInstance();
 		LinkedList<String> temp = cardInfoHandler.getActionCards();
-		Iterator i = temp.iterator();
-		while(i.hasNext()){
-			String tempString = (String) i.next();
-			if(!cardInfoHandler.getCardType(tempString).equals("Action")){
+		for (String s : temp){
+			if(!cardInfoHandler.isActionCard(s) && !s.equals("Gardens")){
 				bool = false;
 			}
 		}
 		if(temp.size()==0){	
 			bool = false;
 		}
+		assertTrue(temp.contains("Market"));
+		assertTrue(temp.contains("Village"));
 		assertTrue(bool);
 	}
 	@Test

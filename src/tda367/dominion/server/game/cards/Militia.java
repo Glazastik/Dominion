@@ -48,6 +48,8 @@ public class Militia extends ChoiceCard {
 		}
 		if(noOneDiscards){
 			state = State.NONACTIVE;
+		} else {
+			activePlayer.sendTip("Waiting for opponents to discard.");
 		}
 	}
 	@Override
