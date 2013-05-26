@@ -33,6 +33,7 @@ public class Militia extends ChoiceCard {
 			if(!p.getHand().contains("Moat")){
 				if(p.getHandSize()>3){
 					p.sendTip("Discard down to 3 cards");
+					moatStatus.put(p, false);
 				}
 			} else {
 				moatStatus.put(p, true);
