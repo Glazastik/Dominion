@@ -103,7 +103,7 @@ public class EndGameState extends BasicGameState {
 	 */
 	private LinkedList<Integer> setPlacings(LinkedList<Integer> scoresToBeRanked){
 		LinkedList<Integer> scoresClone = (LinkedList<Integer>) scoresToBeRanked.clone();
-		Collections.sort(scoresClone);
+		Collections.sort(scoresClone, Collections.reverseOrder());
 		LinkedList<Integer> placings = new LinkedList<Integer>();
 		
 		for(int i = 0; i < scoresToBeRanked.size(); i++){
