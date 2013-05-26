@@ -62,16 +62,20 @@ public class Spy extends ChoiceCard {
 				notAffected.put(currentTarget, true);
 			}
 			while (iterator.hasNext()) {
+				System.out.println("Iterator has next");
 				currentTarget = iterator.next();
 				if (notAffected.get(currentTarget) && iterator.hasNext()) {
+					System.out.println("Next target");
 					// NÄSTA TARGET
-				} else if (!iterator.hasNext()) {
-					p.sendTip("Continue playing action cards.");
-					state = State.NONACTIVE;
-					break;
 				} else if (!notAffected.get(currentTarget)) {
+					System.out.println("Is affected, no next");
 					activePlayer.reveal(currentTarget.revealTopOfDeck());
 					game.activateYesNoBox("Discard " + activePlayer.revealTopOfDeck() + " from top of " + p.getName() + "'s deck?");
+					break;
+				} else if (!iterator.hasNext()) {
+					System.out.println("No next.");
+					p.sendTip("Continue playing action cards.");
+					state = State.NONACTIVE;
 					break;
 				} 
 			}
