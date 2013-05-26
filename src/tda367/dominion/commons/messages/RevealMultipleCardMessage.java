@@ -1,6 +1,5 @@
 package tda367.dominion.commons.messages;
 
-import java.util.LinkedList;
 
 /**
  * A class used to send a message cointaining multiple cards for exampel when a

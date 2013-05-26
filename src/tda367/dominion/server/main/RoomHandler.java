@@ -2,9 +2,8 @@ package tda367.dominion.server.main;
 
 import java.util.LinkedList;
 
-import com.esotericsoftware.kryonet.Connection;
-
-import tda367.dominion.commons.messages.*;
+import tda367.dominion.commons.messages.SetupMessage;
+import tda367.dominion.commons.messages.SupplyMessage;
 import tda367.dominion.server.game.Player;
 import tda367.dominion.server.network.GameConnection;
 import tda367.dominion.server.view.ServerFrame;

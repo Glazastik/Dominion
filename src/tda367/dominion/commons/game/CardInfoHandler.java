@@ -1,11 +1,10 @@
-package tda367.dominion.server.game;
+package tda367.dominion.commons.game;
 
 import java.io.BufferedReader;
 import java.io.DataInputStream;
 import java.io.FileInputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.LinkedList;
 
 /**

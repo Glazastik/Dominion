@@ -1,10 +1,32 @@
 package tda367.dominion.server.main;
 
-import tda367.dominion.server.game.CardInfoHandler;
+import tda367.dominion.commons.game.CardInfoHandler;
 import tda367.dominion.server.game.Dominion;
 import tda367.dominion.server.game.GainingHandler;
 import tda367.dominion.server.game.Player;
-import tda367.dominion.server.game.cards.*;
+import tda367.dominion.server.game.cards.Adventurer;
+import tda367.dominion.server.game.cards.Bureaucrat;
+import tda367.dominion.server.game.cards.Cellar;
+import tda367.dominion.server.game.cards.Chancellor;
+import tda367.dominion.server.game.cards.Chapel;
+import tda367.dominion.server.game.cards.ChoiceCard;
+import tda367.dominion.server.game.cards.Councilroom;
+import tda367.dominion.server.game.cards.Feast;
+import tda367.dominion.server.game.cards.Festival;
+import tda367.dominion.server.game.cards.Laboratory;
+import tda367.dominion.server.game.cards.Library;
+import tda367.dominion.server.game.cards.Market;
+import tda367.dominion.server.game.cards.Militia;
+import tda367.dominion.server.game.cards.Mine;
+import tda367.dominion.server.game.cards.Moat;
+import tda367.dominion.server.game.cards.Moneylender;
+import tda367.dominion.server.game.cards.Remodel;
+import tda367.dominion.server.game.cards.Smithy;
+import tda367.dominion.server.game.cards.Spy;
+import tda367.dominion.server.game.cards.Village;
+import tda367.dominion.server.game.cards.Witch;
+import tda367.dominion.server.game.cards.Woodcutter;
+import tda367.dominion.server.game.cards.Workshop;
 
 /**
  * A class that handles how the cards that are played affect the game and players.

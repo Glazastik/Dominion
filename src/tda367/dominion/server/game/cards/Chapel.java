@@ -1,6 +1,8 @@
 package tda367.dominion.server.game.cards;
 
-import tda367.dominion.commons.messages.*;
+import tda367.dominion.commons.messages.CardMessage;
+import tda367.dominion.commons.messages.DoneMessage;
+import tda367.dominion.commons.messages.Message;
 import tda367.dominion.server.game.Dominion;
 import tda367.dominion.server.game.Player;
 

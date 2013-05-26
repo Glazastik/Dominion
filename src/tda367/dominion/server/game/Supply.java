@@ -6,6 +6,8 @@ import java.util.LinkedList;
 import java.util.Random;
 import java.util.Set;
 
+import tda367.dominion.commons.game.CardInfoHandler;
+
 /**
  * Supply contains many piles that players can buy cards from
  * 

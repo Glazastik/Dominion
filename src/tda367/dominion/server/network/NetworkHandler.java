@@ -1,6 +1,7 @@
 package tda367.dominion.server.network;
 
 import java.io.IOException;
+
 import tda367.dominion.commons.messages.Message;
 import tda367.dominion.commons.network.NetworkCommon;
 

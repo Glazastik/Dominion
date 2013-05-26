@@ -2,13 +2,13 @@ package tda367.dominion.server.main;
 
 import java.util.LinkedList;
 
+import tda367.dominion.commons.game.CardInfoHandler;
 import tda367.dominion.commons.messages.AdvanceMessage;
 import tda367.dominion.commons.messages.BoolMessage;
 import tda367.dominion.commons.messages.CardMessage;
 import tda367.dominion.commons.messages.DoneMessage;
 import tda367.dominion.commons.messages.GainMessage;
 import tda367.dominion.commons.messages.PlayAllMessage;
-import tda367.dominion.server.game.CardInfoHandler;
 import tda367.dominion.server.game.Dominion;
 import tda367.dominion.server.game.Player;
 import tda367.dominion.server.game.TurnHandler.Phase;

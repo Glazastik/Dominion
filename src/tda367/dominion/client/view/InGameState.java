@@ -16,9 +16,9 @@ import org.newdawn.slick.geom.RoundedRectangle;
 import org.newdawn.slick.state.StateBasedGame;
 
 import tda367.dominion.client.model.Settings;
+import tda367.dominion.commons.game.CardInfoHandler;
 import tda367.dominion.commons.listener.GameEvent;
 import tda367.dominion.commons.listener.GameListener;
-import tda367.dominion.server.game.CardInfoHandler;
 import tda367.dominion.server.game.Supply;
 
 /**

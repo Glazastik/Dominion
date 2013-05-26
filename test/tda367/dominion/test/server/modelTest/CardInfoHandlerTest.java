@@ -9,7 +9,7 @@ import javax.swing.ImageIcon;
 
 import org.junit.Test;
 
-import tda367.dominion.server.game.CardInfoHandler;
+import tda367.dominion.commons.game.CardInfoHandler;
 
 public class CardInfoHandlerTest {
 

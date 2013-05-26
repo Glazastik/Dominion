@@ -2,8 +2,6 @@ package tda367.dominion.client.network;
 
 import java.io.IOException;
 
-import javax.swing.JOptionPane;
-
 import tda367.dominion.commons.messages.Message;
 import tda367.dominion.commons.network.NetworkCommon;
 

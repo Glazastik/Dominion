@@ -4,6 +4,7 @@ import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Set;
 
+import tda367.dominion.commons.game.CardInfoHandler;
 import tda367.dominion.commons.messages.CreateBoolMessage;
 import tda367.dominion.commons.messages.EndMessage;
 import tda367.dominion.commons.messages.Message;

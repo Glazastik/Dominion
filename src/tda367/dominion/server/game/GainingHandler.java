@@ -2,6 +2,8 @@ package tda367.dominion.server.game;
 
 import java.util.HashMap;
 
+import tda367.dominion.commons.game.CardInfoHandler;
+
 /**
  * A class designed to help players gain card, which means adding it to their
  * discard pile.
