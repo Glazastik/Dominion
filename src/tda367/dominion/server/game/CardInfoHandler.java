@@ -65,7 +65,6 @@ public class CardInfoHandler {
 	public LinkedList<String> getActionCards(){
 		LinkedList<String> temp = this.getCardList();
 		LinkedList<String> temp2 = new LinkedList<String>();
-		Iterator<String> i = temp.iterator();
 		for(String s : temp){
 			if(this.getCardType(s).equals("Action") || s.equals("Gardens")){
 				temp2.add(s);
