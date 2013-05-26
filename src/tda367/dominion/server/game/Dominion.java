@@ -144,6 +144,8 @@ public class Dominion {
 				score += 6;
 			} else if (card.equals("Gardens")) {
 				score += 1 * ((int) cards.size() % 10);
+			} else if (card.equals("Curse")) {
+				score -= 1;
 			}
 		}
 
