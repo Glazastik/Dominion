@@ -116,7 +116,7 @@ public class InGameState extends ControlledGameState {
 	private GameListener cardListener;
 	private GameListener supplyListener;
 	private GameListener advanceListener;
-	private GameListener backListener;
+	private GameListener playAllListener;
 
 	// Message box variables
 	private boolean paintYesNo = false;
@@ -317,6 +317,7 @@ public class InGameState extends ControlledGameState {
 
 	public void addPlayAllListener(GameListener l) {
 		playAllButton.addListener(l);
+		playAllListener = l;
 	}
 
 	public void addCardListener(GameListener l) {
@@ -353,6 +354,10 @@ public class InGameState extends ControlledGameState {
 
 	private void advancePhase() {
 		advanceListener.run(new GameEvent());
+	}
+	
+	private void playAllTreasures() {
+		playAllListener.run(new GameEvent());
 	}
 
 	/**
@@ -590,6 +595,12 @@ public class InGameState extends ControlledGameState {
 	public void keyPressed(int key, char c) {
 		if (key == Input.KEY_TAB) {
 			advancePhase();
+			return;
+		}
+		
+		if (key == Input.KEY_Q) {
+			playAllTreasures();
+			return;
 		}
 	}
 
