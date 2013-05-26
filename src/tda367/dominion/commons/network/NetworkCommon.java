@@ -43,6 +43,7 @@ public class NetworkCommon {
 		kryo.register(AdvanceMessage.class);
 		kryo.register(TipMessage.class);
 		kryo.register(LogMessage.class);
+		kryo.register(RevealMessage.class);
 	}
 
 }
