@@ -11,7 +11,7 @@ import tda367.dominion.server.game.Player;
 
 public class Spy extends ChoiceCard {
 	private LinkedList<Player> players;
-	private HashMap<Player, Boolean> moatStatus;
+	private HashMap<Player, Boolean> notAffected;
 	private Player activePlayer;
 	private LinkedList<Player> orderedPlayers;
 	private Player currentTarget;
@@ -23,14 +23,15 @@ public class Spy extends ChoiceCard {
 		this.players = game.getPlayers();
 		activePlayer = game.getActivePlayer();
 		orderedPlayers = new LinkedList<Player>();
-		moatStatus = new HashMap<Player, Boolean>();
+		notAffected = new HashMap<Player, Boolean>();
 		for (Player p : players) {
-			moatStatus.put(p, false);
+			notAffected.put(p, false);
 		}
 	}
 
 	public void play() {
 		state = State.ACTIVE;
+		
 		int startingPos = players.indexOf(activePlayer);
 		for (int i = startingPos; i < players.size(); startingPos++) {
 			orderedPlayers.add(players.get(i));
@@ -38,12 +39,13 @@ public class Spy extends ChoiceCard {
 		for (int i = 0; i < startingPos; i++) {
 			orderedPlayers.add(players.get(i));
 		}
+		
 		game.revealCard(activePlayer.revealTopOfDeck());
 		game.activateYesNoBox("Discard this from top of your deck?");
 
 		for (Player p : orderedPlayers) {
 			if (p.getHand().contains("Moat") && activePlayer != p) {
-				moatStatus.put(p, true);
+				notAffected.put(p, true);
 			}
 		}
 		currentTarget = activePlayer;
@@ -58,9 +60,9 @@ public class Spy extends ChoiceCard {
 			}
 			while (iterator.hasNext()) {
 				currentTarget = iterator.next();
-				if (moatStatus.get(currentTarget) && iterator.hasNext()) {
+				if (notAffected.get(currentTarget) && iterator.hasNext()) {
 					// NÄSTA TARGET
-				} else if (!moatStatus.get(currentTarget)) {
+				} else if (!notAffected.get(currentTarget)) {
 					game.revealCard(currentTarget.revealTopOfDeck());
 					game.activateYesNoBox("Discard this from top of "
 							+ p.getName() + "'s deck?");

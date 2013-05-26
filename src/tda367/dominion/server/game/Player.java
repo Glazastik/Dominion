@@ -536,18 +536,20 @@ public class Player {
 	}
 	
 	public void reveal(LinkedList<String> cards) {
-		RevealMessage msg = new RevealMessage();
-		for(String s : cards) {
-			msg.addCard(s);
+		RevealMultipleCardMessage msg = new RevealMultipleCardMessage();
+		String cardArray[] = new String[cards.size()];
+		int i = 0;
+		for(String s : cards){
+			cardArray[i] = s;
+			i++;
 		}
-		
 		this.send(msg);
 	}
 	
 	public void reveal(String card) {
-		LinkedList<String> cards = new LinkedList<String>();
-		cards.add(card);
-		this.reveal(cards);
+		RevealMessage msg = new RevealMessage();
+		msg.addCard(card);
+		this.send(msg);
 	}
 
 	public void sendTip(String tip) {
